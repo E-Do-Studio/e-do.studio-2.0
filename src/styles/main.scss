@@ -1,0 +1,15 @@
+/**
+ * Main.scss
+ * Styles complémentaires à Tailwind CSS
+ */
+
+// Global styles
+@import 'global';
+
+// Base styles
+@import 'base/fonts'; // Déclarations @font-face
+@import 'base/reset'; // Réinitialisations spécifiques
+
+// Animations
+@import 'animations/fade'; // Animations de fondu
+@import 'animations/slide'; // Animations de glissement

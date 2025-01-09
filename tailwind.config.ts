@@ -1,15 +1,18 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
+import type { Config } from 'tailwindcss'
 
-    // Or if using `src` directory:
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
+const config: Config = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'abc-favorit': ['var(--font-abc-favorit)'],
+      },
+    },
   },
   plugins: [],
 }
+export default config

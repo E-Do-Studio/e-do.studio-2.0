@@ -1,4 +1,9 @@
 {
+  // Tailwind CSS class regex for cva and cx
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
   "npm.packageManager": "pnpm",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[typescript]": {
