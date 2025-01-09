@@ -1,6 +1,7 @@
 import '@/styles/main.scss'
 import localFont from 'next/font/local'
 import { cn } from '@/lib/utils'
+import { Header } from '@/components/layout/header'
 
 // Import ABC Favorit font
 const abcFavorit = localFont({
@@ -27,7 +28,10 @@ const abcFavorit = localFont({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
