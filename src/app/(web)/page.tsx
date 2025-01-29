@@ -1,6 +1,7 @@
 import { PricingSection } from '@/app/(web)/_components/pricing-section'
 import { ContactSection } from '@/app/(web)/_components/contact-section'
 import { ServiceSection } from './_components/service-section'
+import { Location } from './_components/location'
 
 export default function Page() {
 
@@ -10,7 +11,7 @@ export default function Page() {
       <ServiceSection/>
       <PricingSection />
       <ContactSection />
-      
+      <Location />
     </div>
   )
 }
