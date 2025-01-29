@@ -5,12 +5,11 @@ import { ServiceSection } from './_components/service-section'
 export default function Page() {
 
   return (
-    <div className="text-xl container h-screen">
-
-      <ServiceSection/>
+    <div className="text-xl container min-h-screen">
+      <ServiceSection />
       <PricingSection />
       <ContactSection />
-      
+
     </div>
   )
 }
