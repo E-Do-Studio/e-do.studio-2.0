@@ -5,12 +5,15 @@ import Link from 'next/link'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import type { Navigation } from './header'
+import { useMobileMenu } from '@/store/use-mobile-menu'
 
 interface MobileMenuProps {
   navigation: Navigation
 }
 
 export function MobileMenu({ navigation }: MobileMenuProps) {
+  const { close } = useMobileMenu()
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
