@@ -47,7 +47,7 @@ function HeaderLeft({ children }: HeaderProps) {
 
 function Navigation({ children }: HeaderProps) {
   return (
-    <nav className="flex flex-row items-center gap-6">
+    <nav className="flex flex-row items-center gap-8">
       {children}
       <Button variant="outline" size="sm">
         book a session

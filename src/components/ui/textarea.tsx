@@ -8,7 +8,7 @@ const textareaVariants = cva(
   {
     variants: {
       variant: {
-        landing: 'bg-neutral-100 border-none',
+        landing: 'bg-neutral-100 border-none font-medium',
       },
     },
   },

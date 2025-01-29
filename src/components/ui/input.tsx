@@ -8,7 +8,7 @@ const inputVariants = cva(
   {
     variants: {
       variant: {
-        landing: 'bg-neutral-100 h-12 border-none',
+        landing: 'bg-neutral-100 h-12 border-none font-medium',
       },
     },
   },
