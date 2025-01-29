@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
 import { useMobileMenu } from '@/store/use-mobile-menu'
 import { useEffect } from 'react'
+import { Footer } from '@/components/layout/footer'
 
 // Import ABC Favorit font
 const abcFavorit = localFont({
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )
