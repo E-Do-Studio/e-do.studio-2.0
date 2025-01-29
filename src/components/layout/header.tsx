@@ -4,10 +4,9 @@ import Link from 'next/link'
 import { Logo } from '../commons/logo'
 import { Clock } from './clock'
 import { Button } from '../ui/button'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, Phone, X } from 'lucide-react'
+import { AnimatePresence } from 'framer-motion'
+import { Phone, X } from 'lucide-react'
 import { useMobileMenu } from '@/store/use-mobile-menu'
-import { cn } from '@/lib/utils'
 import { MobileMenu } from './mobile-menu'
 
 type HeaderProps = {
