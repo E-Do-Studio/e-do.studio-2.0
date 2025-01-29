@@ -6,7 +6,7 @@ export const Logo = () => {
       {/* Mobile */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-16 h-16 block md:hidden"
+        className="w-12 h-12 block md:hidden"
         viewBox="0 0 323.04 323.04"
       >
         <path d="M69.24 249.59A126.87 126.87 0 1042 209.15a126.8 126.8 0 0027.24 40.44zm205.21-90a115.25 115.25 0 01-156.57 107.65V165.61h122v-12h-122V52a115.25 115.25 0 01156.57 107.6zM105.93 57.44v204.39a115.22 115.22 0 010-204.39z" />

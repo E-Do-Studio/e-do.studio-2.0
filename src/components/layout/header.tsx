@@ -4,17 +4,23 @@ import Link from 'next/link'
 import { Logo } from '../commons/logo'
 import { Clock } from './clock'
 import { Button } from '../ui/button'
+import { AnimatePresence } from 'framer-motion'
+import { Phone, X } from 'lucide-react'
+import { useMobileMenu } from '@/store/use-mobile-menu'
+import { MobileMenu } from './mobile-menu'
 
 type HeaderProps = {
   children: React.ReactNode
 }
 
 const navigation = [
-  { label: 'services e-comm', href: '/services-e-comm' },
-  { label: 'production', href: '/production' },
-  { label: 'post-prod', href: '/post-prod' },
-  { label: 'cyclo', href: '/cyclorama' },
-  { label: 'gallery', href: '/gallery' },
+  // { label: 'services e-commerce', href: '/services-e-commerce' },
+  // { label: 'production', href: '/production' },
+  // { label: 'post-prod', href: '/post-prod' },
+  { label: '+33 1 44 04 11 49', href: 'tel:+33144041149' },
+  { label: 'galerie', href: '/gallery' },
+  { label: 'services', href: '/services' },
+  { label: 'tarifs', href: '/pricing' },
   { label: 'contact', href: '/contact' },
 ] as const
 
@@ -23,42 +29,80 @@ interface NavigationItemProps {
   href: string
 }
 
+export type Navigation = typeof navigation
+
 export function Header() {
+  const { isOpen, toggle, close } = useMobileMenu()
+
   return (
-    <header className="flex items-center justify-between container h-16 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
-      <HeaderLeft>
-        <Logo />
-        <Clock />
-      </HeaderLeft>
-      <Navigation>
-        {navigation.map((item) => (
-          <NavigationItem key={item.label} href={item.href}>
-            {item.label}
-          </NavigationItem>
-        ))}
-      </Navigation>
-    </header>
+    <>
+      <header className="flex flex-row items-center justify-between container h-24 backdrop-blur-sm bg-background/80 fixed top-0 z-50">
+        <HeaderLeft>
+          <Logo />
+          <Clock />
+        </HeaderLeft>
+
+        {/* Desktop Navigation */}
+        <Navigation className="hidden md:flex">
+          {navigation.map((item) => (
+            <NavigationItem key={item.label} href={item.href}>
+              {item.label}
+            </NavigationItem>
+          ))}
+        </Navigation>
+
+        {/* Mobile Menu Button */}
+        <div className="flex flex-row items-center gap-6 md:hidden">
+          <button>
+            <Phone
+              size={32}
+              strokeWidth={1}
+              onClick={() => window.open('tel:+33144041149', '_blank')}
+            />
+          </button>
+          <button
+            onClick={toggle}
+            className="md:hidden w-12 h-12 flex items-center justify-center"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? (
+              <X size={48} strokeWidth={0.8} />
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 12" className="w-8 h-8">
+                <path
+                  stroke="currentColor"
+                  fill="none"
+                  fillRule="evenodd"
+                  d="M31 1H14.5M.5 11l30 .25"
+                ></path>
+              </svg>
+            )}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>{isOpen && <MobileMenu navigation={navigation} />}</AnimatePresence>
+    </>
   )
 }
 
 function HeaderLeft({ children }: HeaderProps) {
-  return <div className="flex items-center gap-8">{children}</div>
+  return <div className="flex flex-row items-center gap-8">{children}</div>
 }
 
-function Navigation({ children }: HeaderProps) {
+function Navigation({ children, className = '' }: HeaderProps & { className?: string }) {
   return (
-    <nav className="flex items-center gap-6">
+    <nav className={`flex flex-row items-center gap-8 ${className}`}>
       {children}
-      <Button variant="outline" size="sm">
-        book a session
-      </Button>
+      <Button>book a session</Button>
     </nav>
   )
 }
 
 function NavigationItem({ children, href }: NavigationItemProps) {
   return (
-    <Link href={href} className="text-sm hover:text-gray-600 transition-colors">
+    <Link href={href} className="text-sm hover:text-neutral-500 hover:underline transition-colors">
       {children}
     </Link>
   )

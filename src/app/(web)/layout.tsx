@@ -1,7 +1,11 @@
+'use client'
+
 import '@/styles/main.scss'
 import localFont from 'next/font/local'
 import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
+import { useMobileMenu } from '@/store/use-mobile-menu'
+import { useEffect } from 'react'
 
 // Import ABC Favorit font
 const abcFavorit = localFont({
@@ -26,6 +30,17 @@ const abcFavorit = localFont({
 })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const { isOpen } = useMobileMenu()
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   return (
     <html lang="en" className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
       <body>
