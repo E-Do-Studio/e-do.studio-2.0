@@ -1,146 +1,11 @@
 'use client'
 
-import { Tabs } from '@/app/(web)/_components/tabs'
-import { Card } from '@/app/(web)/_components/card'
-import { useState } from 'react'
 import { motion } from 'motion/react'
-
-type TimingPeriod = 'Heure' | 'Demi-journée' | 'Journée'
-
-interface Machine {
-  name: string
-  price_per_hours: {
-    hour: { price: number; description: string }[]
-    half_day: { price: number; description: string }[]
-    day: { price: number; description: string }[]
-  }
-}
-
-const tabs = ['Cyclorama', 'Horizontal', 'Vertical', 'Live', 'Eclipse']
-
-const machines: Machine[] = [
-  {
-    name: 'Cyclorama',
-    price_per_hours: {
-      hour: [
-        {
-          price: 1000,
-          description: '1 heure de shooting\nSelf-service',
-        },
-      ],
-      half_day: [
-        {
-          price: 1500,
-          description: '4 heures de shooting\nSelf-service',
-        },
-      ],
-      day: [
-        {
-          price: 2000,
-          description: '8 heures de shooting\nSelf-service',
-        },
-      ],
-    },
-  },
-  {
-    name: 'Horizontal',
-    price_per_hours: {
-      hour: [
-        {
-          price: 1000,
-          description: '1 heure de shooting \n Self-service',
-        },
-      ],
-      half_day: [
-        {
-          price: 1500,
-          description: '4 heures de shooting \n Self-service',
-        },
-      ],
-      day: [
-        {
-          price: 2000,
-          description: '8 heures de shooting \n Self-service',
-        },
-      ],
-    },
-  },
-  {
-    name: 'Vertical',
-    price_per_hours: {
-      hour: [
-        {
-          price: 1000,
-          description: '1 heure de shooting \n Self-service',
-        },
-      ],
-      half_day: [
-        {
-          price: 1500,
-          description: '4 heures de shooting \n Self-service',
-        },
-      ],
-      day: [
-        {
-          price: 2000,
-          description: '8 heures de shooting \n Self-service',
-        },
-      ],
-    },
-  },
-  {
-    name: 'Eclipse',
-    price_per_hours: {
-      hour: [
-        {
-          price: 1000,
-          description: '1 heure de shooting \n Self-service',
-        },
-      ],
-      half_day: [
-        {
-          price: 1500,
-          description: '4 heures de shooting \n Self-service',
-        },
-      ],
-      day: [
-        {
-          price: 2000,
-          description: '8 heures de shooting \n Self-service',
-        },
-      ],
-    },
-  },
-  {
-    name: 'Live',
-    price_per_hours: {
-      hour: [
-        {
-          price: 1000,
-          description: '1 heure de shooting \n Self-service',
-        },
-      ],
-      half_day: [
-        {
-          price: 1500,
-          description: '4 heures de shooting \n Self-service',
-        },
-      ],
-      day: [
-        {
-          price: 2000,
-          description: '8 heures de shooting \n Self-service',
-        },
-      ],
-    },
-  },
-]
-
-const timingMap: Record<keyof Machine['price_per_hours'], TimingPeriod> = {
-  hour: 'Heure',
-  half_day: 'Demi-journée',
-  day: 'Journée',
-}
+import { useState } from 'react'
+import { Card } from '@/app/(web)/_components/card'
+import { Tabs } from '@/app/(web)/_components/tabs'
+import { machines, tabs, timingMap } from '@/app/(web)/_components/machines-data'
+import type { Machine } from '@/app/(web)/_components/machines-data'
 
 export const Machines = () => {
   const [activeTab, setActiveTab] = useState(tabs[0])
@@ -161,7 +26,7 @@ export const Machines = () => {
         className="grid grid-cols-4 gap-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.3 }}
       >
         {machines
           .filter((machine) => machine.name === activeTab)
@@ -174,7 +39,7 @@ export const Machines = () => {
                   animate={{ opacity: 1 }}
                   transition={{
                     duration: 0.3,
-                    delay: period === 'hour' ? 0 : period === 'half_day' ? 0.05 : 0.1,
+                    delay: period === 'hour' ? 0 : period === 'half_day' ? 0.1 : 0.2,
                   }}
                 >
                   <Card
