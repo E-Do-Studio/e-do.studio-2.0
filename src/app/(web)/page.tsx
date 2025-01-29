@@ -1,3 +1,5 @@
+import { PricingSection } from '@/app/(web)/_components/pricing-section'
+import { ContactSection } from '@/app/(web)/_components/contact-section'
 import { Services } from './_components/services'
 
 export default function Page() {
@@ -8,6 +10,8 @@ export default function Page() {
 
   return (
     <div className="text-xl container h-screen">
+      <PricingSection />
+      <ContactSection />
       <a href='#'>
         <Services
           imagesDescription={['https://plus.unsplash.com/premium_photo-1682144572574-2305752c0f63?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'Services']}
