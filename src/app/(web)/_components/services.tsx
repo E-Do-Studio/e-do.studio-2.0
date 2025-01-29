@@ -25,26 +25,26 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
     }, [images.length]);
 
     return (
-        <div className="mt-0 mb-3 md:mt-10 md:mb-10 flex md:flex-row flex-col gap-2 justify-between md:hover:cursor-pointer md:transform md:transition-transform md:duration-500 md:hover:scale-105">
-            <span className="text-lg font-light md:text-2xl md:font-medium">{number}</span>
-            <div className="flex flex-col gap-2 w-full md:gap-5 md:max-w-lg">
+        <div className="mt-0 mb-3 lg:mt-10 lg:mb-10 flex lg:flex-row flex-col gap-2 justify-between lg:hover:cursor-pointer lg:transform lg:transition-transform lg:duration-500 lg:hover:scale-105">
+            <span className="text-lg font-light lg:text-2xl lg:font-medium">{number}</span>
+            <div className="flex flex-col gap-2 w-full lg:gap-5 lg:max-w-lg">
                 <div className="flex justify-between items-center">
-                    <h4 className="block md:hidden">{serviceName}</h4>
-                    <ChevronRight className="block md:hidden border border-border rounded-full p-2 w-8 h-8" />
+                    <h4 className="block lg:hidden">{serviceName}</h4>
+                    <ChevronRight className="block lg:hidden border border-border rounded-full p-2 w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-medium md:hidden">{title}</h3>
-                <h3 className="text-2xl font-medium hidden md:block">{serviceName + " " + title}</h3>
+                <h3 className="text-2xl font-medium lg:hidden">{title}</h3>
+                <h3 className="text-2xl font-medium hidden lg:block">{serviceName + " " + title}</h3>
                 <p className="text-base font-medium text-neutral-500">{description}</p>
-                <Image src={imagesDescription[0]} alt={imagesDescription[1]} width={100} height={100} className="w-full md:w-[270px]" />
+                <Image src={imagesDescription[0]} alt={imagesDescription[1]} width={100} height={100} className="w-full lg:w-[270px]" />
             </div>
             <Image
                 src={images[currentImageIndex].src}
                 alt={images[currentImageIndex].alt}
                 width={300}
                 height={300}
-                className="hidden md:block object-cover w-[200px] h-[260px] mt-7"
+                className="hidden lg:block object-cover w-[200px] h-[260px] mt-7"
             />
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
                 <ChevronRight className="border border-border rounded-full p-2 w-8 h-8 absolute right-0 top-1" />
             </div>
         </div>

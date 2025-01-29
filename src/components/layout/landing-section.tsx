@@ -11,7 +11,7 @@ export const LandingSection = ({
   children: React.ReactNode
   className?: string
   subtitle?: string
-  description: () => React.ReactNode
+  description?: () => React.ReactNode
 }) => {
   return (
     <section className={cn('flex flex-col gap-8 mt-16 md:mt-32', className)}>

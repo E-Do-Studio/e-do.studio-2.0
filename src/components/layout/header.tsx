@@ -36,7 +36,7 @@ export function Header() {
 
   return (
     <>
-      <header className="flex flex-row items-center justify-between container h-24 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
+      <header className="flex flex-row items-center justify-between container h-24 backdrop-blur-sm bg-background/80 fixed top-0 z-50">
         <HeaderLeft>
           <Logo />
           <Clock />
