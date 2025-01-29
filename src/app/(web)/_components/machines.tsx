@@ -23,7 +23,7 @@ export const Machines = () => {
     <div className="flex flex-col gap-8">
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       <motion.div
-        className="grid grid-cols-4 gap-4"
+        className="flex flex-col justify-between md:flex-row gap-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
@@ -35,6 +35,7 @@ export const Machines = () => {
               options.map((option, index) => (
                 <motion.div
                   key={`${machine.name}-${period}-${index}`}
+                  className="flex-1"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{

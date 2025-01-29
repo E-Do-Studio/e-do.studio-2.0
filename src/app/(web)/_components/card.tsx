@@ -10,7 +10,7 @@ interface CardProps {
 export const Card = ({ timing, price, description }: CardProps) => {
   return (
     <motion.div
-      className="flex flex-col gap-4 p-4 bg-neutral-100 rounded-lg cursor-pointer"
+      className="flex justify-between md:flex-col gap-4 p-4 flex-1 bg-neutral-100 rounded-lg cursor-pointer"
       whileHover={{
         scale: 1.03,
         transition: {
@@ -19,10 +19,10 @@ export const Card = ({ timing, price, description }: CardProps) => {
       }}
     >
       <div className="flex flex-col">
-        <h3 className="text-2xl font-abc-favorit font-bold">{timing}</h3>
-        <p className="text-base text-neutral-500 font-medium">{description}</p>
+        <h3 className="">{timing}</h3>
+        <p className="text-neutral-500">{description}</p>
       </div>
-      <Separator className="mt-6" />
+      <Separator className="hidden md:block mt-6" />
       <p className="text-2xl font-medium">
         {price}€ <span className="text-sm">HT</span>
       </p>

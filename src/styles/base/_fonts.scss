@@ -13,3 +13,15 @@
     'ss02' 1; // Activer les stylistic sets si disponibles
   font-optical-sizing: auto;
 }
+
+h2 {
+  @apply text-3xl md:text-5xl font-abc-favorit font-medium max-w-lg;
+}
+
+h3 {
+  @apply text-xl md:text-2xl font-abc-favorit font-bold;
+}
+
+p {
+  @apply text-base md:text-lg;
+}

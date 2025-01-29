@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
       <body>
-        <Header />
+        {/* <Header /> */}
         {children}
       </body>
     </html>

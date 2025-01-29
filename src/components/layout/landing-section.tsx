@@ -10,7 +10,7 @@ export const LandingSection = ({
   className?: string
 }) => {
   return (
-    <section className={cn('flex flex-col gap-8', className)}>
+    <section className={cn('flex flex-col gap-8 mt-16', className)}>
       <LandingTitle title={title} />
       {children}
     </section>
@@ -18,7 +18,5 @@ export const LandingSection = ({
 }
 
 export const LandingTitle = ({ title, className }: { title: string; className?: string }) => {
-  return (
-    <h2 className={cn('text-5xl font-abc-favorit font-medium max-w-lg', className)}>{title}</h2>
-  )
+  return <h2 className={cn('', className)}>{title}</h2>
 }
