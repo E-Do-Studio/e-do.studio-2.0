@@ -1,6 +1,8 @@
 You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind.
 
-Import using alias @/
+- Import using alias @/
+- PNPM as package manager
+- Global States with Zustand
 
 Code Style and Structure
 
