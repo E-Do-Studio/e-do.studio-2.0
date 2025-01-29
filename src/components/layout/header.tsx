@@ -25,7 +25,7 @@ interface NavigationItemProps {
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between container h-16 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
+    <header className="flex flex-row items-center justify-between container h-16 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
       <HeaderLeft>
         <Logo />
         <Clock />
@@ -42,12 +42,12 @@ export function Header() {
 }
 
 function HeaderLeft({ children }: HeaderProps) {
-  return <div className="flex items-center gap-8">{children}</div>
+  return <div className="flex flex-row items-center gap-8">{children}</div>
 }
 
 function Navigation({ children }: HeaderProps) {
   return (
-    <nav className="flex items-center gap-6">
+    <nav className="flex flex-row items-center gap-6">
       {children}
       <Button variant="outline" size="sm">
         book a session
