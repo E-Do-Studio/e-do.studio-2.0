@@ -6,6 +6,7 @@ import { Card } from '@/app/(web)/_components/card'
 import { Tabs } from '@/app/(web)/_components/tabs'
 import { machines, tabs, timingMap } from '@/app/(web)/_components/machines-data'
 import type { Machine } from '@/app/(web)/_components/machines-data'
+import { CarouselMachines } from '@/app/(web)/_components/carousel-machines'
 
 export const Machines = () => {
   const [activeTab, setActiveTab] = useState(tabs[0])
@@ -19,9 +20,12 @@ export const Machines = () => {
     ))
   }
 
+  const activeMachine = machines.find((machine) => machine.name === activeTab)
+
   return (
     <div className="flex flex-col gap-8">
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+
       <motion.div
         className="flex flex-col justify-between md:flex-row gap-4"
         initial={{ opacity: 0 }}
@@ -53,6 +57,18 @@ export const Machines = () => {
             ),
           )}
       </motion.div>
+
+      {activeMachine && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <CarouselMachines
+            images={activeMachine.images}
+          />
+        </motion.div>
+      )}
     </div>
   )
 }
