@@ -6,6 +6,36 @@ export const Images: CollectionConfig = {
   access: {
     read: () => true,
   },
+  hooks: {
+    beforeChange: [
+      async ({ data }) => {
+        if (data.filename) {
+          return {
+            ...data,
+            alt: data.filename
+              .replace(/\.[^/.]+$/, '')
+              .replace(/[-_]/g, ' ')
+              .trim(),
+          }
+        }
+        return data
+      },
+    ],
+    afterRead: [
+      ({ doc }) => {
+        if (doc.filename && !doc.alt) {
+          return {
+            ...doc,
+            alt: doc.filename
+              .replace(/\.[^/.]+$/, '')
+              .replace(/[-_]/g, ' ')
+              .trim(),
+          }
+        }
+        return doc
+      },
+    ],
+  },
   admin: {
     group: 'Gallery',
   },
@@ -21,34 +51,34 @@ export const Images: CollectionConfig = {
     },
     mimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
     adminThumbnail: 'thumbnail',
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 400,
-        height: 300,
-        position: 'centre',
-        formatOptions: {
-          format: 'webp',
-          options: {
-            quality: 60,
-            effort: 6,
-          },
-        },
-      },
-      {
-        name: 'card',
-        width: 768,
-        height: 1024,
-        position: 'centre',
-        formatOptions: {
-          format: 'webp',
-          options: {
-            quality: 75,
-            effort: 6,
-          },
-        },
-      },
-    ],
+    // imageSizes: [
+    //   {
+    //     name: 'thumbnail',
+    //     width: 400,
+    //     height: 300,
+    //     position: 'centre',
+    //     formatOptions: {
+    //       format: 'webp',
+    //       options: {
+    //         quality: 60,
+    //         effort: 6,
+    //       },
+    //     },
+    //   },
+    //   {
+    //     name: 'card',
+    //     width: 768,
+    //     height: 1024,
+    //     position: 'centre',
+    //     formatOptions: {
+    //       format: 'webp',
+    //       options: {
+    //         quality: 75,
+    //         effort: 6,
+    //       },
+    //     },
+    //   },
+    // ],
   },
   fields: [
     {
@@ -56,7 +86,8 @@ export const Images: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        description: 'Généré automatiquement depuis le nom du fichier',
+        description:
+          'Généré automatiquement depuis le nom du fichier. Vous pouvez le modifier si nécessaire.',
       },
     },
     {
@@ -67,18 +98,17 @@ export const Images: CollectionConfig = {
       hasMany: false,
       admin: {
         position: 'sidebar',
-        description: 'Sera appliqué à toutes les images uploadées',
       },
     },
     {
-      name: 'subcategory',
+      name: 'category',
       type: 'relationship',
-      relationTo: 'subcategories',
+      relationTo: 'categories',
       required: false,
       hasMany: false,
       admin: {
         position: 'sidebar',
-        description: "Sous-catégorie de l'image",
+        description: "Catégorie de l'image",
       },
     },
   ],
