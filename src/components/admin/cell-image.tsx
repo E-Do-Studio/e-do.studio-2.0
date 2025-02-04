@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-
+import Image from 'next/image'
 interface ImageData {
   id: string
   filename: string
@@ -41,7 +41,7 @@ export const CellImage = ({ data }: { data: number[] }) => {
     <div className="flex gap-2">
       {images.map((image, index) => (
         <div key={index} className="flex items-center gap-2">
-          <img
+          <Image
             src={`/images/${image.filename}`}
             alt={image.alt || 'Preview'}
             className="h-8 w-8 object-cover rounded"

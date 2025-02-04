@@ -40,11 +40,7 @@ export const Gallery: CollectionConfig = {
       relationTo: 'categories',
       required: true,
       filterOptions: {
-        where: {
-          isSubcategory: {
-            equals: true,
-          },
-        },
+        where: {},
       },
       label: 'Sous-catégorie',
       admin: {

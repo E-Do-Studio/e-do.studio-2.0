@@ -18,6 +18,8 @@ export interface Config {
     brands: any
     categories: any
     gallery: any
+    subcategories: any
+    images: any
   }
   db: {
     defaultIDType: string
