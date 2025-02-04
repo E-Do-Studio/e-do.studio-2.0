@@ -1,21 +1,24 @@
+import { Suspense } from 'react'
 import { GalleryMenu } from '../_components/gallery-menu'
 import { GalleryGrid } from '../_components/gallery-grid'
 
-interface GaleriePageProps {
-  params: {
-    category: string
-  }
-}
+export default async function GaleriePage(params: {
+  params: Promise<{ category: string }>
+}) {
+  const { category } = await params.params
 
-export default function GaleriePage({ params }: GaleriePageProps) {
   return (
     <div className="container mt-32 min-h-screen">
       <div className="grid grid-cols-12 gap-8">
         <aside className="col-span-3">
-          <GalleryMenu />
+          <Suspense fallback={<div>Chargement...</div>}>
+            <GalleryMenu />
+          </Suspense>
         </aside>
         <main className="col-span-9">
-          <GalleryGrid initialCategory={params.category} />
+          <Suspense fallback={<div>Chargement...</div>}>
+            <GalleryGrid initialCategory={category} />
+          </Suspense>
         </main>
       </div>
     </div>

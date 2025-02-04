@@ -10,10 +10,8 @@ import sharp from 'sharp'
 import { cloudinaryStorage } from 'payload-cloudinary'
 
 import { Users } from './collections/Users'
-import { Media } from './collections/Media'
 import { Brands } from './collections/Brands'
 import { Categories } from './collections/Categories'
-import { Gallery } from './collections/Gallery'
 import { Images } from './collections/Images'
 import { Subcategories } from './collections/Sub-Category'
 
@@ -21,13 +19,14 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Subcategories, Users, Images, Brands, Categories],
+  collections: [Users, Brands, Categories, Images, Subcategories],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -35,7 +34,7 @@ export default buildConfig({
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
@@ -53,7 +52,6 @@ export default buildConfig({
       },
       collections: {
         media: true,
-        images: true,
       },
       folder: 'payload-media', // Optional, defaults to 'payload-media'
       disableLocalStorage: true, // Optional, defaults to true

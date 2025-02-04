@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
@@ -23,6 +23,10 @@ export const Categories: CollectionConfig = {
       admin: {
         description: 'Name of the category',
       },
+    },
+    {
+      name: 'description',
+      type: 'textarea',
     },
     {
       name: 'subcategories',
