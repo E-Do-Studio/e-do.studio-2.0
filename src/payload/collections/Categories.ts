@@ -25,6 +25,15 @@ export const Categories: CollectionConfig = {
       },
     },
     {
+      name: 'subcategories',
+      type: 'relationship',
+      relationTo: 'subcategories',
+      admin: {
+        position: 'sidebar',
+      },
+      hasMany: true,
+    },
+    {
       name: 'images',
       type: 'upload',
       relationTo: 'images',

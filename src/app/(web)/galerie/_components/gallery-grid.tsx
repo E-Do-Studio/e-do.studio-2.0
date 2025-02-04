@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import useSWR from 'swr'
 import { useSearchParams } from 'next/navigation'
 import { ImageCard } from './image-card'
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface GalleryImage {
   id: number
@@ -12,7 +13,7 @@ interface GalleryImage {
   brand?: {
     name: string
   }
-  category?: {
+  subcategory?: {
     name: string
   }
   filename: string
@@ -25,13 +26,26 @@ interface GalleryGridProps {
 // Définition du fetcher pour SWR
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
+function GalleryGridSkeleton() {
+  return (
+    <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+      {[...Array(9)].map((_, i) => (
+        <div key={i} className="break-inside-avoid">
+          <Skeleton className="w-full h-[400px] mb-4" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   const searchParams = useSearchParams()
   const category = searchParams.get('category') || initialCategory
+  const subcategory = searchParams.get('subcategory')
 
-  // Utiliser SWR pour la mise en cache des données
-  const { data, error, isLoading } = useSWR<{ docs: any[] }>(
-    '/api/categories',
+  // Fetch toutes les images si pas de catégorie sélectionnée
+  const { data: allImagesData, error: allImagesError, isLoading: allImagesLoading } = useSWR<{ docs: any[] }>(
+    !category ? '/api/images?depth=2' : null,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -39,34 +53,62 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
     }
   )
 
-  // Ajout de logs pour déboguer
-  console.log('Raw data:', data)
+  // Fetch les catégories seulement si une catégorie est sélectionnée
+  const { data: categoriesData, error: categoriesError, isLoading: categoriesLoading } = useSWR<{ docs: any[] }>(
+    category ? '/api/categories?depth=2' : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  )
+
+  const isLoading = allImagesLoading || categoriesLoading
+  const error = allImagesError || categoriesError
 
   const images = useMemo(() => {
-    if (!data?.docs) return []
-
-    if (category) {
-      const categoryData = data.docs.find((cat) =>
-        cat.name.toLowerCase() === category?.toLowerCase()
+    if (category && categoriesData?.docs) {
+      const categoryData = categoriesData.docs.find((cat) =>
+        cat.name.toLowerCase() === category.toLowerCase()
       )
-      console.log('Category data:', categoryData)
+
+      if (subcategory && categoryData) {
+        const subcategoryData = categoryData.subcategories?.find(
+          (sub: any) => sub.name.toLowerCase() === subcategory.toLowerCase()
+        )
+
+        return categoryData.images.filter((image: GalleryImage) =>
+          image.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
+        ) || []
+      }
+
       return categoryData?.images || []
     }
 
-    const allImages = data.docs.flatMap((cat) => cat.images || [])
-    console.log('All images:', allImages)
-    return allImages
-  }, [data, category])
+    // Retourner toutes les images si pas de catégorie sélectionnée
+    return allImagesData?.docs || []
+  }, [category, subcategory, categoriesData, allImagesData])
 
-  if (isLoading) return <div>Chargement...</div>
+  if (isLoading) {
+    return (
+      <div className="pt-[12rem] lg:pt-0">
+        <GalleryGridSkeleton />
+      </div>
+    )
+  }
+
   if (error) return <div>Erreur de chargement</div>
   if (!images.length) return <div>Aucune image trouvée</div>
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {images.map((image: GalleryImage) => (
-        <ImageCard key={image.id} image={image} />
-      ))}
+    <div className="pt-[12rem] lg:pt-0">
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+        {images.map((image: GalleryImage) => (
+          <div key={image.id} className="break-inside-avoid">
+            <ImageCard image={image} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 } 
