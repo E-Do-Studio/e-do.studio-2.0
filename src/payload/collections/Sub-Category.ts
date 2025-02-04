@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Subcategories: CollectionConfig = {
   slug: 'subcategories',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'name',
     group: 'Gallery',
@@ -15,16 +18,6 @@ export const Subcategories: CollectionConfig = {
       required: true,
       admin: {
         description: 'Nom de la sous-catégorie',
-      },
-    },
-    {
-      name: 'category',
-      type: 'relationship',
-      relationTo: 'categories',
-      required: true,
-      hasMany: false,
-      admin: {
-        description: 'Catégorie parente',
       },
     },
   ],

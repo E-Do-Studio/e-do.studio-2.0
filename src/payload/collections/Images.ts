@@ -101,14 +101,13 @@ export const Images: CollectionConfig = {
       },
     },
     {
-      name: 'category',
+      name: 'subcategory',
       type: 'relationship',
-      relationTo: 'categories',
+      relationTo: 'subcategories',
       required: false,
       hasMany: false,
       admin: {
         position: 'sidebar',
-        description: "Catégorie de l'image",
       },
     },
   ],

@@ -19,8 +19,24 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'e7.pngegg.com',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/api/images/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'votre-domaine.com',
+        pathname: '/api/images/**',
+      },
     ],
+    domains: ['localhost', '127.0.0.1'],
   },
   // Your Next.js config here
 }
