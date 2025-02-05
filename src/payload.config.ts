@@ -5,7 +5,7 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import sharp from 'sharp'
+// import sharp from 'sharp'
 import { cloudinaryStorage } from 'payload-cloudinary'
 
 import { Users } from './collections/Users'
@@ -52,7 +52,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  sharp: sharp,
+  // sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
     cloudinaryStorage({
