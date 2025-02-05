@@ -1,10 +1,25 @@
+"use client"
+
 import { Suspense } from 'react'
 import { GalleryMenu } from './_components/gallery-menu'
 import { GalleryGrid } from './_components/gallery-grid'
+import { useSearchParams } from 'next/navigation'
 
-export const dynamic = 'force-dynamic'
+export default function GalleryPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    }>
+      <GalleryContent />
+    </Suspense>
+  )
+}
 
-export default function Galerie() {
+function GalleryContent() {
+  'use client'
+  const searchParams = useSearchParams()
   return (
     <div className="container mt-32 min-h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
