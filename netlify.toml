@@ -26,8 +26,33 @@ status = 200
   w = ":width"
   q = ":quality"
 
+[[redirects]]
+from = "/admin/*"
+to = "/admin/[[...segments]]/page"
+status = 200
+force = true
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/api/:splat"
+status = 200
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
 [context]
 
   [context.production]
 
   [context.main]
+
+
+[dev]
+  targetPort = 3001
+  port = 8888
+
+[build.environment]
+PAYLOAD_SECRET = "votre-secret"
+NODE_VERSION = "18.20.2"

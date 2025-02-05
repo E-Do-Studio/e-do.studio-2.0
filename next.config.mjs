@@ -36,6 +36,14 @@ const nextConfig = {
         pathname: '/api/images/**',
       },
     ],
+    async rewrites() {
+      return [
+        {
+          source: '/admin/:path*',
+          destination: '/admin',
+        },
+      ]
+    },
     domains: ['localhost', '127.0.0.1'],
   },
   // Your Next.js config here
