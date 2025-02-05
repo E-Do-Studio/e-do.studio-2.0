@@ -30,20 +30,7 @@ const nextConfig = {
         port: '3000',
         pathname: '/api/images/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'votre-domaine.com',
-        pathname: '/api/images/**',
-      },
     ],
-    async rewrites() {
-      return [
-        {
-          source: '/admin/:path*',
-          destination: '/admin',
-        },
-      ]
-    },
     domains: ['localhost', '127.0.0.1'],
   },
   // Your Next.js config here
