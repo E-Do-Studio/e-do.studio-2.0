@@ -6,7 +6,7 @@ export const Location = () => {
         <LandingSection title="Où nous trouver ?">
             <div className="flex flex-col md:flex-row gap-8 md:gap-32 min-h-[600px]">
                 <div className="flex-1 flex flex-col gap-4 text-gray-500">
-                    <h3>Parc d'activités Victor Hugo</h3>
+                    <h3>Parc d&apos;activités Victor Hugo</h3>
                     <h3>Batiment 6.7</h3>
                     <h3>93400 Saint-Ouen</h3>
                     <div className="space-y-2">

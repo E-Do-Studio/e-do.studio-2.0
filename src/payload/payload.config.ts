@@ -6,14 +6,12 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
-import sharp from 'sharp'
+// import sharp from 'sharp'
 import { cloudinaryStorage } from 'payload-cloudinary'
 
 import { Users } from './collections/Users'
-import { Media } from './collections/Media'
 import { Brands } from './collections/Brands'
 import { Categories } from './collections/Categories'
-import { Gallery } from './collections/Gallery'
 import { Images } from './collections/Images'
 import { Subcategories } from './collections/Sub-Category'
 
@@ -42,7 +40,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  sharp: sharp,
+  // sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
     cloudinaryStorage({
