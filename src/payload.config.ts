@@ -5,7 +5,6 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { cloudinaryStorage } from 'payload-cloudinary'
 
@@ -15,25 +14,27 @@ import { Categories } from './collections/Categories'
 import { Images } from './collections/Images'
 import { Subcategories } from './collections/Sub-Category'
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
-
-// Server URL production or development
-
-let serverURL = ''
-
-if (process.env.NODE_ENV === 'production') {
-  serverURL = process.env.NEXT_PUBLIC_SERVER_URL!
-} else {
-  serverURL = 'http://localhost:3000'
-}
-
 export default buildConfig({
-  serverURL: serverURL,
+  debug: true,
+  onInit: async (payload) => {
+    console.log('Payload Admin URL:', payload.getAdminURL())
+    console.log('Payload API URL:', payload.getAPIURL())
+    console.log('Node ENV:', process.env.NODE_ENV)
+    console.log('Database Connection:', process.env.DATABASE_URI ? 'Configured' : 'Missing')
+  },
+  hooks: {
+    afterError: [
+      async (err) => {
+        console.error('Payload Error:', {
+          details: err,
+        })
+      },
+    ],
+  },
   admin: {
     user: Users.slug,
     importMap: {
-      baseDir: path.resolve(dirname),
+      baseDir: path.resolve(__dirname),
     },
   },
   collections: [Users, Brands, Categories, Images, Subcategories],
@@ -77,5 +78,32 @@ export default buildConfig({
     limits: {
       fileSize: 20000 * 1024, // 20000ko max
     },
+  },
+  cors: {
+    origins: [
+      'https://superb-travesseiro-87230d.netlify.app',
+      'https://superb-travesseiro-87230d.netlify.app/admin',
+      'http://localhost:3000',
+      'http://localhost:3001',
+    ],
+    headers: [
+      'Content-Type',
+      'Authorization',
+      'Cache-Control',
+      'Pragma',
+      'Expires',
+      'Netlify-Vary',
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+      'Access-Control-Request-Method',
+      'Access-Control-Request-Headers',
+      'Access-Control-Allow-Origin',
+      'Access-Control-Allow-Headers',
+      'Access-Control-Allow-Methods',
+      'Access-Control-Allow-Credentials',
+      'Access-Control-Expose-Headers',
+      'Access-Control-Max-Age',
+    ],
   },
 })
