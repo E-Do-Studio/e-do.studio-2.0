@@ -18,11 +18,18 @@ import { Subcategories } from './collections/Sub-Category'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const dbUri = process.env.DATABASE_URI
-console.log('Database connection string:', dbUri?.replace(/:[^:@]*@/, ':****@'))
+// Server URL production or development
+
+let serverURL = ''
+
+if (process.env.NODE_ENV === 'production') {
+  serverURL = process.env.NEXT_PUBLIC_SERVER_URL!
+} else {
+  serverURL = 'http://localhost:3000'
+}
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  serverURL: serverURL,
   admin: {
     user: Users.slug,
     importMap: {
@@ -42,9 +49,6 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
-      max: 10,
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-      connectionTimeoutMillis: 5000,
     },
   }),
   sharp: sharp,
