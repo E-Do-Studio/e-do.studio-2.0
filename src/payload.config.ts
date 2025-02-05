@@ -16,21 +16,6 @@ import { Subcategories } from './collections/Sub-Category'
 
 export default buildConfig({
   debug: true,
-  onInit: async (payload) => {
-    console.log('Payload Admin URL:', payload.getAdminURL())
-    console.log('Payload API URL:', payload.getAPIURL())
-    console.log('Node ENV:', process.env.NODE_ENV)
-    console.log('Database Connection:', process.env.DATABASE_URI ? 'Configured' : 'Missing')
-  },
-  hooks: {
-    afterError: [
-      async (err) => {
-        console.error('Payload Error:', {
-          details: err,
-        })
-      },
-    ],
-  },
   admin: {
     user: Users.slug,
     importMap: {
@@ -62,11 +47,10 @@ export default buildConfig({
         api_secret: process.env.CLOUDINARY_API_SECRET!,
       },
       collections: {
-        media: true,
+        images: true,
       },
-      folder: 'payload-media', // Optional, defaults to 'payload-media'
-      disableLocalStorage: true, // Optional, defaults to true
-      enabled: true, // Optional, defaults to true
+      folder: 'payload-media',
+      enabled: true,
     }),
   ],
   email: resendAdapter({

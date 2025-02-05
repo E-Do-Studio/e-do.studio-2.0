@@ -18,7 +18,7 @@ const navigation = [
   // { label: 'production', href: '/production' },
   // { label: 'post-prod', href: '/post-prod' },
   { label: '+33 1 44 04 11 49', href: 'tel:+33144041149' },
-  { label: 'galerie', href: '/gallery' },
+  { label: 'galerie', href: '/galerie' },
   { label: 'services', href: '/services' },
   { label: 'tarifs', href: '/pricing' },
   { label: 'contact', href: '/contact' },

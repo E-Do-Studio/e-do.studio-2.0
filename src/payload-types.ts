@@ -20,6 +20,7 @@ export interface Config {
     gallery: any
     subcategories: any
     images: any
+    'landing-page': any
   }
   db: {
     defaultIDType: string

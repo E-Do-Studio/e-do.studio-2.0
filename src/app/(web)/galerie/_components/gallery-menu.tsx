@@ -115,24 +115,12 @@ function GalleryContent() {
   return (
     <div className={cn(
       "flex flex-col gap-8",
-      "fixed top-[5rem] left-0 right-0 z-50 px-4 py-6",
+      "fixed top-[5rem] left-0 right-0 z-50 container py-6",
       "lg:sticky lg:top-32 lg:px-0 lg:py-0"
     )}>
-      <h1 className="text-4xl font-medium">{menuTitle}</h1>
+      <h1>{menuTitle}</h1>
       <nav className="overflow-y-auto lg:max-h-[calc(100vh-12rem)]">
         <ul className="flex flex-col gap-1 text-base">
-          <li>
-            <Link
-              href="/galerie"
-              className={cn(
-                "hover:text-neutral-600 transition-colors",
-                !currentCategory && "font-medium"
-              )}
-              prefetch={true}
-            >
-              Toutes les images
-            </Link>
-          </li>
           {categories.map((category) => (
             <CategoryLink
               key={category.id}

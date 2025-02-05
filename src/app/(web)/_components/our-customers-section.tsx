@@ -16,7 +16,7 @@ interface Customer {
     name: string;
 }
 
-export function OurCustomers() {
+export function OurCustomersSection() {
     // IMG suctomers
     const customers: Customer[] = [
         {

@@ -1,10 +1,12 @@
 import type { CollectionConfig } from 'payload'
-import path from 'path'
 
 export const Images: CollectionConfig = {
   slug: 'images',
   access: {
     read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
   },
   hooks: {
     beforeChange: [
@@ -40,47 +42,26 @@ export const Images: CollectionConfig = {
     group: 'Gallery',
   },
   upload: {
-    staticDir: path.resolve(__dirname, '../../public/images'),
-    formatOptions: {
-      format: 'webp',
-      options: {
-        quality: 60,
-        effort: 6,
-        lossless: false,
-      },
-    },
+    adapter: 'cloudinary',
+    // formatOptions: {
+    //   format: 'webp',
+    //   options: {
+    //     quality: 60,
+    //     effort: 6,
+    //     lossless: false,
+    //   },
+    // },
     mimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
     adminThumbnail: 'thumbnail',
-    // imageSizes: [
-    //   {
-    //     name: 'thumbnail',
-    //     width: 400,
-    //     height: 300,
-    //     position: 'centre',
-    //     formatOptions: {
-    //       format: 'webp',
-    //       options: {
-    //         quality: 60,
-    //         effort: 6,
-    //       },
-    //     },
-    //   },
-    //   {
-    //     name: 'card',
-    //     width: 768,
-    //     height: 1024,
-    //     position: 'centre',
-    //     formatOptions: {
-    //       format: 'webp',
-    //       options: {
-    //         quality: 75,
-    //         effort: 6,
-    //       },
-    //     },
-    //   },
-    // ],
   },
   fields: [
+    {
+      name: 'url',
+      type: 'text',
+      admin: {
+        hidden: true,
+      },
+    },
     {
       name: 'alt',
       type: 'text',

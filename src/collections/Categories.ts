@@ -2,7 +2,7 @@ import { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
-
+  auth: false,
   admin: {
     useAsTitle: 'name',
     group: {

@@ -1,7 +1,7 @@
 import { LandingSection } from "@/components/layout/landing-section";
 import Image from "next/image";
 
-export const Location = () => {
+export const LocationSection = () => {
     return (
         <LandingSection title="Où nous trouver ?">
             <div className="flex flex-col md:flex-row gap-8 md:gap-32 min-h-[600px]">
