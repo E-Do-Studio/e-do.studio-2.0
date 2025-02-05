@@ -4,3 +4,11 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
     Pragma = "no-cache"
     Expires = "0"
+
+
+[build.environment]
+  NODE_ENV = "production"
+  DEBUG = "*"
+
+[functions]
+  node_bundler = "esbuild"
