@@ -1,14 +1,33 @@
 [[headers]]
-  for = "/api/*"
+for = "/api/*"
+
   [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-    Pragma = "no-cache"
-    Expires = "0"
+  Cache-Control = "no-cache, no-store, must-revalidate"
+  Pragma = "no-cache"
+  Expires = "0"
 
+[[redirects]]
+from = "/_next/image"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
 
-[build.environment]
-  NODE_ENV = "production"
-  DEBUG = "*"
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
 
-[functions]
-  node_bundler = "esbuild"
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
+
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+[context]
+
+  [context.production]
+
+  [context.main]
