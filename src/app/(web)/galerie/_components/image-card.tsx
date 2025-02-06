@@ -34,13 +34,18 @@ export function ImageCard({ image }: ImageCardProps) {
   })
 
   // Construire l'URL complète
-  // const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NODE_ENV === 'development'
+    ? process.env.NEXT_PUBLIC_SERVER_URL
+    : process.env.NEXT_PUBLIC_SITE_URL
+
   const imageUrl = image.url.startsWith('http')
     ? image.url
-    : `${process.env.NEXT_PUBLIC_API_URL}${image.url}`
+    : `${baseUrl}${image.url}`
 
-  console.log('Image data:', image)
-  console.log('Image URL:', imageUrl)
+  // Supprimer les console.log en production
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Image URL:', imageUrl)
+  }
 
   return (
     <Link href={`#${image.id}`} className="block w-full">

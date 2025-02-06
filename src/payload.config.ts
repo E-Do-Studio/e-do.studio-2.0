@@ -16,7 +16,9 @@ import { Subcategories } from './collections/Sub-Category'
 
 // Chnager le serverURL en fonction de l'environnement
 const serverURL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.SERVER_URL
+  process.env.NODE_ENV === 'development'
+    ? process.env.NEXT_PUBLIC_SERVER_URL
+    : process.env.NEXT_PUBLIC_SITE_URL
 
 console.log('environnement', process.env.NODE_ENV)
 
@@ -28,7 +30,7 @@ export default buildConfig({
       baseDir: path.resolve(__dirname),
     },
   },
-  serverURL: process.env.SERVER_URL,
+  serverURL,
   collections: [Users, Brands, Categories, Images, Subcategories],
   localization: {
     locales: ['fr', 'en'],
