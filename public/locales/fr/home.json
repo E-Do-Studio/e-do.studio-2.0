@@ -1,0 +1,16 @@
+{
+    "title": "Bienvenue sur notre site",
+    "description": "Ceci est la page d'accueil.",
+    "header": {
+        "navigation": {
+            "phone": "+33 1 44 04 11 49",
+            "gallery": "galerie",
+            "services": "services",
+            "pricing": "tarifs",
+            "contact": "contact"
+        },
+        "cta": {
+            "book": "réserver une séance"
+        }
+    }
+}

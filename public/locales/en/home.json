@@ -1,0 +1,16 @@
+{
+    "title": "Welcome to our site",
+    "description": "This is the homepage.",
+    "header": {
+        "navigation": {
+            "phone": "+33 1 44 04 11 49",
+            "gallery": "gallery",
+            "services": "services",
+            "pricing": "pricing",
+            "contact": "contact"
+        },
+        "cta": {
+            "book": "book a session"
+        }
+    }
+}
