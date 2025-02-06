@@ -1,6 +1,9 @@
 {
     "title": "Welcome to our site",
     "description": "This is the homepage.",
+    "customers": {
+        "title": "Our most loyal customers"
+    },
     "header": {
         "navigation": {
             "phone": "+33 1 44 04 11 49",
@@ -12,5 +15,92 @@
         "cta": {
             "book": "book a session"
         }
+    },
+    "services": {
+        "title": "Our services",
+        "live": {
+            "name": "(LIVE)",
+            "title": "Shooting on model / large objects",
+            "description": "This intelligent studio system of 8m2 allows you to realize your photos and videos of live models or scenographies in a few minutes."
+        },
+        "horizontal": {
+            "name": "(HORIZONTAL)",
+            "title": "Flat packshots",
+            "description": "Horizontal guarantees you the possibility of styling and photographing your products flat with the automatic removal of the background."
+        },
+        "vertical": {
+            "name": "(VERTICAL)",
+            "title": "Ghost packshot",
+            "description": "Give your product a 3D effect, choose your background and shoot it with our Vertical machine."
+        },
+        "eclipse": {
+            "name": "(ECLIPSE)",
+            "title": "Accessories / leather goods / shoes",
+            "description": "Designed for prop photography and video. Create your sets and play with light, background and reflections."
+        },
+        "cyclorama": {
+            "name": "(CYCLORAMA)",
+            "title": "Free production",
+            "description": "Our cyclorama allows you to mobilize a production team and take your photos and videos on an infinite white background."
+        }
+    },
+    "pricing": {
+        "title": "Choose the offer that suits you",
+        "timing": {
+            "hour": "Hour",
+            "half_day": "Half-day",
+            "day": "Day"
+        },
+        "tax": "excl. tax",
+        "description": {
+            "hour": "1 hour of shooting\nSelf-service",
+            "half_day": "4 hours of shooting\nSelf-service",
+            "day": "8 hours of shooting\nSelf-service"
+        }
+    },
+    "contact": {
+        "title": "Do you have any questions?",
+        "subtitle": "Any specific needs?",
+        "description": "Do not hesitate to contact us by filling in the form on the right and we will answer you as soon as possible.",
+        "form": {
+            "placeholders": {
+                "lastName": "Last name*",
+                "firstName": "First name*",
+                "society": "Company",
+                "email": "Email*",
+                "website": "Website",
+                "message": "You have an idea for a project, need a quote, make an appointment? Write us your message."
+            },
+            "errors": {
+                "lastName": {
+                    "min": "Last name must contain at least 2 characters",
+                    "max": "Last name cannot exceed 50 characters"
+                },
+                "firstName": {
+                    "min": "First name must contain at least 2 characters",
+                    "max": "First name cannot exceed 50 characters"
+                },
+                "society": {
+                    "max": "Company name cannot exceed 100 characters"
+                },
+                "email": {
+                    "invalid": "Invalid email address",
+                    "min": "Email must contain at least 5 characters",
+                    "max": "Email cannot exceed 100 characters"
+                },
+                "website": {
+                    "max": "Website cannot exceed 200 characters"
+                },
+                "message": {
+                    "min": "Message must contain at least 10 characters",
+                    "max": "Message cannot exceed 1000 characters"
+                }
+            },
+            "submit": "Send",
+            "submitting": "Sending..."
+        }
+    },
+    "location": {
+        "title": "Where to find us ?"
     }
 }

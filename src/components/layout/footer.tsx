@@ -2,26 +2,29 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface AddressSectionProps {
   className?: string;
 }
 
 function AddressSection({ className }: AddressSectionProps) {
+  const { t } = useTranslation('layout');
+
   const transportOptions = [
-    { label: "Mairie de Saint-Ouen", icon: "14" },
-    { label: "Garibaldi", icon: "13" },
-    { label: "Parc d'activités Victor Hugo", icon: "P" },
-    { label: "Places de parking", icon: "P" },
+    { label: t('footer.address.transport.metro_14'), icon: "14" },
+    { label: t('footer.address.transport.metro_13'), icon: "13" },
+    { label: t('footer.address.transport.activity_park'), icon: "P" },
+    { label: t('footer.address.transport.parking'), icon: "P" },
   ];
 
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-xl font-medium mb-6">Adresse</h3>
+      <h3 className="text-white text-xl font-medium mb-6">{t('footer.address.title')}</h3>
       <div className="space-y-2 text-gray-300">
-        <p>Parc d&apos;activités Victor Hugo</p>
-        <p>93400 Saint-Ouen</p>
-        <p>Bâtiment 6.7</p>
+        <p>{t('footer.address.building')}</p>
+        <p>{t('footer.address.city')}</p>
+        <p>{t('footer.address.building_number')}</p>
         <div className="mt-6 space-y-2">
           {transportOptions.map((option) => (
             <div key={option.label} className="flex items-center gap-2">
@@ -32,7 +35,7 @@ function AddressSection({ className }: AddressSectionProps) {
             </div>
           ))}
         </div>
-        <p className="mt-4">Accès direct au Studio</p>
+        <p className="mt-4">{t('footer.address.direct_access')}</p>
       </div>
     </div>
   );
@@ -43,13 +46,15 @@ interface ScheduleSectionProps {
 }
 
 function ScheduleSection({ className }: ScheduleSectionProps) {
+  const { t } = useTranslation('layout');
+
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-xl font-medium mb-6">Schedule</h3>
+      <h3 className="text-white text-xl font-medium mb-6">{t('footer.schedule.title')}</h3>
       <div className="space-y-2 text-gray-300">
-        <p>Du lundi au vendredi</p>
-        <p>09h00 à 19h00</p>
-        <p>Ouvert le week end sur RDV</p>
+        <p>{t('footer.schedule.weekdays')}</p>
+        <p>{t('footer.schedule.hours')}</p>
+        <p>{t('footer.schedule.weekend')}</p>
       </div>
     </div>
   );
@@ -60,15 +65,17 @@ interface ContactSectionProps {
 }
 
 function ContactSection({ className }: ContactSectionProps) {
+  const { t } = useTranslation('layout');
+
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-xl font-medium mb-6">Contact us</h3>
+      <h3 className="text-white text-xl font-medium mb-6">{t('footer.contact.title')}</h3>
       <div className="space-y-4 text-gray-300">
         <button className="px-4 py-2 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors">
-          Nous contacter par e-mail
+          {t('footer.contact.email_button')}
         </button>
         <p>
-          N&apos;hesitez pas à directement nous appeler au{" "}
+          {t('footer.contact.phone_text')}{" "}
           <br />
           <Link href="tel:+33144041149" className="text-white">
             +33 1 44 04 11 49

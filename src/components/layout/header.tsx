@@ -33,7 +33,7 @@ interface NavigationItemProps {
 export type Navigation = typeof navigation
 
 export function Header() {
-  const { t } = useTranslation('header')
+  const { t } = useTranslation('layout')
   const { isOpen, toggle, close } = useMobileMenu()
 
   return (
@@ -48,11 +48,11 @@ export function Header() {
         <Navigation className="hidden md:flex">
           {navigation.map((item) => (
             <NavigationItem key={item.label} href={item.href}>
-              {t(`navigation.${item.label}`)}
+              {t(`header.navigation.${item.label}`)}
             </NavigationItem>
           ))}
           <LanguageSwitcher />
-          <Button className="w-[180px]">{t('cta.book')}</Button>
+          <Button className="w-[180px]">{t('header.cta.book')}</Button>
         </Navigation>
 
         {/* Mobile Menu Button */}

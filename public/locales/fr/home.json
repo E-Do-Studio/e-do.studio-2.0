@@ -1,6 +1,9 @@
 {
     "title": "Bienvenue sur notre site",
     "description": "Ceci est la page d'accueil.",
+    "customers": {
+        "title": "Nos clients les plus fidèles"
+    },
     "header": {
         "navigation": {
             "phone": "+33 1 44 04 11 49",
@@ -11,6 +14,106 @@
         },
         "cta": {
             "book": "réserver une séance"
+        }
+    },
+    "services": {
+        "title": "Nos services",
+        "live": {
+            "name": "(LIVE)",
+            "title": "Shooting porté / grand objets",
+            "description": "Ce système de studio intelligent de 8m2 vous permet de réaliser vos photos et vidéos de modèles vivants ou scénographies en quelques minutes."
+        },
+        "horizontal": {
+            "name": "(HORIZONTAL)",
+            "title": "Packshots à plat",
+            "description": "Horizontal vous garantit la possibilité de styliser et de photographier vos produits à plat grâce à la suppression automatique de l'arrière-plan."
+        },
+        "vertical": {
+            "name": "(VERTICAL)",
+            "title": "Mannequin invisible",
+            "description": "Donner à votre produit un effet 3D, choisissez votre arrière-plan et shootez-le grâce à notre machine Vertical."
+        },
+        "eclipse": {
+            "name": "(ECLIPSE)",
+            "title": "Accessoires / maroquinerie / chaussures",
+            "description": "Conçu pour la photographie et la vidéo d'accessoires. Créez vos décors et jouez avec la lumière, l'arrière-plan et les reflets."
+        },
+        "cyclorama": {
+            "name": "(CYCLORAMA)",
+            "title": "Production libre",
+            "description": "Notre cyclorama vous permet de mobiliser une équipe de production et de réaliser vos prises de photos et vidéos sur un fond blanc infini."
+        }
+    },
+    "pricing": {
+        "title": "Choisissez l'offre qui vous correspond",
+        "timing": {
+            "hour": "Heure",
+            "half_day": "Demi-journée",
+            "day": "Journée"
+        },
+        "tax": "HT",
+        "description": {
+            "hour": "1 heure de shooting\nSelf-service",
+            "half_day": "4 heures de shooting\nSelf-service",
+            "day": "8 heures de shooting\nSelf-service"
+        }
+    },
+    "contact": {
+        "title": "Vous avez des questions ?",
+        "subtitle": "Des Besoins spécifiques ?",
+        "description": "N'hésitez pas à nous contacter en remplissant le formulaire ci-contre et nous vous répondrons dans les plus brefs délais.",
+        "form": {
+            "placeholders": {
+                "lastName": "Nom*",
+                "firstName": "Prénom*",
+                "society": "Société",
+                "email": "E-mail*",
+                "website": "Site internet",
+                "message": "Vous avez une idée de projet, besoin d'un devis, d'une prise de rendez-vous ? Écrivez nous votre message."
+            },
+            "errors": {
+                "lastName": {
+                    "min": "Le nom doit contenir au moins 2 caractères",
+                    "max": "Le nom ne peut pas dépasser 50 caractères"
+                },
+                "firstName": {
+                    "min": "Le prénom doit contenir au moins 2 caractères",
+                    "max": "Le prénom ne peut pas dépasser 50 caractères"
+                },
+                "society": {
+                    "max": "Le nom de la société ne peut pas dépasser 100 caractères"
+                },
+                "email": {
+                    "invalid": "Adresse email invalide",
+                    "min": "L'email doit contenir au moins 5 caractères",
+                    "max": "L'email ne peut pas dépasser 100 caractères"
+                },
+                "website": {
+                    "max": "Le site internet ne peut pas dépasser 200 caractères"
+                },
+                "message": {
+                    "min": "Le message doit contenir au moins 10 caractères",
+                    "max": "Le message ne peut pas dépasser 1000 caractères"
+                }
+            },
+            "submit": "Envoyer",
+            "submitting": "Envoi en cours..."
+        }
+    },
+    "location": {
+        "title": "Où nous trouver ?",
+        "building": "Parc d'activités Victor Hugo",
+        "building_number": "Batiment 6.7",
+        "city": "93400 Saint-Ouen",
+        "entrance": {
+            "victor_hugo": {
+                "address": "69 Boulevard Victor Hugo, 93400 Saint-Ouen",
+                "alt": "Entrée Victor Hugo"
+            },
+            "louis_blanc": {
+                "address": "22 Rue Louis Blanc, 93400 Saint-Ouen",
+                "alt": "Entrée Louis Blanc"
+            }
         }
     }
 }

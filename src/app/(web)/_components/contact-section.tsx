@@ -1,7 +1,8 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form as FormHook, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { LandingSection } from '@/components/layout/landing-section'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
@@ -15,14 +16,14 @@ import {
 import { ArrowRight } from 'lucide-react'
 
 export function ContactSection() {
+  const { t } = useTranslation('home')
   const form = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(contactFormSchema(t)),
   })
 
   async function onSubmit(data: ContactFormValues) {
     try {
       console.log(data)
-
       form.reset()
     } catch (error) {
       console.error("Erreur lors de l'envoi du formulaire:", error)
@@ -32,12 +33,11 @@ export function ContactSection() {
   return (
     <LandingSection
       className="flex flex-col md:flex-row gap-8"
-      title="Vous avez des questions ?"
-      subtitle="Des Besoins spécifiques ?"
+      title={t('contact.title')}
+      subtitle={t('contact.subtitle')}
       description={() => (
         <p className="mt-4 md:mt-0 text-sm max-w-sm">
-          N’hésitez pas à nous contacter en remplissant le formulaire ci-contre et nous vous
-          répondrons dans les plus brefs délais.
+          {t('contact.description')}
         </p>
       )}
     >
@@ -55,7 +55,7 @@ export function ContactSection() {
                   <FormControl>
                     <Input
                       variant="landing"
-                      placeholder={FORM_FIELDS.lastName.placeholder}
+                      placeholder={t(FORM_FIELDS.lastName.placeholder)}
                       {...field}
                     />
                   </FormControl>
@@ -71,7 +71,7 @@ export function ContactSection() {
                   <FormControl>
                     <Input
                       variant="landing"
-                      placeholder={FORM_FIELDS.firstName.placeholder}
+                      placeholder={t(FORM_FIELDS.firstName.placeholder)}
                       {...field}
                     />
                   </FormControl>
@@ -87,7 +87,7 @@ export function ContactSection() {
                   <FormControl>
                     <Input
                       variant="landing"
-                      placeholder={FORM_FIELDS.society.placeholder}
+                      placeholder={t(FORM_FIELDS.society.placeholder)}
                       {...field}
                     />
                   </FormControl>
@@ -103,7 +103,7 @@ export function ContactSection() {
                   <FormControl>
                     <Input
                       variant="landing"
-                      placeholder={FORM_FIELDS.email.placeholder}
+                      placeholder={t(FORM_FIELDS.email.placeholder)}
                       {...field}
                     />
                   </FormControl>
@@ -119,7 +119,7 @@ export function ContactSection() {
                   <FormControl>
                     <Input
                       variant="landing"
-                      placeholder={FORM_FIELDS.website.placeholder}
+                      placeholder={t(FORM_FIELDS.website.placeholder)}
                       {...field}
                     />
                   </FormControl>
@@ -138,7 +138,7 @@ export function ContactSection() {
                   <FormControl>
                     <Textarea
                       variant="landing"
-                      placeholder={FORM_FIELDS.message.placeholder}
+                      placeholder={t(FORM_FIELDS.message.placeholder)}
                       className="h-full min-h-[240px] resize-none"
                       {...field}
                     />
@@ -154,7 +154,10 @@ export function ContactSection() {
               disabled={form.formState.isSubmitting}
             >
               <span className="flex items-center gap-2">
-                {form.formState.isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+                {form.formState.isSubmitting
+                  ? t('contact.form.submitting')
+                  : t('contact.form.submit')
+                }
                 <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
               </span>
             </Button>
