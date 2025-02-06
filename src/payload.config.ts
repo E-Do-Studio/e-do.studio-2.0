@@ -11,14 +11,14 @@ import { cloudinaryStorage } from 'payload-cloudinary'
 import { Users } from './collections/Users'
 import { Brands } from './collections/Brands'
 import { Categories } from './collections/Categories'
-import { Images } from './collections/Images'
+import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 
 // Chnager le serverURL en fonction de l'environnement
 const serverURL =
   process.env.NODE_ENV === 'development'
     ? process.env.NEXT_PUBLIC_SERVER_URL
-    : process.env.NEXT_PUBLIC_SITE_URL
+    : process.env.PAYLOAD_PUBLIC_SERVER_URL
 
 console.log('environnement', process.env.NODE_ENV)
 
@@ -31,7 +31,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Images, Subcategories],
+  collections: [Users, Brands, Categories, Assets, Subcategories],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -56,7 +56,7 @@ export default buildConfig({
         api_secret: process.env.CLOUDINARY_API_SECRET!,
       },
       collections: {
-        images: true,
+        assets: true,
       },
       folder: 'payload-media',
       enabled: true,

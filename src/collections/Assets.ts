@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const Images: CollectionConfig = {
-  slug: 'images',
+export const Assets: CollectionConfig = {
+  slug: 'assets',
   access: {
     read: () => true,
     create: () => true,
@@ -11,13 +11,18 @@ export const Images: CollectionConfig = {
   hooks: {
     beforeChange: [
       async ({ data }) => {
+        const isImage = data.mimeType?.startsWith('image/')
+        const isVideo = data.mimeType?.startsWith('video/')
+
         if (data.filename) {
-          return {
-            ...data,
-            alt: data.filename
-              .replace(/\.[^/.]+$/, '')
-              .replace(/[-_]/g, ' ')
-              .trim(),
+          if (isImage || isVideo) {
+            return {
+              ...data,
+              alt: data.filename
+                .replace(/\.[^/.]+$/, '')
+                .replace(/[-_]/g, ' ')
+                .trim(),
+            }
           }
         }
         return data
@@ -25,7 +30,10 @@ export const Images: CollectionConfig = {
     ],
     afterRead: [
       ({ doc }) => {
-        if (doc.filename && !doc.alt) {
+        const isImage = doc.mimeType?.startsWith('image/')
+        const isVideo = doc.mimeType?.startsWith('video/')
+
+        if (doc.filename && !doc.alt && (isImage || isVideo)) {
           return {
             ...doc,
             alt: doc.filename
@@ -51,7 +59,7 @@ export const Images: CollectionConfig = {
     //     lossless: false,
     //   },
     // },
-    mimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
+    mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'video/mp4'],
     adminThumbnail: 'thumbnail',
   },
   fields: [
@@ -65,10 +73,10 @@ export const Images: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
-      required: true,
+      required: false,
       admin: {
         description:
-          'Généré automatiquement depuis le nom du fichier. Vous pouvez le modifier si nécessaire.',
+          'Généré automatiquement depuis le nom du fichier pour les images. Optionnel pour les vidéos.',
       },
     },
     {
@@ -89,6 +97,29 @@ export const Images: CollectionConfig = {
       hasMany: false,
       admin: {
         position: 'sidebar',
+      },
+    },
+    {
+      name: 'mediaType',
+      type: 'select',
+      required: true,
+      defaultValue: 'image',
+      options: [
+        { label: 'Image', value: 'image' },
+        { label: 'Video', value: 'video' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'Type of media asset',
+      },
+    },
+    {
+      name: 'duration',
+      type: 'number',
+      required: false,
+      admin: {
+        description: 'Duration in seconds (for videos only)',
+        condition: (data) => data.mediaType === 'video',
       },
     },
   ],

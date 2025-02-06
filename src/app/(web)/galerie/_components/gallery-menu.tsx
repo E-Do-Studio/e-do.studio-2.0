@@ -13,7 +13,7 @@ function GalleryMenuSkeleton() {
   return (
     <div className={cn(
       "flex flex-col gap-8",
-      "fixed top-[5rem] left-0 right-0 z-50 px-4 py-6",
+      "fixed top-[5rem] left-0 right-0 z-50 container",
       "lg:sticky lg:top-32 lg:px-0 lg:py-0"
     )}>
       <Skeleton className="h-[44px] w-[200px]" />

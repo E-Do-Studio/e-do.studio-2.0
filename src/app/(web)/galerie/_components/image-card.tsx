@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { useInView } from 'react-intersection-observer'
 import { Skeleton } from "@/components/ui/skeleton"
 
-interface GalleryImage {
+interface Asset {
   id: number
   alt: string
   url: string
@@ -23,10 +23,10 @@ interface GalleryImage {
 }
 
 interface ImageCardProps {
-  image: GalleryImage
+  asset: Asset
 }
 
-export function ImageCard({ image }: ImageCardProps) {
+export function ImageCard({ asset }: ImageCardProps) {
   const [isLoading, setIsLoading] = useState(true)
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -34,30 +34,26 @@ export function ImageCard({ image }: ImageCardProps) {
   })
 
   // Construire l'URL complète
-  const baseUrl = process.env.NODE_ENV === 'development'
-    ? process.env.NEXT_PUBLIC_SERVER_URL
-    : process.env.NEXT_PUBLIC_SITE_URL
+  const imageUrl = asset.url.startsWith('http')
+    ? asset.url // URL Cloudinary directe
+    : `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/images/${asset.filename}`
 
-  const imageUrl = image.url.startsWith('http')
-    ? image.url
-    : `${baseUrl}${image.url}`
-
-  // Supprimer les console.log en production
+  // Log uniquement en développement
   if (process.env.NODE_ENV === 'development') {
     console.log('Image URL:', imageUrl)
   }
 
   return (
-    <Link href={`#${image.id}`} className="block w-full">
+    <Link href={`#${asset.id}`} className="block w-full">
       <div className="relative w-full overflow-hidden group">
         {isLoading && (
           <Skeleton className="absolute inset-0" />
         )}
         <Image
           src={imageUrl}
-          alt={image.alt || image.filename}
-          width={image.width || 800}
-          height={image.height || 1200}
+          alt={asset.alt || asset.filename}
+          width={asset.width || 800}
+          height={asset.height || 1200}
           className={cn(
             "w-full h-auto object-cover transition-all duration-300",
             "group-hover:scale-105",
@@ -70,7 +66,7 @@ export function ImageCard({ image }: ImageCardProps) {
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
               <p className="text-white text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                {image.brand?.name.toUpperCase() || 'Sans marque'}
+                {asset.brand?.name.toUpperCase() || 'Sans marque'}
               </p>
             </div>
           </div>

@@ -25,10 +25,6 @@ export const Categories: CollectionConfig = {
       },
     },
     {
-      name: 'description',
-      type: 'textarea',
-    },
-    {
       name: 'subcategories',
       type: 'relationship',
       relationTo: 'subcategories',
@@ -38,12 +34,17 @@ export const Categories: CollectionConfig = {
       hasMany: true,
     },
     {
-      name: 'images',
+      name: 'assets',
       type: 'upload',
-      relationTo: 'images',
+      relationTo: 'assets',
       hasMany: true,
       admin: {
-        description: 'Images associated with the category',
+        description: 'Images and videos associated with the category',
+      },
+      filterOptions: {
+        mimeType: {
+          contains: ['image/', 'video/'],
+        },
       },
     },
   ],

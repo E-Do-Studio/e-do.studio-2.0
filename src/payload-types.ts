@@ -19,7 +19,7 @@ export interface Config {
     categories: any
     gallery: any
     subcategories: any
-    images: any
+    assets: any
     'landing-page': any
   }
   db: {

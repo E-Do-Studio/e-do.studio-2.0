@@ -45,7 +45,7 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
   // Fetch toutes les images si pas de catégorie sélectionnée
   const { data: allImagesData, error: allImagesError, isLoading: allImagesLoading } = useSWR<{ docs: any[] }>(
-    !category ? '/api/images?depth=2' : null,
+    !category ? '/api/assets?depth=2' : null,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -66,7 +66,7 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   const isLoading = allImagesLoading || categoriesLoading
   const error = allImagesError || categoriesError
 
-  const images = useMemo(() => {
+  const assets = useMemo(() => {
     if (category && categoriesData?.docs) {
       const categoryData = categoriesData.docs.find((cat) =>
         cat.name.toLowerCase() === category.toLowerCase()
@@ -77,12 +77,12 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
           (sub: any) => sub.name.toLowerCase() === subcategory.toLowerCase()
         )
 
-        return categoryData.images.filter((image: GalleryImage) =>
-          image.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
+        return categoryData.assets.filter((asset: GalleryImage) =>
+          asset.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
         ) || []
       }
 
-      return categoryData?.images || []
+      return categoryData?.assets || []
     }
 
     // Retourner toutes les images si pas de catégorie sélectionnée
@@ -98,14 +98,14 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   }
 
   if (error) return <div>Erreur de chargement</div>
-  if (!images.length) return <div>Aucune image trouvée</div>
+  if (!assets.length) return <div>Aucune image trouvée</div>
 
   return (
     <div className="pt-[12rem] lg:pt-0">
       <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-        {images.map((image: GalleryImage) => (
-          <div key={image.id} className="break-inside-avoid">
-            <ImageCard image={image} />
+        {assets.map((asset: GalleryImage) => (
+          <div key={asset.id} className="break-inside-avoid">
+            <ImageCard asset={asset} />
           </div>
         ))}
       </div>
