@@ -34,10 +34,10 @@ export function ImageCard({ image }: ImageCardProps) {
   })
 
   // Construire l'URL complète
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+  // const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
   const imageUrl = image.url.startsWith('http')
     ? image.url
-    : `${baseUrl}${image.url}`
+    : `${process.env.NEXT_PUBLIC_API_URL}${image.url}`
 
   console.log('Image data:', image)
   console.log('Image URL:', imageUrl)

@@ -14,6 +14,12 @@ import { Categories } from './collections/Categories'
 import { Images } from './collections/Images'
 import { Subcategories } from './collections/Sub-Category'
 
+// Chnager le serverURL en fonction de l'environnement
+const serverURL =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.SERVER_URL
+
+console.log('environnement', process.env.NODE_ENV)
+
 export default buildConfig({
   debug: true,
   admin: {
@@ -22,6 +28,7 @@ export default buildConfig({
       baseDir: path.resolve(__dirname),
     },
   },
+  serverURL: process.env.SERVER_URL,
   collections: [Users, Brands, Categories, Images, Subcategories],
   localization: {
     locales: ['fr', 'en'],

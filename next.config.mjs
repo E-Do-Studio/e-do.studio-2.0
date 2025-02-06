@@ -30,8 +30,12 @@ const nextConfig = {
         port: '3000',
         pathname: '/api/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'superb-travesseiro-87230d.netlify.app',
+      },
     ],
-    domains: ['localhost', '127.0.0.1'],
+    domains: ['localhost', '127.0.0.1', 'superb-travesseiro-87230d.netlify.app'],
   },
   // Your Next.js config here
 }
