@@ -13,10 +13,16 @@ export default function Page() {
     <div className="text-xl min-h-screen">
       <Introduction />
       <div className="container">
-        <ServiceSection />
-        <PricingSection />
+        <section id="services" className="scroll-mt-24">
+          <ServiceSection />
+        </section>
+        <section id="pricing" className="scroll-mt-24">
+          <PricingSection />
+        </section>
         <OurCustomers />
-        <ContactSection />
+        <section id="contact" className="scroll-mt-24">
+          <ContactSection />
+        </section>
         <Location />
       </div>
     </div>

@@ -20,9 +20,9 @@ const navigation = [
   // { label: 'post-prod', href: '/post-prod' },
   { label: 'phone', href: 'tel:+33144041149' },
   { label: 'gallery', href: '/gallery' },
-  { label: 'services', href: '/services' },
-  { label: 'pricing', href: '/pricing' },
-  { label: 'contact', href: '/contact' },
+  { label: 'services', href: '#services' },
+  { label: 'pricing', href: '#pricing' },
+  { label: 'contact', href: '#contact' },
 ] as const
 
 interface NavigationItemProps {
@@ -119,8 +119,22 @@ function Navigation({ children, className = '' }: HeaderProps & { className?: st
 }
 
 function NavigationItem({ children, href }: NavigationItemProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith('#')) {
+      e.preventDefault()
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
   return (
-    <Link href={href} className="text-sm hover:text-neutral-500 hover:underline transition-colors">
+    <Link
+      href={href}
+      onClick={handleClick}
+      className="text-sm hover:text-neutral-500 hover:underline transition-colors"
+    >
       {children}
     </Link>
   )

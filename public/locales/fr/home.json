@@ -116,5 +116,16 @@
                 "alt": "Entrée Louis Blanc"
             }
         }
+    },
+    "introduction": {
+        "brand": "E-do studio",
+        "title": "Créons ensemble",
+        "subtitle": "votre univers digital",
+        "description": "Studio créatif spécialisé dans le développement web et la création de contenu digital sur mesure",
+        "rotating": {
+            "innovation": "Innovation et Créativité",
+            "excellence": "Excellence et Qualité",
+            "expertise": "Expertise et Passion"
+        }
     }
 }

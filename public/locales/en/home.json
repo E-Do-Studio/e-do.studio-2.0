@@ -103,5 +103,16 @@
     },
     "location": {
         "title": "Where to find us ?"
+    },
+    "introduction": {
+        "brand": "E-do studio",
+        "title": "Let's create together",
+        "subtitle": "your digital universe",
+        "description": "Creative studio specialized in web development and custom digital content creation",
+        "rotating": {
+            "innovation": "Innovation and Creativity",
+            "excellence": "Excellence and Quality",
+            "expertise": "Expertise and Passion"
+        }
     }
 }
