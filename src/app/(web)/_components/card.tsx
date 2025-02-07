@@ -1,3 +1,6 @@
+'use client'
+
+import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
 import { motion } from 'motion/react'
 
@@ -8,6 +11,8 @@ interface CardProps {
 }
 
 export const Card = ({ timing, price, description }: CardProps) => {
+  const { t } = useTranslation('home')
+
   return (
     <motion.div
       className="flex justify-between md:flex-col gap-4 p-4 flex-1 bg-neutral-100 rounded-lg cursor-pointer"
@@ -24,7 +29,7 @@ export const Card = ({ timing, price, description }: CardProps) => {
       </div>
       <Separator className="hidden md:block mt-6" />
       <p className="text-2xl font-medium">
-        {price}€ <span className="text-sm">HT</span>
+        {price}€ <span className="text-sm">{t('pricing.tax')}</span>
       </p>
     </motion.div>
   )

@@ -33,8 +33,8 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
                     <ChevronRight className="block lg:hidden border border-border rounded-full p-2 w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-medium lg:hidden">{title}</h3>
-                <h3 className="text-2xl font-medium hidden lg:block">{serviceName + " " + title}</h3>
-                <p className="text-base font-medium text-neutral-500">{description}</p>
+                <h3 className="text-2xl font-medium hidden lg:block lg:h-14">{serviceName + " " + title}</h3>
+                <p className="text-base font-medium text-neutral-500 lg:h-16">{description}</p>
                 <Image src={imagesDescription[0]} alt={imagesDescription[1]} width={100} height={100} className="w-full lg:w-[270px]" />
             </div>
             <Image

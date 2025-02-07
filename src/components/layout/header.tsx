@@ -19,10 +19,10 @@ const navigation = [
   // { label: 'production', href: '/production' },
   // { label: 'post-prod', href: '/post-prod' },
   { label: 'phone', href: 'tel:+33144041149' },
-  { label: 'gallery', href: '/galerie' },
-  { label: 'services', href: '/services' },
-  { label: 'pricing', href: '/pricing' },
-  { label: 'contact', href: '/contact' },
+  { label: 'gallery', href: '/gallery' },
+  { label: 'services', href: '#services' },
+  { label: 'pricing', href: '#pricing' },
+  { label: 'contact', href: '#contact' },
 ] as const
 
 interface NavigationItemProps {
@@ -33,7 +33,7 @@ interface NavigationItemProps {
 export type Navigation = typeof navigation
 
 export function Header() {
-  const { t } = useTranslation('header')
+  const { t } = useTranslation('layout')
   const { isOpen, toggle, close } = useMobileMenu()
 
   return (
@@ -48,11 +48,11 @@ export function Header() {
         <Navigation className="hidden md:flex">
           {navigation.map((item) => (
             <NavigationItem key={item.label} href={item.href}>
-              {t(`navigation.${item.label}`)}
+              {t(`header.navigation.${item.label}`)}
             </NavigationItem>
           ))}
           <LanguageSwitcher />
-          <Button className="w-[180px]">{t('cta.book')}</Button>
+          <Button className="w-[180px]">{t('header.cta.book')}</Button>
         </Navigation>
 
         {/* Mobile Menu Button */}
@@ -119,8 +119,22 @@ function Navigation({ children, className = '' }: HeaderProps & { className?: st
 }
 
 function NavigationItem({ children, href }: NavigationItemProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith('#')) {
+      e.preventDefault()
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
   return (
-    <Link href={href} className="text-sm hover:text-neutral-500 hover:underline transition-colors">
+    <Link
+      href={href}
+      onClick={handleClick}
+      className="text-sm hover:text-neutral-500 hover:underline transition-colors"
+    >
       {children}
     </Link>
   )

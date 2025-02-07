@@ -1,9 +1,12 @@
 import { LandingSection } from "@/components/layout/landing-section";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
-export const LocationSection = () => {
+export const Location = () => {
+    const { t } = useTranslation("home");
+
     return (
-        <LandingSection title="Où nous trouver ?">
+        <LandingSection title={t("location.title")}>
             <div className="flex flex-col md:flex-row gap-8 md:gap-32 min-h-[600px]">
                 <div className="flex-1 flex flex-col gap-4 text-gray-500">
                     <h3>Parc d&apos;activités Victor Hugo</h3>
@@ -40,5 +43,5 @@ export const LocationSection = () => {
                 />
             </div>
         </LandingSection>
-    )
-}
+    );
+};

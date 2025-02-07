@@ -2,14 +2,19 @@
 
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Card } from '@/app/(web)/_components/card'
 import { Tabs } from '@/app/(web)/_components/tabs'
-import { machines, tabs, timingMap } from '@/app/(web)/_components/machines-data'
+import { tabs, createMachines, createTimingMap } from '@/app/(web)/_components/machines-data'
 import type { Machine } from '@/app/(web)/_components/machines-data'
 import { CarouselMachines } from '@/app/(web)/_components/carousel-machines'
 
 export const Machines = () => {
+  const { t } = useTranslation('home')
   const [activeTab, setActiveTab] = useState(tabs[0])
+
+  const machines = createMachines(t)
+  const timingMap = createTimingMap(t)
 
   function formatDescription(description: string) {
     return description.split('\n').map((text, i) => (

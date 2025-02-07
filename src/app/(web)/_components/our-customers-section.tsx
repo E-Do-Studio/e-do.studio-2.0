@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslation } from "react-i18next"
 import { LandingSection } from "@/components/layout/landing-section"
 import {
     Carousel,
@@ -16,7 +17,9 @@ interface Customer {
     name: string;
 }
 
-export function OurCustomersSection() {
+export function OurCustomers() {
+    const { t } = useTranslation("home")
+
     // IMG suctomers
     const customers: Customer[] = [
         {
@@ -65,7 +68,7 @@ export function OurCustomersSection() {
         }
     ]
     return (
-        <LandingSection title="Nos clients les plus fidèles">
+        <LandingSection title={t("customers.title")}>
             <div className="w-full mx-auto border-b border-t border-black">
                 <Carousel
                     opts={{

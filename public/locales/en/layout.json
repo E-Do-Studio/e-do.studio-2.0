@@ -1,0 +1,45 @@
+{
+  "header": {
+    "navigation": {
+      "phone": "+33 1 44 04 11 49",
+      "gallery": "gallery",
+      "services": "services",
+      "pricing": "pricing",
+      "contact": "contact"
+    },
+    "cta": {
+      "book": "book a session"
+    }
+  },
+  "footer": {
+    "address": {
+      "title": "Address",
+      "building": "Parc d'activités Victor Hugo",
+      "city": "93400 Saint-Ouen",
+      "building_number": "Bâtiment 6.7",
+      "direct_access": "Direct access to the Studio",
+      "transport": {
+        "metro_14": "Mairie de Saint-Ouen",
+        "metro_13": "Garibaldi",
+        "parking": "Parking spaces",
+        "activity_park": "Parc d'activités Victor Hugo"
+      }
+    },
+    "schedule": {
+      "title": "Opening Hours",
+      "weekdays": "Monday to Friday",
+      "hours": "9:00 AM to 7:00 PM",
+      "weekend": "Open on weekends by appointment"
+    },
+    "contact": {
+      "title": "Contact us",
+      "email_button": "Contact us by email",
+      "phone_text": "Feel free to call us directly at"
+    },
+    "social": {
+      "facebook": "FACEBOOK",
+      "instagram": "INSTAGRAM",
+      "linkedin": "LINKEDIN"
+    }
+  }
+} 
