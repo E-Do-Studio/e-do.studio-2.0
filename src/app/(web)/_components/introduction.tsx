@@ -77,7 +77,7 @@ export const Introduction = () => {
     )
 }
 
-// AUTRE VERSION
+// V2 HAUT DE PAGE 
 
 // return (
 //         <div className="relative h-screen w-full">
