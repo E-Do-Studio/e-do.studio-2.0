@@ -75,7 +75,7 @@ export const Introduction = () => {
             </div>
         </div>
     )
-    
+
     // V2 HAUT DE PAGE 
 
     // return (
