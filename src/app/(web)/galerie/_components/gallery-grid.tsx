@@ -3,7 +3,7 @@
 import { useMemo } from 'react'
 import useSWR from 'swr'
 import { useSearchParams } from 'next/navigation'
-import { ImageCard } from './image-card'
+import { MediaCard } from './media-card'
 import { Skeleton } from "@/components/ui/skeleton"
 
 interface GalleryImage {
@@ -19,8 +19,26 @@ interface GalleryImage {
   filename: string
 }
 
+interface GalleryVideo {
+  id: number
+  url: string
+  brand?: {
+    name: string
+  }
+  subcategory?: {
+    name: string
+  }
+  filename: string
+  thumbnailURL?: string | null
+  aspectRatio?: number
+}
+
 interface GalleryGridProps {
   initialCategory?: string
+}
+
+interface GroupedMedia {
+  [brandName: string]: (GalleryImage | GalleryVideo)[]
 }
 
 // Définition du fetcher pour SWR
@@ -43,9 +61,9 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   const category = searchParams.get('category') || initialCategory
   const subcategory = searchParams.get('subcategory')
 
-  // Fetch toutes les images si pas de catégorie sélectionnée
-  const { data: allImagesData, error: allImagesError, isLoading: allImagesLoading } = useSWR<{ docs: any[] }>(
-    !category ? '/api/assets?depth=2' : null,
+  // Fetch images and videos if no category selected
+  const { data: allMediaData, error: allMediaError, isLoading: allMediaLoading } = useSWR<{ docs: any[] }>(
+    !category ? '/api/media?depth=2' : null,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -63,31 +81,66 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
     }
   )
 
-  const isLoading = allImagesLoading || categoriesLoading
-  const error = allImagesError || categoriesError
+  const isLoading = allMediaLoading || categoriesLoading
+  const error = allMediaError || categoriesError
 
-  const assets = useMemo(() => {
+  const media = useMemo(() => {
     if (category && categoriesData?.docs) {
       const categoryData = categoriesData.docs.find((cat) =>
         cat.name.toLowerCase() === category.toLowerCase()
       )
 
       if (subcategory && categoryData) {
-        const subcategoryData = categoryData.subcategories?.find(
-          (sub: any) => sub.name.toLowerCase() === subcategory.toLowerCase()
-        )
-
-        return categoryData.assets.filter((asset: GalleryImage) =>
-          asset.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
-        ) || []
+        return [
+          ...categoryData.assets.filter((asset: GalleryImage) =>
+            asset.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
+          ),
+          ...categoryData.videos.filter((video: GalleryVideo) =>
+            video.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
+          )
+        ]
       }
 
-      return categoryData?.assets || []
+      return [...(categoryData?.assets || []), ...(categoryData?.videos || [])]
     }
 
-    // Retourner toutes les images si pas de catégorie sélectionnée
-    return allImagesData?.docs || []
-  }, [category, subcategory, categoriesData, allImagesData])
+    // Return all media if no category selected
+    return allMediaData?.docs || []
+  }, [category, subcategory, categoriesData, allMediaData])
+
+  const sortedMedia = useMemo(() => {
+    // Mélanger le tableau de médias de manière aléatoire
+    const shuffledMedia = [...media].sort(() => Math.random() - 0.5)
+
+    return shuffledMedia.map(item => {
+      if ('thumbnailURL' in item) {
+        return {
+          ...item,
+          aspectRatio: 16 / 9
+        }
+      }
+      return item
+    })
+  }, [media])
+
+  const columns = useMemo(() => {
+    const numberOfColumns = {
+      mobile: 1,
+      md: 2,
+      lg: 3
+    }
+
+    // Créer un tableau de colonnes vides
+    const cols = Array.from({ length: numberOfColumns.lg }, () => [] as (GalleryImage | GalleryVideo)[])
+
+    // Distribuer les médias dans les colonnes de manière équilibrée
+    sortedMedia.forEach((item, index) => {
+      const columnIndex = index % numberOfColumns.lg
+      cols[columnIndex].push(item)
+    })
+
+    return cols
+  }, [sortedMedia])
 
   if (isLoading) {
     return (
@@ -98,14 +151,21 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   }
 
   if (error) return <div>Erreur de chargement</div>
-  if (!assets.length) return <div>Aucune image trouvée</div>
+  if (!media.length) return <div>Aucun média trouvé</div>
 
   return (
     <div className="pt-[12rem] lg:pt-0">
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-        {assets.map((asset: GalleryImage) => (
-          <div key={asset.id} className="break-inside-avoid">
-            <ImageCard asset={asset} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {columns.map((column, columnIndex) => (
+          <div key={columnIndex} className="flex flex-col gap-4">
+            {column.map((item) => (
+              <div
+                key={item.id}
+                className="w-full"
+              >
+                <MediaCard item={item} />
+              </div>
+            ))}
           </div>
         ))}
       </div>

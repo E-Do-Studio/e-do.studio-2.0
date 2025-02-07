@@ -7,13 +7,14 @@ import path from 'path'
 import { buildConfig } from 'payload'
 // import sharp from 'sharp'
 import { cloudinaryStorage } from 'payload-cloudinary'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 
 import { Users } from './collections/Users'
 import { Brands } from './collections/Brands'
 import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
-
+import { Videos } from './collections/Videos'
 // Chnager le serverURL en fonction de l'environnement
 const serverURL =
   process.env.NODE_ENV === 'development'
@@ -31,7 +32,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Assets, Subcategories],
+  collections: [Users, Brands, Categories, Assets, Subcategories, Videos],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -61,6 +62,15 @@ export default buildConfig({
       folder: 'payload-media',
       enabled: true,
     }),
+    uploadthingStorage({
+      collections: {
+        videos: true,
+      },
+      options: {
+        token: process.env.UPLOADTHING_TOKEN,
+        acl: 'public-read',
+      },
+    }),
   ],
   email: resendAdapter({
     defaultFromAddress: 'contact@edostudio.com',
@@ -68,6 +78,7 @@ export default buildConfig({
     apiKey: process.env.RESEND_API_KEY || '',
   }),
   upload: {
+    debug: true,
     limits: {
       fileSize: 20000 * 1024, // 20000ko max
     },

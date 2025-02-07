@@ -59,7 +59,7 @@ export const Assets: CollectionConfig = {
     //     lossless: false,
     //   },
     // },
-    mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'video/mp4'],
+    mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'video/*'],
     adminThumbnail: 'thumbnail',
   },
   fields: [

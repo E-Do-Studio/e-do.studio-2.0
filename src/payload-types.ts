@@ -21,6 +21,7 @@ export interface Config {
     subcategories: any
     assets: any
     'landing-page': any
+    videos: any
   }
   db: {
     defaultIDType: string

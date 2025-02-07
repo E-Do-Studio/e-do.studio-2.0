@@ -36,14 +36,24 @@ export const Categories: CollectionConfig = {
     {
       name: 'assets',
       type: 'upload',
+      label: 'Images',
       relationTo: 'assets',
       hasMany: true,
-      admin: {
-        description: 'Images and videos associated with the category',
-      },
       filterOptions: {
         mimeType: {
-          contains: ['image/', 'video/'],
+          contains: ['image/'],
+        },
+      },
+    },
+    {
+      name: 'videos',
+      type: 'upload',
+      label: 'Videos',
+      relationTo: 'videos',
+      hasMany: true,
+      filterOptions: {
+        mimeType: {
+          contains: ['video/'],
         },
       },
     },
