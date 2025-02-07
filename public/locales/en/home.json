@@ -18,6 +18,7 @@
     },
     "services": {
         "title": "Our services",
+        "button": "Book a session",
         "live": {
             "name": "(LIVE)",
             "title": "Shooting on model / large objects",

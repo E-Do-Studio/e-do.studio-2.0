@@ -3,6 +3,9 @@
 import { useTranslation } from 'react-i18next'
 import { LandingSection } from '@/components/layout/landing-section'
 import { Services } from '@/app/(web)/_components/services'
+import { Button } from '@/components/ui/button'
+import { MoveRight } from 'lucide-react';
+
 
 export const ServiceSection = () => {
     const { t } = useTranslation('home')
@@ -14,6 +17,7 @@ export const ServiceSection = () => {
 
     return (
         <LandingSection title={t('services.title')}>
+            <Button size='lg' className='w-48'>{t('services.button')} <MoveRight className='w-4 h-4' /></Button>
             <a href='#'>
                 <Services
                     imagesDescription={[images[0].src, 'Services']}
