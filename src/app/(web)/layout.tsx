@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { Metadata } from 'next'
+import { I18nProvider } from '@/components/providers/i18n-provider'
 
 export const metadata: Metadata = {
   title: 'E-Do Studio',
@@ -32,13 +33,19 @@ const abcFavorit = localFont({
   variable: '--font-abc-favorit',
 })
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function WebLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en" className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <I18nProvider>
+          <Header />
+          {children}
+          <Footer />
+        </I18nProvider>
       </body>
     </html>
   )

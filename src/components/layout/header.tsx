@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next';
 import { Logo } from '../commons/logo'
 import { Clock } from './clock'
 import { Button } from '../ui/button'
@@ -17,10 +18,10 @@ const navigation = [
   // { label: 'services e-commerce', href: '/services-e-commerce' },
   // { label: 'production', href: '/production' },
   // { label: 'post-prod', href: '/post-prod' },
-  { label: '+33 1 44 04 11 49', href: 'tel:+33144041149' },
-  { label: 'galerie', href: '/galerie' },
+  { label: 'phone', href: 'tel:+33144041149' },
+  { label: 'gallery', href: '/galerie' },
   { label: 'services', href: '/services' },
-  { label: 'tarifs', href: '/pricing' },
+  { label: 'pricing', href: '/pricing' },
   { label: 'contact', href: '/contact' },
 ] as const
 
@@ -32,6 +33,7 @@ interface NavigationItemProps {
 export type Navigation = typeof navigation
 
 export function Header() {
+  const { t } = useTranslation('header')
   const { isOpen, toggle, close } = useMobileMenu()
 
   return (
@@ -46,9 +48,11 @@ export function Header() {
         <Navigation className="hidden md:flex">
           {navigation.map((item) => (
             <NavigationItem key={item.label} href={item.href}>
-              {item.label}
+              {t(`navigation.${item.label}`)}
             </NavigationItem>
           ))}
+          <LanguageSwitcher />
+          <Button className="w-[180px]">{t('cta.book')}</Button>
         </Navigation>
 
         {/* Mobile Menu Button */}
@@ -91,11 +95,25 @@ function HeaderLeft({ children }: HeaderProps) {
   return <div className="flex flex-row items-center gap-8">{children}</div>
 }
 
+function LanguageSwitcher() {
+  const { i18n } = useTranslation()
+  const isEnglish = i18n.language === 'en'
+
+  return (
+    <Button
+      size="icon"
+      className="rounded-full w-8 h-8 uppercase text-xs"
+      onClick={() => i18n.changeLanguage(isEnglish ? 'fr' : 'en')}
+    >
+      {isEnglish ? 'fr' : 'en'}
+    </Button>
+  )
+}
+
 function Navigation({ children, className = '' }: HeaderProps & { className?: string }) {
   return (
     <nav className={`flex flex-row items-center gap-8 ${className}`}>
       {children}
-      <Button>book a session</Button>
     </nav>
   )
 }
