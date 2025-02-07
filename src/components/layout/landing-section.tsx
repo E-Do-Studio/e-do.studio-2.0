@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { HEADER_HEIGHT } from '@/lib/constants'
 
 export const LandingSection = ({
   title,
@@ -6,15 +7,25 @@ export const LandingSection = ({
   className,
   subtitle,
   description,
+  id,
 }: {
   title: string
   children: React.ReactNode
   className?: string
   subtitle?: string
   description?: () => React.ReactNode
+  id?: string
 }) => {
   return (
-    <section className={cn('flex flex-col gap-8 mt-16 md:mt-32', className)}>
+    <section
+      className={cn(
+        'flex flex-col gap-8 mt-16 md:mt-32',
+        'scroll-mt-32',
+        className
+      )}
+      id={id}
+      style={{ scrollMarginTop: `${HEADER_HEIGHT + 24}px` }}
+    >
       <div className={cn('flex-1 flex flex-col gap-1', description != null && 'justify-between')}>
         <div className="flex flex-col gap-2">
           <LandingTitle title={title} />

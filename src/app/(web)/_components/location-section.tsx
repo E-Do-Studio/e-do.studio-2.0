@@ -2,7 +2,7 @@ import { LandingSection } from "@/components/layout/landing-section";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
-export const Location = () => {
+export const LocationSection = () => {
     const { t } = useTranslation("home");
 
     return (

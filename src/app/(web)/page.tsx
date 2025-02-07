@@ -6,8 +6,10 @@ import { ServiceSection } from './_components/service-section'
 import { LocationSection } from './_components/location-section'
 import { OurCustomersSection } from './_components/our-customers-section'
 import { Introduction } from './_components/introduction'
+import { useScrollToHash } from '@/hooks/use-scroll-to-hash'
 
 export default function Page() {
+  useScrollToHash()
 
   return (
     <div className="text-xl min-h-screen">

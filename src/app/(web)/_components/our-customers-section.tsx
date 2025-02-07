@@ -17,7 +17,7 @@ interface Customer {
     name: string;
 }
 
-export function OurCustomers() {
+export function OurCustomersSection() {
     const { t } = useTranslation("home")
 
     // IMG suctomers

@@ -16,7 +16,7 @@ export const ServiceSection = () => {
     ]
 
     return (
-        <LandingSection title={t('services.title')}>
+        <LandingSection title={t('services.title')} id='services'>
             <Button size='lg' className='w-48'>{t('services.button')} <MoveRight className='w-4 h-4' /></Button>
             <a href='#'>
                 <Services

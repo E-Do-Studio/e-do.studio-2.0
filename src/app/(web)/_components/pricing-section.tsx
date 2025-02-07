@@ -8,7 +8,7 @@ export const PricingSection = () => {
   const { t } = useTranslation('home')
 
   return (
-    <LandingSection title={t('pricing.title')}>
+    <LandingSection title={t('pricing.title')} id='pricing'>
       <Machines />
     </LandingSection>
   )

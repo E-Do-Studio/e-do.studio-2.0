@@ -32,6 +32,7 @@ export function ContactSection() {
 
   return (
     <LandingSection
+      id="contact"
       className="flex flex-col md:flex-row gap-8"
       title={t('contact.title')}
       subtitle={t('contact.subtitle')}

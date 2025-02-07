@@ -9,6 +9,9 @@ import { AnimatePresence } from 'framer-motion'
 import { Phone, X } from 'lucide-react'
 import { useMobileMenu } from '@/store/use-mobile-menu'
 import { MobileMenu } from './mobile-menu'
+import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { HEADER_HEIGHT } from '@/lib/constants'
 
 type HeaderProps = {
   children: React.ReactNode
@@ -19,7 +22,7 @@ const navigation = [
   // { label: 'production', href: '/production' },
   // { label: 'post-prod', href: '/post-prod' },
   { label: 'phone', href: 'tel:+33144041149' },
-  { label: 'gallery', href: '/gallery' },
+  { label: 'gallery', href: 'galerie?category=on%20model' },
   { label: 'services', href: '#services' },
   { label: 'pricing', href: '#pricing' },
   { label: 'contact', href: '#contact' },
@@ -119,12 +122,29 @@ function Navigation({ children, className = '' }: HeaderProps & { className?: st
 }
 
 function NavigationItem({ children, href }: NavigationItemProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith('#')) {
       e.preventDefault()
+
+      // Si nous sommes sur une page différente, naviguer d'abord
+      if (pathname !== '/') {
+        router.push('/' + href)
+        return
+      }
+
+      // Sur la même page, faire défiler en douceur
       const element = document.querySelector(href)
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.scrollY - HEADER_HEIGHT - 24
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
       }
     }
   }
