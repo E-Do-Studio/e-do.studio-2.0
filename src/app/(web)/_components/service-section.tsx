@@ -66,8 +66,15 @@ export const ServiceSection = () => {
     }
 
     return (
-        <LandingSection title={t('services.title')} id='services'>
-            <Button size='lg' className='w-48'>
+        <LandingSection
+            title={t('services.title')}
+            id='services'
+            className="mt-8 md:mt-16"
+        >
+            <Button
+                size='lg'
+                className='w-52'
+            >
                 <Link href='/reservation' className='flex items-center gap-2'>
                     {t('services.button')}
                     <MoveRight className='w-4 h-4' />
@@ -75,34 +82,12 @@ export const ServiceSection = () => {
             </Button>
             <a href='#'>
                 <Services
-                    imagesDescription={['/img/machine-live.webp', 'Services machine live']}
-                    serviceName={t('services.live.name')}
-                    title={t('services.live.title')}
-                    description={t('services.live.description')}
+                    imagesDescription={['/img/machine-cyclorama.webp', 'Services machine cyclorama']}
+                    serviceName={t('services.cyclorama.name')}
+                    title={t('services.cyclorama.title')}
+                    description={t('services.cyclorama.description')}
                     number="01"
-                    images={machineImages.live}
-                />
-            </a>
-            <div className='border-b border-[#979797] w-[100%]'></div>
-            <a href='#'>
-                <Services
-                    imagesDescription={['/img/machine-horizontal.webp', 'Services machine horizontale']}
-                    serviceName={t('services.horizontal.name')}
-                    title={t('services.horizontal.title')}
-                    description={t('services.horizontal.description')}
-                    number="02"
-                    images={machineImages.horizontal}
-                />
-            </a>
-            <div className='border-b border-[#979797] w-[100%]'></div>
-            <a href='#'>
-                <Services
-                    imagesDescription={['/img/machine-vertical.webp', 'Services machine verticale']}
-                    serviceName={t('services.vertical.name')}
-                    title={t('services.vertical.title')}
-                    description={t('services.vertical.description')}
-                    number="03"
-                    images={machineImages.vertical}
+                    images={machineImages.cyclorama}
                 />
             </a>
             <div className='border-b border-[#979797] w-[100%]'></div>
@@ -112,19 +97,41 @@ export const ServiceSection = () => {
                     serviceName={t('services.eclipse.name')}
                     title={t('services.eclipse.title')}
                     description={t('services.eclipse.description')}
-                    number="04"
+                    number="02"
                     images={machineImages.eclipse}
                 />
             </a>
             <div className='border-b border-[#979797] w-[100%]'></div>
             <a href='#'>
                 <Services
-                    imagesDescription={['/img/machine-cyclorama.webp', 'Services machine cyclorama']}
-                    serviceName={t('services.cyclorama.name')}
-                    title={t('services.cyclorama.title')}
-                    description={t('services.cyclorama.description')}
+                    imagesDescription={['/img/machine-live.webp', 'Services machine live']}
+                    serviceName={t('services.live.name')}
+                    title={t('services.live.title')}
+                    description={t('services.live.description')}
+                    number="03"
+                    images={machineImages.live}
+                />
+            </a>
+            <div className='border-b border-[#979797] w-[100%]'></div>
+            <a href='#'>
+                <Services
+                    imagesDescription={['/img/machine-vertical.webp', 'Services machine verticale']}
+                    serviceName={t('services.vertical.name')}
+                    title={t('services.vertical.title')}
+                    description={t('services.vertical.description')}
+                    number="04"
+                    images={machineImages.vertical}
+                />
+            </a>
+            <div className='border-b border-[#979797] w-[100%]'></div>
+            <a href='#'>
+                <Services
+                    imagesDescription={['/img/machine-horizontal.webp', 'Services machine horizontale']}
+                    serviceName={t('services.horizontal.name')}
+                    title={t('services.horizontal.title')}
+                    description={t('services.horizontal.description')}
                     number="05"
-                    images={machineImages.cyclorama}
+                    images={machineImages.horizontal}
                 />
             </a>
         </LandingSection>
