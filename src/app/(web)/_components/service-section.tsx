@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { LandingSection } from '@/components/layout/landing-section'
 import { Services } from '@/app/(web)/_components/services'
@@ -17,7 +18,12 @@ export const ServiceSection = () => {
 
     return (
         <LandingSection title={t('services.title')} id='services'>
-            <Button size='lg' className='w-48'>{t('services.button')} <MoveRight className='w-4 h-4' /></Button>
+            <Button size='lg' className='w-48'>
+                <Link href='/reservation' className='flex items-center gap-2'>
+                    {t('services.button')}
+                    <MoveRight className='w-4 h-4' />
+                </Link>
+            </Button>
             <a href='#'>
                 <Services
                     imagesDescription={[images[0].src, 'Services']}

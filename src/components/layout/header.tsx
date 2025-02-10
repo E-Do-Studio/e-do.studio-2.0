@@ -55,7 +55,9 @@ export function Header() {
             </NavigationItem>
           ))}
           <LanguageSwitcher />
-          <Button className="w-[180px]">{t('header.cta.book')}</Button>
+          <Button asChild className="w-[180px]">
+            <Link href="/reservation">{t('header.cta.book')}</Link>
+          </Button>
         </Navigation>
 
         {/* Mobile Menu Button */}
@@ -105,7 +107,7 @@ function LanguageSwitcher() {
   return (
     <Button
       size="icon"
-      className="rounded-full w-8 h-8 uppercase text-xs"
+      className="rounded-full min-w-8 min-h-8 w-8 h-8 uppercase text-xs"
       onClick={() => i18n.changeLanguage(isEnglish ? 'fr' : 'en')}
     >
       {isEnglish ? 'fr' : 'en'}
@@ -124,6 +126,7 @@ function Navigation({ children, className = '' }: HeaderProps & { className?: st
 function NavigationItem({ children, href }: NavigationItemProps) {
   const router = useRouter()
   const pathname = usePathname()
+  const isPhoneLink = href.startsWith('tel:')
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith('#')) {
@@ -153,7 +156,8 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     <Link
       href={href}
       onClick={handleClick}
-      className="text-sm hover:text-neutral-500 hover:underline transition-colors"
+      className={`text-sm hover:text-neutral-500 hover:underline transition-colors ${isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
+        }`}
     >
       {children}
     </Link>
