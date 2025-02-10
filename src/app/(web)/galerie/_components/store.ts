@@ -5,48 +5,45 @@ import { Category } from './types'
 interface GalleryStore {
   categories: Category[]
   isLoading: boolean
-  lastFetch: number | null
   setCategories: (categories: Category[]) => void
   setIsLoading: (isLoading: boolean) => void
-  fetchCategories: () => Promise<void>
+  fetchCategories: (locale: string) => Promise<void>
 }
-
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 
 export const useGalleryStore = create<GalleryStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       categories: [],
       isLoading: true,
-      lastFetch: null,
       setCategories: (categories) => set({ categories }),
       setIsLoading: (isLoading) => set({ isLoading }),
-      fetchCategories: async () => {
-        const now = Date.now()
-        const lastFetch = get().lastFetch
-
-        // Utiliser le cache si les données ont été chargées il y a moins de 5 minutes
-        if (lastFetch && now - lastFetch < CACHE_DURATION) {
-          set({ isLoading: false })
-          return
-        }
+      fetchCategories: async (locale: string) => {
+        set({ isLoading: true })
 
         try {
-          const response = await fetch('/api/categories?depth=2', {
-            next: { revalidate: 300 }, // Revalidate every 5 minutes
+          const response = await fetch(`/api/categories?locale=${locale}&depth=2`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            // Désactiver le cache du navigateur
+            cache: 'no-store'
           })
+
+          if (!response.ok) throw new Error('Failed to fetch categories')
+
           const data = await response.json()
           if (data?.docs) {
             const formattedCategories = data.docs.map((category: any) => ({
               id: category.id,
               name: category.name,
+              slug: category.slug,
               images: category.images || [],
               subcategories: category.subcategories || [],
             }))
             set({
               categories: formattedCategories,
               isLoading: false,
-              lastFetch: now,
             })
           }
         } catch (error) {
@@ -59,7 +56,6 @@ export const useGalleryStore = create<GalleryStore>()(
       name: 'gallery-store',
       partialize: (state) => ({
         categories: state.categories,
-        lastFetch: state.lastFetch,
       }),
     },
   ),

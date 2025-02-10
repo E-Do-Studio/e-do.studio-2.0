@@ -7,7 +7,8 @@ import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useGalleryStore } from "./store"
-import { Category } from "./types"
+import { Category, Subcategory } from "./types"
+import i18n from "@/lib/i18n"
 
 function GalleryMenuSkeleton() {
   return (
@@ -33,12 +34,12 @@ function GalleryMenuSkeleton() {
 
 function CategoryLink({ category, isCurrentCategory }: { category: Category; isCurrentCategory: boolean }) {
   const searchParams = useSearchParams()
-  const currentSubcategory = searchParams?.get('subcategory')?.toLowerCase()
+  const currentSubcategorySlug = searchParams?.get('subcategory')
 
   return (
     <li className="space-y-1">
       <Link
-        href={`/galerie?category=${category.name.toLowerCase()}`}
+        href={`/galerie?category=${category.slug}`}
         className={cn(
           "hover:text-neutral-600 transition-colors",
           isCurrentCategory && "font-medium"
@@ -56,7 +57,7 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
             transition={{ duration: 0.2 }}
             className="pl-4 space-y-1 overflow-hidden"
           >
-            {category.subcategories.map((subcategory) => (
+            {category.subcategories.map((subcategory: Subcategory) => (
               <motion.li
                 key={subcategory.id}
                 initial={{ x: -10, opacity: 0 }}
@@ -64,10 +65,10 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  href={`/galerie?category=${category.name.toLowerCase()}&subcategory=${subcategory.name.toLowerCase()}`}
+                  href={`/galerie?category=${category.slug}&subcategory=${subcategory.slug}`}
                   className={cn(
                     "hover:text-neutral-600 transition-colors",
-                    currentSubcategory === subcategory.name.toLowerCase() && "font-medium"
+                    currentSubcategorySlug === subcategory.slug && "font-medium"
                   )}
                   prefetch={true}
                 >
@@ -85,29 +86,40 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
 function GalleryContent() {
   const searchParams = useSearchParams()
   const { categories, isLoading, fetchCategories } = useGalleryStore()
-  const currentCategory = searchParams?.get('category')?.toLowerCase()
-  const currentSubcategory = searchParams?.get('subcategory')?.toLowerCase()
+
+  const currentCategorySlug = searchParams?.get('category')
+  const currentSubcategorySlug = searchParams?.get('subcategory')
 
   const menuTitle = useMemo(() => {
-    if (!currentCategory) return 'Galerie'
+    if (!currentCategorySlug) return 'Galerie'
 
     const category = categories.find(
-      cat => cat.name.toLowerCase() === currentCategory
+      cat => cat.slug === currentCategorySlug
     )
     if (!category) return 'Galerie'
 
-    if (currentSubcategory) {
+    if (currentSubcategorySlug) {
       const subcategory = category.subcategories?.find(
-        sub => sub.name.toLowerCase() === currentSubcategory
+        sub => sub.slug === currentSubcategorySlug
       )
-      if (subcategory) return `${category.name} - ${subcategory.name}`
+      if (subcategory) return subcategory.name
     }
 
     return category.name
-  }, [categories, currentCategory, currentSubcategory])
+  }, [categories, currentCategorySlug, currentSubcategorySlug])
 
   useEffect(() => {
-    fetchCategories()
+    const handleLanguageChange = () => {
+      fetchCategories(i18n.language)
+    }
+
+    handleLanguageChange()
+
+    i18n.on('languageChanged', handleLanguageChange)
+
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange)
+    }
   }, [fetchCategories])
 
   if (isLoading) return <GalleryMenuSkeleton />
@@ -125,7 +137,7 @@ function GalleryContent() {
             <CategoryLink
               key={category.id}
               category={category}
-              isCurrentCategory={currentCategory === category.name.toLowerCase()}
+              isCurrentCategory={currentCategorySlug === category.slug}
             />
           ))}
         </ul>

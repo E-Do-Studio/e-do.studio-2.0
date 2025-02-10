@@ -1,11 +1,13 @@
 export interface Subcategory {
-  id: number
+  id: string
   name: string
+  slug: string
 }
 
 export interface Category {
-  id: number
+  id: string
   name: string
+  slug: string
   images: any[]
   subcategories?: Subcategory[]
 }
