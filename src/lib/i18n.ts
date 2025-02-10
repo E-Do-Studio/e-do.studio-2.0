@@ -18,10 +18,22 @@ i18n
             loadPath: '/locales/{{lng}}/{{ns}}.json'
         },
         detection: {
-            order: ['navigator', 'cookie', 'localStorage'],
-            caches: ['cookie']
+            order: ['localStorage', 'cookie', 'navigator', 'htmlTag'],
+            lookupFromPathIndex: 0,
+            caches: ['localStorage', 'cookie'],
+            cookieMinutes: 43200,
+            cookieOptions: {
+                path: '/',
+                sameSite: 'strict'
+            }
         },
         interpolation: { escapeValue: false }
     });
+
+export const changeLanguage = async (lng: string) => {
+    await i18n.changeLanguage(lng);
+    localStorage.setItem('i18nextLng', lng);
+    document.documentElement.lang = lng;
+};
 
 export default i18n;

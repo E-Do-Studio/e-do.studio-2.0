@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { Metadata } from 'next'
 import { I18nProvider } from '@/components/providers/i18n-provider'
+import { headers } from 'next/headers'
 
 export const metadata: Metadata = {
   title: 'E-Do Studio',
@@ -33,15 +34,35 @@ const abcFavorit = localFont({
   variable: '--font-abc-favorit',
 })
 
-export default function WebLayout({
+// Fonction pour détecter la langue préférée du navigateur
+async function getLanguageFromAcceptLanguage(): Promise<string> {
+  const headersList = await headers()
+  const acceptLanguage = headersList.get('accept-language')
+
+  if (!acceptLanguage) return 'fr'
+
+  // Extraire la première langue préférée
+  const preferredLanguage = acceptLanguage.split(',')[0].split('-')[0]
+
+  // Vérifier si la langue est supportée
+  return ['fr', 'en'].includes(preferredLanguage) ? preferredLanguage : 'fr'
+}
+
+export async function generateStaticParams() {
+  return [{ lng: 'fr' }, { lng: 'en' }]
+}
+
+export default async function WebLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const defaultLanguage = await getLanguageFromAcceptLanguage()
+
   return (
-    <html lang="en" className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
+    <html lang={defaultLanguage} className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
       <body>
-        <I18nProvider>
+        <I18nProvider defaultLanguage={defaultLanguage}>
           <Header />
           {children}
           <Footer />
