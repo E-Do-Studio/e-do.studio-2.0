@@ -23,53 +23,61 @@ export function OurCustomersSection() {
     // IMG suctomers
     const customers: Customer[] = [
         {
-            img: 'https://www.citypng.com/public/uploads/preview/louis-vuitton-gold-logo-hd-png-701751694771300ifegnuqnmd.png',
-            name: 'Louis Vuitton'
+            img: '/img/logo-merci-gisele.webp',
+            name: 'Merci Gisele'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Gucci'
+            img: '/img/logo-marine-serre.webp',
+            name: 'Marine Serre'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/49/17/png-clipart-glasses-brand-logo-trademark-product-glasses-text-trademark.png',
-            name: 'Brand 3'
+            img: '/img/logo-monstres.webp',
+            name: 'Monstres'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 4'
+            img: '/img/logo-numero.webp',
+            name: 'Numéro'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 5'
+            img: '/img/logo-nodaleto.webp',
+            name: 'Nodaleto'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 6'
+            img: '/img/logo-rimowa.webp',
+            name: 'Rimowa'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 7'
+            img: '/img/logo-roger-vivier.webp',
+            name: 'Roger Vivier'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 8'
+            img: '/img/logo-socle.webp',
+            name: 'Socle'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 9'
+            img: '/img/logo-talel.webp',
+            name: 'Talel'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 10'
+            img: '/img/logo-tanneur.webp',
+            name: 'Le Tanneur'
         },
         {
-            img: 'https://e7.pngegg.com/pngimages/874/117/png-clipart-gucci-fashion-logo-others-miscellaneous-text.png',
-            name: 'Brand 11'
+            img: '/img/logo-vuarnet.webp',
+            name: 'Vuarnet'
+        },
+        {
+            img: '/img/logo-weisheng.webp',
+            name: 'Weisheng Paris'
+        },
+        {
+            img: '/img/logo-wolford.webp',
+            name: 'Wolford'
         }
     ]
     return (
         <LandingSection title={t("customers.title")}>
-            <div className="w-full mx-auto border-b border-t border-black">
+            <div className="w-full mx-auto border-b border-t border-black py-12">
                 <Carousel
                     opts={{
                         align: "start",
@@ -81,18 +89,19 @@ export function OurCustomersSection() {
                             delay: 1500,
                         }),
                     ]}
-                    className="w-full"
+                    className="w-full px-4"
                 >
                     <CarouselContent className="-ml-1 flex items-center">
                         {customers.map((customer, index) => (
-                            <CarouselItem key={index} className="pl-1 basis-1/4">
-                                <div className="p-2">
+                            <CarouselItem key={index} className="pl-1 md:basis-1/4 lg:basis-1/5">
+                                <div className="px-8 py-4 flex items-center justify-center">
                                     <Image
                                         src={customer.img}
                                         alt={customer.name}
-                                        width={100}
-                                        height={100}
-                                        className="w-full h-auto object-contain"
+                                        width={200}
+                                        height={80}
+                                        quality={95}
+                                        className="w-auto max-w-[200px] h-[80px] object-contain"
                                     />
                                 </div>
                             </CarouselItem>
