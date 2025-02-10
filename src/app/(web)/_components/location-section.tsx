@@ -1,5 +1,6 @@
 import { LandingSection } from "@/components/layout/landing-section";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 export const LocationSection = () => {
@@ -8,29 +9,59 @@ export const LocationSection = () => {
     return (
         <LandingSection title={t("location.title")}>
             <div className="flex flex-col md:flex-row gap-8 md:gap-32 min-h-[600px]">
-                <div className="flex-1 flex flex-col gap-4 text-gray-500">
-                    <h3>Parc d&apos;activités Victor Hugo</h3>
-                    <h3>Batiment 6.7</h3>
-                    <h3>93400 Saint-Ouen</h3>
+                <div className="flex-1 flex flex-col gap-1 text-gray-500">
+                    <Link className="hover:underline w-fit" href="https://maps.google.com/?q=69+Boulevard+Victor+Hugo+93400+Saint+Ouen" target="_blank" rel="noopener noreferrer">
+                        <h3>Parc d&apos;activités Victor Hugo</h3>
+                        <h3>Batiment 6.7</h3>
+                        <h3>93400 Saint-Ouen</h3>
+                    </Link>
                     <div className="space-y-2">
-                        <Image
-                            src="/entree-victor-hugo.webp"
-                            alt="Entrée Victor Hugo"
-                            width={400}
-                            height={300}
-                            className="rounded-lg w-full h-48 object-cover"
-                        />
-                        <p className="text-end">69 Boulevard Victor Hugo, 93400 Saint-Ouen</p>
+                        <a
+                            href="https://maps.google.com/?q=69+Boulevard+Victor+Hugo+93400+Saint+Ouen"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block cursor-pointer"
+                        >
+                            <Image
+                                src="/entree-victor-hugo.webp"
+                                alt="Entrée Victor Hugo"
+                                width={400}
+                                height={300}
+                                className="rounded-lg w-full h-48 object-cover grayscale transition-all duration-300 hover:grayscale-0"
+                            />
+                        </a>
+                        <a
+                            href="https://maps.google.com/?q=69+Boulevard+Victor+Hugo+93400+Saint+Ouen"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-end hover:text-blue-500 transition-colors"
+                        >
+                            69 Boulevard Victor Hugo, 93400 Saint-Ouen
+                        </a>
                     </div>
                     <div className="space-y-2">
-                        <Image
-                            src="/entree-louis-blanc.webp"
-                            alt="Entrée Louis Blanc"
-                            width={400}
-                            height={300}
-                            className="rounded-lg w-full h-48 object-cover"
-                        />
-                        <p className="text-end">22 Rue Louis Blanc, 93400 Saint-Ouen</p>
+                        <a
+                            href="https://maps.google.com/?q=18+Rue+Louis+Blanc+93400+Saint+Ouen"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block cursor-pointer"
+                        >
+                            <Image
+                                src="/entree-louis-blanc.webp"
+                                alt="Entrée Louis Blanc"
+                                width={400}
+                                height={300}
+                                className="rounded-lg w-full h-48 object-cover grayscale transition-all duration-300 hover:grayscale-0"
+                            />
+                        </a>
+                        <a
+                            href="https://maps.google.com/?q=18+Rue+Louis+Blanc+93400+Saint+Ouen"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-end hover:text-blue-500 transition-colors"
+                        >
+                            18 Rue Louis Blanc, 93400 Saint-Ouen
+                        </a>
                     </div>
                 </div>
                 <iframe
