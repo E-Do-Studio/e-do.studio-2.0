@@ -1,4 +1,4 @@
-'use client'
+"use server"
 
 import { PricingSection } from '@/app/(web)/_components/pricing-section'
 import { ContactSection } from '@/app/(web)/_components/contact-section'
@@ -6,21 +6,29 @@ import { ServiceSection } from './_components/service-section'
 import { LocationSection } from './_components/location-section'
 import { OurCustomersSection } from './_components/our-customers-section'
 import { Introduction } from './_components/introduction'
-import { useScrollToHash } from '@/hooks/use-scroll-to-hash'
 
-export default function Page() {
-  useScrollToHash()
+import { getPayload } from 'payload'
+import config from '@/payload.config'
 
+export default async function Page() {
+  const payload = await getPayload({ config })
+  const categories = await payload.find({
+    collection: 'categories',
+    depth: 2,
+  })
+
+  console.log(categories)
   return (
     <div className="text-xl min-h-screen">
       <Introduction />
       <div className="container">
         <ServiceSection />
-        <PricingSection />
+        <PricingSection categories={categories} />
         <OurCustomersSection />
         <ContactSection />
-        <LocationSection />
+        {/* <LocationSection /> */}
       </div>
     </div>
   )
 }
+

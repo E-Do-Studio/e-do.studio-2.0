@@ -42,18 +42,19 @@ export function CarouselMachines({ images, className }: CarouselMachinesProps) {
                             ]}
                             className="w-full"
                         >
-                            <CarouselContent className="-ml-1 flex items-center">
+                            <CarouselContent className="-ml-0.5 flex items-center">
                                 {images.map((image, index) => (
                                     <CarouselItem
                                         key={`${image}-${index}`}
-                                        className="pl-1 basis-full sm:basis-1/2 lg:basis-1/3"
+                                        className="pl-0.5 basis-full sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
                                     >
-                                        <div className="relative aspect-[4/3] sm:aspect-video">
+                                        <div className="relative h-[300px]">
                                             <Image
                                                 src={image}
-                                                alt={`Machine slide ${index + 1}`}
-                                                fill
-                                                className="object-cover rounded-lg"
+                                                alt={`${name} - ${index + 1}`}
+                                                width={800}
+                                                height={600}
+                                                className="rounded-lg w-full h-full object-contain"
                                                 priority={index === 0}
                                             />
                                         </div>

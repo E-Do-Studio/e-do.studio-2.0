@@ -2,6 +2,7 @@ export type TimingPeriod = string
 
 export interface Machine {
   name: string
+  slug: string | string[]
   price_per_hours: {
     hour: { price: number; description: string }[]
     half_day: { price: number; description: string }[]
@@ -19,6 +20,7 @@ export function createMachines(t: (key: string) => string): Machine[] {
   return [
     {
       name: 'Cyclorama',
+      slug: 'cyclorama',
       price_per_hours: {
         hour: [{ price: 1000, description: t('pricing.description.hour') }],
         half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
@@ -28,6 +30,7 @@ export function createMachines(t: (key: string) => string): Machine[] {
     },
     {
       name: 'Eclipse',
+      slug: 'access',
       price_per_hours: {
         hour: [{ price: 1000, description: t('pricing.description.hour') }],
         half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
@@ -37,6 +40,7 @@ export function createMachines(t: (key: string) => string): Machine[] {
     },
     {
       name: 'Live',
+      slug: 'on_model',
       price_per_hours: {
         hour: [{ price: 1000, description: t('pricing.description.hour') }],
         half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
@@ -46,6 +50,7 @@ export function createMachines(t: (key: string) => string): Machine[] {
     },
     {
       name: 'Vertical',
+      slug: ["ghost", "pique"],
       price_per_hours: {
         hour: [{ price: 1000, description: t('pricing.description.hour') }],
         half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
@@ -55,6 +60,7 @@ export function createMachines(t: (key: string) => string): Machine[] {
     },
     {
       name: 'Horizontal',
+      slug: 'flat',
       price_per_hours: {
         hour: [{ price: 1000, description: t('pricing.description.hour') }],
         half_day: [{ price: 1500, description: t('pricing.description.half_day') }],

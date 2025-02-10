@@ -6,6 +6,8 @@ import { Footer } from '@/components/layout/footer'
 import { Metadata } from 'next'
 import { I18nProvider } from '@/components/providers/i18n-provider'
 import { headers } from 'next/headers'
+import { NewsletterPopup } from '@/components/layout/newsletter-popup'
+import { CookieBanner } from '@/components/layout/cookie-banner'
 
 export const metadata: Metadata = {
   title: 'E-Do Studio',
@@ -66,6 +68,8 @@ export default async function WebLayout({
           <Header />
           {children}
           <Footer />
+          <NewsletterPopup />
+          <CookieBanner />
         </I18nProvider>
       </body>
     </html>
