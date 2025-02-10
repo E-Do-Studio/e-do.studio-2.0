@@ -16,6 +16,13 @@ export const Categories: CollectionConfig = {
   },
   fields: [
     {
+      name: 'slug',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'name',
       type: 'text',
       localized: true,

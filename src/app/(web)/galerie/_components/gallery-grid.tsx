@@ -15,6 +15,7 @@ interface GalleryImage {
   }
   subcategory?: {
     name: string
+    slug: string
   }
   filename: string
 }
@@ -27,6 +28,7 @@ interface GalleryVideo {
   }
   subcategory?: {
     name: string
+    slug: string
   }
   filename: string
   thumbnailURL?: string | null
@@ -87,21 +89,25 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   const media = useMemo(() => {
     if (category && categoriesData?.docs) {
       const categoryData = categoriesData.docs.find((cat) =>
-        cat.name.toLowerCase() === category.toLowerCase()
+        cat.slug === category
       )
 
-      if (subcategory && categoryData) {
-        return [
-          ...categoryData.assets.filter((asset: GalleryImage) =>
-            asset.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
-          ),
-          ...categoryData.videos.filter((video: GalleryVideo) =>
-            video.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
-          )
-        ]
+      if (!categoryData) return []
+
+      // Si pas de subcategory ou subcategory est 'undefined', retourner tous les médias de la catégorie
+      if (!subcategory || subcategory === 'undefined') {
+        return [...(categoryData.assets || []), ...(categoryData.videos || [])]
       }
 
-      return [...(categoryData?.assets || []), ...(categoryData?.videos || [])]
+      // Sinon, filtrer par subcategory
+      return [
+        ...categoryData.assets.filter((asset: GalleryImage) =>
+          asset.subcategory?.slug === subcategory
+        ),
+        ...categoryData.videos.filter((video: GalleryVideo) =>
+          video.subcategory?.slug === subcategory
+        )
+      ]
     }
 
     // Return all media if no category selected
