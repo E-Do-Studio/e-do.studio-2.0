@@ -15,6 +15,7 @@ interface GalleryImage {
   }
   subcategory?: {
     name: string
+    slug: string
   }
   filename: string
 }
@@ -27,10 +28,23 @@ interface GalleryVideo {
   }
   subcategory?: {
     name: string
+    slug: string
   }
   filename: string
   thumbnailURL?: string | null
   aspectRatio?: number
+}
+
+interface GalleryLink {
+  id: string
+  url: string
+}
+
+interface Category {
+  slug: string
+  links?: GalleryLink[]
+  assets: GalleryImage[]
+  videos: GalleryVideo[]
 }
 
 interface GalleryGridProps {
@@ -87,21 +101,34 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   const media = useMemo(() => {
     if (category && categoriesData?.docs) {
       const categoryData = categoriesData.docs.find((cat) =>
-        cat.name.toLowerCase() === category.toLowerCase()
+        cat.slug === category
       )
 
-      if (subcategory && categoryData) {
-        return [
-          ...categoryData.assets.filter((asset: GalleryImage) =>
-            asset.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
-          ),
-          ...categoryData.videos.filter((video: GalleryVideo) =>
-            video.subcategory?.name.toLowerCase() === subcategory.toLowerCase()
-          )
-        ]
+      if (!categoryData) return []
+
+      // Gestion spéciale pour la catégorie 360
+      if (category === '360' && categoryData.links?.length) {
+        return categoryData.links.map((link: GalleryLink) => ({
+          id: link.id,
+          type: '360',
+          url: link.url
+        }))
       }
 
-      return [...(categoryData?.assets || []), ...(categoryData?.videos || [])]
+      // Si pas de subcategory ou subcategory est 'undefined', retourner tous les médias de la catégorie
+      if (!subcategory || subcategory === 'undefined') {
+        return [...(categoryData.assets || []), ...(categoryData.videos || [])]
+      }
+
+      // Sinon, filtrer par subcategory
+      return [
+        ...categoryData.assets.filter((asset: GalleryImage) =>
+          asset.subcategory?.slug === subcategory
+        ),
+        ...categoryData.videos.filter((video: GalleryVideo) =>
+          video.subcategory?.slug === subcategory
+        )
+      ]
     }
 
     // Return all media if no category selected
@@ -163,7 +190,16 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
                 key={item.id}
                 className="w-full"
               >
-                <MediaCard item={item} />
+                {'type' in item && item.type === '360' ? (
+                  <iframe
+                    src={item.url}
+                    className="w-full aspect-square rounded-lg"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <MediaCard item={item} />
+                )}
               </div>
             ))}
           </div>

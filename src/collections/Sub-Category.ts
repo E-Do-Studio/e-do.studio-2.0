@@ -12,6 +12,14 @@ export const Subcategories: CollectionConfig = {
   },
   fields: [
     {
+      name: 'slug',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        description: 'Slug de la sous-catégorie',
+      },
+    },
+    {
       name: 'name',
       type: 'text',
       localized: true,

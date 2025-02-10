@@ -14,6 +14,7 @@ import {
   type ContactFormValues,
 } from '@/validations/contact-form-schema'
 import { ArrowRight } from 'lucide-react'
+import { toast } from 'sonner'
 
 export function ContactSection() {
   const { t } = useTranslation('home')
@@ -23,10 +24,25 @@ export function ContactSection() {
 
   async function onSubmit(data: ContactFormValues) {
     try {
-      console.log(data)
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message')
+      }
+
+      toast.success(t('contact.form.success'))
       form.reset()
     } catch (error) {
       console.error("Erreur lors de l'envoi du formulaire:", error)
+      toast.error(t('contact.form.error'))
     }
   }
 

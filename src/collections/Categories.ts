@@ -16,6 +16,13 @@ export const Categories: CollectionConfig = {
   },
   fields: [
     {
+      name: 'slug',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'name',
       type: 'text',
       localized: true,
@@ -56,6 +63,19 @@ export const Categories: CollectionConfig = {
           contains: ['video/'],
         },
       },
+    },
+    {
+      name: 'links',
+      type: 'array',
+      admin: {
+        description: 'Links to the category',
+      },
+      fields: [
+        {
+          name: 'url',
+          type: 'text',
+        },
+      ],
     },
   ],
   timestamps: true,
