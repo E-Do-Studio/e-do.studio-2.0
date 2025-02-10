@@ -35,7 +35,15 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
                 <h3 className="text-2xl font-medium lg:hidden">{title}</h3>
                 <h3 className="text-2xl font-medium hidden lg:block lg:h-14">{serviceName + " " + title}</h3>
                 <p className="text-base font-medium text-neutral-500 lg:h-16">{description}</p>
-                <Image src={imagesDescription[0]} alt={imagesDescription[1]} width={100} height={100} className="w-full lg:w-[270px]" />
+                <Image
+                    src={imagesDescription[0]}
+                    alt={imagesDescription[1]}
+                    width={800}
+                    height={600}
+                    quality={100}
+                    className="w-full lg:w-[270px] object-contain"
+                    priority
+                />
             </div>
             <Image
                 src={images[currentImageIndex].src}
