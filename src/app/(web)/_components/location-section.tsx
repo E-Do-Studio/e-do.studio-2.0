@@ -1,3 +1,5 @@
+"use client"
+
 import { LandingSection } from "@/components/layout/landing-section";
 import Image from "next/image";
 import Link from "next/link";

@@ -26,7 +26,7 @@ export default async function Page() {
         <PricingSection categories={categories} />
         <OurCustomersSection />
         <ContactSection />
-        {/* <LocationSection /> */}
+        <LocationSection />
       </div>
     </div>
   )
