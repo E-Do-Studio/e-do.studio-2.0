@@ -2,6 +2,9 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { Category } from './types'
 
+// Définir l'ordre des catégories
+const CATEGORY_ORDER = ['porte', 'access', 'ghost', 'pique', 'flat']
+
 interface GalleryStore {
   categories: Category[]
   isLoading: boolean
@@ -41,8 +44,16 @@ export const useGalleryStore = create<GalleryStore>()(
               images: category.images || [],
               subcategories: category.subcategories || [],
             }))
+
+            // Trier les catégories selon l'ordre défini
+            const sortedCategories = [...formattedCategories].sort((a, b) => {
+              const indexA = CATEGORY_ORDER.indexOf(a.slug)
+              const indexB = CATEGORY_ORDER.indexOf(b.slug)
+              return indexA - indexB
+            })
+
             set({
-              categories: formattedCategories,
+              categories: sortedCategories,
               isLoading: false,
             })
           }

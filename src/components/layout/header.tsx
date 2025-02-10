@@ -22,7 +22,7 @@ const navigation = [
   // { label: 'production', href: '/production' },
   // { label: 'post-prod', href: '/post-prod' },
   { label: 'phone', href: 'tel:+33144041149' },
-  { label: 'gallery', href: 'galerie?category=on%20model' },
+  { label: 'gallery', href: 'galerie?category=on_model' },
   { label: 'services', href: '#services' },
   { label: 'pricing', href: '#pricing' },
   { label: 'contact', href: '#contact' },
