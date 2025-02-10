@@ -12,6 +12,8 @@ import { MobileMenu } from './mobile-menu'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import { HEADER_HEIGHT } from '@/lib/constants'
+import { useScroll } from '@/hooks/use-scroll'
+import { cn } from '@/lib/utils'
 
 type HeaderProps = {
   children: React.ReactNode
@@ -35,10 +37,18 @@ export type Navigation = typeof navigation
 export function Header() {
   const { t } = useTranslation('layout')
   const { isOpen, toggle } = useMobileMenu()
+  const scrolled = useScroll()
 
   return (
     <>
-      <header className="flex flex-row items-center justify-between container h-24 backdrop-blur-sm bg-background/80 fixed top-0 z-50">
+      <header
+        className={cn(
+          'flex flex-row items-center justify-between container',
+          'backdrop-blur-sm bg-background/80 fixed top-0 z-50',
+          'transition-all duration-200',
+          scrolled ? 'h-16' : 'h-24'
+        )}
+      >
         <HeaderLeft>
           <Logo />
           <Clock />
@@ -52,7 +62,13 @@ export function Header() {
             </NavigationItem>
           ))}
           <LanguageSwitcher />
-          <Button asChild className="w-[180px]">
+          <Button
+            asChild
+            className={cn(
+              'transition-all duration-200',
+              scrolled ? 'h-8 text-sm w-[150px]' : 'h-10 w-[180px]'
+            )}
+          >
             <Link href="/reservation">{t('header.cta.book')}</Link>
           </Button>
         </Navigation>
@@ -61,26 +77,42 @@ export function Header() {
         <div className="flex flex-row items-center gap-6 md:hidden">
           <button>
             <Phone
-              size={32}
+              size={scrolled ? 24 : 32}
               strokeWidth={1}
+              className="transition-all duration-200"
               onClick={() => window.open('tel:+33144041149', '_blank')}
             />
           </button>
           <button
             onClick={toggle}
-            className="md:hidden w-12 h-12 flex items-center justify-center"
+            className={cn(
+              'md:hidden flex items-center justify-center',
+              'transition-all duration-200',
+              scrolled ? 'w-10 h-10' : 'w-12 h-12'
+            )}
             aria-label="Toggle menu"
           >
             {isOpen ? (
-              <X size={48} strokeWidth={0.8} />
+              <X
+                size={scrolled ? 36 : 48}
+                strokeWidth={0.8}
+                className="transition-all duration-200"
+              />
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 12" className="w-8 h-8">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 31 12"
+                className={cn(
+                  'transition-all duration-200',
+                  scrolled ? 'w-6 h-6' : 'w-8 h-8'
+                )}
+              >
                 <path
                   stroke="currentColor"
                   fill="none"
                   fillRule="evenodd"
                   d="M31 1H14.5M.5 11l30 .25"
-                ></path>
+                />
               </svg>
             )}
           </button>
