@@ -49,11 +49,11 @@ export function ContactSection() {
   return (
     <LandingSection
       id="contact"
-      className="flex flex-col md:flex-row gap-8"
+      className="flex-0 flex flex-col md:flex-row gap-2"
       title={t('contact.title')}
       subtitle={t('contact.subtitle')}
       description={() => (
-        <p className="mt-4 md:mt-0 text-sm max-w-sm">
+        <p className="mt-4 flex-0 md:mt-0 text-sm max-w-sm">
           {t('contact.description')}
         </p>
       )}
@@ -61,9 +61,9 @@ export function ContactSection() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1"
+          className="flex flex-col md:flex-row gap-6 flex-1"
         >
-          <div className="space-y-6">
+          <div className="w-full md:max-w-48 space-y-6">
             <FormField
               control={form.control}
               name="lastName"
@@ -146,17 +146,17 @@ export function ContactSection() {
             />
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex-1 flex flex-col h-full gap-4">
             <FormField
               control={form.control}
               name="message"
               render={({ field }) => (
-                <FormItem className="flex-1">
+                <FormItem className="flex-1 h-full">
                   <FormControl>
                     <Textarea
                       variant="landing"
                       placeholder={t(FORM_FIELDS.message.placeholder)}
-                      className="h-full min-h-[240px] resize-none"
+                      className="min-h-[240px] md:h-full w-full resize-none"
                       {...field}
                     />
                   </FormControl>
@@ -167,7 +167,7 @@ export function ContactSection() {
 
             <Button
               type="submit"
-              className="w-full md:w-auto self-end"
+              className="w-full md:w-auto self-end mt-auto"
               disabled={form.formState.isSubmitting}
             >
               <span className="flex items-center gap-2">
