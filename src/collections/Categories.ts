@@ -64,6 +64,19 @@ export const Categories: CollectionConfig = {
         },
       },
     },
+    {
+      name: 'links',
+      type: 'array',
+      admin: {
+        description: 'Links to the category',
+      },
+      fields: [
+        {
+          name: 'url',
+          type: 'text',
+        },
+      ],
+    },
   ],
   timestamps: true,
 }

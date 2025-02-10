@@ -90,6 +90,13 @@ function GalleryContent() {
   const currentCategorySlug = searchParams?.get('category')
   const currentSubcategorySlug = searchParams?.get('subcategory')
 
+  const sortedCategories = useMemo(() => {
+    const regularCategories = categories.filter(cat => cat.slug !== '360')
+    const category360 = categories.find(cat => cat.slug === '360')
+
+    return [...regularCategories, ...(category360 ? [category360] : [])]
+  }, [categories])
+
   const menuTitle = useMemo(() => {
     if (!currentCategorySlug) return 'Galerie'
 
@@ -133,7 +140,7 @@ function GalleryContent() {
       <h1>{menuTitle}</h1>
       <nav className="overflow-y-auto lg:max-h-[calc(100vh-12rem)]">
         <ul className="flex flex-col gap-1 text-base">
-          {categories.map((category) => (
+          {sortedCategories.map((category) => (
             <CategoryLink
               key={category.id}
               category={category}

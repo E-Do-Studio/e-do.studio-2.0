@@ -18,9 +18,6 @@ type HeaderProps = {
 }
 
 const navigation = [
-  // { label: 'services e-commerce', href: '/services-e-commerce' },
-  // { label: 'production', href: '/production' },
-  // { label: 'post-prod', href: '/post-prod' },
   { label: 'phone', href: 'tel:+33144041149' },
   { label: 'gallery', href: 'galerie?category=on_model' },
   { label: 'services', href: '#services' },
@@ -37,7 +34,7 @@ export type Navigation = typeof navigation
 
 export function Header() {
   const { t } = useTranslation('layout')
-  const { isOpen, toggle, close } = useMobileMenu()
+  const { isOpen, toggle } = useMobileMenu()
 
   return (
     <>

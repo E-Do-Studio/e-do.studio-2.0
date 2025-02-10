@@ -35,6 +35,18 @@ interface GalleryVideo {
   aspectRatio?: number
 }
 
+interface GalleryLink {
+  id: string
+  url: string
+}
+
+interface Category {
+  slug: string
+  links?: GalleryLink[]
+  assets: GalleryImage[]
+  videos: GalleryVideo[]
+}
+
 interface GalleryGridProps {
   initialCategory?: string
 }
@@ -93,6 +105,15 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
       )
 
       if (!categoryData) return []
+
+      // Gestion spéciale pour la catégorie 360
+      if (category === '360' && categoryData.links?.length) {
+        return categoryData.links.map((link: GalleryLink) => ({
+          id: link.id,
+          type: '360',
+          url: link.url
+        }))
+      }
 
       // Si pas de subcategory ou subcategory est 'undefined', retourner tous les médias de la catégorie
       if (!subcategory || subcategory === 'undefined') {
@@ -169,7 +190,16 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
                 key={item.id}
                 className="w-full"
               >
-                <MediaCard item={item} />
+                {'type' in item && item.type === '360' ? (
+                  <iframe
+                    src={item.url}
+                    className="w-full aspect-square rounded-lg"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <MediaCard item={item} />
+                )}
               </div>
             ))}
           </div>
