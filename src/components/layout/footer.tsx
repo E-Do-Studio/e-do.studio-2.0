@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import { Facebook, Instagram, Linkedin } from 'lucide-react'
 
 interface AddressSectionProps {
   className?: string;
@@ -92,21 +93,34 @@ interface SocialLinksProps {
 
 function SocialLinks({ className }: SocialLinksProps) {
   const socialLinks = [
-    { label: "FACEBOOK", href: "https://www.facebook.com/EdoStudioAgency/" },
-    { label: "INSTAGRAM", href: "https://www.instagram.com/edostudio/" },
-    { label: "LINKEDIN", href: "https://www.linkedin.com/company/e-do/posts/?feedView=all" },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://www.facebook.com/EdoStudioAgency/",
+      label: "Facebook"
+    },
+    {
+      icon: <Instagram className="w-5 h-5" />,
+      href: "https://www.instagram.com/edostudio/",
+      label: "Instagram"
+    },
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      href: "https://www.linkedin.com/company/e-do/posts/?feedView=all",
+      label: "LinkedIn"
+    },
   ];
 
   return (
-    <div className={cn(`flex justify-between items-center`, className)}>
+    <div className={cn(`flex gap-6 items-center justify-end`, className)}>
       {socialLinks.map((link) => (
         <Link
           key={link.label}
           href={link.href}
           target="_blank"
-          className="text-white hover:text-white text-sm"
+          className="text-white hover:text-gray-300 transition-colors"
+          aria-label={link.label}
         >
-          {link.label}
+          {link.icon}
         </Link>
       ))}
     </div>
