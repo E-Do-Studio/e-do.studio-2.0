@@ -15,6 +15,8 @@ import { HEADER_HEIGHT } from '@/lib/constants'
 import { useScroll } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 import { useScrollDirection } from '@/hooks/use-scroll-direction'
+import ReactGA from 'react-ga4'
+import ReactPixel from 'react-facebook-pixel'
 
 type HeaderProps = {
   children: React.ReactNode

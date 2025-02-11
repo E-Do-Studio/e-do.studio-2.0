@@ -8,10 +8,18 @@ import { I18nProvider } from '@/components/providers/i18n-provider'
 import { headers } from 'next/headers'
 import { NewsletterPopup } from '@/components/layout/newsletter-popup'
 import { CookieBanner } from '@/components/layout/cookie-banner'
+import { AnalyticsProvider } from '@/components/providers/analytics-provider'
 
 export const metadata: Metadata = {
-  title: 'E-Do Studio',
-  description: 'E-Do Studio',
+  title: 'E-Do Studio - Découvrez nos services de packshot automatisé',
+  description: 'E-Do Studio est une agence de packshot automatisé. Nous vous proposons des services de packshot automatisé pour vos produits.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: 'favicon.ico',
+  },
 }
 
 // Import ABC Favorit font
@@ -70,6 +78,7 @@ export default async function WebLayout({
           <Footer />
           <NewsletterPopup />
           <CookieBanner />
+          <AnalyticsProvider />
         </I18nProvider>
       </body>
     </html>
