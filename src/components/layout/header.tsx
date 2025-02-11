@@ -48,7 +48,7 @@ export function Header() {
       <header
         className={cn(
           'flex flex-row items-center justify-between container',
-          'backdrop-blur-sm bg-background/80 fixed top-0 z-50',
+          'backdrop-blur-sm bg-background/80 fixed top-0 z-[60]',
           'transition-all duration-500 md:duration-300 ease-in-out',
           !scrolled
             ? 'h-16 md:h-20' :
@@ -58,7 +58,7 @@ export function Header() {
         )}
       >
         <div className={cn(
-          'z-10 transition-all duration-500 ease-in-out',
+          'z-10 transition-all duration-500 ease-in-out flex flex-row items-center gap-4',
           scrollDirection === 'down' && scrolled
             ? 'absolute left-1/2 -translate-x-1/2 scale-75 rotate-360 md:rotate-0 md:scale-90'
             : 'relative left-0 translate-x-0 scale-90 rotate-0 md:scale-100',
@@ -67,11 +67,17 @@ export function Header() {
           <Logo
             variant={scrollDirection === 'down' && scrolled ? 'mobile' : 'default'}
           />
+          <Clock className={cn(
+            "transition-all duration-300 ease-in-out",
+            scrollDirection === 'down' && scrolled
+              ? 'hidden translate-y-2'
+              : 'block translate-y-0'
+          )} />
         </div>
 
         <div className={cn(
           'absolute inset-0 flex items-center justify-between',
-          'pl-[140px] pr-[40px] md:pl-[180px] md:pr-[60px]',
+          'container',
           'transition-all duration-300 ease-in-out',
           'transform-gpu',
           scrollDirection === 'down' && scrolled
@@ -79,7 +85,6 @@ export function Header() {
             : 'opacity-100 translate-y-0'
         )}>
           <HeaderLeft>
-            <Clock className="transition-all duration-300 ease-in-out" />
           </HeaderLeft>
 
           <Navigation className={cn(
