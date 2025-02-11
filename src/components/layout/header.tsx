@@ -47,16 +47,26 @@ export function Header() {
         className={cn(
           'flex flex-row items-center justify-between container',
           'backdrop-blur-sm bg-background/80 fixed top-0 z-50',
-          'transition-all duration-300 ease-in-out',
-          scrolled ? 'h-16' : 'h-24',
+          'transition-all duration-500 md:duration-300 ease-in-out',
+          !scrolled
+            ? 'h-16 md:h-20' :
+            scrollDirection === 'down'
+              ? 'h-10 md:h-14 px-[40px] md:px-[60px] py-2 md:py-3' :
+              'h-12 md:h-14'
         )}
       >
-        {/* Logo toujours visible */}
-        <div className="z-10">
-          <Logo />
+        <div className={cn(
+          'z-10 transition-all duration-500 ease-in-out',
+          scrollDirection === 'down' && scrolled
+            ? 'absolute left-1/2 -translate-x-1/2 scale-75 rotate-360 md:rotate-0 md:scale-90'
+            : 'relative left-0 translate-x-0 scale-90 rotate-0 md:scale-100',
+          'md:transition-all md:duration-300'
+        )}>
+          <Logo
+            variant={scrollDirection === 'down' && scrolled ? 'mobile' : 'default'}
+          />
         </div>
 
-        {/* Contenu qui disparaît */}
         <div className={cn(
           'absolute inset-0 flex items-center justify-between',
           'pl-[140px] pr-[40px] md:pl-[180px] md:pr-[60px]',
@@ -70,7 +80,6 @@ export function Header() {
             <Clock className="transition-all duration-300 ease-in-out" />
           </HeaderLeft>
 
-          {/* Desktop Navigation */}
           <Navigation className={cn(
             "hidden md:flex",
             "transition-all duration-300 ease-in-out"
@@ -92,7 +101,6 @@ export function Header() {
             </Button>
           </Navigation>
 
-          {/* Mobile Menu Button */}
           <div className={cn(
             "flex flex-row items-center gap-6 md:hidden",
             "transition-all duration-300 ease-in-out"
@@ -142,7 +150,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>{isOpen && <MobileMenu navigation={navigation} />}</AnimatePresence>
     </>
   )
@@ -184,13 +191,11 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     if (href.startsWith('#')) {
       e.preventDefault()
 
-      // Si nous sommes sur une page différente, naviguer d'abord
       if (pathname !== '/') {
         router.push('/' + href)
         return
       }
 
-      // Sur la même page, faire défiler en douceur
       const element = document.querySelector(href)
       if (element) {
         const elementPosition = element.getBoundingClientRect().top

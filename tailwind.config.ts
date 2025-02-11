@@ -87,6 +87,9 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
+      rotate: {
+        '360': '360deg',
+      },
     },
   },
   plugins: [animate],

@@ -111,7 +111,7 @@ function SocialLinks({ className }: SocialLinksProps) {
   ];
 
   return (
-    <div className={cn(`flex gap-6 items-center justify-end`, className)}>
+    <div className={cn(`flex gap-6 items-center justify-center lg:justify-end`, className)}>
       {socialLinks.map((link) => (
         <Link
           key={link.label}
