@@ -91,10 +91,15 @@ function GalleryContent() {
   const currentSubcategorySlug = searchParams?.get('subcategory')
 
   const sortedCategories = useMemo(() => {
-    const regularCategories = categories.filter(cat => cat.slug !== '360')
+    const regularCategories = categories.filter(cat => cat.slug !== '360' && cat.slug !== 'cyclorama')
     const category360 = categories.find(cat => cat.slug === '360')
+    const categoryCyclorama = categories.find(cat => cat.slug === 'cyclorama')
 
-    return [...regularCategories, ...(category360 ? [category360] : [])]
+    return [
+      ...regularCategories,
+      ...(category360 ? [category360] : []),
+      ...(categoryCyclorama ? [categoryCyclorama] : [])
+    ]
   }, [categories])
 
   const menuTitle = useMemo(() => {

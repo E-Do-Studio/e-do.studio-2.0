@@ -106,6 +106,14 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
       if (!categoryData) return []
 
+      // Log pour déboguer
+      console.log('Category Data:', {
+        category,
+        subcategory,
+        assets: categoryData.assets,
+        videos: categoryData.videos,
+      })
+
       // Gestion spéciale pour la catégorie 360
       if (category === '360' && categoryData.links?.length) {
         return categoryData.links.map((link: GalleryLink) => ({
@@ -117,18 +125,33 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
       // Si pas de subcategory ou subcategory est 'undefined', retourner tous les médias de la catégorie
       if (!subcategory || subcategory === 'undefined') {
-        return [...(categoryData.assets || []), ...(categoryData.videos || [])]
+        const allMedia = [
+          ...(categoryData.assets || []),
+          ...(categoryData.videos || [])
+        ]
+        console.log('All Media:', allMedia)
+        return allMedia
       }
 
-      // Sinon, filtrer par subcategory
-      return [
-        ...categoryData.assets.filter((asset: GalleryImage) =>
-          asset.subcategory?.slug === subcategory
-        ),
-        ...categoryData.videos.filter((video: GalleryVideo) =>
-          video.subcategory?.slug === subcategory
-        )
-      ]
+      // Filtrer les assets et les vidéos par subcategory
+      const filteredAssets = categoryData.assets?.filter((asset: GalleryImage) => {
+        console.log('Asset subcategory:', asset.subcategory?.slug, 'Looking for:', subcategory)
+        return asset.subcategory?.slug === subcategory
+      }) || []
+
+      const filteredVideos = categoryData.videos?.filter((video: GalleryVideo) => {
+        console.log('Video subcategory:', video.subcategory?.slug, 'Looking for:', subcategory)
+        return video.subcategory?.slug === subcategory
+      }) || []
+
+      // Log des résultats filtrés
+      console.log('Filtered Results:', {
+        assets: filteredAssets,
+        videos: filteredVideos
+      })
+
+      // Combiner les assets et les vidéos filtrés
+      return [...filteredAssets, ...filteredVideos]
     }
 
     // Return all media if no category selected
