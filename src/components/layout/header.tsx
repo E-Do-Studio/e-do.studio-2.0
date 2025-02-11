@@ -47,7 +47,7 @@ export function Header() {
         className={cn(
           'flex flex-row items-center justify-between container',
           'backdrop-blur-sm bg-background/80 fixed top-0 z-50',
-          'transition-all duration-200',
+          'transition-all duration-300 ease-in-out',
           scrolled ? 'h-16' : 'h-24',
         )}
       >
@@ -60,15 +60,21 @@ export function Header() {
         <div className={cn(
           'absolute inset-0 flex items-center justify-between',
           'pl-[140px] pr-[40px] md:pl-[180px] md:pr-[60px]',
-          'transition-opacity duration-200',
-          scrollDirection === 'down' && scrolled ? 'opacity-0' : 'opacity-100'
+          'transition-all duration-300 ease-in-out',
+          'transform-gpu',
+          scrollDirection === 'down' && scrolled
+            ? 'opacity-0 translate-y-2'
+            : 'opacity-100 translate-y-0'
         )}>
           <HeaderLeft>
-            <Clock className="transition-all duration-200" />
+            <Clock className="transition-all duration-300 ease-in-out" />
           </HeaderLeft>
 
           {/* Desktop Navigation */}
-          <Navigation className="hidden md:flex">
+          <Navigation className={cn(
+            "hidden md:flex",
+            "transition-all duration-300 ease-in-out"
+          )}>
             {navigation.map((item) => (
               <NavigationItem key={item.label} href={item.href}>
                 {t(`header.navigation.${item.label}`)}
@@ -78,7 +84,7 @@ export function Header() {
             <Button
               asChild
               className={cn(
-                'transition-all duration-200',
+                'transition-all duration-300 ease-in-out',
                 scrolled ? 'h-8 text-sm w-[150px]' : 'h-10 w-[180px]'
               )}
             >
@@ -87,12 +93,15 @@ export function Header() {
           </Navigation>
 
           {/* Mobile Menu Button */}
-          <div className="flex flex-row items-center gap-6 md:hidden">
+          <div className={cn(
+            "flex flex-row items-center gap-6 md:hidden",
+            "transition-all duration-300 ease-in-out"
+          )}>
             <button>
               <Phone
                 size={scrolled ? 24 : 32}
                 strokeWidth={1}
-                className="transition-all duration-200"
+                className="transition-all duration-300 ease-in-out"
                 onClick={() => window.open('tel:+33144041149', '_blank')}
               />
             </button>
@@ -100,7 +109,7 @@ export function Header() {
               onClick={toggle}
               className={cn(
                 'md:hidden flex items-center justify-center',
-                'transition-all duration-200',
+                'transition-all duration-300 ease-in-out',
                 scrolled ? 'w-10 h-10' : 'w-12 h-12'
               )}
               aria-label="Toggle menu"
@@ -109,14 +118,14 @@ export function Header() {
                 <X
                   size={scrolled ? 36 : 48}
                   strokeWidth={0.8}
-                  className="transition-all duration-200"
+                  className="transition-all duration-300 ease-in-out"
                 />
               ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 31 12"
                   className={cn(
-                    'transition-all duration-200',
+                    'transition-all duration-300 ease-in-out',
                     scrolled ? 'w-6 h-6' : 'w-8 h-8'
                   )}
                 >
@@ -206,3 +215,5 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     </Link>
   )
 }
+
+
