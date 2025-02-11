@@ -56,7 +56,7 @@ export function CarouselMachines({ images, className, alt }: CarouselMachinesPro
                             ]}
                             className="w-full"
                         >
-                            <CarouselContent className="-ml-0.5 flex items-center">
+                            <CarouselContent className="-ml-0.5 flex gap-2 items-center">
                                 {shuffledImages.map((image, index) => (
                                     <CarouselItem
                                         key={`${image.url}-${index}`}
