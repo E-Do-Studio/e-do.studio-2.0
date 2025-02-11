@@ -24,12 +24,12 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 interface CarouselMachinesProps {
-    images: string[]
+    images: Array<{ url: string; alt?: string }>
     className?: string
+    alt?: string
 }
 
-export function CarouselMachines({ images, className }: CarouselMachinesProps) {
-    // Mélanger les images une seule fois au montage du composant
+export function CarouselMachines({ images, className, alt }: CarouselMachinesProps) {
     const shuffledImages = shuffleArray(images)
 
     return (
@@ -37,7 +37,7 @@ export function CarouselMachines({ images, className }: CarouselMachinesProps) {
             <div className="max-w-[1400px] mx-auto relative">
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={shuffledImages[0]}
+                        key={shuffledImages[0].url}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -59,13 +59,13 @@ export function CarouselMachines({ images, className }: CarouselMachinesProps) {
                             <CarouselContent className="-ml-0.5 flex items-center">
                                 {shuffledImages.map((image, index) => (
                                     <CarouselItem
-                                        key={`${image}-${index}`}
+                                        key={`${image.url}-${index}`}
                                         className="pl-0.5 basis-full sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
                                     >
                                         <div className="relative h-[300px]">
                                             <Image
-                                                src={image}
-                                                alt={`${name} - ${index + 1}`}
+                                                src={image.url}
+                                                alt={image.alt || ''}
                                                 width={800}
                                                 height={600}
                                                 className="rounded-lg w-full h-full object-contain"
