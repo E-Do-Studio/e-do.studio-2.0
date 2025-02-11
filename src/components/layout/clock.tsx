@@ -1,8 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
 
-export function Clock() {
+interface ClockProps {
+  className?: string
+}
+
+export function Clock({ className }: ClockProps) {
   const [time, setTime] = useState<string>('')
 
   useEffect(() => {
@@ -29,5 +34,9 @@ export function Clock() {
   // Don't render anything until we have the initial time to prevent hydration mismatch
   if (!time) return null
 
-  return <span className="text-sm">{time}</span>
+  return (
+    <div className={cn('text-sm', className)}>
+      {time}
+    </div>
+  )
 }

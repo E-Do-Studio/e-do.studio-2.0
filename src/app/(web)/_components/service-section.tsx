@@ -80,7 +80,7 @@ export const ServiceSection = () => {
                     <MoveRight className='w-4 h-4' />
                 </Link>
             </Button>
-            <a href='#'>
+            <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-cyclorama.webp', 'Services machine cyclorama']}
                     serviceName={t('services.cyclorama.name')}
@@ -89,9 +89,9 @@ export const ServiceSection = () => {
                     number="01"
                     images={machineImages.cyclorama}
                 />
-            </a>
+            </Link>
             <div className='border-b border-[#979797] w-[100%]'></div>
-            <a href='#'>
+            <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-eclipse.webp', 'Services machine eclipse']}
                     serviceName={t('services.eclipse.name')}
@@ -100,9 +100,9 @@ export const ServiceSection = () => {
                     number="02"
                     images={machineImages.eclipse}
                 />
-            </a>
+            </Link>
             <div className='border-b border-[#979797] w-[100%]'></div>
-            <a href='#'>
+            <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-live.webp', 'Services machine live']}
                     serviceName={t('services.live.name')}
@@ -111,9 +111,9 @@ export const ServiceSection = () => {
                     number="03"
                     images={machineImages.live}
                 />
-            </a>
+            </Link>
             <div className='border-b border-[#979797] w-[100%]'></div>
-            <a href='#'>
+            <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-vertical.webp', 'Services machine verticale']}
                     serviceName={t('services.vertical.name')}
@@ -122,9 +122,9 @@ export const ServiceSection = () => {
                     number="04"
                     images={machineImages.vertical}
                 />
-            </a>
+            </Link>
             <div className='border-b border-[#979797] w-[100%]'></div>
-            <a href='#'>
+            <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-horizontal.webp', 'Services machine horizontale']}
                     serviceName={t('services.horizontal.name')}
@@ -133,7 +133,7 @@ export const ServiceSection = () => {
                     number="05"
                     images={machineImages.horizontal}
                 />
-            </a>
+            </Link>
         </LandingSection>
     )
 }
