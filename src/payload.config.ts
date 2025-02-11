@@ -5,7 +5,6 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-// import sharp from 'sharp'
 import { cloudinaryStorage } from 'payload-cloudinary'
 import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 
@@ -15,7 +14,8 @@ import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { Videos } from './collections/Videos'
-// Chnager le serverURL en fonction de l'environnement
+import sharp from 'sharp'
+
 const serverURL =
   process.env.NODE_ENV === 'development'
     ? process.env.NEXT_PUBLIC_SERVER_URL
@@ -80,7 +80,7 @@ export default buildConfig({
   upload: {
     debug: true,
     limits: {
-      fileSize: 20000 * 1024, // 20000ko max
+      fileSize: 20000 * 1024,
     },
   },
   cors: {

@@ -10,20 +10,33 @@ import { Introduction } from './_components/introduction'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
+function getRandomElements<T>(array: T[], n: number): T[] {
+  const shuffled = [...array].sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, n)
+}
+
 export default async function Page() {
   const payload = await getPayload({ config })
-  const categories = await payload.find({
+  const categoriesResponse = await payload.find({
     collection: 'categories',
     depth: 2,
   })
 
-  console.log(categories)
+  // Pour chaque catégorie, sélectionner 10 assets aléatoires
+  const categoriesWithRandomAssets = {
+    ...categoriesResponse,
+    docs: categoriesResponse.docs.map(category => ({
+      ...category,
+      assets: getRandomElements(category.assets, 10)
+    }))
+  }
+
   return (
     <div className="text-xl min-h-screen">
       <Introduction />
       <div className="container">
         <ServiceSection />
-        <PricingSection categories={categories} />
+        <PricingSection categories={categoriesWithRandomAssets} />
         <OurCustomersSection />
         <ContactSection />
         <LocationSection />

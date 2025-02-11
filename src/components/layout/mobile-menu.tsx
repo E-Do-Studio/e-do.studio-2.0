@@ -29,7 +29,7 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
       >
         <div className="flex flex-col flex-1 justify-center gap-8">
           {navigation
-            .filter((item) => item.label !== '+33 1 44 04 11 49')
+            .filter((item) => item.label !== '+33 1 44 04 11 49' as string)
             .map((item) => (
               <motion.div
                 key={item.label}
