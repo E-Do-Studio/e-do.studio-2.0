@@ -215,5 +215,3 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     </Link>
   )
 }
-
-
