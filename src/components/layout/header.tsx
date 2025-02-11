@@ -107,6 +107,7 @@ export function Header() {
             "flex flex-row items-center gap-6 md:hidden",
             "transition-all duration-300 ease-in-out"
           )}>
+            <LanguageSwitcher />
             <button>
               <Phone
                 size={scrolled ? 24 : 32}
@@ -164,11 +165,18 @@ function HeaderLeft({ children }: HeaderProps) {
 function LanguageSwitcher() {
   const { i18n } = useTranslation()
   const isEnglish = i18n.language === 'en'
+  const scrolled = useScroll()
 
   return (
     <Button
       size="icon"
-      className="rounded-full min-w-8 min-h-8 w-8 h-8 uppercase text-xs"
+      className={cn(
+        "rounded-full uppercase text-xs",
+        "transition-all duration-300 ease-in-out",
+        scrolled
+          ? "min-w-7 min-h-7 w-7 h-7"
+          : "min-w-8 min-h-8 w-8 h-8"
+      )}
       onClick={() => i18n.changeLanguage(isEnglish ? 'fr' : 'en')}
     >
       {isEnglish ? 'fr' : 'en'}
