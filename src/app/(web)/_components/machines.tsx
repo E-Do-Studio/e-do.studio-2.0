@@ -13,6 +13,7 @@ interface Asset {
   id: string
   url: string
   filename: string
+  alt?: string
   sizes: {
     thumbnail?: {
       url: string
@@ -83,7 +84,7 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
       ?.slice(0, 10) // Prendre seulement les 10 premières images
       ?.map(asset => {
         // Utiliser la version tablet de l'image si disponible, sinon l'URL originale
-        return asset.sizes?.tablet?.url || asset.url
+        return { url: asset.sizes?.tablet?.url || asset.url, alt: asset?.alt }
       })
     : []
 
@@ -159,7 +160,7 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <CarouselMachines images={carouselImages} />
+          <CarouselMachines images={carouselImages} alt={activeMachine?.name} />
         </motion.div>
       )}
     </div>
