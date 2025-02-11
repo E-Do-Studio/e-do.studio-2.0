@@ -85,8 +85,8 @@ export default buildConfig({
   },
   cors: {
     origins: [
-      'https://superb-travesseiro-87230d.netlify.app',
-      'https://superb-travesseiro-87230d.netlify.app/admin',
+      'https://www.e-do.studio',
+      'https://www.e-do.studio/admin',
       'http://localhost:3000',
       'http://localhost:3001',
     ],
