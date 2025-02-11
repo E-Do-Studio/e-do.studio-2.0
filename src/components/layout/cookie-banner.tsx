@@ -4,31 +4,29 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { useStore } from "@/lib/store";
 
 export function CookieBanner() {
   const { t } = useTranslation("cookies");
   const [mounted, setMounted] = useState(false);
-  const [showBanner, setShowBanner] = useState(false);
+  const { cookieConsent, setCookieConsent } = useStore();
 
   useEffect(() => {
     setMounted(true);
-    const cookieChoice = localStorage.getItem("cookieChoice");
-    if (!cookieChoice) {
-      setShowBanner(true);
-    }
-  }, []);
+    console.log('Cookie Banner mounted, consent:', cookieConsent);
+  }, [cookieConsent]);
 
   const handleAccept = () => {
-    localStorage.setItem("cookieChoice", "accepted");
-    setShowBanner(false);
+    console.log('Accepting cookies...');
+    setCookieConsent(true);
   };
 
   const handleRefuse = () => {
-    localStorage.setItem("cookieChoice", "refused");
-    setShowBanner(false);
+    console.log('Refusing cookies...');
+    setCookieConsent(false);
   };
 
-  if (!mounted || !showBanner) return null;
+  if (!mounted || cookieConsent) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-black px-8 py-8 text-white lg:py-4">
