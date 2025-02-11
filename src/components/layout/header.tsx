@@ -62,13 +62,20 @@ export function Header() {
           <div className={cn(
             'z-10 transition-all duration-500 ease-in-out flex flex-row items-center gap-4',
             scrollDirection === 'down' && scrolled
-              ? 'absolute left-1/2 -translate-x-1/2 scale-75 rotate-360 md:rotate-0 md:scale-90'
-              : 'relative left-0 translate-x-0 scale-90 rotate-0 md:scale-100',
+              ? 'absolute left-1/2 -translate-x-1/2 scale-75 md:scale-90'
+              : 'relative left-0 translate-x-0 scale-90 md:scale-100',
             'md:transition-all md:duration-300'
           )}>
-            <Logo
-              variant={scrollDirection === 'down' && scrolled ? 'mobile' : 'default'}
-            />
+            <div className={cn(
+              'transition-all duration-500 ease-in-out',
+              scrollDirection === 'down' && scrolled
+                ? 'rotate-360 md:rotate-0'
+                : 'rotate-0'
+            )}>
+              <Logo
+                variant={scrollDirection === 'down' && scrolled ? 'mobile' : 'default'}
+              />
+            </div>
             <Clock className={cn(
               "transition-all duration-300 ease-in-out",
               scrollDirection === 'down' && scrolled
