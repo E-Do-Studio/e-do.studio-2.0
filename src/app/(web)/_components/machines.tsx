@@ -8,6 +8,7 @@ import { Tabs } from '@/app/(web)/_components/tabs'
 import { tabs, createMachines, createTimingMap } from '@/app/(web)/_components/machines-data'
 import type { Machine } from '@/app/(web)/_components/machines-data'
 import { CarouselMachines } from '@/app/(web)/_components/carousel-machines'
+import { Button } from '@/components/ui/button'
 
 interface Asset {
   id: string
@@ -130,8 +131,32 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
       >
         {machines
           .filter((machine) => machine.name.toLowerCase() === activeTab.toLowerCase())
-          .map((machine) =>
-            Object.entries(machine.price_per_hours).map(([period, options]) =>
+          .map((machine) => {
+            if (machine.customContent) {
+              return (
+                <motion.div
+                  key={machine.name}
+                  className="w-full text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <p className="mb-6 text-lg">
+                    {machine.customContent.description}
+                  </p>
+                  <Button
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact')
+                      contactSection?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                  >
+                    {machine.customContent.buttonText}
+                  </Button>
+                </motion.div>
+              )
+            }
+
+            return Object.entries(machine.price_per_hours || {}).map(([period, options]) =>
               options.map((option, index) => (
                 <motion.div
                   key={`${machine.name}-${period}-${index}`}
@@ -149,9 +174,9 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
                     description={formatDescription(option.description)}
                   />
                 </motion.div>
-              )),
-            ),
-          )}
+              ))
+            )
+          })}
       </motion.div>
 
       {carouselImages.length > 0 && (

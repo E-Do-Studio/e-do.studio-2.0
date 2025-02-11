@@ -31,10 +31,6 @@ export function OurCustomersSection() {
             name: 'Marine Serre'
         },
         {
-            img: '/img/logo-monstres.webp',
-            name: 'Monstres'
-        },
-        {
             img: '/img/logo-numero.webp',
             name: 'Numéro'
         },
@@ -51,28 +47,12 @@ export function OurCustomersSection() {
             name: 'Roger Vivier'
         },
         {
-            img: '/img/logo-socle.webp',
-            name: 'Socle'
-        },
-        {
-            img: '/img/logo-talel.webp',
-            name: 'Talel'
-        },
-        {
             img: '/img/logo-tanneur.webp',
             name: 'Le Tanneur'
         },
         {
             img: '/img/logo-vuarnet.webp',
             name: 'Vuarnet'
-        },
-        {
-            img: '/img/logo-weisheng.webp',
-            name: 'Weisheng Paris'
-        },
-        {
-            img: '/img/logo-wolford.webp',
-            name: 'Wolford'
         }
     ]
     return (

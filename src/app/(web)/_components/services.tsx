@@ -5,7 +5,7 @@ import { ChevronRight } from 'lucide-react';
 import { useState, useEffect } from "react";
 
 type ServicesProps = {
-    imagesDescription: [image: string, alt: string];
+    imagesDescription: [string, string];
     serviceName: string;
     title: string;
     description: string;
@@ -41,7 +41,11 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
                     width={800}
                     height={600}
                     quality={100}
-                    className="w-full lg:w-[270px] object-contain"
+                    className={`w-full lg:w-[200px] object-contain transition-all duration-300
+                        ${imagesDescription[1].includes('cyclorama') 
+                            ? 'grayscale contrast-110 hover:grayscale-0 hover:contrast-100' 
+                            : 'grayscale contrast-125 hover:grayscale-0 hover:contrast-100'
+                        }`}
                     priority
                 />
             </div>

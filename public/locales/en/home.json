@@ -2,7 +2,7 @@
     "title": "Welcome to our site",
     "description": "This is the homepage.",
     "customers": {
-        "title": "Our most loyal customers"
+        "title": "Our customers"
     },
     "header": {
         "navigation": {
@@ -21,8 +21,8 @@
         "button": "Book a session",
         "live": {
             "name": "(LIVE)",
-            "title": "Shooting on model / large objects",
-            "description": "This intelligent studio system of 8m2 allows you to realize your photos and videos of live models or scenographies in a few minutes."
+            "title": "Shooting on model / Furniture",
+            "description": "This intelligent studio system of 8m2 allows you to realize your photos and videos of live models or scenographies in a few minutes. Saved camera and light presets."
         },
         "horizontal": {
             "name": "(HORIZONTAL)",
@@ -31,24 +31,29 @@
         },
         "vertical": {
             "name": "(VERTICAL)",
-            "title": "Ghost packshot",
-            "description": "Give your product a 3D effect, choose your background and shoot it with our Vertical machine."
+            "title": "Ghost",
+            "description": "Give your product a 3D effect, choose the Ghost."
         },
         "eclipse": {
             "name": "(ECLIPSE)",
-            "title": "Accessories / leather goods / shoes",
-            "description": "Designed for prop photography and video. Create your sets and play with light, background and reflections."
+            "title": "Accessories / Leather goods / Shoes / Sunglasses",
+            "description": "Designed for prop photography and video. Saved camera and light presets."
         },
         "cyclorama": {
             "name": "(CYCLORAMA)",
             "title": "Free production",
-            "description": "Our cyclorama allows you to mobilize a production team and take your photos and videos on an infinite white background."
+            "description": "Our 30m² cyclorama allows you to mobilize a production team and take your photos and videos on an infinite white background."
+        },
+        "postproduction": {
+            "name": "(POST PRODUCTION)",
+            "title": "Post production",
+            "description": "In addition to our photo and video shooting services on our machines, we offer retouching services with different packages according to your needs."
         }
     },
     "pricing": {
         "title": "Choose the offer that suits you",
         "timing": {
-            "hour": "Hour",
+            "hour": "By the hour",
             "half_day": "Half-day",
             "day": "Day"
         },
@@ -70,7 +75,7 @@
                 "society": "Company",
                 "email": "Email*",
                 "website": "Website",
-                "message": "You have an idea for a project, need a quote, make an appointment? Write us your message."
+                "message": "You have an idea for a project, need a quote, make an appointment ? Write to us ;)"
             },
             "errors": {
                 "lastName": {
@@ -114,5 +119,8 @@
             "excellence": "Excellence and Quality",
             "expertise": "Expertise and Passion"
         }
+    },
+    "clock": {
+        "title": "By the hour"
     }
 }

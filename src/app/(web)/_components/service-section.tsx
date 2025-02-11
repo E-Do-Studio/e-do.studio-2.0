@@ -71,15 +71,6 @@ export const ServiceSection = () => {
             id='services'
             className="mt-8 md:mt-16"
         >
-            <Button
-                size='lg'
-                className='w-52'
-            >
-                <Link href='/reservation' className='flex items-center gap-2'>
-                    {t('services.button')}
-                    <MoveRight className='w-4 h-4' />
-                </Link>
-            </Button>
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-cyclorama.webp', 'Services machine cyclorama']}

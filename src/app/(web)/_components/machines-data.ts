@@ -3,10 +3,14 @@ export type TimingPeriod = string
 export interface Machine {
   name: string
   slug: string | string[]
-  price_per_hours: {
+  price_per_hours?: {
     hour: { price: number; description: string }[]
     half_day: { price: number; description: string }[]
     day: { price: number; description: string }[]
+  }
+  customContent?: {
+    description: string
+    buttonText: string
   }
   images: string[]
 }
@@ -21,10 +25,9 @@ export function createMachines(t: (key: string) => string): Machine[] {
     {
       name: 'Cyclorama',
       slug: 'cyclorama',
-      price_per_hours: {
-        hour: [{ price: 1000, description: t('pricing.description.hour') }],
-        half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
-        day: [{ price: 2000, description: t('pricing.description.day') }],
+      customContent: {
+        description: t('pricing.cyclorama.description'),
+        buttonText: t('pricing.cyclorama.button')
       },
       images: [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE],
     },
@@ -32,9 +35,9 @@ export function createMachines(t: (key: string) => string): Machine[] {
       name: 'Eclipse',
       slug: 'access',
       price_per_hours: {
-        hour: [{ price: 1000, description: t('pricing.description.hour') }],
-        half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
-        day: [{ price: 2000, description: t('pricing.description.day') }],
+        hour: [{ price: 150, description: t('pricing.description.hour') }],
+        half_day: [{ price: 530, description: t('pricing.description.half_day') }],
+        day: [{ price: 890, description: t('pricing.description.day') }],
       },
       images: [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE],
     },
@@ -42,9 +45,9 @@ export function createMachines(t: (key: string) => string): Machine[] {
       name: 'Live',
       slug: 'on_model',
       price_per_hours: {
-        hour: [{ price: 1000, description: t('pricing.description.hour') }],
-        half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
-        day: [{ price: 2000, description: t('pricing.description.day') }],
+        hour: [{ price: 170, description: t('pricing.description.hour') }],
+        half_day: [{ price: 590, description: t('pricing.description.half_day') }],
+        day: [{ price: 1020, description: t('pricing.description.day') }],
       },
       images: [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE],
     },
@@ -52,9 +55,9 @@ export function createMachines(t: (key: string) => string): Machine[] {
       name: 'Vertical',
       slug: ["ghost", "pique"],
       price_per_hours: {
-        hour: [{ price: 1000, description: t('pricing.description.hour') }],
-        half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
-        day: [{ price: 2000, description: t('pricing.description.day') }],
+        hour: [{ price: 110, description: t('pricing.description.hour') }],
+        half_day: [{ price: 390, description: t('pricing.description.half_day') }],
+        day: [{ price: 650, description: t('pricing.description.day') }],
       },
       images: [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE],
     },
@@ -62,9 +65,9 @@ export function createMachines(t: (key: string) => string): Machine[] {
       name: 'Horizontal',
       slug: 'flat',
       price_per_hours: {
-        hour: [{ price: 1000, description: t('pricing.description.hour') }],
-        half_day: [{ price: 1500, description: t('pricing.description.half_day') }],
-        day: [{ price: 2000, description: t('pricing.description.day') }],
+        hour: [{ price: 110, description: t('pricing.description.hour') }],
+        half_day: [{ price: 390, description: t('pricing.description.half_day') }],
+        day: [{ price: 650, description: t('pricing.description.day') }],
       },
       images: [HORIZONTAL_IMAGE, HORIZONTAL_IMAGE, HORIZONTAL_IMAGE, HORIZONTAL_IMAGE, HORIZONTAL_IMAGE],
     },

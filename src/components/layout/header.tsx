@@ -47,46 +47,42 @@ export function Header() {
     <>
       <header
         className={cn(
-          'flex flex-row items-center justify-between container',
-          'backdrop-blur-sm bg-background/80 fixed top-0 z-[60]',
+          'flex flex-row items-center justify-between',
+          'backdrop-blur-sm bg-background/80 fixed top-0 z-[60] w-full',
           'transition-all duration-500 md:duration-300 ease-in-out',
+          'px-4 md:px-8',
           !scrolled
-            ? 'h-16 md:h-20' :
-            scrollDirection === 'down'
-              ? 'h-10 md:h-14 px-[40px] md:px-[60px] py-2 md:py-3' :
-              'h-12 md:h-14'
+            ? 'h-16 md:h-20'
+            : scrollDirection === 'down'
+              ? 'h-10 md:h-14'
+              : 'h-12 md:h-14'
         )}
       >
-        <div className={cn(
-          'z-10 transition-all duration-500 ease-in-out flex flex-row items-center gap-4',
-          scrollDirection === 'down' && scrolled
-            ? 'absolute left-1/2 -translate-x-1/2 scale-75 rotate-360 md:rotate-0 md:scale-90'
-            : 'relative left-0 translate-x-0 scale-90 rotate-0 md:scale-100',
-          'md:transition-all md:duration-300'
-        )}>
-          <Logo
-            variant={scrollDirection === 'down' && scrolled ? 'mobile' : 'default'}
-          />
-          <Clock className={cn(
-            "transition-all duration-300 ease-in-out",
+        <div className="flex-1 flex items-center justify-between">
+          <div className={cn(
+            'z-10 transition-all duration-500 ease-in-out flex flex-row items-center gap-4',
             scrollDirection === 'down' && scrolled
-              ? 'hidden translate-y-2'
-              : 'block translate-y-0'
-          )} />
-        </div>
+              ? 'absolute left-1/2 -translate-x-1/2 scale-75 rotate-360 md:rotate-0 md:scale-90'
+              : 'relative left-0 translate-x-0 scale-90 rotate-0 md:scale-100',
+            'md:transition-all md:duration-300'
+          )}>
+            <Logo
+              variant={scrollDirection === 'down' && scrolled ? 'mobile' : 'default'}
+            />
+            <Clock className={cn(
+              "transition-all duration-300 ease-in-out",
+              scrollDirection === 'down' && scrolled
+                ? 'hidden translate-y-2'
+                : 'block translate-y-0'
+            )} />
+          </div>
 
-        <div className={cn(
-          'absolute inset-0 flex items-center justify-between',
-          'container',
-          'transition-all duration-300 ease-in-out',
-          'transform-gpu',
-          scrollDirection === 'down' && scrolled
-            ? 'opacity-0 translate-y-2'
-            : 'opacity-100 translate-y-0'
-        )}>
           <Navigation className={cn(
-            "hidden md:flex",
-            "transition-all duration-300 ease-in-out"
+            "hidden md:flex items-center",
+            scrollDirection === 'down' && scrolled
+              ? 'opacity-0 translate-y-2'
+              : 'opacity-100 translate-y-0',
+            'transition-all duration-300 ease-in-out'
           )}>
             {navigation.map((item) => (
               <NavigationItem key={item.label} href={item.href}>
@@ -97,7 +93,7 @@ export function Header() {
             <Button
               asChild
               className={cn(
-                'transition-all duration-300 ease-in-out',
+                'transition-all duration-300 ease-in-out ml-4',
                 scrolled ? 'h-8 text-sm w-[150px]' : 'h-10 w-[180px]'
               )}
             >
@@ -106,8 +102,11 @@ export function Header() {
           </Navigation>
 
           <div className={cn(
-            "flex flex-row items-center gap-6 md:hidden",
-            "transition-all duration-300 ease-in-out"
+            "flex md:hidden items-center gap-4",
+            scrollDirection === 'down' && scrolled
+              ? 'opacity-0 translate-y-2'
+              : 'opacity-100 translate-y-0',
+            'transition-all duration-300 ease-in-out'
           )}>
             <LanguageSwitcher />
             <button>
@@ -120,19 +119,11 @@ export function Header() {
             </button>
             <button
               onClick={toggle}
-              className={cn(
-                'md:hidden flex items-center justify-center',
-                'transition-all duration-300 ease-in-out',
-                scrolled ? 'w-10 h-10' : 'w-12 h-12'
-              )}
+              className="flex items-center justify-center"
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <X
-                  size={scrolled ? 36 : 48}
-                  strokeWidth={0.8}
-                  className="transition-all duration-300 ease-in-out"
-                />
+                <X size={scrolled ? 24 : 32} strokeWidth={1} />
               ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +179,7 @@ function LanguageSwitcher() {
 
 function Navigation({ children, className = '' }: HeaderProps & { className?: string }) {
   return (
-    <nav className={`flex flex-row items-center gap-8 ${className}`}>
+    <nav className={cn('flex-1 flex items-center justify-end gap-6', className)}>
       {children}
     </nav>
   )
