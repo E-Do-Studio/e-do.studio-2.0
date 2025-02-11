@@ -19,7 +19,7 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={cn('fixed inset-0 z-40 md:hidden', 'bg-background flex flex-col', 'pt-24')}
+      className={cn('fixed inset-0 z-50 md:hidden', 'bg-background flex flex-col', 'pt-24')}
     >
       <motion.nav
         initial={{ y: 20, opacity: 0 }}

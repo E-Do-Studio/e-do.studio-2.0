@@ -14,7 +14,7 @@ function GalleryMenuSkeleton() {
   return (
     <div className={cn(
       "flex flex-col gap-8",
-      "fixed top-[5rem] left-0 right-0 z-50 container",
+      "fixed top-[5rem] left-0 right-0 z-30 container",
       "lg:sticky lg:top-32 lg:px-0 lg:py-0"
     )}>
       <Skeleton className="h-[44px] w-[200px]" />
@@ -133,8 +133,8 @@ function GalleryContent() {
 
   return (
     <div className={cn(
-      "flex flex-col gap-8",
-      "fixed top-[5rem] left-0 right-0 z-50 container py-6",
+      "flex flex-col gap-8 z-10",
+      "fixed top-[5rem] left-0 right-0 z-30 container py-6",
       "lg:sticky lg:top-32 lg:px-0 lg:py-0"
     )}>
       <h1>{menuTitle}</h1>
