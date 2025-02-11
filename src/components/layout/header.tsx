@@ -84,9 +84,6 @@ export function Header() {
             ? 'opacity-0 translate-y-2'
             : 'opacity-100 translate-y-0'
         )}>
-          <HeaderLeft>
-          </HeaderLeft>
-
           <Navigation className={cn(
             "hidden md:flex",
             "transition-all duration-300 ease-in-out"
