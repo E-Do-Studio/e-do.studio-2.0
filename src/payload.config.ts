@@ -15,7 +15,7 @@ import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { Videos } from './collections/Videos'
 import { PostProduction } from './collections/Post-Production'
-import sharp from 'sharp'
+// import sharp from 'sharp'
 
 const serverURL =
   process.env.NODE_ENV === 'development'
@@ -50,7 +50,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  sharp: sharp,
+  // sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
     s3Storage({
