@@ -49,7 +49,7 @@ export function Header() {
         className={cn(
           'flex flex-row items-center justify-between',
           'backdrop-blur-sm bg-background/80 fixed top-0 z-[60] w-full',
-          'transition-all duration-500 md:duration-300 ease-in-out',
+          'transition-all duration-700 md:duration-500 ease-in-out',
           'px-4 md:px-8',
           !scrolled
             ? 'h-16 md:h-20'
@@ -60,14 +60,14 @@ export function Header() {
       >
         <div className="flex-1 flex items-center justify-between">
           <div className={cn(
-            'z-10 transition-all duration-500 ease-in-out flex flex-row items-center gap-4',
+            'z-10 transition-all duration-700 ease-in-out flex flex-row items-center gap-4',
             scrollDirection === 'down' && scrolled
               ? 'absolute left-1/2 -translate-x-1/2 scale-75 md:scale-90'
               : 'relative left-0 translate-x-0 scale-90 md:scale-100',
-            'md:transition-all md:duration-300'
+            'md:transition-all md:duration-500'
           )}>
             <div className={cn(
-              'transition-all duration-500 ease-in-out',
+              'transition-all duration-700 ease-in-out',
               scrollDirection === 'down' && scrolled
                 ? 'rotate-360 md:rotate-0'
                 : 'rotate-0'
@@ -77,7 +77,7 @@ export function Header() {
               />
             </div>
             <Clock className={cn(
-              "transition-all duration-300 ease-in-out",
+              "transition-all duration-500 ease-in-out",
               scrollDirection === 'down' && scrolled
                 ? 'hidden translate-y-2'
                 : 'block translate-y-0'
