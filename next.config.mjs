@@ -28,11 +28,14 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         port: '3000',
-        pathname: '/api/images/**',
       },
       {
         protocol: 'https',
         hostname: 'e-do.studio',
+      },
+      {
+        protocol: 'https',
+        hostname: 'e-do.studio/admin',
       },
       {
         protocol: 'https',
