@@ -1,19 +1,19 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-interface StoreState {
-  cookieConsent: boolean
+interface CookieStore {
+  cookieConsent: boolean | null
   setCookieConsent: (value: boolean) => void
 }
 
-export const useStore = create<StoreState>()(
+export const useStore = create<CookieStore>()(
   persist(
     (set) => ({
-      cookieConsent: false,
+      cookieConsent: null,
       setCookieConsent: (value) => set({ cookieConsent: value }),
     }),
     {
-      name: 'edo-studio-storage',
+      name: 'cookie-storage',
     }
   )
 ) 

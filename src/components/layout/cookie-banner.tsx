@@ -13,20 +13,28 @@ export function CookieBanner() {
 
   useEffect(() => {
     setMounted(true);
-    console.log('Cookie Banner mounted, consent:', cookieConsent);
-  }, [cookieConsent]);
+    // Temporary debug log
+    console.log('Banner mounted, consent:', cookieConsent, 'mounted:', mounted);
+  }, []);
+
+  // Temporary debug log
+  if (!mounted) {
+    console.log('Not mounted yet');
+    return null;
+  }
+
+  if (cookieConsent !== null) {
+    console.log('Consent already set to:', cookieConsent);
+    return null;
+  }
 
   const handleAccept = () => {
-    console.log('Accepting cookies...');
     setCookieConsent(true);
   };
 
   const handleRefuse = () => {
-    console.log('Refusing cookies...');
     setCookieConsent(false);
   };
-
-  if (!mounted || cookieConsent) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-black px-8 py-8 text-white lg:py-4">
