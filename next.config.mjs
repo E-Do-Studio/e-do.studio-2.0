@@ -32,14 +32,14 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'superb-travesseiro-87230d.netlify.app',
+        hostname: 'e-do.studio',
       },
       {
         protocol: 'https',
         hostname: 'api.cappasity.com',
       },
     ],
-    domains: ['localhost', '127.0.0.1', 'superb-travesseiro-87230d.netlify.app'],
+    domains: ['localhost', '127.0.0.1', 'e-do.studio'],
   },
   // Your Next.js config here
 }
