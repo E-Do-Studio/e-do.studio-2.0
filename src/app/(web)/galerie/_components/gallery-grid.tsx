@@ -173,10 +173,10 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
     const columns = [[], [], []];
     const columnHeights = [0, 0, 0];
 
-    sortedByHeight.forEach(item => {
+    sortedByHeight.forEach((item) => {
       // Trouver la colonne la plus courte
       const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-      columns[shortestColumnIndex].push(item);
+      columns[shortestColumnIndex].push(item as never);
       columnHeights[shortestColumnIndex] += item.estimatedHeight;
     });
 
