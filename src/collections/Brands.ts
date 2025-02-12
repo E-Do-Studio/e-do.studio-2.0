@@ -4,7 +4,7 @@ export const Brands: CollectionConfig = {
   slug: 'brands',
   admin: {
     useAsTitle: 'name',
-    group: 'Gallery',
+    group: 'Studio',
   },
   access: {
     read: () => true,

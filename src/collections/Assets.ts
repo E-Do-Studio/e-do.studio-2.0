@@ -3,6 +3,9 @@ import { getCachedCloudinaryResource } from '../lib/cloudinary-cache'
 
 export const Assets: CollectionConfig = {
   slug: 'assets',
+  admin: {
+    group: 'Medias',
+  },
   access: {
     read: () => true,
     create: () => true,
@@ -41,9 +44,6 @@ export const Assets: CollectionConfig = {
         return args.doc
       },
     ],
-  },
-  admin: {
-    group: 'Gallery',
   },
   upload: {
     adapter: 'cloudinary',

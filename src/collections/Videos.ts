@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Videos: CollectionConfig = {
   slug: 'videos',
+  admin: {
+    group: 'Medias',
+  },
   access: {
     read: () => true,
     create: () => true,

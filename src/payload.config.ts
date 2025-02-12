@@ -15,7 +15,6 @@ import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { Videos } from './collections/Videos'
 
-
 const serverURL =
   process.env.NODE_ENV === 'development'
     ? process.env.NEXT_PUBLIC_SERVER_URL
@@ -32,7 +31,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Assets, Subcategories, Videos],
+  collections: [Users, Brands, Categories, Assets, Subcategories, Videos, PostProduction],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -47,7 +46,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  // sharp: sharp,
+  sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
     cloudinaryStorage({
