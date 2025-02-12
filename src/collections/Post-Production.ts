@@ -17,6 +17,16 @@ export const PostProduction: CollectionConfig = {
       required: true,
     },
     {
+      name: 'description',
+      type: 'textarea',
+      localized: true,
+    },
+    {
+      name: 'price',
+      type: 'number',
+      // required: true,
+    },
+    {
       name: 'main_image',
       type: 'upload',
       label: 'Main Image',
