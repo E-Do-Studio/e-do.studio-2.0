@@ -29,8 +29,6 @@ export const useGalleryStore = create<GalleryStore>()(
             headers: {
               'Content-Type': 'application/json',
             },
-            // Désactiver le cache du navigateur
-            cache: 'no-store'
           })
 
           if (!response.ok) throw new Error('Failed to fetch categories')

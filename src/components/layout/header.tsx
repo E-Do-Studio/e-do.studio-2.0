@@ -50,7 +50,7 @@ export function Header() {
           'flex flex-row items-center justify-between',
           'backdrop-blur-sm bg-background/80 fixed top-0 z-[60] w-full',
           'transition-all duration-700 md:duration-500 ease-in-out',
-          'px-4 md:px-8',
+          'container',
           !scrolled
             ? 'h-16 md:h-20'
             : scrollDirection === 'down'

@@ -11,6 +11,7 @@ export default async function PostProduction() {
 
   const postProduction = await payload.find({
     collection: 'post-production',
+
   })
 
   console.log('API Response:', JSON.stringify(postProduction.docs, null, 2))
