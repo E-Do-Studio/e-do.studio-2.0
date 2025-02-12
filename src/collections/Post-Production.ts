@@ -9,6 +9,13 @@ export const PostProduction: CollectionConfig = {
     update: () => true,
     delete: () => true,
   },
+  labels: {
+    singular: 'Post-Production',
+    plural: 'Post-Production',
+  },
+  admin: {
+    group: 'Post-Production',
+  },
   fields: [
     {
       name: 'category',
