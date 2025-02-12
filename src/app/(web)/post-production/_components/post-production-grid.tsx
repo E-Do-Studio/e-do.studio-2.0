@@ -21,7 +21,9 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
   const router = useRouter()
 
   const handleCategoryClick = (category: string) => {
-    router.push(`/post-production/${category.toLowerCase()}`)
+    const normalizedCategory = category.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    const urlCategory = normalizedCategory.toLowerCase().replace(' ', '-')
+    router.push(`/post-production/${urlCategory}`)
   }
 
   return (
