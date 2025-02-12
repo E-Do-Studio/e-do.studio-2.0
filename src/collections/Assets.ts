@@ -3,6 +3,9 @@ import { getCachedCloudinaryResource } from '../lib/cloudinary-cache'
 
 export const Assets: CollectionConfig = {
   slug: 'assets',
+  admin: {
+    group: 'Medias',
+  },
   access: {
     read: () => true,
     create: () => true,
@@ -42,19 +45,16 @@ export const Assets: CollectionConfig = {
       },
     ],
   },
-  admin: {
-    group: 'Gallery',
-  },
   upload: {
     adapter: 'cloudinary',
-    formatOptions: {
-      format: 'webp',
-      options: {
-        quality: 60,
-        effort: 6,
-        lossless: false,
-      },
-    },
+    // formatOptions: {
+    //   format: 'webp',
+    //   options: {
+    //     quality: 60,
+    //     effort: 6,
+    //     lossless: false,
+    //   },
+    // },
     mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'video/*'],
     adminThumbnail: 'thumbnail',
   },

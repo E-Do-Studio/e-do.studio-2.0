@@ -151,16 +151,43 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   }, [category, subcategory, categoriesData, allMediaData])
 
   const sortedMedia = useMemo(() => {
-    return [...media].sort(() => Math.random() - 0.5).map(item => {
+    // Fonction pour estimer la hauteur d'un élément
+    const getEstimatedHeight = (item: GalleryImage | GalleryVideo) => {
+      // Pour les vidéos, on utilise un ratio 16:9
       if ('thumbnailURL' in item) {
-        return {
-          ...item,
-          aspectRatio: 16 / 9
-        }
+        return 9 / 16 * 100; // Hauteur estimée pour les vidéos
       }
-      return item
-    })
-  }, [media])
+
+      // Pour les images, on peut utiliser un ratio moyen ou une hauteur fixe
+      return 100; // Hauteur estimée pour les images
+    }
+
+    // Trier les médias de manière alternée (grand-petit-grand-petit)
+    const sortedByHeight = [...media].sort(() => Math.random() - 0.5)
+      .map(item => ({
+        ...item,
+        estimatedHeight: getEstimatedHeight(item)
+      }));
+
+    // Distribuer les éléments de manière équilibrée
+    const columns = [[], [], []];
+    const columnHeights = [0, 0, 0];
+
+    sortedByHeight.forEach(item => {
+      // Trouver la colonne la plus courte
+      const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+      columns[shortestColumnIndex].push(item);
+      columnHeights[shortestColumnIndex] += item.estimatedHeight;
+    });
+
+    // Aplatir les colonnes en alternant les éléments
+    return columns.reduce((acc, column, index) => {
+      column.forEach((item, itemIndex) => {
+        acc[itemIndex * 3 + index] = item;
+      });
+      return acc;
+    }, new Array(sortedByHeight.length)).filter(Boolean);
+  }, [media]);
 
   if (isLoading) {
     return (
@@ -175,11 +202,22 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
   return (
     <div className="pt-[12rem] lg:pt-0">
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
+      <div
+        className="columns-1 md:columns-2 lg:columns-3 gap-4 [column-fill:balance] mx-auto"
+        style={{
+          maxWidth: '2400px',
+          columnGap: '1rem',
+          columnFill: 'balance'
+        }}
+      >
         {sortedMedia.map((item) => (
           <div
             key={item.id}
-            className="mb-4 break-inside-avoid"
+            className="mb-4 break-inside-avoid w-full inline-block"
+            style={{
+              pageBreakInside: 'avoid',
+              breakInside: 'avoid'
+            }}
           >
             {'type' in item && item.type === '360' ? (
               <iframe
