@@ -9,6 +9,7 @@ import { headers } from 'next/headers'
 import { NewsletterPopup } from '@/components/layout/newsletter-popup'
 import { CookieBanner } from '@/components/layout/cookie-banner'
 import { AnalyticsProvider } from '@/components/providers/analytics-provider'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: 'E-Do Studio - Découvrez nos services de packshot automatisé',
@@ -79,6 +80,7 @@ export default async function WebLayout({
           <NewsletterPopup />
           <CookieBanner />
           <AnalyticsProvider />
+          <Toaster />
         </I18nProvider>
       </body>
     </html>

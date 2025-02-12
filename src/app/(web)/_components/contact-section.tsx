@@ -38,11 +38,30 @@ export function ContactSection() {
         throw new Error(result.error || 'Failed to send message')
       }
 
-      toast.success(t('contact.form.success'))
-      form.reset()
+      form.reset({
+        lastName: '',
+        firstName: '',
+        society: '',
+        email: '',
+        website: '',
+        message: ''
+      })
+
+      toast.success(t('contact.form.success'), {
+        duration: 5000,
+        position: 'bottom-right'
+      })
+
     } catch (error) {
       console.error("Erreur lors de l'envoi du formulaire:", error)
-      toast.error(t('contact.form.error'))
+
+      toast.error(t('contact.form.error'), {
+        duration: 5000,
+        position: 'bottom-right',
+        description: error instanceof Error ? error.message : t('contact.form.errorDefault')
+      })
+    } finally {
+      form.clearErrors()
     }
   }
 
