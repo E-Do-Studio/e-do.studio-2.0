@@ -16,8 +16,10 @@ export default async function PostProduction() {
   console.log('API Response:', JSON.stringify(postProduction.docs, null, 2))
 
   return (
-    <LandingSection title="Post Production">
-      <PostProductionGrid items={postProduction.docs} />
-    </LandingSection>
+    <main className='container mx-auto'>
+      <LandingSection title="Post Production">
+        <PostProductionGrid items={postProduction.docs} />
+      </LandingSection>
+    </main>
   )
 }

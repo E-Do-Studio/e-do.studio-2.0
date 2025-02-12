@@ -27,13 +27,12 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
   return (
     <>
       {/* Version Mobile (<768px) */}
-      <div className="md:hidden grid grid-cols-2 gap-3 p-4">
+      <div className="md:hidden grid grid-cols-2 gap-4 p-4">
         {items.map((item) => (
           <div
             key={item.id}
             onClick={() => handleCategoryClick(item.category)}
-            className={`relative cursor-pointer group ${item.category === 'On Model' ? 'col-span-2 h-[300px]' : 'h-[200px]'
-              }`}
+            className={`relative cursor-pointer group ${item.category === 'On Model' ? 'col-span-2 h-[300px]' : 'h-[200px]'}`}
           >
             <div className="relative w-full h-full overflow-hidden bg-white shadow-md rounded-lg">
               <Image
@@ -54,15 +53,15 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
       </div>
 
       {/* Version Desktop (>=768px) */}
-      <div className="hidden md:block relative h-[calc(100vh-15vh)] p-8">
+      <div className="hidden md:block relative h-[calc(100vh-15vh)]">
         {items.map((item) => {
           const positionClasses = {
-            'On Model': 'absolute left-[27%] top-[5%] w-[22%] h-[84%]',
-            'Beauty': 'absolute right-[27%] top-[5%] w-[22%] h-[40%]',
-            'Flat': 'absolute right-[3%] top-[27%] w-[22%] h-[40%]',
-            'Piqué': 'absolute right-[27%] top-[49%] w-[22%] h-[40%]',
-            'Access': 'absolute left-[3%] top-[5%] w-[22%] h-[50%]',
-            'Ghost': 'absolute left-[3%] top-[59%] w-[22%] h-[30%]',
+            'On Model': 'absolute left-[25%] top-[5%] w-[23%] h-[84%]',
+            'Beauty': 'absolute right-[25%] top-[5%] w-[23%] h-[38%]',
+            'Flat': 'absolute right-[0%] top-[27%] w-[23%] h-[38%]',
+            'Piqué': 'absolute right-[25%] top-[47%] w-[23%] h-[38%]',
+            'Access': 'absolute left-[0%] top-[5%] w-[23%] h-[48%]',
+            'Ghost': 'absolute left-[0%] top-[57%] w-[23%] h-[30%]',
           }[item.category] || ''
 
           return (
