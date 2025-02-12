@@ -56,12 +56,12 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
       <div className="hidden md:block relative h-[calc(100vh-15vh)]">
         {items.map((item) => {
           const positionClasses = {
-            'On Model': 'absolute left-[25%] top-[5%] w-[23%] h-[84%]',
-            'Beauty': 'absolute right-[25%] top-[5%] w-[23%] h-[38%]',
-            'Flat': 'absolute right-[0%] top-[27%] w-[23%] h-[38%]',
-            'Piqué': 'absolute right-[25%] top-[47%] w-[23%] h-[38%]',
-            'Access': 'absolute left-[0%] top-[5%] w-[23%] h-[48%]',
-            'Ghost': 'absolute left-[0%] top-[57%] w-[23%] h-[30%]',
+            'On Model': 'absolute left-[26%] top-[5%] w-[22%] h-[84%]',
+            'Beauty': 'absolute right-[26%] top-[5%] w-[22%] h-[40%]',
+            'Flat': 'absolute right-[0%] top-[27%] w-[22%] h-[38%]',
+            'Piqué': 'absolute right-[26%] top-[47%] w-[22%] h-[42%]',
+            'Access': 'absolute left-[0%] top-[5%] w-[22%] h-[50%]',
+            'Ghost': 'absolute left-[0%] top-[57%] w-[22%] h-[32%]',
           }[item.category] || ''
 
           return (
