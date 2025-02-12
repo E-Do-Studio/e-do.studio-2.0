@@ -26,7 +26,7 @@ interface GalleryVideo {
   brand?: {
     name: string
   }
-  subcategory?: {
+  subCategory?: {
     name: string
     slug: string
   }
@@ -106,14 +106,6 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
       if (!categoryData) return []
 
-      // Log pour déboguer
-      console.log('Category Data:', {
-        category,
-        subcategory,
-        assets: categoryData.assets,
-        videos: categoryData.videos,
-      })
-
       // Gestion spéciale pour la catégorie 360
       if (category === '360' && categoryData.links?.length) {
         return categoryData.links.map((link: GalleryLink) => ({
@@ -140,8 +132,8 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
       }) || []
 
       const filteredVideos = categoryData.videos?.filter((video: GalleryVideo) => {
-        console.log('Video subcategory:', video.subcategory?.slug, 'Looking for:', subcategory)
-        return video.subcategory?.slug === subcategory
+        console.log('Video subcategory:', video.subCategory?.slug, 'Looking for:', subcategory)
+        return video.subCategory?.slug === subcategory
       }) || []
 
       // Log des résultats filtrés
@@ -159,10 +151,7 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   }, [category, subcategory, categoriesData, allMediaData])
 
   const sortedMedia = useMemo(() => {
-    // Mélanger le tableau de médias de manière aléatoire
-    const shuffledMedia = [...media].sort(() => Math.random() - 0.5)
-
-    return shuffledMedia.map(item => {
+    return [...media].sort(() => Math.random() - 0.5).map(item => {
       if ('thumbnailURL' in item) {
         return {
           ...item,
@@ -172,25 +161,6 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
       return item
     })
   }, [media])
-
-  const columns = useMemo(() => {
-    const numberOfColumns = {
-      mobile: 1,
-      md: 2,
-      lg: 3
-    }
-
-    // Créer un tableau de colonnes vides
-    const cols = Array.from({ length: numberOfColumns.lg }, () => [] as (GalleryImage | GalleryVideo)[])
-
-    // Distribuer les médias dans les colonnes de manière équilibrée
-    sortedMedia.forEach((item, index) => {
-      const columnIndex = index % numberOfColumns.lg
-      cols[columnIndex].push(item)
-    })
-
-    return cols
-  }, [sortedMedia])
 
   if (isLoading) {
     return (
@@ -205,26 +175,22 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
   return (
     <div className="pt-[12rem] lg:pt-0">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {columns.map((column, columnIndex) => (
-          <div key={columnIndex} className="flex flex-col gap-4">
-            {column.map((item) => (
-              <div
-                key={item.id}
-                className="w-full"
-              >
-                {'type' in item && item.type === '360' ? (
-                  <iframe
-                    src={item.url}
-                    className="w-full aspect-square rounded-lg"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <MediaCard item={item} />
-                )}
-              </div>
-            ))}
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
+        {sortedMedia.map((item) => (
+          <div
+            key={item.id}
+            className="mb-4 break-inside-avoid"
+          >
+            {'type' in item && item.type === '360' ? (
+              <iframe
+                src={item.url}
+                className="w-full aspect-square rounded-lg"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <MediaCard item={item} />
+            )}
           </div>
         ))}
       </div>
