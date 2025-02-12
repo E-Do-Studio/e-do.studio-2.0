@@ -43,6 +43,7 @@
     "lucide-react": "^0.469.0",
     "motion": "^12.0.6",
     "next": "15.1.0",
+    "node-cache": "^5.1.2",
     "nuqs": "^2.3.2",
     "payload": "3.6.0",
     "payload-cloudinary": "^1.5.0",
