@@ -14,7 +14,7 @@ import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { Videos } from './collections/Videos'
-import sharp from 'sharp'
+// import sharp from 'sharp'
 
 const serverURL =
   process.env.NODE_ENV === 'development'
@@ -73,7 +73,7 @@ export default buildConfig({
     }),
   ],
   email: resendAdapter({
-    defaultFromAddress: 'contact@edostudio.com',
+    defaultFromAddress: 'contact@e-do.studio',
     defaultFromName: 'E-Do Studio',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
@@ -86,7 +86,9 @@ export default buildConfig({
   cors: {
     origins: [
       'https://www.e-do.studio',
+      'https://e-do.studio',
       'https://www.e-do.studio/admin',
+      'https://e-do.studio/admin',
       'http://localhost:3000',
       'http://localhost:3001',
     ],
