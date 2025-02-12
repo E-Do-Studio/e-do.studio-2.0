@@ -39,7 +39,6 @@ function AddressSection({ className }: AddressSectionProps) {
             </div>
           ))}
         </div>
-        <p className="mt-4">{t('footer.address.direct_access')}</p>
       </div>
     </div>
   );

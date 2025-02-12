@@ -14,7 +14,8 @@ import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { Videos } from './collections/Videos'
-// import sharp from 'sharp'
+import { PostProduction } from './collections/Post-Production'
+import sharp from 'sharp'
 
 const serverURL =
   process.env.NODE_ENV === 'development'
@@ -32,7 +33,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Assets, Subcategories, Videos],
+  collections: [Users, Brands, Categories, Assets, Subcategories, Videos, PostProduction],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -47,7 +48,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  // sharp: sharp,
+  sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
     cloudinaryStorage({
