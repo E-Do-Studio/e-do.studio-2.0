@@ -29,7 +29,7 @@ export const LocationSection = () => {
                                 alt="Entrée Victor Hugo"
                                 width={400}
                                 height={300}
-                                className="rounded-lg w-full h-48 object-cover grayscale transition-all duration-300 hover:grayscale-0"
+                                className="rounded-lg w-full h-48 object-cover md:grayscale md:transition-all md:duration-300 md:hover:grayscale-0"
                             />
                         </a>
                         <a
@@ -53,7 +53,7 @@ export const LocationSection = () => {
                                 alt="Entrée Louis Blanc"
                                 width={400}
                                 height={300}
-                                className="rounded-lg w-full h-48 object-cover grayscale transition-all duration-300 hover:grayscale-0"
+                                className="rounded-lg w-full h-48 object-cover md:grayscale md:transition-all md:duration-300 md:hover:grayscale-0"
                             />
                         </a>
                         <a
