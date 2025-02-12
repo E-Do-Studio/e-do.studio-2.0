@@ -2,6 +2,13 @@ import { CollectionConfig } from 'payload';
 
 export const PostProduction: CollectionConfig = {
   slug: 'post-production',
+  auth: false,
+  access: {
+    read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
+  },
   labels: {
     singular: 'Post-Production',
     plural: 'Post-Production',
@@ -22,6 +29,16 @@ export const PostProduction: CollectionConfig = {
       relationTo: 'assets',
       hasMany: true,
       required: true,
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      localized: true,
+    },
+    {
+      name: 'price',
+      type: 'number',
+      // required: true,
     },
     {
       name: 'main_image',

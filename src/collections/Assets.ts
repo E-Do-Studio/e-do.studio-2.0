@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { getCachedCloudinaryResource } from '../lib/cloudinary-cache'
+// import { getCachedCloudinaryResource } from '../lib/cloudinary-cache'
 
 export const Assets: CollectionConfig = {
   slug: 'assets',
@@ -32,29 +32,28 @@ export const Assets: CollectionConfig = {
         return data
       },
     ],
-    afterRead: [
-      async (args) => {
-        if (args.doc.cloudinaryPublicId) {
-          const cachedResource = await getCachedCloudinaryResource(args.doc.cloudinaryPublicId)
-          if (cachedResource) {
-            args.doc.url = cachedResource.secure_url
-            // autres propriétés à mettre à jour...
-          }
-        }
-        return args.doc
-      },
-    ],
+    // afterRead: [
+    //   async (args) => {
+    //     if (args.doc.cloudinaryPublicId) {
+    //       const cachedResource = await getCachedCloudinaryResource(args.doc.cloudinaryPublicId)
+    //       if (cachedResource) {
+    //         args.doc.url = cachedResource.secure_url
+    //         // autres propriétés à mettre à jour...
+    //       }
+    //     }
+    //     return args.doc
+    //   },
+    // ],
   },
   upload: {
-    adapter: 'cloudinary',
-    // formatOptions: {
-    //   format: 'webp',
-    //   options: {
-    //     quality: 60,
-    //     effort: 6,
-    //     lossless: false,
-    //   },
-    // },
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 60,
+        effort: 6,
+        lossless: false,
+      },
+    },
     mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'video/*'],
     adminThumbnail: 'thumbnail',
   },

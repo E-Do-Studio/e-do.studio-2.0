@@ -2,6 +2,9 @@
 
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { LandingSection } from '@/components/layout/landing-section'
+import Image from 'next/image'
+import { PostProductionGrid } from './_components/post-production-grid'
 
 export default async function PostProduction() {
   const payload = await getPayload({ config })
@@ -11,6 +14,13 @@ export default async function PostProduction() {
 
   })
 
-  console.log(postProduction)
-  return <div>Post Production</div>
+  console.log('API Response:', JSON.stringify(postProduction.docs, null, 2))
+
+  return (
+    <main className='container mx-auto'>
+      <LandingSection title="Post Production">
+        <PostProductionGrid items={postProduction.docs} />
+      </LandingSection>
+    </main>
+  )
 }
