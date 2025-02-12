@@ -31,7 +31,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Assets, Subcategories, Videos, PostProduction],
+  collections: [Users, Brands, Categories, Assets, Subcategories, Videos],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -46,7 +46,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  sharp: sharp,
+  // sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
     cloudinaryStorage({
