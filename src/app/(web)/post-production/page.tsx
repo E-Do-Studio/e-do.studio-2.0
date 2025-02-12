@@ -13,7 +13,7 @@ export default async function PostProduction() {
     collection: 'post-production',
   })
 
-  console.log('API Response:', JSON.stringify(postProduction.docs, null, 2))
+  console.log(postProduction.docs)
 
   return (
     <main className='container mx-auto'>

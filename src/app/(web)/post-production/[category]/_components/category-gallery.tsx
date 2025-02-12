@@ -14,6 +14,7 @@ interface CategoryGalleryProps {
     category: string
     assets: Asset[]
     description?: string
+    price?: number | string
   }
 }
 
@@ -21,20 +22,27 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<Asset | null>(null)
 
   return (
-    <div className="space-y-8">
-      {/* Description générale si elle existe */}
-      {item.description && (
-        <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-          {item.description}
-        </p>
-      )}
+    <div className="pt-24 min-h-[calc(100vh-17rem)]">
+      {/* En-tête avec description et prix */}
+      <div className="max-w-3xl mx-auto space-y-4 mb-24">
+        {item.description && (
+          <p className="text-lg text-gray-700 text-center">
+            {item.description}
+          </p>
+        )}
+        {item.price && (
+          <p className="text-xl font-semibold text-center">
+            Prix: {typeof item.price === 'number' ? `${item.price}€` : item.price}
+          </p>
+        )}
+      </div>
 
-      {/* Grille d'images en ligne */}
-      <div className="flex flex-nowrap gap-4 overflow-x-auto md:overflow-x-hidden md:grid md:grid-cols-5 pb-4">
+      {/* Grille d'images */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4 md:px-0">
         {item.assets.map((asset, index) => (
           <div
             key={index}
-            className="group cursor-pointer w-[280px] md:w-auto flex-shrink-0"
+            className="group cursor-pointer"
             onClick={() => setSelectedImage(asset)}
           >
             <div className="relative aspect-square overflow-hidden rounded-lg">
