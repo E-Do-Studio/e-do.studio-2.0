@@ -34,7 +34,6 @@ export default buildConfig({
   serverURL,
   collections: [Users, Brands, Categories, Assets, Subcategories, Videos,
     // PostProduction
-
   ],
   localization: {
     locales: ['fr', 'en'],
