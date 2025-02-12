@@ -47,14 +47,14 @@ export const Assets: CollectionConfig = {
   },
   upload: {
     adapter: 'cloudinary',
-    // formatOptions: {
-    //   format: 'webp',
-    //   options: {
-    //     quality: 60,
-    //     effort: 6,
-    //     lossless: false,
-    //   },
-    // },
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 60,
+        effort: 6,
+        lossless: false,
+      },
+    },
     mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'video/*'],
     adminThumbnail: 'thumbnail',
   },
