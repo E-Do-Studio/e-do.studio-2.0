@@ -14,6 +14,8 @@ import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { Videos } from './collections/Videos'
+import { PostProduction } from './collections/Post-Production'
+// import sharp from 'sharp'
 
 const serverURL =
   process.env.NODE_ENV === 'development'
