@@ -4,6 +4,9 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { Facebook, Instagram, Linkedin } from 'lucide-react'
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { HEADER_HEIGHT } from '@/lib/constants';
 
 interface AddressSectionProps {
   className?: string;
@@ -67,14 +70,40 @@ interface ContactSectionProps {
 
 function ContactSection({ className }: ContactSectionProps) {
   const { t } = useTranslation('layout');
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    if (pathname !== '/') {
+      router.push('/#contact');
+      return;
+    }
+
+    const element = document.querySelector('#contact');
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - HEADER_HEIGHT - 24;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className={cn(className)}>
       <h3 className="text-white text-xl font-medium mb-6">{t('footer.contact.title')}</h3>
       <div className="space-y-4 text-gray-300">
-        <button className="px-4 py-2 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors">
+        <Link
+          href="/#contact"
+          onClick={scrollToContact}
+          className="inline-block px-4 py-2 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors"
+        >
           {t('footer.contact.email_button')}
-        </button>
+        </Link>
         <p>
           {t('footer.contact.phone_text')}{" "}
           <br />
