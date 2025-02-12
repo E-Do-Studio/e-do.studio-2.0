@@ -92,6 +92,7 @@ interface SocialLinksProps {
 }
 
 function SocialLinks({ className }: SocialLinksProps) {
+  const { t, i18n } = useTranslation('layout');
   const socialLinks = [
     {
       icon: <Facebook className="w-5 h-5" />,
@@ -111,18 +112,26 @@ function SocialLinks({ className }: SocialLinksProps) {
   ];
 
   return (
-    <div className={cn(`flex gap-6 items-center justify-center lg:justify-end`, className)}>
-      {socialLinks.map((link) => (
-        <Link
-          key={link.label}
-          href={link.href}
-          target="_blank"
-          className="text-white hover:text-gray-300 transition-colors"
-          aria-label={link.label}
-        >
-          {link.icon}
-        </Link>
-      ))}
+    <div className={cn("flex flex-col gap-4", className)}>
+      <div className="flex gap-6 items-center justify-center lg:justify-end">
+        {socialLinks.map((link) => (
+          <Link
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            className="text-white hover:text-gray-300 transition-colors"
+            aria-label={link.label}
+          >
+            {link.icon}
+          </Link>
+        ))}
+      </div>
+      <Link
+        href="/legal"
+        className="text-gray-300 hover:text-white text-sm text-center lg:text-right transition-colors"
+      >
+        {i18n.language === 'fr' ? 'Mentions Légales' : 'Legal Notice'}
+      </Link>
     </div>
   );
 }

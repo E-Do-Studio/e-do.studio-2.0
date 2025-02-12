@@ -1,0 +1,24 @@
+{
+  "tabs": {
+    "mentions": "Mentions Légales",
+    "cgu": "Conditions Générales d'Utilisation",
+    "cgv": "Conditions Générales de Vente",
+    "confidentialite": "Politique de Confidentialité"
+  },
+  "mentions": {
+    "title": "Mentions Légales",
+    "content": "Contenu des mentions légales..."
+  },
+  "cgu": {
+    "title": "Conditions Générales d'Utilisation",
+    "content": "Contenu des CGU..."
+  },
+  "cgv": {
+    "title": "Conditions Générales de Vente",
+    "content": "Contenu des CGV..."
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "content": "Contenu de la politique de confidentialité..."
+  }
+} 

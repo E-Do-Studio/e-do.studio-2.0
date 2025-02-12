@@ -40,6 +40,15 @@
       "facebook": "FACEBOOK",
       "instagram": "INSTAGRAM",
       "linkedin": "LINKEDIN"
+    },
+    "legal_notice": "Legal Notice"
+  },
+  "legal": {
+    "tabs": {
+      "mentions": "Legal Notice",
+      "cgu": "Terms of Use",
+      "cgv": "Terms of Sale",
+      "confidentialite": "Privacy Policy"
     }
   }
 } 
