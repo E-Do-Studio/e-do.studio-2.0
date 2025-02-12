@@ -107,7 +107,10 @@
                 }
             },
             "submit": "Envoyer",
-            "submitting": "Envoi en cours..."
+            "submitting": "Envoi en cours...",
+            "success": "Message envoyé avec succès !",
+            "error": "Erreur lors de l'envoi du message",
+            "errorDefault": "Une erreur s'est produite"
         }
     },
     "location": {

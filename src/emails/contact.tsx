@@ -11,7 +11,7 @@ export function ContactTemplate({
   message,
 }: ContactTemplateProps) {
   // Définir l'URL de base pour les images
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.e-do.studio'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://e-do.studio'
 
   return `
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

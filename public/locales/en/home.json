@@ -108,7 +108,10 @@
                 }
             },
             "submit": "Send",
-            "submitting": "Sending..."
+            "submitting": "Sending...",
+            "success": "Message sent successfully!",
+            "error": "Error sending message",
+            "errorDefault": "An error occurred"
         }
     },
     "location": {
