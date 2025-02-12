@@ -39,11 +39,7 @@ export function MediaCard({ item }: MediaCardProps) {
     ? item.url
     : `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/${isVideo ? 'videos' : 'images'}/${item.filename}`
 
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Media URL:', mediaUrl)
-  }
 
-  // Précharger la vidéo pour obtenir sa hauteur
   const handleVideoMetadata = (e: React.SyntheticEvent<HTMLVideoElement>) => {
     const video = e.target as HTMLVideoElement
     setVideoHeight(video.videoHeight * (video.clientWidth / video.videoWidth))
@@ -85,7 +81,7 @@ export function MediaCard({ item }: MediaCardProps) {
               isLoading ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
             )}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            onLoadingComplete={() => setIsLoading(false)}
+            onLoad={() => setIsLoading(false)}
           />
         )}
 
@@ -93,7 +89,7 @@ export function MediaCard({ item }: MediaCardProps) {
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
               <p className="text-white text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                {item.brand?.name?.toUpperCase() || 'Sans marque'}
+                {item.brand?.name?.toUpperCase() || 'SANS MARQUE'}
               </p>
             </div>
           </div>
