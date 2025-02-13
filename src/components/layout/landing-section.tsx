@@ -39,7 +39,7 @@ export const LandingSection = ({
 }
 
 export const LandingTitle = ({ title, className }: { title: string; className?: string }) => {
-  return <h2 className={cn('', className)}>{title}</h2>
+  return <h2 className={cn('max-w-[46rem]', className)}>{title}</h2>
 }
 
 export const LandingSubtitle = ({
