@@ -6,13 +6,19 @@ import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import type { Navigation } from './header'
 import { useMobileMenu } from '@/store/use-mobile-menu'
+import { useTranslation } from 'react-i18next'
 
 interface MobileMenuProps {
   navigation: Navigation
+  translations: {
+    bookSession: string
+    address: string
+  }
 }
 
-export function MobileMenu({ navigation }: MobileMenuProps) {
+export function MobileMenu({ navigation, translations }: MobileMenuProps) {
   const { close } = useMobileMenu()
+  const { t } = useTranslation('layout')
 
   return (
     <motion.div
@@ -29,7 +35,7 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
       >
         <div className="flex flex-col flex-1 justify-center gap-8">
           {navigation
-            .filter((item) => item.label !== '+33 1 44 04 11 49' as string)
+            .filter((item) => item.label !== 'phone')
             .map((item) => (
               <motion.div
                 key={item.label}
@@ -42,7 +48,7 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
                   onClick={close}
                   className="text-4xl font-light hover:text-neutral-500 transition-colors"
                 >
-                  {item.label}
+                  {t(`header.navigation.${item.label}`)}
                 </Link>
               </motion.div>
             ))}
@@ -55,7 +61,7 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
           className="py-8"
         >
           <Button onClick={close} className="w-full text-lg py-6">
-            book a session
+            {translations.bookSession}
           </Button>
         </motion.div>
         <motion.div
@@ -69,7 +75,7 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
             onClick={close}
             className="block text-2xl font-light hover:text-neutral-500 transition-colors"
           >
-            +33 1 44 04 11 49
+            {t('header.navigation.phone')}
           </Link>
           <Link
             href="mailto:contact@e-do.studio"
@@ -78,7 +84,7 @@ export function MobileMenu({ navigation }: MobileMenuProps) {
           >
             contact@e-do.studio
           </Link>
-          <p className="text-xl">69 Boulevard Victor Hugo, 93400 Saint-Ouen</p>
+          <p className="text-xl">{translations.address}</p>
         </motion.div>
       </motion.nav>
     </motion.div>
