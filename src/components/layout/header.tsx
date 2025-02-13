@@ -25,7 +25,7 @@ type HeaderProps = {
 const navigation = [
   { label: 'phone', href: 'tel:+33144041149' },
   { label: 'post-production', href: '/post-production' },
-  { label: 'gallery', href: 'galerie?category=on_model' },
+  { label: 'gallery', href: '/galerie?category=on_model' },
   { label: 'services', href: '#services' },
   { label: 'pricing', href: '#pricing' },
   { label: 'contact', href: '#contact' },
