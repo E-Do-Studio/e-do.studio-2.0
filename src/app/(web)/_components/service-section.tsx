@@ -72,7 +72,7 @@ export const ServiceSection = () => {
             id='services'
             className="mt-8 md:mt-16"
         >
-            <Link href='/reservation'>
+            <Link href='/cyclorama'>
                 <Services
                     imagesDescription={['/img/machine-cyclorama.webp', 'Services machine cyclorama']}
                     serviceName={t('services.cyclorama.name')}
