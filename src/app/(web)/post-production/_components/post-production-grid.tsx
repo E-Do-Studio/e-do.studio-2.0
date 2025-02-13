@@ -43,7 +43,14 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
           <div
             key={item.id}
             onClick={() => handleCategoryClick(item.category)}
-            className={`relative cursor-pointer group ${item.category === 'On Model' ? 'col-span-2 h-[300px]' : 'h-[200px]'}`}
+            className={`relative cursor-pointer group ${item.category === 'On Model'
+                ? 'col-span-2 h-[300px] order-2'
+                : item.category === 'Ghost'
+                  ? 'h-[150px] order-1'
+                  : item.category === 'Beauty'
+                    ? 'h-[150px] order-1'
+                    : 'h-[200px] order-3'
+              }`}
           >
             <div className="relative w-full h-full overflow-hidden bg-white shadow-md rounded-lg">
               <Image
