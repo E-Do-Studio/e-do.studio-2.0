@@ -26,7 +26,7 @@ interface GalleryVideo {
   brand?: {
     name: string
   }
-  subcategory?: {
+  subCategory?: {
     name: string
     slug: string
   }
@@ -106,14 +106,6 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
       if (!categoryData) return []
 
-      // Log pour déboguer
-      console.log('Category Data:', {
-        category,
-        subcategory,
-        assets: categoryData.assets,
-        videos: categoryData.videos,
-      })
-
       // Gestion spéciale pour la catégorie 360
       if (category === '360' && categoryData.links?.length) {
         return categoryData.links.map((link: GalleryLink) => ({
@@ -129,26 +121,17 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
           ...(categoryData.assets || []),
           ...(categoryData.videos || [])
         ]
-        console.log('All Media:', allMedia)
         return allMedia
       }
 
       // Filtrer les assets et les vidéos par subcategory
       const filteredAssets = categoryData.assets?.filter((asset: GalleryImage) => {
-        console.log('Asset subcategory:', asset.subcategory?.slug, 'Looking for:', subcategory)
         return asset.subcategory?.slug === subcategory
       }) || []
 
       const filteredVideos = categoryData.videos?.filter((video: GalleryVideo) => {
-        console.log('Video subcategory:', video.subcategory?.slug, 'Looking for:', subcategory)
-        return video.subcategory?.slug === subcategory
+        return video.subCategory?.slug === subcategory
       }) || []
-
-      // Log des résultats filtrés
-      console.log('Filtered Results:', {
-        assets: filteredAssets,
-        videos: filteredVideos
-      })
 
       // Combiner les assets et les vidéos filtrés
       return [...filteredAssets, ...filteredVideos]
@@ -159,38 +142,43 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   }, [category, subcategory, categoriesData, allMediaData])
 
   const sortedMedia = useMemo(() => {
-    // Mélanger le tableau de médias de manière aléatoire
-    const shuffledMedia = [...media].sort(() => Math.random() - 0.5)
-
-    return shuffledMedia.map(item => {
+    // Fonction pour estimer la hauteur d'un élément
+    const getEstimatedHeight = (item: GalleryImage | GalleryVideo) => {
+      // Pour les vidéos, on utilise un ratio 16:9
       if ('thumbnailURL' in item) {
-        return {
-          ...item,
-          aspectRatio: 16 / 9
-        }
+        return 9 / 16 * 100; // Hauteur estimée pour les vidéos
       }
-      return item
-    })
-  }, [media])
 
-  const columns = useMemo(() => {
-    const numberOfColumns = {
-      mobile: 1,
-      md: 2,
-      lg: 3
+      // Pour les images, on peut utiliser un ratio moyen ou une hauteur fixe
+      return 100; // Hauteur estimée pour les images
     }
 
-    // Créer un tableau de colonnes vides
-    const cols = Array.from({ length: numberOfColumns.lg }, () => [] as (GalleryImage | GalleryVideo)[])
+    // Trier les médias de manière alternée (grand-petit-grand-petit)
+    const sortedByHeight = [...media].sort(() => Math.random() - 0.5)
+      .map(item => ({
+        ...item,
+        estimatedHeight: getEstimatedHeight(item)
+      }));
 
-    // Distribuer les médias dans les colonnes de manière équilibrée
-    sortedMedia.forEach((item, index) => {
-      const columnIndex = index % numberOfColumns.lg
-      cols[columnIndex].push(item)
-    })
+    // Distribuer les éléments de manière équilibrée
+    const columns = [[], [], []];
+    const columnHeights = [0, 0, 0];
 
-    return cols
-  }, [sortedMedia])
+    sortedByHeight.forEach((item) => {
+      // Trouver la colonne la plus courte
+      const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+      columns[shortestColumnIndex].push(item as never);
+      columnHeights[shortestColumnIndex] += item.estimatedHeight;
+    });
+
+    // Aplatir les colonnes en alternant les éléments
+    return columns.reduce((acc, column, index) => {
+      column.forEach((item, itemIndex) => {
+        acc[itemIndex * 3 + index] = item;
+      });
+      return acc;
+    }, new Array(sortedByHeight.length)).filter(Boolean);
+  }, [media]);
 
   if (isLoading) {
     return (
@@ -205,26 +193,33 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
   return (
     <div className="pt-[12rem] lg:pt-0">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {columns.map((column, columnIndex) => (
-          <div key={columnIndex} className="flex flex-col gap-4">
-            {column.map((item) => (
-              <div
-                key={item.id}
-                className="w-full"
-              >
-                {'type' in item && item.type === '360' ? (
-                  <iframe
-                    src={item.url}
-                    className="w-full aspect-square rounded-lg"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <MediaCard item={item} />
-                )}
-              </div>
-            ))}
+      <div
+        className="columns-1 md:columns-2 lg:columns-3 gap-4 [column-fill:balance] mx-auto"
+        style={{
+          maxWidth: '2400px',
+          columnGap: '1rem',
+          columnFill: 'balance'
+        }}
+      >
+        {sortedMedia.map((item) => (
+          <div
+            key={item.id}
+            className="mb-4 break-inside-avoid w-full inline-block"
+            style={{
+              pageBreakInside: 'avoid',
+              breakInside: 'avoid'
+            }}
+          >
+            {'type' in item && item.type === '360' ? (
+              <iframe
+                src={item.url}
+                className="w-full aspect-square rounded-lg"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <MediaCard item={item} />
+            )}
           </div>
         ))}
       </div>

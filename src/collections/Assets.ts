@@ -1,8 +1,10 @@
 import type { CollectionConfig } from 'payload'
-import { getCachedCloudinaryResource } from '../lib/cloudinary-cache'
 
 export const Assets: CollectionConfig = {
   slug: 'assets',
+  admin: {
+    group: 'Medias',
+  },
   access: {
     read: () => true,
     create: () => true,
@@ -29,24 +31,8 @@ export const Assets: CollectionConfig = {
         return data
       },
     ],
-    afterRead: [
-      async (args) => {
-        if (args.doc.cloudinaryPublicId) {
-          const cachedResource = await getCachedCloudinaryResource(args.doc.cloudinaryPublicId)
-          if (cachedResource) {
-            args.doc.url = cachedResource.secure_url
-            // autres propriétés à mettre à jour...
-          }
-        }
-        return args.doc
-      },
-    ],
-  },
-  admin: {
-    group: 'Gallery',
   },
   upload: {
-    adapter: 'cloudinary',
     formatOptions: {
       format: 'webp',
       options: {
@@ -107,15 +93,6 @@ export const Assets: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Type of media asset',
-      },
-    },
-    {
-      name: 'duration',
-      type: 'number',
-      required: false,
-      admin: {
-        description: 'Duration in seconds (for videos only)',
-        condition: (data) => data.mediaType === 'video',
       },
     },
   ],

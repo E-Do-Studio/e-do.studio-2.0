@@ -7,13 +7,9 @@ import { notFound } from 'next/navigation'
 import { CategoryGallery } from './_components/category-gallery'
 import { PostProductionMenu } from '../_components/post-production-menu'
 
-interface PageProps {
-  params: {
-    category: string
-  }
-}
-
-export default async function CategoryPage({ params }: PageProps) {
+export default async function CategoryPage(params: {
+  params: Promise<{ category: string }>
+}) {
   console.log('URL params category:', params.category)
   
   const payload = await getPayload({ config })

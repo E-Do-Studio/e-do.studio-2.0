@@ -5,24 +5,21 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { cloudinaryStorage } from 'payload-cloudinary'
-import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
+import { s3Storage } from '@payloadcms/storage-s3'
 
 import { Users } from './collections/Users'
 import { Brands } from './collections/Brands'
 import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
-import { Videos } from './collections/Videos'
 import { PostProduction } from './collections/Post-Production'
-import sharp from 'sharp'
+// import sharp from 'sharp'
 
 const serverURL =
   process.env.NODE_ENV === 'development'
     ? process.env.NEXT_PUBLIC_SERVER_URL
     : process.env.PAYLOAD_PUBLIC_SERVER_URL
 
-console.log('environnement', process.env.NODE_ENV)
 
 export default buildConfig({
   debug: true,
@@ -33,7 +30,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Assets, Subcategories, Videos, PostProduction],
+  collections: [Users, Brands, Categories, Assets, Subcategories, PostProduction],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -48,28 +45,20 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  sharp: sharp,
+  // sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
-    cloudinaryStorage({
-      config: {
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-        api_key: process.env.CLOUDINARY_API_KEY!,
-        api_secret: process.env.CLOUDINARY_API_SECRET!,
-      },
+    s3Storage({
       collections: {
         assets: true,
       },
-      folder: 'payload-media',
-      enabled: true,
-    }),
-    uploadthingStorage({
-      collections: {
-        videos: true,
-      },
-      options: {
-        token: process.env.UPLOADTHING_TOKEN,
-        acl: 'public-read',
+      bucket: process.env.S3_BUCKET!,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+        },
+        region: process.env.S3_REGION!,
       },
     }),
   ],

@@ -2,6 +2,20 @@ import { CollectionConfig } from 'payload';
 
 export const PostProduction: CollectionConfig = {
   slug: 'post-production',
+  auth: false,
+  access: {
+    read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
+  },
+  labels: {
+    singular: 'Post-Production',
+    plural: 'Post-Production',
+  },
+  admin: {
+    group: 'Post-Production',
+  },
   fields: [
     {
       name: 'category',

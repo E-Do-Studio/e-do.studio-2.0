@@ -9,7 +9,6 @@ export const Categories: CollectionConfig = {
       fr: 'Galerie',
       en: 'Gallery',
     },
-    description: 'Categories for the gallery',
   },
   access: {
     read: () => true,
@@ -46,23 +45,6 @@ export const Categories: CollectionConfig = {
       label: 'Images',
       relationTo: 'assets',
       hasMany: true,
-      filterOptions: {
-        mimeType: {
-          contains: ['image/'],
-        },
-      },
-    },
-    {
-      name: 'videos',
-      type: 'upload',
-      label: 'Videos',
-      relationTo: 'videos',
-      hasMany: true,
-      filterOptions: {
-        mimeType: {
-          contains: ['video/'],
-        },
-      },
     },
     {
       name: 'links',

@@ -10,8 +10,9 @@ export default async function PostProduction() {
 
   const postProduction = await payload.find({
     collection: 'post-production',
-  })
 
+  })
+  
   return (
     <main className='container mx-auto'>
       <LandingSection title="Post Production">
