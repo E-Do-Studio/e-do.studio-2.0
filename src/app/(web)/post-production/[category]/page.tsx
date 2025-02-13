@@ -7,6 +7,19 @@ import { notFound } from 'next/navigation'
 import { CategoryGallery } from './_components/category-gallery'
 import { PostProductionMenu } from '../_components/post-production-menu'
 
+// Define the shape of your Payload data
+export interface PostProductionDocument {
+  id: string | number
+  category: string
+  assets: Array<{
+    url: string
+    alt: string
+    description?: string
+  }>
+  description?: string
+  price?: string | number
+}
+
 export default async function CategoryPage(params: {
   params: Promise<{ category: string }>
 }) {
@@ -19,7 +32,12 @@ export default async function CategoryPage(params: {
     collection: 'post-production',
   })
 
-  // Créer un mapping inverse pour retrouver la catégorie originale
+  // Transform the payload data to match the menu item type and ensure id is a string
+  const menuItems = allCategories.docs.map(doc => ({
+    id: String((doc as PostProductionDocument).id),
+    category: (doc as PostProductionDocument).category
+  }))
+
   const categoryMapping: { [key: string]: string } = {
     'pique': 'Pique',
     'on-model': 'On Model',
@@ -50,11 +68,12 @@ export default async function CategoryPage(params: {
     notFound()
   }
 
-  const item = postProduction.docs[0]
+  const item = postProduction.docs[0] as PostProductionDocument
+
   return (
     <main className="container mx-auto">
       <LandingSection title="Post Production">
-        <PostProductionMenu items={allCategories.docs} />
+        <PostProductionMenu items={menuItems} />
         <CategoryGallery item={item} />
       </LandingSection>
     </main>

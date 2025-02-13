@@ -3,7 +3,7 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { LandingSection } from '@/components/layout/landing-section'
-import { PostProductionGrid } from './_components/post-production-grid'
+import { PostProductionGrid, PostProductionItem } from './_components/post-production-grid'
 
 export default async function PostProduction() {
   const payload = await getPayload({ config })
@@ -16,7 +16,7 @@ export default async function PostProduction() {
   return (
     <main className='container mx-auto'>
       <LandingSection title="Post Production">
-        <PostProductionGrid items={postProduction.docs} />
+        <PostProductionGrid items={postProduction.docs as PostProductionItem[]} />
       </LandingSection>
     </main>
   )

@@ -9,7 +9,7 @@ interface PostProductionMenuItem {
   category: string
 }
 
-interface PostProductionMenuProps {
+export interface PostProductionMenuProps {
   items: PostProductionMenuItem[]
 }
 

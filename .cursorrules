@@ -3,6 +3,13 @@ You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, 
 - Import using alias @/
 - PNPM as package manager
 - Global States with Zustand
+- Use Next.js App Router
+- Use Next.js Server Actions
+- Use Next.js Metadata
+
+Payload CMS
+
+- Use Payload CMS client to fetch data
 
 Code Style and Structure
 

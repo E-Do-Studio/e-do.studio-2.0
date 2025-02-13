@@ -51,6 +51,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         assets: true,
+
       },
       bucket: process.env.S3_BUCKET!,
       config: {

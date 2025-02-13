@@ -3,14 +3,18 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-interface PostProductionItem {
+export interface PostProductionItem {
   id: string
   category: string
   main_image: {
     url: string
     alt: string
   }
-  assets: any[]
+  assets: {
+    url: string
+    alt: string
+    description?: string
+  }[]
 }
 
 interface PostProductionGridProps {
@@ -44,12 +48,12 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
             key={item.id}
             onClick={() => handleCategoryClick(item.category)}
             className={`relative cursor-pointer group ${item.category === 'On Model'
-                ? 'col-span-2 h-[300px] order-2'
-                : item.category === 'Ghost'
+              ? 'col-span-2 h-[300px] order-2'
+              : item.category === 'Ghost'
+                ? 'h-[150px] order-1'
+                : item.category === 'Beauty'
                   ? 'h-[150px] order-1'
-                  : item.category === 'Beauty'
-                    ? 'h-[150px] order-1'
-                    : 'h-[200px] order-3'
+                  : 'h-[200px] order-3'
               }`}
           >
             <div className="relative w-full h-full overflow-hidden bg-white shadow-md rounded-lg">
