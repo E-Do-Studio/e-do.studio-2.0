@@ -1,7 +1,7 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 import { ContactFormValues } from '@/validations/contact-form-schema'
-import { ContactTemplate } from '@/emails/contact'
+import { ContactTemplate } from '@/emails/template-contact'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -32,13 +32,7 @@ ${message}
       from: 'E-Do Studio <contact@e-do.studio>',
       to: [email],
       subject: 'Nous avons bien reçu votre message',
-      html: `
-        <h1>Merci pour votre message</h1>
-        <p>Bonjour ${firstName},</p>
-        <p>Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.</p>
-        <p>Cordialement,</p>
-        <p>L'équipe E-DO Studio</p>
-      `
+      html: ContactTemplate({ firstName, lastName, email, society, website, message })
     })
 
     // Attendre que les deux emails soient envoyés

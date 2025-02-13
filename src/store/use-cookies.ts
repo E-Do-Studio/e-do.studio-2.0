@@ -6,7 +6,7 @@ interface CookieStore {
   setCookieConsent: (value: boolean) => void
 }
 
-export const useStore = create<CookieStore>()(
+export const useCookieStore = create<CookieStore>()(
   persist(
     (set) => ({
       cookieConsent: null,

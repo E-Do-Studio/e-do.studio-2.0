@@ -4,27 +4,23 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { useStore } from "@/lib/store";
+import { useCookieStore } from "@/store/use-cookies";
 
 export function CookieBanner() {
   const { t } = useTranslation("cookies");
   const [mounted, setMounted] = useState(false);
-  const { cookieConsent, setCookieConsent } = useStore();
+  const { cookieConsent, setCookieConsent } = useCookieStore();
 
   useEffect(() => {
     setMounted(true);
-    // Temporary debug log
-    console.log('Banner mounted, consent:', cookieConsent, 'mounted:', mounted);
   }, []);
 
   // Temporary debug log
   if (!mounted) {
-    console.log('Not mounted yet');
     return null;
   }
 
   if (cookieConsent !== null) {
-    console.log('Consent already set to:', cookieConsent);
     return null;
   }
 

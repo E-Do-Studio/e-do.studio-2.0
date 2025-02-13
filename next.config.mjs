@@ -41,6 +41,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'api.cappasity.com',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
     domains: ['localhost', '127.0.0.1', 'e-do.studio'],
   },

@@ -4,11 +4,11 @@ import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { Metadata } from 'next'
-import { I18nProvider } from '@/components/providers/i18n-provider'
+import { I18nProvider } from '@/providers/i18n-provider'
 import { headers } from 'next/headers'
 import { NewsletterPopup } from '@/components/layout/newsletter-popup'
 import { CookieBanner } from '@/components/layout/cookie-banner'
-import { AnalyticsProvider } from '@/components/providers/analytics-provider'
+import { AnalyticsProvider } from '@/providers/analytics-provider'
 import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {

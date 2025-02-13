@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { GoogleTagManager } from '@next/third-parties/google'
 import ReactGA from 'react-ga4'
 import ReactPixel from 'react-facebook-pixel'
-import { useStore } from '@/lib/store'
+import { useCookieStore } from '@/store/use-cookies'
 
 const GOOGLE_ANALYTICS_ID = 'UA-188295266-1'
 const GTM_ID = 'GTM-NRW8789'
@@ -12,7 +12,7 @@ const FB_PIXEL_ID = '954077195374591'
 const LINKEDIN_ID = '3009260'
 
 export function AnalyticsProvider() {
-  const { cookieConsent } = useStore()
+  const { cookieConsent } = useCookieStore()
 
   useEffect(() => {
     // Log l'état initial
@@ -24,7 +24,6 @@ export function AnalyticsProvider() {
       return
     }
 
-    console.log('Initializing analytics...')
 
     try {
       // Google Analytics 4
