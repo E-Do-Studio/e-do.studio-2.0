@@ -11,8 +11,14 @@ import { CookieBanner } from '@/components/layout/cookie-banner'
 import { AnalyticsProvider } from '@/providers/analytics-provider'
 import { Toaster } from 'sonner'
 
+// Ajouter cette constante pour le nom du site
+const SITE_NAME = 'E-Do Studio'
+
 export const metadata: Metadata = {
-  title: 'E-Do Studio - Découvrez nos services de packshot automatisé',
+  title: {
+    template: `${SITE_NAME} - %s`,
+    default: `${SITE_NAME} - Découvrez nos services de packshot automatisé`,
+  },
   description: 'E-Do Studio est une agence de packshot automatisé. Nous vous proposons des services de packshot automatisé pour vos produits.',
   robots: {
     index: true,

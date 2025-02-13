@@ -14,10 +14,8 @@ export default async function PostProduction() {
   })
 
   return (
-    <main className='container mx-auto'>
-      <LandingSection title="Post Production">
-        <PostProductionGrid items={postProduction.docs as PostProductionItem[]} />
-      </LandingSection>
-    </main>
+    <LandingSection title="Post Production">
+      <PostProductionGrid items={postProduction.docs as PostProductionItem[]} />
+    </LandingSection>
   )
 }

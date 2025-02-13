@@ -19,8 +19,8 @@ function TabButton({ active, onClick, children }: TabButtonProps) {
       onClick={onClick}
       className={cn(
         "px-6 py-3 rounded-md transition-colors",
-        active 
-          ? "bg-primary text-primary-foreground" 
+        active
+          ? "bg-primary text-primary-foreground"
           : "bg-muted hover:bg-muted/80"
       )}
     >
@@ -53,7 +53,7 @@ export default function LegalPage() {
 
   const renderContent = () => {
     const pdfUrl = getPdfUrl(activeTab);
-    
+
     return (
       <div className="flex justify-center">
         <div className="w-full max-w-4xl h-[600px] md:h-[800px] relative bg-white rounded-lg overflow-hidden shadow-lg">
