@@ -21,8 +21,17 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
   const router = useRouter()
 
   const handleCategoryClick = (category: string) => {
-    const normalizedCategory = category.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    const urlCategory = normalizedCategory.toLowerCase().replace(' ', '-')
+    // Créer un mapping spécifique pour les catégories avec caractères spéciaux
+    const categoryMapping: { [key: string]: string } = {
+      'Pique': 'pique',
+      'On Model': 'on-model',
+      // Ajouter d'autres mappings si nécessaire
+    }
+
+    console.log('Original category:', category)
+    const urlCategory = categoryMapping[category] || category.toLowerCase().replace(' ', '-')
+    console.log('URL category:', urlCategory)
+
     router.push(`/post-production/${urlCategory}`)
   }
 
@@ -61,7 +70,7 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
             'On Model': 'absolute left-[26%] top-[5%] w-[22%] h-[84%]',
             'Beauty': 'absolute right-[26%] top-[5%] w-[22%] h-[40%]',
             'Flat': 'absolute right-[0%] top-[27%] w-[22%] h-[38%]',
-            'Piqué': 'absolute right-[26%] top-[47%] w-[22%] h-[42%]',
+            'Pique': 'absolute right-[26%] top-[47%] w-[22%] h-[42%]',
             'Access': 'absolute left-[0%] top-[5%] w-[22%] h-[50%]',
             'Ghost': 'absolute left-[0%] top-[57%] w-[22%] h-[32%]',
           }[item.category] || ''

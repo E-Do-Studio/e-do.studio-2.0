@@ -14,6 +14,7 @@ interface CategoryGalleryProps {
     category: string
     assets: Asset[]
     description?: string
+    price?: number | string
   }
 }
 
@@ -21,39 +22,49 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<Asset | null>(null)
 
   return (
-    <div className="space-y-8">
-      {/* Description générale si elle existe */}
-      {item.description && (
-        <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-          {item.description}
-        </p>
-      )}
+    <div className="flex flex-col">
+      {/* En-tête avec description et prix */}
+      <div className="max-w-3xl mx-auto space-y-2 mb-4 md:mb-6">
+        {item.description && (
+          <p className="text-lg text-gray-700 text-center">
+            {item.description}
+          </p>
+        )}
+        {item.price && (
+          <p className="text-xl font-semibold text-center">
+            Tarif: {typeof item.price === 'number' ? `${item.price}€` : item.price}
+          </p>
+        )}
+      </div>
 
-      {/* Grille d'images en ligne */}
-      <div className="flex flex-nowrap gap-4 overflow-x-auto md:overflow-x-hidden md:grid md:grid-cols-5 pb-4">
-        {item.assets.map((asset, index) => (
-          <div
-            key={index}
-            className="group cursor-pointer w-[280px] md:w-auto flex-shrink-0"
-            onClick={() => setSelectedImage(asset)}
-          >
-            <div className="relative aspect-square overflow-hidden rounded-lg">
-              <Image
-                src={asset.url}
-                alt={asset.alt}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              {asset.description && (
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p className="text-white text-sm">
-                    {asset.description}
-                  </p>
-                </div>
-              )}
+      {/* Grille d'images */}
+      <div className="px-4 md:px-0 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
+          {item.assets.map((asset, index) => (
+            <div
+              key={index}
+              className="group cursor-pointer"
+              onClick={() => setSelectedImage(asset)}
+            >
+              <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[250px] overflow-hidden">
+                <Image
+                  src={asset.url}
+                  alt={asset.alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  className="object-contain bg-white"
+                />
+                {asset.description && (
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white text-sm">
+                      {asset.description}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Modal pour l'image sélectionnée */}
