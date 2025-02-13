@@ -22,7 +22,6 @@ export default async function CategoryPage(params: {
     })
     .join(' ')
 
-  console.log('Searching for category:', formattedCategory) // Pour le debug
 
   // Récupérer la catégorie spécifique
   const postProduction = await payload.find({
@@ -34,7 +33,6 @@ export default async function CategoryPage(params: {
     }
   })
 
-  console.log('Found items:', postProduction.docs) // Pour le debug
 
   if (!postProduction.docs.length) {
     notFound()

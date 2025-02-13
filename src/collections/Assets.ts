@@ -108,14 +108,5 @@ export const Assets: CollectionConfig = {
         description: 'Type of media asset',
       },
     },
-    {
-      name: 'duration',
-      type: 'number',
-      required: false,
-      admin: {
-        description: 'Duration in seconds (for videos only)',
-        condition: (data) => data.mediaType === 'video',
-      },
-    },
   ],
 }

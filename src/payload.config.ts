@@ -5,7 +5,6 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import { s3Storage } from '@payloadcms/storage-s3'
 
 import { Users } from './collections/Users'
@@ -13,7 +12,6 @@ import { Brands } from './collections/Brands'
 import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
-import { Videos } from './collections/Videos'
 import { PostProduction } from './collections/Post-Production'
 // import sharp from 'sharp'
 
@@ -32,9 +30,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Assets, Subcategories, Videos,
-    // PostProduction
-  ],
+  collections: [Users, Brands, Categories, Assets, Subcategories, PostProduction],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
@@ -63,15 +59,6 @@ export default buildConfig({
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
         },
         region: process.env.S3_REGION!,
-      },
-    }),
-    uploadthingStorage({
-      collections: {
-        videos: true,
-      },
-      options: {
-        token: process.env.UPLOADTHING_TOKEN,
-        acl: 'public-read',
       },
     }),
   ],

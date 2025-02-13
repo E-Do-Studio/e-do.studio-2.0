@@ -89,27 +89,6 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
       })
     : []
 
-  useEffect(() => {
-    console.log({
-      activeTab,
-      activeMachineSlug: activeMachine?.slug,
-      matchingCategories: categories.docs
-        .filter(cat => {
-          const slugs = Array.isArray(activeMachine?.slug)
-            ? activeMachine?.slug
-            : [activeMachine?.slug]
-          return slugs?.includes(cat.slug)
-        })
-        .map(cat => ({
-          name: cat.name,
-          slug: cat.slug,
-          assetsCount: cat.assets?.length,
-          firstAssetUrl: cat.assets?.[0]?.sizes?.tablet?.url || cat.assets?.[0]?.url
-        })),
-      carouselImages
-    })
-  }, [activeTab, activeMachine, categories.docs, carouselImages])
-
   function formatDescription(description: string) {
     return description.split('\n').map((text, i) => (
       <span key={i}>

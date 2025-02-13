@@ -121,26 +121,17 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
           ...(categoryData.assets || []),
           ...(categoryData.videos || [])
         ]
-        console.log('All Media:', allMedia)
         return allMedia
       }
 
       // Filtrer les assets et les vidéos par subcategory
       const filteredAssets = categoryData.assets?.filter((asset: GalleryImage) => {
-        console.log('Asset subcategory:', asset.subcategory?.slug, 'Looking for:', subcategory)
         return asset.subcategory?.slug === subcategory
       }) || []
 
       const filteredVideos = categoryData.videos?.filter((video: GalleryVideo) => {
-        console.log('Video subcategory:', video.subCategory?.slug, 'Looking for:', subcategory)
         return video.subCategory?.slug === subcategory
       }) || []
-
-      // Log des résultats filtrés
-      console.log('Filtered Results:', {
-        assets: filteredAssets,
-        videos: filteredVideos
-      })
 
       // Combiner les assets et les vidéos filtrés
       return [...filteredAssets, ...filteredVideos]
