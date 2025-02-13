@@ -44,6 +44,11 @@ export function Header() {
   const scrolled = useScroll()
   const { scrollDirection } = useScrollDirection()
 
+  const mobileMenuTranslations = {
+    bookSession: t('header.cta.book'),
+    address: `${t('footer.address.building')}, ${t('footer.address.city')}`
+  }
+
   return (
     <>
       <header
@@ -154,7 +159,14 @@ export function Header() {
         </div>
       </header>
 
-      <AnimatePresence>{isOpen && <MobileMenu navigation={navigation} />}</AnimatePresence>
+      <AnimatePresence>
+        {isOpen && (
+          <MobileMenu
+            navigation={navigation}
+            translations={mobileMenuTranslations}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }
