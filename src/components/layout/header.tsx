@@ -117,7 +117,7 @@ export function Header() {
           <div className={cn(
             "flex md:hidden items-center gap-4",
             scrollDirection === 'down' && scrolled
-              ? 'opacity-0 translate-y-2'
+              ? 'opacity-0 translate-y-2 absolute right-0'
               : 'opacity-100 translate-y-0',
             'transition-all duration-300 ease-in-out'
           )}>
