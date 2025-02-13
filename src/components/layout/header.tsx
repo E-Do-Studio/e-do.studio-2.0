@@ -24,6 +24,7 @@ type HeaderProps = {
 
 const navigation = [
   { label: 'phone', href: 'tel:+33144041149' },
+  { label: 'post-production', href: '/post-production' },
   { label: 'gallery', href: 'galerie?category=on_model' },
   { label: 'services', href: '#services' },
   { label: 'pricing', href: '#pricing' },
@@ -101,7 +102,7 @@ export function Header() {
               asChild
               className={cn(
                 'transition-all duration-300 ease-in-out ml-4',
-                scrolled ? 'h-8 text-sm w-[150px]' : 'h-10 w-[180px]'
+                scrolled ? 'h-6 text-xs w-[130px]' : 'h-8 text-sm w-[150px]'
               )}
             >
               <Link href="/reservation">{t('header.cta.book')}</Link>
@@ -186,7 +187,11 @@ function LanguageSwitcher() {
 
 function Navigation({ children, className = '' }: HeaderProps & { className?: string }) {
   return (
-    <nav className={cn('flex-1 flex items-center justify-end gap-6', className)}>
+    <nav className={cn(
+      'flex-1 flex items-center justify-end',
+      'gap-4 [@media(max-width:999px)]:gap-3.5',
+      className
+    )}>
       {children}
     </nav>
   )
@@ -196,6 +201,7 @@ function NavigationItem({ children, href }: NavigationItemProps) {
   const router = useRouter()
   const pathname = usePathname()
   const isPhoneLink = href.startsWith('tel:')
+  const scrolled = useScroll()
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith('#')) {
@@ -223,8 +229,11 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     <Link
       href={href}
       onClick={handleClick}
-      className={`text-sm hover:text-neutral-500 hover:underline transition-colors ${isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
-        }`}
+      className={cn(
+        'hover:text-neutral-500 hover:underline transition-colors',
+        scrolled ? 'text-[13px]' : 'text-sm',
+        isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
+      )}
     >
       {children}
     </Link>
