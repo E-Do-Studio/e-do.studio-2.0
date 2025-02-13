@@ -61,6 +61,7 @@ export function ImageCard({ asset }: ImageCardProps) {
           )}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           onLoadingComplete={() => setIsLoading(false)}
+          quality={80}
         />
         {!isLoading && (
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">

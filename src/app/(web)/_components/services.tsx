@@ -41,7 +41,8 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
                         alt={imagesDescription[1]}
                         width={800}
                         height={600}
-                        quality={100}
+                        quality={80}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className={`w-full lg:w-[200px] object-contain transition-all duration-300 lg:flex-shrink-0
                             ${imagesDescription[1].includes('cyclorama')
                                 ? 'grayscale contrast-110 hover:grayscale-0 hover:contrast-100'

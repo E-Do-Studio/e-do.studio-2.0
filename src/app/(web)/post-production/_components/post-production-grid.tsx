@@ -97,6 +97,8 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
                   src={item.main_image.url}
                   alt={item.main_image.alt}
                   fill
+                  quality={80}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform group-hover:scale-105"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4">

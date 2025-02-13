@@ -79,35 +79,35 @@ export const Introduction = () => {
     // V2 HAUT DE PAGE 
 
     return (
-            <div className="relative h-screen w-full">
-                <Image
-                    src="/studio.webp"
-                    alt="Logo"
-                    width={1920}
-                    height={1080}
-                    quality={95}
-                    priority
-                    className="w-full h-full object-cover"
-                    sizes="100vw"
-                />
+        <div className="relative h-screen w-full">
+            <Image
+                src="/studio.webp"
+                alt="Logo"
+                width={1920}
+                height={1080}
+                quality={80}
+                priority
+                className="w-full h-full object-cover"
+                sizes="100vw"
+            />
 
-                {/* Overlay gradient pour améliorer la lisibilité du texte */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+            {/* Overlay gradient pour améliorer la lisibilité du texte */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
 
-                {/* Contenu texte */}
-                <div className="absolute inset-0 container flex flex-col justify-center">
-                    <span className="text-xl md:text-2xl text-primary mb-4 font-medium">
-                        {t('introduction.brand')}
-                    </span>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white max-w-3xl">
-                        <span className="text-primary">{t('introduction.title')}</span>
-                        <br />
-                        {t('introduction.subtitle')}
-                    </h1>
-                    <p className="text-lg md:text-xl text-white/80 mt-6 max-w-2xl">
-                        {t('introduction.description')}
-                    </p>
-                </div>
+            {/* Contenu texte */}
+            <div className="absolute inset-0 container flex flex-col justify-center">
+                <span className="text-xl md:text-2xl text-primary mb-4 font-medium">
+                    {t('introduction.brand')}
+                </span>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white max-w-3xl">
+                    <span className="text-primary">{t('introduction.title')}</span>
+                    <br />
+                    {t('introduction.subtitle')}
+                </h1>
+                <p className="text-lg md:text-xl text-white/80 mt-6 max-w-2xl">
+                    {t('introduction.description')}
+                </p>
             </div>
-        )
+        </div>
+    )
 }

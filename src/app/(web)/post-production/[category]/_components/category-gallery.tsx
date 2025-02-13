@@ -53,6 +53,8 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                   className="object-contain bg-white"
+                  quality={80}
+                  priority={index === 0}
                 />
                 {asset.description && (
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">

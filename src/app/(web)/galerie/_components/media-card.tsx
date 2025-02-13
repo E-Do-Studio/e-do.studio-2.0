@@ -75,6 +75,7 @@ export function MediaCard({ item }: MediaCardProps) {
             alt={item.alt || item.filename}
             width={item.width || 800}
             height={item.height || 1200}
+            quality={80}
             className={cn(
               "w-full h-auto object-cover transition-all duration-300",
               "group-hover:scale-105",

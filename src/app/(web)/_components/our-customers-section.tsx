@@ -80,7 +80,8 @@ export function OurCustomersSection() {
                                         alt={customer.name}
                                         width={200}
                                         height={80}
-                                        quality={95}
+                                        quality={80}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className="w-auto max-w-[200px] h-[80px] object-contain"
                                     />
                                 </div>

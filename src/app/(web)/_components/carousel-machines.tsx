@@ -68,7 +68,9 @@ export function CarouselMachines({ images, className, alt }: CarouselMachinesPro
                                                 alt={image.alt || ''}
                                                 width={800}
                                                 height={600}
-                                                className="rounded-lg w-full h-full object-contain"
+                                                className="w-full h-full object-contain"
+                                                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                                quality={80}
                                                 priority={index === 0}
                                             />
                                         </div>

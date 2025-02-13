@@ -6,6 +6,7 @@ import { LandingSection } from '@/components/layout/landing-section'
 import { Services } from '@/app/(web)/_components/services'
 import { Button } from '@/components/ui/button'
 import { MoveRight } from 'lucide-react';
+import { Separator } from '@/components/ui/separator'
 
 
 export const ServiceSection = () => {
@@ -81,7 +82,7 @@ export const ServiceSection = () => {
                     images={machineImages.cyclorama}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-eclipse.webp', 'Services machine eclipse']}
@@ -92,7 +93,7 @@ export const ServiceSection = () => {
                     images={machineImages.eclipse}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-live.webp', 'Services machine live']}
@@ -103,7 +104,7 @@ export const ServiceSection = () => {
                     images={machineImages.live}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-vertical.webp', 'Services machine verticale']}
@@ -114,7 +115,7 @@ export const ServiceSection = () => {
                     images={machineImages.vertical}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-horizontal.webp', 'Services machine horizontale']}
