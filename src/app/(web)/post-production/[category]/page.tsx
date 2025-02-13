@@ -5,6 +5,7 @@ import config from '@/payload.config'
 import { LandingSection } from '@/components/layout/landing-section'
 import { notFound } from 'next/navigation'
 import { CategoryGallery } from './_components/category-gallery'
+import { PostProductionMenu } from '../_components/post-production-menu'
 
 interface PageProps {
   params: {
@@ -13,21 +14,30 @@ interface PageProps {
 }
 
 export default async function CategoryPage({ params }: PageProps) {
+  console.log('URL params category:', params.category)
+  
   const payload = await getPayload({ config })
 
-  // Convertir le paramètre de l'URL en format approprié
-  const formattedCategory = params.category
-    .split('-')
-    .map(word => {
-      // Si c'est "pique", le convertir en "Piqué"
-      if (word.toLowerCase() === 'pique') return 'Piqué'
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-    })
-    .join(' ')
+  // Récupérer toutes les catégories pour le menu
+  const allCategories = await payload.find({
+    collection: 'post-production',
+  })
 
-  console.log('Searching for category:', formattedCategory) // Pour le debug
+  // Créer un mapping inverse pour retrouver la catégorie originale
+  const categoryMapping: { [key: string]: string } = {
+    'pique': 'Pique',
+    'on-model': 'On Model',
+    // Ajouter d'autres mappings si nécessaire
+  }
 
-  // Récupérer la catégorie spécifique
+  const formattedCategory = categoryMapping[params.category] || 
+    params.category
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ')
+
+  console.log('Formatted category:', formattedCategory)
+
   const postProduction = await payload.find({
     collection: 'post-production',
     where: {
@@ -37,17 +47,18 @@ export default async function CategoryPage({ params }: PageProps) {
     }
   })
 
-  console.log('Found items:', postProduction.docs) // Pour le debug
+  console.log('Found documents:', postProduction.docs)
 
   if (!postProduction.docs.length) {
+    console.log('No documents found for category:', formattedCategory)
     notFound()
   }
 
   const item = postProduction.docs[0]
-
   return (
     <main className="container mx-auto">
-      <LandingSection title={item.category}>
+      <LandingSection title="Post Production">
+        <PostProductionMenu items={allCategories.docs} />
         <CategoryGallery item={item} />
       </LandingSection>
     </main>
