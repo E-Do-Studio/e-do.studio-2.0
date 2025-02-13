@@ -12,7 +12,7 @@ export default async function PostProduction() {
     collection: 'post-production',
 
   })
-  
+
   return (
     <main className='container mx-auto'>
       <LandingSection title="Post Production">

@@ -10,11 +10,11 @@ import { PostProductionMenu } from '../_components/post-production-menu'
 export default async function CategoryPage(params: {
   params: Promise<{ category: string }>
 }) {
-  console.log('URL params category:', params.category)
-  
+  const { category } = await params.params
+
   const payload = await getPayload({ config })
 
-  // Récupérer toutes les catégories pour le menu
+  // Get all categories for menu
   const allCategories = await payload.find({
     collection: 'post-production',
   })
@@ -26,10 +26,10 @@ export default async function CategoryPage(params: {
     // Ajouter d'autres mappings si nécessaire
   }
 
-  const formattedCategory = categoryMapping[params.category] || 
-    params.category
+  const formattedCategory = categoryMapping[category] ||
+    category
       .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(' ')
 
   console.log('Formatted category:', formattedCategory)
