@@ -46,8 +46,8 @@
             "description": "Notre cyclorama de 30m² vous permet de mobiliser une équipe de production et de réaliser vos prises de photos et vidéos sur un fond blanc infini."
         },
         "postproduction": {
-            "name": "(POST PRODUCTION)",
-            "title": "Post production",
+            "name": "(Retouche)",
+            "title": "Post-production",
             "description": "En complément de nos services de prise de photos et vidéos sur nos machines, nous vous proposons des services de retouches suivant différents forfaits en fonction de vos besoins."
         }
     },

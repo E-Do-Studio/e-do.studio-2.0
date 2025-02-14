@@ -126,6 +126,17 @@ export const ServiceSection = () => {
                     images={machineImages.horizontal}
                 />
             </Link>
+            <Separator />
+            <Link href='/post-production'>
+                <Services
+                    imagesDescription={['/img/machine-horizontal.webp', 'Services post-production']}
+                    serviceName={t('services.postproduction.name')}
+                    title={t('services.postproduction.title')}
+                    description={t('services.postproduction.description')}
+                    number="06"
+                    images={machineImages.horizontal}
+                />
+            </Link>
         </LandingSection>
     )
 }
