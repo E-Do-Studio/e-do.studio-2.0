@@ -23,17 +23,17 @@
         "live": {
             "name": "(LIVE)",
             "title": "Shooting on model / Furniture",
-            "description": "This intelligent studio system of 8m2 allows you to realize your photos and videos of live models or scenographies in a few minutes. Saved camera and light presets."
+            "description": "This smart studio system of 8m2 allows you to shoot your photos and videos of live models or scenographies in a few minutes. Saved camera and light presets."
         },
         "horizontal": {
             "name": "(HORIZONTAL)",
             "title": "Flat packshots",
-            "description": "Horizontal guarantees you the possibility of styling and photographing your products flat with the automatic removal of the background."
+            "description": "Horizontal allows you to style and shoot your products flat with the automatic removal of the background."
         },
         "vertical": {
             "name": "(VERTICAL)",
             "title": "Ghost",
-            "description": "Give your product a 3D effect, choose the Ghost."
+            "description": "Choose ghost and give your products a 3D effect."
         },
         "eclipse": {
             "name": "(ECLIPSE)",
@@ -43,7 +43,7 @@
         "cyclorama": {
             "name": "(CYCLORAMA)",
             "title": "Free production",
-            "description": "The rental of our cyclorama is done on a quote only basis. To enable us to send you a quote, please contact us via the form provided for this purpose, being as precise as possible. Our team will respond to you as soon as possible.",
+            "description": "Our cyclorama rental is upon quotation only. To receive a quote, please contact us using the form below. Our team will get back to you as soon as possible.",
             "button": "Contact us"
         },
         "postproduction": {
@@ -73,7 +73,7 @@
     "contact": {
         "title": "Do you have any questions?",
         "subtitle": "Any specific needs?",
-        "description": "Do not hesitate to contact us by filling in the form on the right and we will answer you as soon as possible.",
+        "description": "Do not hesitate to contact us by filling in the form on the right. we will answer as soon as possible.",
         "form": {
             "placeholders": {
                 "lastName": "Last name*",
@@ -81,7 +81,7 @@
                 "society": "Company",
                 "email": "Email*",
                 "website": "Website",
-                "message": "You have an idea for a project, need a quote, make an appointment ? Write to us ;)"
+                "message": "An idea for a project, need a quote, make an appointment ? Write to us ;)"
             },
             "errors": {
                 "lastName": {
@@ -120,8 +120,8 @@
     },
     "introduction": {
         "brand": "E-Do Studio",
-        "title": "Let's create together",
-        "subtitle": "your digital universe",
+        "title": "Let's create your",
+        "subtitle": "digital universe together",
         "description": "Creative studio specialized in web development and custom digital content creation",
         "rotating": {
             "innovation": "Innovation and Creativity",

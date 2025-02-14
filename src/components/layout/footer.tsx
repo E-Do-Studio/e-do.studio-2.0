@@ -97,14 +97,14 @@ function SocialLinks({ className }: SocialLinksProps) {
   const { t, i18n } = useTranslation('layout');
   const socialLinks = [
     {
-      icon: <Facebook className="w-5 h-5" />,
-      href: "https://www.facebook.com/EdoStudioAgency/",
-      label: "Facebook"
-    },
-    {
       icon: <Instagram className="w-5 h-5" />,
       href: "https://www.instagram.com/edostudio/",
       label: "Instagram"
+    },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://www.facebook.com/EdoStudioAgency/",
+      label: "Facebook"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
@@ -140,7 +140,7 @@ function SocialLinks({ className }: SocialLinksProps) {
 
 export function Footer() {
   return (
-    <footer className="bg-background-footer mt-32">
+    <footer className="bg-black mt-32">
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 md:gap-8">
           <div className="lg:col-span-4">
