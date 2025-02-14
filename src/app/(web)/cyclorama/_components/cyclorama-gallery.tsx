@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 import { X } from 'lucide-react'
-
+import { Section } from '@/components/layout/section'
 const images = [
   {
     id: 1,
@@ -43,7 +43,7 @@ export function CycloramaGallery() {
   const { t } = useTranslation('cyclorama')
 
   return (
-    <section className="w-full">
+    <Section className="mt-0">
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Large Main Image */}
         <div className="relative aspect-[4/3] md:aspect-square">
@@ -126,6 +126,6 @@ export function CycloramaGallery() {
           </button>
         </div>
       )}
-    </section>
+    </Section>
   )
 } 

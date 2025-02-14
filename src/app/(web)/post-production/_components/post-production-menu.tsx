@@ -1,13 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
 import { useRouter, usePathname } from 'next/navigation'
-import { ChevronLeft } from 'lucide-react'
 import { Tabs } from '@/app/(web)/_components/tabs'
 
 interface PostProductionMenuItem {
   id: string
+  slug: string
   category: string
 }
 
@@ -19,14 +17,18 @@ export function PostProductionMenu({ items }: PostProductionMenuProps) {
   const router = useRouter()
   const pathname = usePathname()
 
-  const tabs = items.map(item => item.category)
+  // Filtrer les items pour exclure la catégorie avec le slug "360"
+  const filteredItems = items.filter(item => item.slug !== '360')
+
+  // Utiliser les items filtrés pour générer les tabs
+  const tabs = filteredItems.map(item => item.category)
 
   // Logique pour déterminer l'onglet actif
   const currentPath = pathname.split('/').pop()
   const activeTab = currentPath === 'post-production'
     ? 'Tous'
-    : items.find(item => {
-      const urlCategory = item.category.toLowerCase().replace(' ', '-')
+    : filteredItems.find(item => {
+      const urlCategory = item.slug
       return urlCategory === currentPath
     })?.category || 'Tous'
 
@@ -36,11 +38,7 @@ export function PostProductionMenu({ items }: PostProductionMenuProps) {
       return
     }
 
-    const categoryMapping: { [key: string]: string } = {
-      'Pique': 'pique',
-      'On Model': 'on-model',
-    }
-    const urlCategory = categoryMapping[category] || category.toLowerCase().replace(' ', '-')
+    const urlCategory = filteredItems.find(item => item.category === category)?.slug
     router.push(`/post-production/${urlCategory}`)
   }
 
