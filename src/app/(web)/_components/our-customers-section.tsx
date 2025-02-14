@@ -23,6 +23,10 @@ export function OurCustomersSection() {
     // IMG suctomers
     const customers: Customer[] = [
         {
+            img: '/img/logo-jean-paul-gauthier.png',
+            name: 'Jean Paul Gauthier'
+        },
+        {
             img: '/img/logo-vectoriel-the-kooples.jpg',
             name: 'The Kooples'
         },
@@ -55,10 +59,6 @@ export function OurCustomersSection() {
             name: 'Bompard'
         },
         {
-            img: '/img/logo-marine-serre.webp',
-            name: 'Marine Serre'
-        },
-        {
             img: '/img/logo-numero.webp',
             name: 'Numéro'
         },
@@ -69,10 +69,6 @@ export function OurCustomersSection() {
         {
             img: '/img/logo-rimowa.webp',
             name: 'Rimowa'
-        },
-        {
-            img: '/img/logo-roger-vivier.webp',
-            name: 'Roger Vivier'
         },
         {
             img: '/img/logo-tanneur.webp',
