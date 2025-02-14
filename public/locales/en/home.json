@@ -1,0 +1,135 @@
+{
+    "title": "Welcome to our site",
+    "description": "This is the homepage.",
+    "customers": {
+        "title": "Our customers"
+    },
+    "header": {
+        "navigation": {
+            "phone": "+33 1 44 04 11 49",
+            "post-production": "post-prod",
+            "gallery": "gallery",
+            "services": "services",
+            "pricing": "pricing",
+            "contact": "contact"
+        },
+        "cta": {
+            "book": "book a session"
+        }
+    },
+    "services": {
+        "title": "Our services",
+        "button": "Book a session",
+        "live": {
+            "name": "(LIVE)",
+            "title": "Shooting on model / Furniture",
+            "description": "This intelligent studio system of 8m2 allows you to realize your photos and videos of live models or scenographies in a few minutes. Saved camera and light presets."
+        },
+        "horizontal": {
+            "name": "(HORIZONTAL)",
+            "title": "Flat packshots",
+            "description": "Horizontal guarantees you the possibility of styling and photographing your products flat with the automatic removal of the background."
+        },
+        "vertical": {
+            "name": "(VERTICAL)",
+            "title": "Ghost",
+            "description": "Give your product a 3D effect, choose the Ghost."
+        },
+        "eclipse": {
+            "name": "(ECLIPSE)",
+            "title": "Accessories / Leather goods / Shoes / Sunglasses",
+            "description": "Designed for prop photography and video. Saved camera and light presets."
+        },
+        "cyclorama": {
+            "name": "(CYCLORAMA)",
+            "title": "Free production",
+            "description": "The rental of our cyclorama is done on a quote only basis. To enable us to send you a quote, please contact us via the form provided for this purpose, being as precise as possible. Our team will respond to you as soon as possible.",
+            "button": "Contact us"
+        },
+        "postproduction": {
+            "name": "(Retouching)",
+            "title": "Post-production",
+            "description": "In addition to our photo and video shooting services on our machines, we offer retouching services with different packages according to your needs."
+        }
+    },
+    "pricing": {
+        "title": "Choose the service.s that suit you",
+        "timing": {
+            "hour": "Hourly",
+            "half_day": "Half-day",
+            "day": "Full day"
+        },
+        "tax": "excl. VAT",
+        "description": {
+            "hour": "1 hour shooting\nSelf-service",
+            "half_day": "4 hours shooting\nSelf-service",
+            "day": "8 hours shooting\nSelf-service"
+        },
+        "cyclorama": {
+            "description": "Our cyclorama rental is by quote only. To receive a quote, please contact us using the form below with as much detail as possible about your needs. Our team will get back to you as soon as possible.",
+            "button": "Contact us"
+        }
+    },
+    "contact": {
+        "title": "Do you have any questions?",
+        "subtitle": "Any specific needs?",
+        "description": "Do not hesitate to contact us by filling in the form on the right and we will answer you as soon as possible.",
+        "form": {
+            "placeholders": {
+                "lastName": "Last name*",
+                "firstName": "First name*",
+                "society": "Company",
+                "email": "Email*",
+                "website": "Website",
+                "message": "You have an idea for a project, need a quote, make an appointment ? Write to us ;)"
+            },
+            "errors": {
+                "lastName": {
+                    "min": "Last name must contain at least 2 characters",
+                    "max": "Last name cannot exceed 50 characters"
+                },
+                "firstName": {
+                    "min": "First name must contain at least 2 characters",
+                    "max": "First name cannot exceed 50 characters"
+                },
+                "society": {
+                    "max": "Company name cannot exceed 100 characters"
+                },
+                "email": {
+                    "invalid": "Invalid email address",
+                    "min": "Email must contain at least 5 characters",
+                    "max": "Email cannot exceed 100 characters"
+                },
+                "website": {
+                    "max": "Website cannot exceed 200 characters"
+                },
+                "message": {
+                    "min": "Message must contain at least 10 characters",
+                    "max": "Message cannot exceed 1000 characters"
+                }
+            },
+            "submit": "Send",
+            "submitting": "Sending...",
+            "success": "Message sent successfully!",
+            "error": "Error sending message",
+            "errorDefault": "An error occurred"
+        }
+    },
+    "location": {
+        "title": "Where to find us ?"
+    },
+    "introduction": {
+        "brand": "E-Do Studio",
+        "title": "Let's create together",
+        "subtitle": "your digital universe",
+        "description": "Creative studio specialized in web development and custom digital content creation",
+        "rotating": {
+            "innovation": "Innovation and Creativity",
+            "excellence": "Excellence and Quality",
+            "expertise": "Expertise and Passion"
+        }
+    },
+    "clock": {
+        "title": "By the hour"
+    }
+}

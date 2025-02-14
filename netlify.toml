@@ -1,0 +1,43 @@
+[[headers]]
+for = "/api/*"
+
+  [headers.values]
+  Cache-Control = "no-cache, no-store, must-revalidate"
+  Pragma = "no-cache"
+  Expires = "0"
+
+[[redirects]]
+from = "/_next/image"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
+
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
+
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+[context]
+
+  [context.production]
+
+  [context.main]
+
+
+[dev]
+  targetPort = 3000
+  port = 8888
+
+
+[functions]
+  external_node_modules = ["sharp"]
+  included_files = ["node_modules/@img/**/*", "node_modules/sharp/**/*"]
