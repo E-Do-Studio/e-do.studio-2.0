@@ -6,8 +6,7 @@ import { LandingSection } from '@/components/layout/landing-section'
 import { notFound } from 'next/navigation'
 import { CategoryGallery } from './_components/category-gallery'
 import { PostProductionMenu } from '../_components/post-production-menu'
-
-// Define the shape of your Payload data
+import { getLanguage } from '@/lib/get-language'
 interface Subcategory {
   id: string
   name: string
@@ -17,6 +16,7 @@ interface Subcategory {
 export interface PostProductionDocument {
   id: string | number
   category: string
+  slug: string
   assets: Array<{
     url: string
     alt: string
@@ -36,38 +36,30 @@ export default async function CategoryPage(params: {
   const { category } = await params.params
 
   const payload = await getPayload({ config })
+  const language = await getLanguage()
 
   // Get all categories for menu
   const allCategories = await payload.find({
     collection: 'post-production',
+    locale: language
   })
 
-  // Transform the payload data to match the menu item type and ensure id is a string
+  // Transform en utilisant le slug
   const menuItems = allCategories.docs.map(doc => ({
     id: String((doc as PostProductionDocument).id),
-    category: (doc as PostProductionDocument).category
+    category: (doc as PostProductionDocument).category,
+    slug: (doc as PostProductionDocument).slug
   }))
 
-  const categoryMapping: { [key: string]: string } = {
-    'pique': 'Pique',
-    'on-model': 'On Model',
-    '360': '360°',
-    // Add other mappings if needed
-  }
-
-  const formattedCategory = categoryMapping[category] ||
-    category
-      .split('-')
-      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ')
-
+  // Recherche par slug
   const postProduction = await payload.find({
     collection: 'post-production',
     where: {
-      category: {
-        equals: formattedCategory
+      slug: {
+        equals: category // Utiliser directement le slug de l'URL
       }
-    }
+    },
+    locale: language
   })
 
   if (!postProduction.docs.length) {
@@ -83,6 +75,5 @@ export default async function CategoryPage(params: {
         <CategoryGallery item={item} />
       </LandingSection>
     </div>
-
   )
 } 

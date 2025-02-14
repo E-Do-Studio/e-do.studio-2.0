@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { PostProductionDocument } from '../page'
 import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from 'react-i18next'
 interface Asset {
   url: string
   alt: string
@@ -17,16 +18,16 @@ interface CategoryGalleryProps {
 
 export function CategoryGallery({ item }: CategoryGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<Asset | null>(null)
-
+  const { t } = useTranslation("post-prod")
   return (
     <div className="space-y-8">
       <div className='flex flex-col md:flex-row justify-between gap-8 md:gap-40'>
-        {item.description && (
+        {/* {item.description && (
           <div className="prose max-w-none flex-1">
             <p>{item.description}</p>
           </div>
-        )}
-        {item.subcategories && item.subcategories.length > 0 && (
+        )} */}
+        {item.subcategories && item.subcategories.length > 0 ? (
           <div className="space-y-4 flex-1">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {item.subcategories.map((subcategory) => (
@@ -41,6 +42,10 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
                 </div>
               ))}
             </div>
+          </div>
+        ) : (
+          <div className="flex-1">
+            <p>{t('post-production.on_quotation')}</p>
           </div>
         )}
       </div>

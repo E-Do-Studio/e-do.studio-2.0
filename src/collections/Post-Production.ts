@@ -18,6 +18,10 @@ export const PostProduction: CollectionConfig = {
   },
   fields: [
     {
+      name: 'slug',
+      type: 'text',
+    },
+    {
       name: 'category',
       type: 'text',
       required: true,
