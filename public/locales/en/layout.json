@@ -6,7 +6,8 @@
       "gallery": "gallery",
       "services": "services",
       "pricing": "pricing",
-      "contact": "contact"
+      "contact": "contact",
+      "cyclorama": "cyclorama"
     },
     "cta": {
       "book": "book a session"
@@ -54,4 +55,4 @@
   },
   "bookSession": "book a session",
   "address": "69 Boulevard Victor Hugo, 93400 Saint-Ouen"
-} 
+}

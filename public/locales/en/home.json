@@ -11,7 +11,8 @@
             "gallery": "gallery",
             "services": "services",
             "pricing": "pricing",
-            "contact": "contact"
+            "contact": "contact",
+            "cyclorama": "cyclorama"
         },
         "cta": {
             "book": "book a session"

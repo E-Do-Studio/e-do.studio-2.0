@@ -22,7 +22,7 @@ type HeaderProps = {
 }
 
 const navigation = [
-  { label: 'phone', href: 'tel:+33144041149' },
+  { label: 'cyclorama', href: '/cyclorama' },
   { label: 'post-production', href: '/post-production' },
   { label: 'gallery', href: '/galerie?category=on_model' },
   { label: 'services', href: '#services' },
@@ -103,6 +103,17 @@ export function Header() {
             ))}
             <LanguageSwitcher />
             <Button
+              size="icon"
+              variant="ghost"
+              className={cn(
+                'transition-all duration-300 ease-in-out',
+                scrolled ? 'h-6 w-6' : 'h-8 w-8'
+              )}
+              onClick={() => window.open('tel:+33144041149', '_blank')}
+            >
+              <Phone size={scrolled ? 16 : 20} strokeWidth={1.5} />
+            </Button>
+            <Button
               asChild
               className={cn(
                 'transition-all duration-300 ease-in-out ml-4',
@@ -121,14 +132,14 @@ export function Header() {
             'transition-all duration-300 ease-in-out'
           )}>
             <LanguageSwitcher />
-            <button>
-              <Phone
-                size={scrolled ? 24 : 32}
-                strokeWidth={1}
-                className="transition-all duration-300 ease-in-out"
-                onClick={() => window.open('tel:+33144041149', '_blank')}
-              />
-            </button>
+
+            <Phone
+              size={scrolled ? 24 : 32}
+              strokeWidth={1}
+              className="transition-all duration-300 ease-in-out"
+              onClick={() => window.open('tel:+33144041149', '_blank')}
+            />
+
             <button
               onClick={toggle}
               className="flex items-center justify-center"
