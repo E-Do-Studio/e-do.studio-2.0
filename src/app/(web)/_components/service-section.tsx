@@ -126,7 +126,7 @@ export const ServiceSection = () => {
                     images={machineImages.horizontal}
                 />
             </Link>
-            <Separator />
+            {/* <Separator />
             <Link href='/post-production'>
                 <Services
                     imagesDescription={['/img/machine-horizontal.webp', 'Services post-production']}
@@ -136,7 +136,7 @@ export const ServiceSection = () => {
                     number="06"
                     images={machineImages.horizontal}
                 />
-            </Link>
+            </Link> */}
         </LandingSection>
     )
 }
