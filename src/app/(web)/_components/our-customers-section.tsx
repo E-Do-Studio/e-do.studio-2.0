@@ -23,8 +23,36 @@ export function OurCustomersSection() {
     // IMG suctomers
     const customers: Customer[] = [
         {
-            img: '/img/logo-merci-gisele.webp',
-            name: 'Merci Gisele'
+            img: '/img/logo-vectoriel-the-kooples.jpg',
+            name: 'The Kooples'
+        },
+        {
+            img: '/img/logo-john_lobb.svg',
+            name: 'John Lobb'
+        },
+        {
+            img: '/img/logo-jennyfer.webp',
+            name: 'Jennyfer'
+        },
+        {
+            img: '/img/logo-inoui_editions-black.png.webp',
+            name: 'Inoui Editions'
+        },
+        {
+            img: '/img/logo-hartford.png.avif',
+            name: 'Hartford'
+        },
+        {
+            img: '/img/logo-giambattista_Valli.webp',
+            name: 'Giambattista Valli'
+        },
+        {
+            img: '/img/logo-celio.webp',
+            name: 'Célio'
+        },
+        {
+            img: '/img/logo-bompard.png',
+            name: 'Bompard'
         },
         {
             img: '/img/logo-marine-serre.webp',
