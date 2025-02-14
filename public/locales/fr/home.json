@@ -21,33 +21,33 @@
         "title": "Nos services",
         "button": "Réserver une séance",
         "live": {
-            "name": "(LIVE)",
-            "title": "Shooting porté / Mobilier",
+            "name": "LIVE",
+            "title": "(Shooting porté / Mobilier)",
             "description": "Ce système de studio intelligent de 8m2 vous permet de réaliser vos photos et vidéos de modèles vivants ou scénographies en quelques minutes. Presets caméra et lumière enregistrés."
         },
         "horizontal": {
-            "name": "(HORIZONTAL)",
-            "title": "Packshots à plat",
-            "description": "Horizontal vous garantit la possibilité de styliser et de photographier vos produits à plat grâce à la suppression automatique de l'arrière-plan."
+            "name": "HORIZONTAL",
+            "title": "(Packshots à plat)",
+            "description": "Horizontal vous donne la possibilité de styliser et de photographier vos produits à plat grâce à la suppression automatique de l'arrière-plan."
         },
         "vertical": {
-            "name": "(VERTICAL)",
-            "title": "Ghost",
-            "description": "Donner à votre produit un effet 3D, choisissez le Ghost."
+            "name": "VERTICAL",
+            "title": "(Ghost)",
+            "description": "Choisissez Ghost et donnez à votre produit un effet 3D."
         },
         "eclipse": {
-            "name": "(ECLIPSE)",
-            "title": "Accessoires / Maroquinerie / Chaussures / Lunettes",
+            "name": "ECLIPSE",
+            "title": "(Accessoires / Maroquinerie / Chaussures / Lunettes)",
             "description": "Conçu pour la photographie et la vidéo d'accessoires. Presets caméra et lumière enregistrés."
         },
         "cyclorama": {
-            "name": "(CYCLORAMA)",
-            "title": "Production libre",
+            "name": "CYCLORAMA",
+            "title": "(Production libre)",
             "description": "Notre cyclorama de 30m² vous permet de mobiliser une équipe de production et de réaliser vos prises de photos et vidéos sur un fond blanc infini."
         },
         "postproduction": {
-            "name": "(Retouche)",
-            "title": "Post-production",
+                "name": "RETOUCHE",
+            "title": "(Post-production)",
             "description": "En complément de nos services de prise de photos et vidéos sur nos machines, nous vous proposons des services de retouches suivant différents forfaits en fonction de vos besoins."
         }
     },
@@ -65,7 +65,7 @@
             "day": "8 heures de shooting\nSelf-service"
         },
         "cyclorama": {
-            "description": "La location de notre cyclorama se fait sur devis uniquement. Pour que nous puissions vous transmettre un devis merci de nous contacter via le formulaire prévu à cet effet en étant le plus précis possible. Notre équipe vous répondra au plus vite.",
+            "description": "La location de notre cyclorama se fait sur devis uniquement. Pour que nous puissions vous transmettre un devis merci de nous contacter via le formulaire prévu à cet effet. Notre équipe vous répondra au plus vite.",
             "button": "Nous contacter"
         }
     },
@@ -80,7 +80,7 @@
                 "society": "Société",
                 "email": "E-mail*",
                 "website": "Site internet",
-                "message": "Vous avez une idée de projet, besoin d'un devis, d'une prise de rendez-vous ? Ecrivez nous ;)"
+                "message": "Une idée de projet, besoin d'un devis, d'une prise de rendez-vous ? Ecrivez nous ;)"
             },
             "errors": {
                 "lastName": {

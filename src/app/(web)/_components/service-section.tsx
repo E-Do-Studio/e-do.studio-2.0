@@ -70,7 +70,7 @@ export const ServiceSection = () => {
         <LandingSection
             title={t('services.title')}
             id='services'
-            className="mt-8 md:mt-16"
+            className="mt-8 md:mt-16 space-y-1"
         >
             <Link href='/cyclorama'>
                 <Services
@@ -82,7 +82,7 @@ export const ServiceSection = () => {
                     images={machineImages.cyclorama}
                 />
             </Link>
-            <Separator />
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-eclipse.webp', 'Services machine eclipse']}
@@ -93,7 +93,7 @@ export const ServiceSection = () => {
                     images={machineImages.eclipse}
                 />
             </Link>
-            <Separator />
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-live.webp', 'Services machine live']}
@@ -104,7 +104,7 @@ export const ServiceSection = () => {
                     images={machineImages.live}
                 />
             </Link>
-            <Separator />
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-vertical.webp', 'Services machine verticale']}
@@ -115,7 +115,7 @@ export const ServiceSection = () => {
                     images={machineImages.vertical}
                 />
             </Link>
-            <Separator />
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-horizontal.webp', 'Services machine horizontale']}

@@ -209,14 +209,28 @@ function Navigation({ children, className = '' }: HeaderProps & { className?: st
 }
 
 function NavigationItem({ children, href }: NavigationItemProps) {
-
   const pathname = usePathname()
+  const router = useRouter()
   const isPhoneLink = href.startsWith('tel:')
+  const isAnchorLink = href.startsWith('#')
   const scrolled = useScroll()
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isAnchorLink) {
+      e.preventDefault()
+      if (pathname === '/') {
+        const element = document.querySelector(href)
+        element?.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        router.push(`/${href}`)
+      }
+    }
+  }
 
   return (
     <Link
       href={href}
+      onClick={handleClick}
       className={cn(
         'hover:text-neutral-500 hover:underline transition-colors',
         scrolled ? 'text-[13px]' : 'text-sm',

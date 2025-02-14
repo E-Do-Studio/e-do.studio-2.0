@@ -21,34 +21,34 @@
         "title": "Our services",
         "button": "Book a session",
         "live": {
-            "name": "(LIVE)",
-            "title": "Shooting on model / Furniture",
+            "name": "LIVE",
+            "title": "(Shooting on model / Furniture)",
             "description": "This smart studio system of 8m2 allows you to shoot your photos and videos of live models or scenographies in a few minutes. Saved camera and light presets."
         },
         "horizontal": {
-            "name": "(HORIZONTAL)",
-            "title": "Flat packshots",
+            "name": "HORIZONTAL",
+            "title": "(Flat packshots)",
             "description": "Horizontal allows you to style and shoot your products flat with the automatic removal of the background."
         },
         "vertical": {
-            "name": "(VERTICAL)",
-            "title": "Ghost",
+            "name": "VERTICAL",
+            "title": "(Ghost)",
             "description": "Choose ghost and give your products a 3D effect."
         },
         "eclipse": {
-            "name": "(ECLIPSE)",
-            "title": "Accessories / Leather goods / Shoes / Sunglasses",
+            "name": "ECLIPSE",
+            "title": "(Accessories / Leather goods / Shoes / Sunglasses)",
             "description": "Designed for accessories photography and video. Saved camera and light presets."
         },
         "cyclorama": {
-            "name": "(CYCLORAMA)",
-            "title": "Free production",
+            "name": "CYCLORAMA",
+            "title": "(Free production)",
             "description": "Our 30m² cyclorama allows you to mobilize a production team and carry out your photo and video shoots on an endless white background.",
             "button": "Contact us"
         },
         "postproduction": {
-            "name": "(Retouching)",
-            "title": "Post-production",
+            "name": "RETOUCHING",
+            "title": "(Post-production)",
             "description": "In addition to our photo and video shooting services on our machines, we offer retouching services with different packages according to your needs."
         }
     },
