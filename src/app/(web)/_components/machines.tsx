@@ -63,7 +63,8 @@ interface CategoriesResponse {
 
 export const Machines = ({ categories }: { categories: CategoriesResponse }) => {
   const { t } = useTranslation('home')
-  const [activeTab, setActiveTab] = useState(tabs[0])
+  const reorderedTabs = tabs.filter(tab => tab.toLowerCase() !== 'cyclorama').concat(['Cyclorama'])
+  const [activeTab, setActiveTab] = useState(reorderedTabs[0])
 
   const machines = createMachines(t)
   const timingMap = createTimingMap(t)
@@ -100,7 +101,7 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
 
   return (
     <div className="flex flex-col gap-8">
-      <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tabs tabs={reorderedTabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <motion.div
         className="flex flex-col justify-between md:flex-row gap-4"
