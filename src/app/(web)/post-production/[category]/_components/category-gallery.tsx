@@ -2,7 +2,10 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-
+import { PostProductionDocument } from '../page'
+import { X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { useTranslation } from 'react-i18next'
 interface Asset {
   url: string
   alt: string
@@ -10,81 +13,102 @@ interface Asset {
 }
 
 interface CategoryGalleryProps {
-  item: {
-    category: string
-    assets: Asset[]
-    description?: string
-  }
+  item: PostProductionDocument
 }
 
 export function CategoryGallery({ item }: CategoryGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<Asset | null>(null)
-
+  const { t } = useTranslation("post-prod")
   return (
     <div className="space-y-8">
-      {/* Description générale si elle existe */}
-      {item.description && (
-        <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-          {item.description}
-        </p>
-      )}
+      <div className='flex flex-col md:flex-row justify-between gap-8 md:gap-40'>
+        {/* {item.description && (
+          <div className="prose max-w-none flex-1">
+            <p>{item.description}</p>
+          </div>
+        )} */}
+        {item.subcategories && item.subcategories.length > 0 ? (
+          <div className="space-y-4 flex-1">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {item.subcategories.map((subcategory) => (
+                <div
+                  key={subcategory.id}
+                  className="p-4 rounded-lg border border-border"
+                >
+                  <div className="font-medium">{subcategory.name}</div>
+                  <div className="text-lg font-bold">
+                    {subcategory.price.toFixed(2)}€
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="flex-1">
+            <p>{t('post-production.on_quotation')}</p>
+          </div>
+        )}
+      </div>
 
-      {/* Grille d'images en ligne */}
-      <div className="flex flex-nowrap gap-4 overflow-x-auto md:overflow-x-hidden md:grid md:grid-cols-5 pb-4">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {item.assets.map((asset, index) => (
           <div
             key={index}
-            className="group cursor-pointer w-[280px] md:w-auto flex-shrink-0"
+            className="relative w-full"
             onClick={() => setSelectedImage(asset)}
           >
-            <div className="relative aspect-square overflow-hidden rounded-lg">
+            <div className="relative w-full h-auto">
               <Image
                 src={asset.url}
                 alt={asset.alt}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-auto object-contain bg-white"
+                width={800}
+                height={1200}
+                priority={index < 3}
               />
-              {asset.description && (
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p className="text-white text-sm">
-                    {asset.description}
-                  </p>
-                </div>
-              )}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal pour l'image sélectionnée */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-5xl w-full max-h-[90vh] aspect-auto">
-            <Image
-              src={selectedImage.url}
-              alt={selectedImage.alt}
-              fill
-              className="object-contain"
-            />
-            {selectedImage.description && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/60">
-                <p className="text-white text-center">
-                  {selectedImage.description}
-                </p>
-              </div>
-            )}
-          </div>
-          <button
-            className="absolute top-4 right-4 text-white text-xl p-2"
-            onClick={() => setSelectedImage(null)}
-          >
-            ✕
-          </button>
-        </div>
-      )}
+
+      {/* {selectedImage && (
+        <GalleryItemOverlay selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
+      )} */}
     </div>
   )
-} 
+}
+
+
+export const GalleryItemOverlay = ({ selectedImage, setSelectedImage }: { selectedImage: Asset, setSelectedImage: (image: Asset | null) => void }) => {
+  return (
+    <div
+      className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center p-16"
+      onClick={() => setSelectedImage(null)}
+    >
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute top-4 right-4 z-50"
+        onClick={(e) => {
+          e.stopPropagation()
+          setSelectedImage(null)
+        }}
+      >
+        <X className="h-16 w-16" />
+      </Button>
+
+      <div className="relative w-full h-full flex items-center justify-center">
+        <Image
+          src={selectedImage.url}
+          alt={selectedImage.alt}
+          className="max-h-full w-auto object-contain"
+          width={1200}
+          height={1600}
+          priority
+        />
+      </div>
+    </div>
+  )
+}

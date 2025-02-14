@@ -18,6 +18,10 @@ export const PostProduction: CollectionConfig = {
   },
   fields: [
     {
+      name: 'slug',
+      type: 'text',
+    },
+    {
       name: 'category',
       type: 'text',
       required: true,
@@ -36,9 +40,28 @@ export const PostProduction: CollectionConfig = {
       localized: true,
     },
     {
-      name: 'price',
-      type: 'number',
-      // required: true,
+      name: 'subcategories',
+      type: 'array',
+      label: 'Subcategories and Prices',
+      labels: {
+        singular: 'Subcategory',
+        plural: 'Subcategories',
+      },
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+          localized: true,
+          label: 'Subcategory Name',
+        },
+        {
+          name: 'price',
+          type: 'number',
+          required: true,
+          label: 'Price',
+        }
+      ]
     },
     {
       name: 'main_image',

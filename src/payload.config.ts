@@ -6,7 +6,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { s3Storage } from '@payloadcms/storage-s3'
-
+import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Brands } from './collections/Brands'
 import { Categories } from './collections/Categories'
@@ -45,12 +45,13 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  // sharp: sharp,
+  sharp: sharp,
   plugins: [
     payloadCloudPlugin(),
     s3Storage({
       collections: {
         assets: true,
+
       },
       bucket: process.env.S3_BUCKET!,
       config: {

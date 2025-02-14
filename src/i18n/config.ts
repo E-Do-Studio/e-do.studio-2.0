@@ -35,15 +35,3 @@ if (typeof window !== 'undefined') {
 }
 
 export default i18next;
-
-export const defaultNS = 'common'
-
-export const resources = {
-  en: {
-    popup: {
-      "Enter your e-mail address to subscribe to the newsletter:": "Enter your e-mail address to subscribe to the newsletter:",
-      "Thank you for registering!": "Thank you for registering!"
-    }
-  },
-  // autres langues...
-} 

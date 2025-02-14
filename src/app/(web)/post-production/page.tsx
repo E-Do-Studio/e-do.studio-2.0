@@ -3,24 +3,24 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { LandingSection } from '@/components/layout/landing-section'
-import Image from 'next/image'
-import { PostProductionGrid } from './_components/post-production-grid'
+import { PostProductionGrid, PostProductionItem } from './_components/post-production-grid'
+import { getLanguage } from '@/lib/get-language'
 
 export default async function PostProduction() {
   const payload = await getPayload({ config })
+  const language = await getLanguage()
 
   const postProduction = await payload.find({
     collection: 'post-production',
-
+    locale: language,
   })
 
-  // console.log('API Response:', JSON.stringify(postProduction.docs, null, 2))
+  // Utiliser directement les slugs de la base de données
+  const items = postProduction.docs as PostProductionItem[]
 
   return (
-    <main className='container mx-auto'>
-      <LandingSection title="Post Production">
-        <PostProductionGrid items={postProduction.docs} />
-      </LandingSection>
-    </main>
+    <LandingSection title="Post Production">
+      <PostProductionGrid items={items} />
+    </LandingSection>
   )
 }

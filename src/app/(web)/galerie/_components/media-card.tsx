@@ -4,8 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { useInView } from 'react-intersection-observer'
 import { Skeleton } from "@/components/ui/skeleton"
+import { GalleryItemOverlay } from './gallery-item-overlay'
 
 interface MediaItem {
   id: number
@@ -29,10 +29,6 @@ interface MediaCardProps {
 export function MediaCard({ item }: MediaCardProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [videoHeight, setVideoHeight] = useState<number>(0)
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0,
-  })
 
   const isVideo = item.url.includes('.mp4')
   const mediaUrl = item.url.startsWith('http')
@@ -50,8 +46,7 @@ export function MediaCard({ item }: MediaCardProps) {
       <div className="relative w-full overflow-hidden group">
         {isLoading && (
           <Skeleton
-            className="absolute inset-0"
-            style={isVideo && videoHeight ? { height: `${videoHeight}px` } : undefined}
+            className={cn("absolute inset-0", isVideo && videoHeight ? { height: `${videoHeight}px` } : undefined)}
           />
         )}
 
@@ -64,6 +59,7 @@ export function MediaCard({ item }: MediaCardProps) {
             playsInline
             onLoadedMetadata={handleVideoMetadata}
             onLoadedData={() => setIsLoading(false)}
+            onLoad={() => setIsLoading(false)}
             className={cn(
               "w-full h-auto object-cover transition-all duration-300",
               "group-hover:scale-105",
@@ -75,6 +71,7 @@ export function MediaCard({ item }: MediaCardProps) {
             alt={item.alt || item.filename}
             width={item.width || 800}
             height={item.height || 1200}
+            quality={80}
             className={cn(
               "w-full h-auto object-cover transition-all duration-300",
               "group-hover:scale-105",
@@ -86,13 +83,7 @@ export function MediaCard({ item }: MediaCardProps) {
         )}
 
         {!isLoading && (
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
-              <p className="text-white text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                {item.brand?.name?.toUpperCase() || 'SANS MARQUE'}
-              </p>
-            </div>
-          </div>
+          <GalleryItemOverlay title={item.brand?.name || 'SANS MARQUE'} />
         )}
       </div>
     </Link>

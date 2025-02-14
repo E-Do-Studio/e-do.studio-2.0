@@ -62,5 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.1,
     },
+    {
+      url: 'https://www.e-do.studio/post-production',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+
   ]
 }

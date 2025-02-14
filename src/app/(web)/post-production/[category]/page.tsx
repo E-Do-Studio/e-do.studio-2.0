@@ -5,46 +5,75 @@ import config from '@/payload.config'
 import { LandingSection } from '@/components/layout/landing-section'
 import { notFound } from 'next/navigation'
 import { CategoryGallery } from './_components/category-gallery'
+import { PostProductionMenu } from '../_components/post-production-menu'
+import { getLanguage } from '@/lib/get-language'
+interface Subcategory {
+  id: string
+  name: string
+  price: number
+}
 
+export interface PostProductionDocument {
+  id: string | number
+  category: string
+  slug: string
+  assets: Array<{
+    url: string
+    alt: string
+    description?: string
+  }>
+  description?: string
+  subcategories: Subcategory[]
+  main_image?: {
+    url: string
+    alt: string
+  }
+}
 
 export default async function CategoryPage(params: {
   params: Promise<{ category: string }>
 }) {
+  const { category } = await params.params
+
   const payload = await getPayload({ config })
+  const language = await getLanguage()
 
-  // Convertir le paramètre de l'URL en format approprié
-  const formattedCategory = (await params.params).category
-    .split('-')
-    .map(word => {
-      // Si c'est "pique", le convertir en "Piqué"
-      if (word.toLowerCase() === 'pique') return 'Piqué'
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-    })
-    .join(' ')
+  // Get all categories for menu
+  const allCategories = await payload.find({
+    collection: 'post-production',
+    locale: language
+  })
 
+  // Transform en utilisant le slug
+  const menuItems = allCategories.docs.map(doc => ({
+    id: String((doc as PostProductionDocument).id),
+    category: (doc as PostProductionDocument).category,
+    slug: (doc as PostProductionDocument).slug
+  }))
 
-  // Récupérer la catégorie spécifique
+  // Recherche par slug
   const postProduction = await payload.find({
     collection: 'post-production',
     where: {
-      category: {
-        equals: formattedCategory
+      slug: {
+        equals: category // Utiliser directement le slug de l'URL
       }
-    }
+    },
+    locale: language
   })
-
 
   if (!postProduction.docs.length) {
     notFound()
   }
 
-  const item = postProduction.docs[0]
+  const item = postProduction.docs[0] as PostProductionDocument
 
   return (
-    <main className="container mx-auto">
-      <LandingSection title={item.category}>
+    <div className='mt-20'>
+      <LandingSection title="Post Production">
+        <PostProductionMenu items={menuItems} />
         <CategoryGallery item={item} />
       </LandingSection>
-    </main>
+    </div>
   )
 } 

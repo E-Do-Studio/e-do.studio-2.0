@@ -4,9 +4,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { Facebook, Instagram, Linkedin } from 'lucide-react'
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
-import { HEADER_HEIGHT } from '@/lib/constants';
 
 interface AddressSectionProps {
   className?: string;
@@ -69,28 +66,6 @@ interface ContactSectionProps {
 
 function ContactSection({ className }: ContactSectionProps) {
   const { t } = useTranslation('layout');
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-
-    if (pathname !== '/') {
-      router.push('/#contact');
-      return;
-    }
-
-    const element = document.querySelector('#contact');
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - HEADER_HEIGHT - 24;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <div className={cn(className)}>
@@ -98,7 +73,6 @@ function ContactSection({ className }: ContactSectionProps) {
       <div className="space-y-4 text-gray-300">
         <Link
           href="/#contact"
-          onClick={scrollToContact}
           className="inline-block px-4 py-2 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors"
         >
           {t('footer.contact.email_button')}
@@ -123,14 +97,14 @@ function SocialLinks({ className }: SocialLinksProps) {
   const { t, i18n } = useTranslation('layout');
   const socialLinks = [
     {
-      icon: <Facebook className="w-5 h-5" />,
-      href: "https://www.facebook.com/EdoStudioAgency/",
-      label: "Facebook"
-    },
-    {
       icon: <Instagram className="w-5 h-5" />,
       href: "https://www.instagram.com/edostudio/",
       label: "Instagram"
+    },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://www.facebook.com/EdoStudioAgency/",
+      label: "Facebook"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
@@ -141,7 +115,7 @@ function SocialLinks({ className }: SocialLinksProps) {
 
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <div className="flex gap-6 items-center justify-center lg:justify-end">
+      <div className="flex gap-6 items-center">
         {socialLinks.map((link) => (
           <Link
             key={link.label}
@@ -166,7 +140,7 @@ function SocialLinks({ className }: SocialLinksProps) {
 
 export function Footer() {
   return (
-    <footer className="bg-background-footer mt-32">
+    <footer className="bg-black mt-32">
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 md:gap-8">
           <div className="lg:col-span-4">
@@ -175,9 +149,11 @@ export function Footer() {
           <div className="lg:col-span-4">
             <ScheduleSection />
           </div>
-          <div className="lg:col-span-4 flex flex-col justify-between">
+          <div className="lg:col-span-4">
             <ContactSection />
-            <SocialLinks className="mt-8 lg:mt-auto pt-4 lg:pt-0" />
+          </div>
+          <div className="md:col-span-2 lg:col-span-12 flex justify-center lg:justify-end">
+            <SocialLinks className="mt-8 lg:mt-12" />
           </div>
         </div>
       </div>

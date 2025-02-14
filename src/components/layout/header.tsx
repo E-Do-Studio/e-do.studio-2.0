@@ -11,7 +11,6 @@ import { useMobileMenu } from '@/store/use-mobile-menu'
 import { MobileMenu } from './mobile-menu'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
-import { HEADER_HEIGHT } from '@/lib/constants'
 import { useScroll } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 import { useScrollDirection } from '@/hooks/use-scroll-direction'
@@ -23,8 +22,9 @@ type HeaderProps = {
 }
 
 const navigation = [
-  { label: 'phone', href: 'tel:+33144041149' },
-  { label: 'gallery', href: 'galerie?category=on_model' },
+  { label: 'cyclorama', href: '/cyclorama' },
+  { label: 'post-production', href: '/post-production' },
+  { label: 'gallery', href: '/galerie?category=on_model' },
   { label: 'services', href: '#services' },
   { label: 'pricing', href: '#pricing' },
   { label: 'contact', href: '#contact' },
@@ -42,6 +42,11 @@ export function Header() {
   const { isOpen, toggle } = useMobileMenu()
   const scrolled = useScroll()
   const { scrollDirection } = useScrollDirection()
+
+  const mobileMenuTranslations = {
+    bookSession: t('header.cta.book'),
+    address: `${t('footer.address.building')}, ${t('footer.address.city')}`
+  }
 
   return (
     <>
@@ -98,10 +103,21 @@ export function Header() {
             ))}
             <LanguageSwitcher />
             <Button
+              size="icon"
+              variant="ghost"
+              className={cn(
+                'transition-all duration-300 ease-in-out',
+                scrolled ? 'h-6 w-6' : 'h-8 w-8'
+              )}
+              onClick={() => window.open('tel:+33144041149', '_blank')}
+            >
+              <Phone size={scrolled ? 16 : 20} strokeWidth={1.5} />
+            </Button>
+            <Button
               asChild
               className={cn(
                 'transition-all duration-300 ease-in-out ml-4',
-                scrolled ? 'h-8 text-sm w-[150px]' : 'h-10 w-[180px]'
+                scrolled ? 'h-6 text-xs w-[130px]' : 'h-8 text-sm w-[150px]'
               )}
             >
               <Link href="/reservation">{t('header.cta.book')}</Link>
@@ -111,19 +127,19 @@ export function Header() {
           <div className={cn(
             "flex md:hidden items-center gap-4",
             scrollDirection === 'down' && scrolled
-              ? 'opacity-0 translate-y-2'
+              ? 'opacity-0 translate-y-2 absolute right-0'
               : 'opacity-100 translate-y-0',
             'transition-all duration-300 ease-in-out'
           )}>
             <LanguageSwitcher />
-            <button>
-              <Phone
-                size={scrolled ? 24 : 32}
-                strokeWidth={1}
-                className="transition-all duration-300 ease-in-out"
-                onClick={() => window.open('tel:+33144041149', '_blank')}
-              />
-            </button>
+
+            <Phone
+              size={scrolled ? 24 : 32}
+              strokeWidth={1}
+              className="transition-all duration-300 ease-in-out"
+              onClick={() => window.open('tel:+33144041149', '_blank')}
+            />
+
             <button
               onClick={toggle}
               className="flex items-center justify-center"
@@ -153,7 +169,14 @@ export function Header() {
         </div>
       </header>
 
-      <AnimatePresence>{isOpen && <MobileMenu navigation={navigation} />}</AnimatePresence>
+      <AnimatePresence>
+        {isOpen && (
+          <MobileMenu
+            navigation={navigation}
+            translations={mobileMenuTranslations}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }
@@ -186,35 +209,31 @@ function LanguageSwitcher() {
 
 function Navigation({ children, className = '' }: HeaderProps & { className?: string }) {
   return (
-    <nav className={cn('flex-1 flex items-center justify-end gap-6', className)}>
+    <nav className={cn(
+      'flex-1 flex items-center justify-end',
+      'gap-4 [@media(max-width:999px)]:gap-3.5',
+      className
+    )}>
       {children}
     </nav>
   )
 }
 
 function NavigationItem({ children, href }: NavigationItemProps) {
-  const router = useRouter()
   const pathname = usePathname()
+  const router = useRouter()
   const isPhoneLink = href.startsWith('tel:')
+  const isAnchorLink = href.startsWith('#')
+  const scrolled = useScroll()
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (href.startsWith('#')) {
+    if (isAnchorLink) {
       e.preventDefault()
-
-      if (pathname !== '/') {
-        router.push('/' + href)
-        return
-      }
-
-      const element = document.querySelector(href)
-      if (element) {
-        const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.scrollY - HEADER_HEIGHT - 24
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        })
+      if (pathname === '/') {
+        const element = document.querySelector(href)
+        element?.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        router.push(`/${href}`)
       }
     }
   }
@@ -223,8 +242,11 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     <Link
       href={href}
       onClick={handleClick}
-      className={`text-sm hover:text-neutral-500 hover:underline transition-colors ${isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
-        }`}
+      className={cn(
+        'hover:text-neutral-500 hover:underline transition-colors',
+        scrolled ? 'text-[13px]' : 'text-sm',
+        isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
+      )}
     >
       {children}
     </Link>

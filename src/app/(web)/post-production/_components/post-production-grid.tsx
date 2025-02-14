@@ -2,16 +2,20 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { PostProductionDocument } from '../[category]/page'
 
-interface PostProductionItem {
-  id: string
-  category: string
-  main_image: {
-    url: string
-    alt: string
-  }
-  assets: any[]
-}
+export type PostProductionItem = PostProductionDocument
+
+// Définir les positions basées sur les slugs qui sont constants
+const POSITION_BY_SLUG = {
+  'high_end': 'absolute left-[26%] top-[5%] w-[22%] h-[84%]',
+  'lookbook': 'absolute right-[26%] top-[5%] w-[22%] h-[40%]',
+  'flat': 'absolute right-[0%] top-[27%] w-[22%] h-[38%]',
+  'pique': 'absolute right-[26%] top-[47%] w-[22%] h-[42%]',
+  'access': 'absolute left-[0%] top-[5%] w-[22%] h-[50%]',
+  'ghost': 'absolute left-[0%] top-[57%] w-[22%] h-[32%]',
+  '360': 'absolute right-[0%] top-[67%] w-[22%] h-[22%]',
+} as const
 
 interface PostProductionGridProps {
   items: PostProductionItem[]
@@ -20,27 +24,46 @@ interface PostProductionGridProps {
 export function PostProductionGrid({ items }: PostProductionGridProps) {
   const router = useRouter()
 
-  const handleCategoryClick = (category: string) => {
-    const normalizedCategory = category.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    const urlCategory = normalizedCategory.toLowerCase().replace(' ', '-')
-    router.push(`/post-production/${urlCategory}`)
+  const handleCategoryClick = (slug: string) => {
+    router.push(`/post-production/${slug}`)
+  }
+
+  const validItems = items.filter(item => item.main_image)
+
+  const getCategoryClasses = (slug: string) => {
+    switch (slug) {
+      case 'high-end':
+        return 'col-span-2 h-[300px] order-2'
+      case 'ghost':
+        return 'h-[150px] order-1'
+      case 'accessories':
+        return 'h-[150px] order-1'
+      default:
+        return 'h-[200px] order-3'
+    }
+  }
+
+  const getPositionClasses = (slug: string) => {
+    return POSITION_BY_SLUG[slug as keyof typeof POSITION_BY_SLUG] || ''
   }
 
   return (
     <>
       {/* Version Mobile (<768px) */}
       <div className="md:hidden grid grid-cols-2 gap-4 p-4">
-        {items.map((item) => (
+        {validItems.map((item) => (
           <div
-            key={item.id}
-            onClick={() => handleCategoryClick(item.category)}
-            className={`relative cursor-pointer group ${item.category === 'On Model' ? 'col-span-2 h-[300px]' : 'h-[200px]'}`}
+            key={item.slug}
+            onClick={() => handleCategoryClick(item.slug)}
+            className={`relative cursor-pointer group ${getCategoryClasses(item.slug)}`}
           >
             <div className="relative w-full h-full overflow-hidden bg-white shadow-md rounded-lg">
               <Image
-                src={item.main_image.url}
-                alt={item.main_image.alt}
+                src={item.main_image!.url}
+                alt={item.main_image!.alt}
                 fill
+                priority={item.slug === 'high-end'}
+                sizes="(max-width: 768px) 100vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -56,38 +79,30 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
 
       {/* Version Desktop (>=768px) */}
       <div className="hidden md:block relative h-[calc(100vh-15vh)]">
-        {items.map((item) => {
-          const positionClasses = {
-            'On Model': 'absolute left-[26%] top-[5%] w-[22%] h-[84%]',
-            'Beauty': 'absolute right-[26%] top-[5%] w-[22%] h-[40%]',
-            'Flat': 'absolute right-[0%] top-[27%] w-[22%] h-[38%]',
-            'Piqué': 'absolute right-[26%] top-[47%] w-[22%] h-[42%]',
-            'Access': 'absolute left-[0%] top-[5%] w-[22%] h-[50%]',
-            'Ghost': 'absolute left-[0%] top-[57%] w-[22%] h-[32%]',
-          }[item.category] || ''
-
-          return (
-            <div
-              key={item.id}
-              onClick={() => handleCategoryClick(item.category)}
-              className={`${positionClasses} cursor-pointer group`}
-            >
-              <div className="relative w-full h-full overflow-hidden bg-white shadow-md transition-transform hover:scale-102 hover:-translate-y-1 hover:shadow-lg hover:z-10">
-                <Image
-                  src={item.main_image.url}
-                  alt={item.main_image.alt}
-                  fill
-                  className="object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h2 className="text-xl font-semibold text-white drop-shadow-[2px_2px_20px_rgba(0,0,0,0.6)]">
-                    {item.category}
-                  </h2>
-                </div>
+        {validItems.map((item) => (
+          <div
+            key={item.slug}
+            onClick={() => handleCategoryClick(item.slug)}
+            className={`${getPositionClasses(item.slug)} cursor-pointer group`}
+          >
+            <div className="relative w-full h-full overflow-hidden bg-white shadow-md transition-transform hover:scale-102 hover:-translate-y-1 hover:shadow-lg hover:z-10">
+              <Image
+                src={item.main_image!.url}
+                alt={item.main_image!.alt}
+                fill
+                priority={item.slug === 'high-end'}
+                quality={80}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-transform group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h2 className="text-xl font-semibold text-white drop-shadow-[2px_2px_20px_rgba(0,0,0,0.6)]">
+                  {item.category}
+                </h2>
               </div>
             </div>
-          )
-        })}
+          </div>
+        ))}
       </div>
     </>
   )

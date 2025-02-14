@@ -18,7 +18,7 @@ export const LocationSection = () => {
                         <h3>93400 Saint-Ouen</h3>
                     </Link>
                     <div className="space-y-2">
-                        <a
+                        <Link
                             href="https://maps.google.com/?q=69+Boulevard+Victor+Hugo+93400+Saint+Ouen"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -29,20 +29,22 @@ export const LocationSection = () => {
                                 alt="Entrée Victor Hugo"
                                 width={400}
                                 height={300}
+                                quality={80}
                                 className="rounded-lg w-full h-48 object-cover md:grayscale md:transition-all md:duration-300 md:hover:grayscale-0"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
-                        </a>
-                        <a
+                        </Link >
+                        <Link
                             href="https://maps.google.com/?q=69+Boulevard+Victor+Hugo+93400+Saint+Ouen"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block text-end hover:text-blue-500 transition-colors"
                         >
                             69 Boulevard Victor Hugo, 93400 Saint-Ouen
-                        </a>
+                        </Link>
                     </div>
                     <div className="space-y-2">
-                        <a
+                        <Link
                             href="https://maps.google.com/?q=18+Rue+Louis+Blanc+93400+Saint+Ouen"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -55,15 +57,15 @@ export const LocationSection = () => {
                                 height={300}
                                 className="rounded-lg w-full h-48 object-cover md:grayscale md:transition-all md:duration-300 md:hover:grayscale-0"
                             />
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="https://maps.google.com/?q=18+Rue+Louis+Blanc+93400+Saint+Ouen"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block text-end hover:text-blue-500 transition-colors"
                         >
                             18 Rue Louis Blanc, 93400 Saint-Ouen
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <iframe

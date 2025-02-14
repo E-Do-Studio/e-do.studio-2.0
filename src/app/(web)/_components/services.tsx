@@ -34,20 +34,23 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
                 </div>
                 <h3 className="text-2xl font-medium lg:hidden">{title}</h3>
                 <h3 className="text-2xl font-medium hidden lg:block lg:h-14">{serviceName + " " + title}</h3>
-                <p className="text-base font-medium text-neutral-500 lg:h-16">{description}</p>
-                <Image
-                    src={imagesDescription[0]}
-                    alt={imagesDescription[1]}
-                    width={800}
-                    height={600}
-                    quality={100}
-                    className={`w-full lg:w-[200px] object-contain transition-all duration-300
-                        ${imagesDescription[1].includes('cyclorama') 
-                            ? 'grayscale contrast-110 hover:grayscale-0 hover:contrast-100' 
-                            : 'grayscale contrast-125 hover:grayscale-0 hover:contrast-100'
-                        }`}
-                    priority
-                />
+                <div className="flex flex-col lg:flex-row gap-4 items-start">
+                    <p className="text-base font-medium text-neutral-500 lg:flex-1">{description}</p>
+                    <Image
+                        src={imagesDescription[0]}
+                        alt={imagesDescription[1]}
+                        width={800}
+                        height={600}
+                        quality={80}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className={`w-full lg:w-[200px] object-contain transition-all duration-300 lg:flex-shrink-0
+                            ${imagesDescription[1].includes('cyclorama')
+                                ? 'grayscale contrast-110 hover:grayscale-0 hover:contrast-100'
+                                : 'grayscale contrast-125 hover:grayscale-0 hover:contrast-100'
+                            }`}
+                        priority
+                    />
+                </div>
             </div>
             <Image
                 src={images[currentImageIndex].src}

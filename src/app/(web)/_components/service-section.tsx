@@ -6,6 +6,7 @@ import { LandingSection } from '@/components/layout/landing-section'
 import { Services } from '@/app/(web)/_components/services'
 import { Button } from '@/components/ui/button'
 import { MoveRight } from 'lucide-react';
+import { Separator } from '@/components/ui/separator'
 
 
 export const ServiceSection = () => {
@@ -69,9 +70,9 @@ export const ServiceSection = () => {
         <LandingSection
             title={t('services.title')}
             id='services'
-            className="mt-8 md:mt-16"
+            className="mt-8 md:mt-16 space-y-1"
         >
-            <Link href='/reservation'>
+            <Link href='/cyclorama'>
                 <Services
                     imagesDescription={['/img/machine-cyclorama.webp', 'Services machine cyclorama']}
                     serviceName={t('services.cyclorama.name')}
@@ -81,7 +82,7 @@ export const ServiceSection = () => {
                     images={machineImages.cyclorama}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-eclipse.webp', 'Services machine eclipse']}
@@ -92,7 +93,7 @@ export const ServiceSection = () => {
                     images={machineImages.eclipse}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-live.webp', 'Services machine live']}
@@ -103,7 +104,7 @@ export const ServiceSection = () => {
                     images={machineImages.live}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-vertical.webp', 'Services machine verticale']}
@@ -114,7 +115,7 @@ export const ServiceSection = () => {
                     images={machineImages.vertical}
                 />
             </Link>
-            <div className='border-b border-[#979797] w-[100%]'></div>
+            <Separator className="my-1" />
             <Link href='/reservation'>
                 <Services
                     imagesDescription={['/img/machine-horizontal.webp', 'Services machine horizontale']}
@@ -125,6 +126,17 @@ export const ServiceSection = () => {
                     images={machineImages.horizontal}
                 />
             </Link>
+            {/* <Separator />
+            <Link href='/post-production'>
+                <Services
+                    imagesDescription={['/img/machine-horizontal.webp', 'Services post-production']}
+                    serviceName={t('services.postproduction.name')}
+                    title={t('services.postproduction.title')}
+                    description={t('services.postproduction.description')}
+                    number="06"
+                    images={machineImages.horizontal}
+                />
+            </Link> */}
         </LandingSection>
     )
 }

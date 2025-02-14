@@ -2,10 +2,12 @@
   "header": {
     "navigation": {
       "phone": "+33 1 44 04 11 49",
+      "post-production": "post-prod",
       "gallery": "gallery",
       "services": "services",
       "pricing": "pricing",
-      "contact": "contact"
+      "contact": "contact",
+      "cyclorama": "cyclorama"
     },
     "cta": {
       "book": "book a session"
@@ -50,5 +52,7 @@
       "cgv": "Terms of Sale",
       "confidentialite": "Privacy Policy"
     }
-  }
-} 
+  },
+  "bookSession": "book a session",
+  "address": "69 Boulevard Victor Hugo, 93400 Saint-Ouen"
+}

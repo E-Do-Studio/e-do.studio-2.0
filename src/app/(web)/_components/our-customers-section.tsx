@@ -23,12 +23,40 @@ export function OurCustomersSection() {
     // IMG suctomers
     const customers: Customer[] = [
         {
-            img: '/img/logo-merci-gisele.webp',
-            name: 'Merci Gisele'
+            img: '/img/logo-jean-paul-gauthier.png',
+            name: 'Jean Paul Gauthier'
         },
         {
-            img: '/img/logo-marine-serre.webp',
-            name: 'Marine Serre'
+            img: '/img/logo-vectoriel-the-kooples.jpg',
+            name: 'The Kooples'
+        },
+        {
+            img: '/img/logo-john_lobb.svg',
+            name: 'John Lobb'
+        },
+        {
+            img: '/img/logo-jennyfer.webp',
+            name: 'Jennyfer'
+        },
+        {
+            img: '/img/logo-inoui_editions-black.png.webp',
+            name: 'Inoui Editions'
+        },
+        {
+            img: '/img/logo-hartford.png.avif',
+            name: 'Hartford'
+        },
+        {
+            img: '/img/logo-giambattista_Valli.webp',
+            name: 'Giambattista Valli'
+        },
+        {
+            img: '/img/logo-celio.webp',
+            name: 'Célio'
+        },
+        {
+            img: '/img/logo-bompard.png',
+            name: 'Bompard'
         },
         {
             img: '/img/logo-numero.webp',
@@ -41,10 +69,6 @@ export function OurCustomersSection() {
         {
             img: '/img/logo-rimowa.webp',
             name: 'Rimowa'
-        },
-        {
-            img: '/img/logo-roger-vivier.webp',
-            name: 'Roger Vivier'
         },
         {
             img: '/img/logo-tanneur.webp',
@@ -80,7 +104,8 @@ export function OurCustomersSection() {
                                         alt={customer.name}
                                         width={200}
                                         height={80}
-                                        quality={95}
+                                        quality={80}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className="w-auto max-w-[200px] h-[80px] object-contain"
                                     />
                                 </div>
