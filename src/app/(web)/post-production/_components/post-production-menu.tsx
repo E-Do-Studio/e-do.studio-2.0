@@ -19,7 +19,6 @@ export function PostProductionMenu({ items }: PostProductionMenuProps) {
   const router = useRouter()
   const pathname = usePathname()
 
-  // Extraire les catégories pour les tabs
   const tabs = items.map(item => item.category)
 
   // Logique pour déterminer l'onglet actif
