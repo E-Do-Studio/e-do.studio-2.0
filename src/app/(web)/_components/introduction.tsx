@@ -92,23 +92,23 @@ export const Introduction = () => {
             />
 
             {/* Overlay gradient pour améliorer la lisibilité du texte */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
 
             {/* Contenu texte */}
             <div className="absolute inset-0 container flex flex-col justify-center">
-                <span className="text-2xl md:text-4xl text-primary mb-4 font-medium">
-                    {t('introduction.brand')}
+                <span className="text-2xl md:text-4xl mb-4 font-medium">
+                    <span className="text-primary">{t('introduction.brand').split('E-Do Studio')[0]}</span>
+                    <span className="text-white">E-Do Studio</span>
                 </span>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white max-w-3xl mb-6">
-                    <span className="text-primary-foreground">{t('introduction.title')}</span>
-                    <br />
-                    {/* {t('introduction.subtitle')} */}
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-6">
+                    <span className="text-primary-foreground">Your hybrid</span>{" "}
+                    <span className="text-primary">playground</span>
                 </h1>
-                <ul className="flex flex-col space-y-2 list-none">
+                <ul className="flex flex-col space-y-1 list-none">
                     {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
                         <li
                             key={keyword}
-                            className="text-white text-lg md:text-xl"
+                            className="text-white text-base md:text-xl"
                         >
                             {t(`introduction.keywords.${keyword}`)}
                         </li>
