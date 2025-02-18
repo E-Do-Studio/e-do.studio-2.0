@@ -132,14 +132,14 @@
         }
     },
     "introduction": {
-        "brand": "E-Do Studio",
+        "brand": "Bienvenue chez E-Do Studio",
         "title": "Your hybrid playground",
         "subtitle": "Welcome to E-Do Studio",
         "description": "Studio créatif spécialisé dans la création de contenu digital sur mesure",
         "keywords": {
             "book": "Location d'espaces",
             "production": "Services de production",
-            "post-production": "Post-production",
+            "post-production": "Retouche d'images",
             "consulting": "Digital consulting"
         },
         "rotating": {

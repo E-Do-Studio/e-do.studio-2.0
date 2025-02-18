@@ -96,13 +96,13 @@ export const Introduction = () => {
 
             {/* Contenu texte */}
             <div className="absolute inset-0 container flex flex-col justify-center">
-                <span className="text-xl md:text-2xl text-primary mb-4 font-medium">
+                <span className="text-2xl md:text-4xl text-primary mb-4 font-medium">
                     {t('introduction.brand')}
                 </span>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white max-w-3xl mb-6">
-                    <span className="text-primary">{t('introduction.title')}</span>
+                    <span className="text-primary-foreground">{t('introduction.title')}</span>
                     <br />
-                    {t('introduction.subtitle')}
+                    {/* {t('introduction.subtitle')} */}
                 </h1>
                 <ul className="flex flex-col space-y-2 list-none">
                     {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
