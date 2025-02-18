@@ -99,14 +99,21 @@ export const Introduction = () => {
                 <span className="text-xl md:text-2xl text-primary mb-4 font-medium">
                     {t('introduction.brand')}
                 </span>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white max-w-3xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white max-w-3xl mb-6">
                     <span className="text-primary">{t('introduction.title')}</span>
                     <br />
                     {t('introduction.subtitle')}
                 </h1>
-                <p className="text-lg md:text-xl text-white/80 mt-6 max-w-2xl">
-                    {t('introduction.description')}
-                </p>
+                <ul className="flex flex-col space-y-2 list-none">
+                    {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
+                        <li
+                            key={keyword}
+                            className="text-white text-lg md:text-xl"
+                        >
+                            {t(`introduction.keywords.${keyword}`)}
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     )

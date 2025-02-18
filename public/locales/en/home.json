@@ -121,9 +121,15 @@
     },
     "introduction": {
         "brand": "E-Do Studio",
-        "title": "Let's create your",
-        "subtitle": "digital universe together",
+        "title": "Your hybrid playground",
+        "subtitle": "Welcome to E-Do Studio",
         "description": "Creative studio specialized in custom digital content creation",
+        "keywords": {
+            "book": "Space rental",
+            "production": "Production services",
+            "post-production": "Post-production",
+            "consulting": "Digital consulting"
+        },
         "rotating": {
             "innovation": "Innovation and Creativity",
             "excellence": "Excellence and Quality",
