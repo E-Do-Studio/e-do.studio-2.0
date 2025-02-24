@@ -2,14 +2,11 @@
 
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
-import Autoplay from "embla-carousel-autoplay"
 import { motion, AnimatePresence } from 'framer-motion'
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
 } from "@/components/ui/carousel"
 import { useMemo } from 'react'
 
@@ -49,11 +46,11 @@ export function CarouselMachines({ images, className, alt }: CarouselMachinesPro
                                 loop: true,
                                 skipSnaps: false,
                             }}
-                            plugins={[
-                                Autoplay({
-                                    delay: 2000,
-                                }),
-                            ]}
+                            autoScroll={true}
+                            autoScrollOptions={{
+                                speed: 1,
+                                stopOnInteraction: false
+                            }}
                             className="w-full"
                         >
                             <CarouselContent className="-ml-0.5 flex gap-2 items-center">
@@ -77,10 +74,6 @@ export function CarouselMachines({ images, className, alt }: CarouselMachinesPro
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
-                            <div className="hidden lg:block">
-                                <CarouselPrevious className="bg-white/80 hover:bg-white -left-12" />
-                                <CarouselNext className="bg-white/80 hover:bg-white -right-12" />
-                            </div>
                         </Carousel>
                     </motion.div>
                 </AnimatePresence>

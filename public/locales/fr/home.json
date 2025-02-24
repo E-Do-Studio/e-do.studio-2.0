@@ -34,7 +34,7 @@
         "vertical": {
             "name": "VERTICAL",
             "title": "(Ghost)",
-            "description": "Choisissez Ghost et donnez à votre produit un effet 3D."
+            "description": "Choisissez vertical et donnez à votre produit un effet 3D ghost."
         },
         "eclipse": {
             "name": "ECLIPSE",
@@ -66,9 +66,10 @@
             "day": "8 heures de shooting\nSelf-service"
         },
         "cyclorama": {
-            "description": "La location de notre cyclorama se fait sur devis uniquement. Pour que nous puissions vous transmettre un devis merci de nous contacter via le formulaire prévu à cet effet. Notre équipe vous répondra au plus vite.",
+            "description": "La location de notre cyclorama se fait sur devis uniquement. Pour que nous puissions vous transmettre un devis, merci de nous contacter via le formulaire prévu à cet effet. Notre équipe vous répondra au plus vite.",
             "button": "Nous contacter"
-        }
+        },
+        "weekend": "Tarif week-end +25%"
     },
     "contact": {
         "title": "Vous avez des questions ?",

@@ -19,7 +19,7 @@ export default async function PostProduction() {
   const items = postProduction.docs as PostProductionItem[]
 
   return (
-    <LandingSection title="Post Production">
+    <LandingSection title="Post-Production">
       <PostProductionGrid items={items} />
     </LandingSection>
   )

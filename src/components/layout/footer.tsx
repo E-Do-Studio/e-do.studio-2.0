@@ -15,8 +15,6 @@ function AddressSection({ className }: AddressSectionProps) {
   const transportOptions = [
     { label: t('footer.address.transport.metro_14'), icon: "14" },
     { label: t('footer.address.transport.metro_13'), icon: "13" },
-    { label: t('footer.address.transport.activity_park'), icon: "P" },
-    { label: t('footer.address.transport.parking'), icon: "P" },
   ];
 
   return (

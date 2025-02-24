@@ -70,7 +70,7 @@ export default async function CategoryPage(params: {
 
   return (
     <div className='mt-20'>
-      <LandingSection title="Post Production">
+      <LandingSection title="Post-Production">
         <PostProductionMenu items={menuItems} />
         <CategoryGallery item={item} />
       </LandingSection>

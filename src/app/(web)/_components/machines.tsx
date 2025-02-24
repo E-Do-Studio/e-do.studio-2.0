@@ -116,12 +116,12 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
               return (
                 <motion.div
                   key={machine.name}
-                  className="w-full text-center"
+                  className="w-full text-center bg-neutral-100 rounded-lg p-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="mb-6 text-lg">
+                  <p className="mb-6 text-lg mx-auto">
                     {machine.customContent.description}
                   </p>
                   <Button
@@ -154,6 +154,7 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
                     description={formatDescription(option.description)}
                   />
                 </motion.div>
+                
               ))
             )
           })}

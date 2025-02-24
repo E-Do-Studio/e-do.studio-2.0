@@ -37,14 +37,17 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
                 >
                   <div className="font-medium">{subcategory.name}</div>
                   <div className="text-lg font-bold">
-                    {subcategory.price.toFixed(2)}€
+                    {t('post-production.a_partir_de')} {subcategory.price.toFixed(2)}&euro;
+                  </div>
+                  <div className="text-sm text-end text-muted-foreground">
+                    {t('post-production.hors_taxe')}
                   </div>
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          <div className="flex-1">
+          <div className="flex-1 rounded-lg border border-border p-4">
             <p>{t('post-production.on_quotation')}</p>
           </div>
         )}

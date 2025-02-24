@@ -34,8 +34,6 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
     switch (slug) {
       case 'high-end':
         return 'col-span-2 h-[300px] order-2'
-      case 'ghost':
-        return 'h-[150px] order-1'
       case 'accessories':
         return 'h-[150px] order-1'
       default:
@@ -45,6 +43,12 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
 
   const getPositionClasses = (slug: string) => {
     return POSITION_BY_SLUG[slug as keyof typeof POSITION_BY_SLUG] || ''
+  }
+
+  const getImageFitClass = (slug: string) => {
+    if (slug === 'ghost') return 'object-contain'
+    if (slug === 'lookbook') return 'object-cover object-top'
+    return 'object-cover'
   }
 
   return (
@@ -64,7 +68,7 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
                 fill
                 priority={item.slug === 'high-end'}
                 sizes="(max-width: 768px) 100vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className={`${getImageFitClass(item.slug)} transition-transform duration-300 group-hover:scale-105`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-3">
@@ -93,7 +97,7 @@ export function PostProductionGrid({ items }: PostProductionGridProps) {
                 priority={item.slug === 'high-end'}
                 quality={80}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover transition-transform group-hover:scale-105"
+                className={`${getImageFitClass(item.slug)} transition-transform group-hover:scale-105`}
               />
               <div className="absolute bottom-0 left-0 right-0 p-4">
                 <h2 className="text-xl font-semibold text-white drop-shadow-[2px_2px_20px_rgba(0,0,0,0.6)]">

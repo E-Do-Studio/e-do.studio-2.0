@@ -22,9 +22,7 @@
       "direct_access": "Accès direct au Studio",
       "transport": {
         "metro_14": "Mairie de Saint-Ouen",
-        "metro_13": "Garibaldi",
-        "parking": "Places de parking",
-        "activity_park": "Parc d'activités Victor Hugo"
+        "metro_13": "Garibaldi"
       }
     },
     "schedule": {
