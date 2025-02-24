@@ -146,6 +146,9 @@
             "innovation": "Innovation et Créativité",
             "excellence": "Excellence et Qualité",
             "expertise": "Expertise et Passion"
+        },
+        "cta": {
+            "book": "Réserver une séance"
         }
     },
     "clock": {

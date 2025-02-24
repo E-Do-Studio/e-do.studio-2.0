@@ -1,8 +1,10 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button"
 
 export const Introduction = () => {
     const { t } = useTranslation('home')
@@ -114,6 +116,11 @@ export const Introduction = () => {
                         </li>
                     ))}
                 </ul>
+                <Button className="w-fit mt-8">
+                    <Link href="/reservation">
+                        {t('introduction.cta.book')}
+                    </Link>
+                </Button>
             </div>
         </div>
     )
