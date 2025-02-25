@@ -28,9 +28,12 @@ function Introduction() {
       <div className="flex flex-col gap-8">
         <div className="max-w-xl">
           <h2 className="text-3xl font-light mb-4">{t('specs.title')}</h2>
-          <h3 className="text-5xl font-light mb-4">30m²</h3>
+          {/* <h3 className="text-5xl font-light mb-4">30m²</h3> */}
           <p className='min-w-full'>
             {t('specs.dimensions.sides')}
+          </p>
+          <p className='min-w-full'>
+            {t('specs.dimensions.size')}
           </p>
         </div>
 

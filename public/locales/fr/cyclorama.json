@@ -9,7 +9,8 @@
     "title": "Le cyclorama",
     "description": "Nous savons que le confort est essentiel au bon déroulement du processus créatif, c'est pourquoi nous avons équipé notre studio de toutes les commodités nécessaires.",
     "dimensions": {
-      "sides": "Cyclo 2 côtés"
+      "sides": "Cyclo 2 faces",
+      "size": "6m L x 5m l x 4,7m H"
     },
     "amenities": {
       "door": "Porte sectionnelle sur parking",
@@ -20,7 +21,7 @@
       "relax": "Espace détente",
       "sound": "Sonorisation Sonos Airplay",
       "parking": "Places de parking",
-      "wifi": "Wifi gratuit"
+      "wifi": "Wifi"
     }
   },
   "rental": {
