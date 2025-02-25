@@ -1,7 +1,9 @@
 'use client'
 
 import { useRouter, usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 import { Tabs } from '@/app/(web)/_components/tabs'
+import { cn } from '@/lib/utils'
 
 interface PostProductionMenuItem {
   id: string
@@ -16,6 +18,21 @@ export interface PostProductionMenuProps {
 export function PostProductionMenu({ items }: PostProductionMenuProps) {
   const router = useRouter()
   const pathname = usePathname()
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [hasScroll, setHasScroll] = useState(false)
+
+  useEffect(() => {
+    const checkScroll = () => {
+      if (scrollRef.current) {
+        const hasHorizontalScroll = scrollRef.current.scrollWidth > scrollRef.current.clientWidth
+        setHasScroll(hasHorizontalScroll)
+      }
+    }
+
+    checkScroll()
+    window.addEventListener('resize', checkScroll)
+    return () => window.removeEventListener('resize', checkScroll)
+  }, [items])
 
   // Filtrer les items pour exclure la catégorie avec le slug "360"
   const filteredItems = items.filter(item => item.slug !== '360')
@@ -43,14 +60,23 @@ export function PostProductionMenu({ items }: PostProductionMenuProps) {
   }
 
   return (
-    <div
-      className="relative mb-4 md:mb-12"
-    >
-      <Tabs
-        tabs={['Tous', ...tabs]}
-        activeTab={activeTab}
-        setActiveTab={handleTabChange}
-      />
+    <div className="relative mb-4 md:mb-12">
+      <div
+        ref={scrollRef}
+        className={cn(
+          "overflow-x-auto scrollbar-thin scrollbar-thumb-neutral-300 scrollbar-track-transparent",
+          "px-4 md:px-0 -mx-4 md:mx-0 pb-2",
+          hasScroll && "after:absolute after:bottom-0 after:left-4 after:right-4 after:h-0.5 after:bg-neutral-200 after:rounded-full"
+        )}
+      >
+        <div className="min-w-max md:min-w-0">
+          <Tabs
+            tabs={['Tous', ...tabs]}
+            activeTab={activeTab}
+            setActiveTab={handleTabChange}
+          />
+        </div>
+      </div>
     </div>
   )
 } 

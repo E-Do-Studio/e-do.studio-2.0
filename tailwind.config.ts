@@ -92,6 +92,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [
+    animate,
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
 export default config
