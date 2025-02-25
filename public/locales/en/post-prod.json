@@ -1,5 +1,7 @@
 {
   "post-production": {
-    "on_quotation": "Price fixed on quotation."
+    "on_quotation": "Price upon request",
+    "a_partir_de": "From",
+    "hors_taxe": "excl. VAT"
   }
 }

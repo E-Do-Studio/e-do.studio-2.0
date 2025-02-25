@@ -1,5 +1,7 @@
 {
   "post-production": {
-    "on_quotation": "Prix fixé sur devis."
+    "on_quotation": "Prix sur devis.",
+    "a_partir_de": "À partir de",
+    "hors_taxe": "Hors taxe"
   }
 }

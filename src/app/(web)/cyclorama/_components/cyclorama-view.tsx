@@ -12,12 +12,12 @@ export function CycloramaView() {
   const { t } = useTranslation('cyclorama')
 
   return (
-    <Section title="CYCLORAMA" subtitle={t('FREE PRODUCTION')} image={
+    <Section title="CYCLORAMA" subtitle={t('title')} image={
       () => (
         <Image
           src="/cyclo/cyclo-plan.svg"
           alt="Plan du cyclorama"
-          className='size-full md:w-auto'
+          className='size-full md:w-auto md:h-[50vh] md:pr-40 md:pt-14'
           width={400}
           height={240}
           priority
@@ -28,15 +28,14 @@ export function CycloramaView() {
         () => (
           <div className='flex flex-col gap-2'>
             <p className="mb-8">
-              {t('Our cyclorama allows you to mobilize a production team and take your photos and videos on an infinite white background. With a height of 4.70m and a depth of 10m, you have free rein for any type of design set.')}
+              {t('description')}
             </p>
             <div className='flex gap-4'>
               <Link href="/contact">
                 <Button size="lg" className="w-44">
-                  {t('Book')}
+                  {t('cta.book')}
                 </Button>
               </Link>
-              <p className="text-sm opacity-70">* {t('Starting at 800€ excl. tax')}</p>
             </div>
           </div>
         )

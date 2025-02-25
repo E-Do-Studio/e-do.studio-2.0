@@ -10,31 +10,31 @@ const images = [
     id: 1,
     src: '/cyclo/cyclo.webp',
     alt: 'Cyclorama E-Do',
-    title: 'Cyclorama'
+    title: 'gallery.cyclorama'
   },
   {
     id: 2,
     src: '/cyclo/cabines.webp',
     alt: 'Cabines de change & poste de maquillage E-Do',
-    title: 'Changing rooms & make-up station'
+    title: 'gallery.changing'
   },
   {
     id: 3,
     src: '/cyclo/studio.webp',
     alt: 'Studio E-Do',
-    title: 'Studio'
+    title: 'gallery.studio'
   },
   {
     id: 4,
     src: '/cyclo/table.webp',
     alt: 'Table & cuisine E-Do',
-    title: 'Table & kitchen'
+    title: 'gallery.kitchen'
   },
   {
     id: 5,
     src: '/cyclo/cuisine.webp',
     alt: 'Cuisine toute équipée E-Do',
-    title: 'Equipped kitchen'
+    title: 'gallery.kitchen'
   }
 ]
 

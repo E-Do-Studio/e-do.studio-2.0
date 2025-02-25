@@ -15,7 +15,7 @@ export const Card = ({ timing, price, description }: CardProps) => {
 
   return (
     <motion.div
-      className="flex justify-between md:flex-col gap-4 p-4 flex-1 bg-neutral-100 rounded-lg cursor-pointer"
+      className="flex justify-between md:flex-col gap-4 p-4 flex-1 bg-neutral-100 rounded-lg"
       whileHover={{
         scale: 1.03,
         transition: {
@@ -28,9 +28,12 @@ export const Card = ({ timing, price, description }: CardProps) => {
         <p className="text-neutral-500">{description}</p>
       </div>
       <Separator className="hidden md:block mt-6" />
-      <p className="text-2xl font-medium">
-        {price}€ <span className="text-sm">{t('pricing.tax')}</span>
-      </p>
+      <div className='flex justify-between items-center'>
+        <p className="text-2xl font-medium">
+          {price}€ <span className="text-sm">{t('pricing.tax')}</span>
+        </p>
+        <p className='text-sm text-neutral-500'>{t('pricing.weekend')}</p>
+      </div>
     </motion.div>
   )
 }
