@@ -15,12 +15,14 @@ export function CycloramaView() {
     <Section title="CYCLORAMA" subtitle={t('title')} image={
       () => (
         <Image
-          src="/cyclo/cyclo-plan.svg"
-          alt="Plan du cyclorama"
-          className='size-full md:w-auto md:h-[50vh] md:pr-40 md:pt-14'
-          width={400}
-          height={240}
+          src="/img/machine-cyclorama.webp"
+          alt="Machine de cyclorama"
+          className="size-full md:w-auto md:h-[35vh] md:pr-40 object-contain"
+          width={800}
+          height={600}
+          quality={90}
           priority
+          sizes="(max-width: 768px) 100vw, 800px"
         />
       )
     }
@@ -31,16 +33,15 @@ export function CycloramaView() {
               {t('description')}
             </p>
             <div className='flex gap-4'>
-              <Link href="/contact">
+              <Link href="/#contact">
                 <Button size="lg" className="w-44">
-                  {t('cta.book')}
+                  {t('cta.contact')}
                 </Button>
               </Link>
             </div>
           </div>
         )
       }
-
     >
       <CycloramaGallery />
       <CycloramaSpecs />

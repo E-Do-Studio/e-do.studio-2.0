@@ -2,37 +2,44 @@
   "title": "PRODUCTION LIBRE",
   "description": "Notre cyclorama vous permet de mobiliser une équipe de production et de réaliser vos photos et vidéos sur un fond blanc infini. Avec une hauteur de 4,70m et une profondeur de 10m, vous avez libre cours pour tout type de mise en scène.",
   "cta": {
-    "book": "Réserver",
+    "contact": "Contactez-nous",
     "brochure": "Obtenir la brochure Cyclorama"
   },
   "specs": {
+    "title": "Le cyclorama",
     "description": "Nous savons que le confort est essentiel au bon déroulement du processus créatif, c'est pourquoi nous avons équipé notre studio de toutes les commodités nécessaires.",
     "dimensions": {
-      "sides": "Cyclo 2 côtés",
-      "size": "6m L x 5m l x 4,7m H"
+      "sides": "Cyclo 2 côtés"
     },
     "amenities": {
-      "door": "Porte sectionnelle sur cour",
+      "door": "Porte sectionnelle sur parking",
       "changing": "Cabines de change",
       "makeup": "Postes maquillage",
       "water": "Fontaine à eau",
       "kitchen": "Cuisine tout équipée",
       "relax": "Espace détente",
-      "sound": "4 Enceintes Sonos Airplay",
-      "parking": "Places de parking"
+      "sound": "Sonorisation Sonos Airplay",
+      "parking": "Places de parking",
+      "wifi": "Wifi gratuit"
     }
   },
   "rental": {
-    "title": "LOCATION",
-    "estimate": "Sur devis : contactez-nous",
+    "title": "Tarif",
+    "estimate": "La location de notre cyclorama se fait sur devis uniquement. Pour que nous puissions vous transmettre un devis, merci de nous contacter via le formulaire prévu à cet effet. Notre équipe vous répondra au plus vite.",
     "prices": {
       "title": "TARIFS",
       "weekend": "Majoration week-end 25%."
     }
   },
   "services": {
-    "production": "Nous pouvons vous fournir tout les services essentiels a votre production, : photographe, chef de projet, producteur, styliste, maquilleur, assistant studio et bien plus encore.",
-    "equipment": "Pour toutes demandes, notre service de location met à disposition un large choix d’éclairage studio, accessoires, matériel photographique et matériel de production, disponible sur devis"
+    "production": {
+      "title": "Services complémentaires",
+      "description": "Nous pouvons vous fournir tous les services essentiels à votre production, : photographe, chef de projet, service de catering, producteur, styliste, maquilleur, assistant studio et bien plus encore."
+    },
+    "equipment": {
+      "title": "Location d'équipements",
+      "description": "Pour toutes demandes, notre service de location met à disposition un large choix d’éclairage studio, accessoires, matériel photographique et matériel de production, disponible sur devis"
+    }
   },
   "gallery": {
     "cyclorama": "Cyclorama",

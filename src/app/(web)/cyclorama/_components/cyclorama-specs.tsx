@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { Section } from '@/components/layout/section'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-
+import Image from 'next/image'
 interface AmenityProps {
   translationKey: string
 }
@@ -24,16 +24,41 @@ function Amenity({ translationKey }: AmenityProps) {
 function Introduction() {
   const { t } = useTranslation('cyclorama')
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <p className='max-w-xl'>
-        {t('specs.description')}
-      </p>
-      <div className="max-w-xl md:text-right">
-        <h3 className="text-5xl font-light mb-4">30m²</h3>
-        <p className='min-w-full'>
-          {t('specs.dimensions.sides')}<br />
-          {t('specs.dimensions.size')}
+    <div className='flex flex-col lg:flex-row lg:justify-between gap-8'>
+      <div className="flex flex-col gap-8">
+        <div className="max-w-xl">
+          <h2 className="text-3xl font-light mb-4">{t('specs.title')}</h2>
+          <h3 className="text-5xl font-light mb-4">30m²</h3>
+          <p className='min-w-full'>
+            {t('specs.dimensions.sides')}
+          </p>
+        </div>
+
+        <div className="block lg:hidden">
+          <div className="flex justify-center">
+            <Image
+              src="/cyclo/cyclo-plan.svg"
+              alt="Cyclorama"
+              className='w-auto h-64'
+              width={800}
+              height={600}
+            />
+          </div>
+        </div>
+
+        <p className='max-w-xl sm:text-left text-center sm:mx-0 mx-auto'>
+          {t('specs.description')}
         </p>
+      </div>
+
+      <div className="hidden lg:flex justify-center">
+        <Image
+          src="/cyclo/cyclo-plan.svg"
+          alt="Cyclorama"
+          className='w-auto h-72 mr-40'
+          width={800}
+          height={600}
+        />
       </div>
     </div>
   )
@@ -44,10 +69,11 @@ function AmenitiesList() {
     'kitchen',
     'makeup',
     'sound',
-    'parking',
+    'wifi',
     'relax',
     'changing',
-    'door'
+    'door',
+    'parking',
   ]
 
   return (
@@ -62,18 +88,16 @@ function AmenitiesList() {
 function RentalSection() {
   const { t } = useTranslation('cyclorama')
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
-
-      <h3 className="text-3xl font-light mb-3">{t('rental.title')}</h3>
-
+    <div className="flex flex-col">
+      <h3 className="text-3xl font-light mb-4">{t('rental.title')}</h3>
       <div className='flex flex-col gap-4'>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-10'>
           <p>{t('rental.estimate')}</p>
           <Link href="/#contact">
             <Button
               size="lg"
             >
-              {t('cta.book')}
+              {t('cta.contact')}
             </Button>
           </Link>
 
@@ -94,21 +118,27 @@ function RentalSection() {
 function ServicesInfo() {
   const { t } = useTranslation('cyclorama')
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 text-sm">
-      <p>
-        {t('services.production')}
-      </p>
-      <p>
-        {t('services.equipment')}
-      </p>
+    <div className="grid grid-cols-1 md:grid-cols-2 text-sm gap-8 md:gap-4">
+      <div className='flex flex-col gap-2'>
+        <p>
+          <h3 className='text-2xl font-light mb-4'>{t('services.production.title')}</h3>
+          {t('services.production.description')}
+        </p>
+      </div>
+      <div className='flex flex-col gap-2'>
+        <p>
+          <h3 className='text-2xl font-light mb-4'>{t('services.equipment.title')}</h3>
+          {t('services.equipment.description')}
+        </p>
+      </div>
     </div>
   )
 }
 
 export function CycloramaSpecs() {
   return (
-    <Section className="mt-0">
-      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-16">
+    <Section className="!mt-0">
+      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-8 md:mb-4 ">
 
         <Introduction />
         <Separator className="my-8" />
@@ -116,12 +146,13 @@ export function CycloramaSpecs() {
 
       </Card>
 
-      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-16">
+      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-8 md:mt-4">
+
+
+        <ServicesInfo />
+        <Separator className="my-8" />
 
         <RentalSection />
-        <Separator className="my-8" />
-        <ServicesInfo />
-
       </Card>
     </Section>
   )

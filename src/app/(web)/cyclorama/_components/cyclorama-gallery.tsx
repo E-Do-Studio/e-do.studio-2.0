@@ -43,7 +43,7 @@ export function CycloramaGallery() {
   const { t } = useTranslation('cyclorama')
 
   return (
-    <Section className="mt-0">
+    <Section className="!mt-0">
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Large Main Image */}
         <div className="relative aspect-[4/3] md:aspect-square">
