@@ -56,7 +56,7 @@
     "pricing": {
         "title": "Choose the service.s that suit you",
         "timing": {
-            "hour": "By hour",
+            "hour": "By the hour",
             "half_day": "Half-day",
             "day": "Full day"
         },
