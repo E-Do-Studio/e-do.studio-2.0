@@ -120,16 +120,12 @@ function ServicesInfo() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 text-sm gap-8 md:gap-4">
       <div className='flex flex-col gap-2'>
-        <p>
-          <h3 className='text-2xl font-light mb-4'>{t('services.production.title')}</h3>
-          {t('services.production.description')}
-        </p>
+        <h3 className='text-2xl font-light mb-4'>{t('services.production.title')}</h3>
+        <p>{t('services.production.description')}</p>
       </div>
       <div className='flex flex-col gap-2'>
-        <p>
-          <h3 className='text-2xl font-light mb-4'>{t('services.equipment.title')}</h3>
-          {t('services.equipment.description')}
-        </p>
+        <h3 className='text-2xl font-light mb-4'>{t('services.equipment.title')}</h3>
+        <p>{t('services.equipment.description')}</p>
       </div>
     </div>
   )
