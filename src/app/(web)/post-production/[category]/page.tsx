@@ -7,6 +7,8 @@ import { notFound } from 'next/navigation'
 import { CategoryGallery } from './_components/category-gallery'
 import { PostProductionMenu } from '../_components/post-production-menu'
 import { getLanguage } from '@/lib/get-language'
+import { Description } from './_components/description'
+
 interface Subcategory {
   id: string
   name: string
@@ -71,6 +73,7 @@ export default async function CategoryPage(params: {
   return (
     <div className='mt-20'>
       <LandingSection title="Post-Production">
+        <Description />
         <PostProductionMenu items={menuItems} />
         <CategoryGallery item={item} />
       </LandingSection>
