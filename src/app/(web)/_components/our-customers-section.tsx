@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslation } from "react-i18next"
+import { motion } from 'framer-motion'
 import { LandingSection } from "@/components/layout/landing-section"
 import {
     Carousel,
@@ -81,39 +82,55 @@ export function OurCustomersSection() {
     ]
     return (
         <LandingSection title={t("customers.title")}>
-            <div className="w-full mx-auto border-b border-t border-black py-12">
+            <motion.div
+                className="w-full mx-auto border-b border-t border-black py-12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+            >
                 <Carousel
                     opts={{
                         align: "start",
                         loop: true,
-                        skipSnaps: false,
+                        dragFree: true,
+                        containScroll: false,
+                        slidesToScroll: 1,
+                        duration: 36500,
                     }}
                     plugins={[
                         Autoplay({
-                            delay: 1500,
+                            delay: 0,
+                            stopOnInteraction: false,
+                            playOnInit: true,
+                            jump: false,
                         }),
                     ]}
                     className="w-full px-4"
                 >
                     <CarouselContent className="-ml-1 flex items-center">
-                        {customers.map((customer, index) => (
-                            <CarouselItem key={index} className="pl-1 md:basis-1/4 lg:basis-1/5">
-                                <div className="px-8 py-4 flex items-center justify-center">
+                        {[...customers, ...customers, ...customers].map((customer, index) => (
+                            <CarouselItem key={index} className="pl-1 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
+                                <motion.div
+                                    className="px-2 sm:px-4 py-2 sm:py-4 flex items-center justify-center"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                >
                                     <Image
                                         src={customer.img}
                                         alt={customer.name}
                                         width={200}
                                         height={80}
                                         quality={80}
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        className="w-auto max-w-[200px] h-[80px] object-contain"
+                                        sizes="(max-width: 640px) 150px, (max-width: 768px) 160px, (max-width: 1024px) 180px, 200px"
+                                        className="w-auto h-[40px] sm:h-[50px] md:h-[60px] object-contain"
                                     />
-                                </div>
+                                </motion.div>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
                 </Carousel>
-            </div>
+            </motion.div>
         </LandingSection>
     )
 }

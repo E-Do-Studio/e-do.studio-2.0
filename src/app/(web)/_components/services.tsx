@@ -10,19 +10,19 @@ type ServicesProps = {
     title: string;
     description: string;
     number: string | number;
-    images: { src: string, alt: string }[];
+    image: { src: string, alt: string };
 }
 
-export const Services = ({ imagesDescription, serviceName, title, description, number, images }: ServicesProps) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+export const Services = ({ imagesDescription, serviceName, title, description, number, image }: ServicesProps) => {
+    // const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % images.length);
-        }, 1500);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    //     }, 1500);
 
-        return () => clearInterval(interval);
-    }, [images.length]);
+    //     return () => clearInterval(interval);
+    // }, [images.length]);
 
     return (
         <div className="mt-0 mb-3 lg:mt-10 lg:mb-10 flex lg:flex-row flex-col gap-2 justify-between lg:hover:cursor-pointer lg:transform lg:transition-transform lg:duration-500 lg:hover:scale-105">
@@ -53,8 +53,8 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
                 </div>
             </div>
             <Image
-                src={images[currentImageIndex].src}
-                alt={images[currentImageIndex].alt}
+                src={image.src}
+                alt={image.alt}
                 width={300}
                 height={300}
                 className="hidden lg:block object-cover w-[200px] h-[260px] mt-7"

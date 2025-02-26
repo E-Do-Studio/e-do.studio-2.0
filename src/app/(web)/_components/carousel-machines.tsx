@@ -53,20 +53,20 @@ export function CarouselMachines({ images, className, alt }: CarouselMachinesPro
                             }}
                             className="w-full"
                         >
-                            <CarouselContent className="-ml-0.5 flex gap-2 items-center">
+                            <CarouselContent className="-ml-0.5 flex gap-0.5 md:gap-2 items-center">
                                 {shuffledImages.map((image, index) => (
                                     <CarouselItem
                                         key={`${image.url}-${index}`}
-                                        className="pl-0.5 basis-full sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
+                                        className="pl-0.5 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
                                     >
-                                        <div className="relative h-[300px]">
+                                        <div className="relative h-[150px] md:h-[300px] flex items-center justify-center">
                                             <Image
                                                 src={image.url}
                                                 alt={image.alt || ''}
                                                 width={800}
                                                 height={600}
-                                                className="w-full h-full object-contain"
-                                                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                                className="w-full h-[150px] md:h-[300px] object-contain"
+                                                sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
                                                 quality={80}
                                                 priority={index === 0}
                                             />
