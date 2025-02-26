@@ -2,8 +2,7 @@
 
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import { LandingSection } from '@/components/layout/landing-section'
-import { PostProductionGrid, PostProductionItem } from './_components/post-production-grid'
+import { redirect } from 'next/navigation'
 import { getLanguage } from '@/lib/get-language'
 
 export default async function PostProduction() {
@@ -15,12 +14,14 @@ export default async function PostProduction() {
     locale: language,
   })
 
-  // Utiliser directement les slugs de la base de données
-  const items = postProduction.docs as PostProductionItem[]
+  // Filtrer les items pour exclure la catégorie avec le slug "360"
+  const items = postProduction.docs.filter(doc => doc.slug !== '360')
 
-  return (
-    <LandingSection title="Post-Production">
-      <PostProductionGrid items={items} />
-    </LandingSection>
-  )
+  // Rediriger vers la première catégorie
+  if (items.length > 0) {
+    redirect(`/post-production/${items[0].slug}`)
+  }
+
+  // Fallback au cas où il n'y a pas de catégories
+  redirect('/')
 }

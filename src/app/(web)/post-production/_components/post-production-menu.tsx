@@ -37,30 +37,30 @@ export function PostProductionMenu({ items }: PostProductionMenuProps) {
   // Filtrer les items pour exclure la catégorie avec le slug "360"
   const filteredItems = items.filter(item => item.slug !== '360')
 
+  // Redirection automatique si on est sur la route /post-production
+  useEffect(() => {
+    if (pathname === '/post-production' && filteredItems.length > 0) {
+      router.replace(`/post-production/${filteredItems[0].slug}`)
+    }
+  }, [pathname, filteredItems, router])
+
   // Utiliser les items filtrés pour générer les tabs
   const tabs = filteredItems.map(item => item.category)
 
   // Logique pour déterminer l'onglet actif
   const currentPath = pathname.split('/').pop()
-  const activeTab = currentPath === 'post-production'
-    ? 'Tous'
-    : filteredItems.find(item => {
-      const urlCategory = item.slug
-      return urlCategory === currentPath
-    })?.category || 'Tous'
+  const activeTab = filteredItems.find(item => {
+    const urlCategory = item.slug
+    return urlCategory === currentPath
+  })?.category || tabs[0]
 
   const handleTabChange = (category: string) => {
-    if (category.toLowerCase() === 'tous') {
-      router.push('/post-production')
-      return
-    }
-
     const urlCategory = filteredItems.find(item => item.category === category)?.slug
     router.push(`/post-production/${urlCategory}`)
   }
 
   return (
-    <div className="relative mb-4 md:mb-12">
+    <div className="relative">
       <div
         ref={scrollRef}
         className={cn(
@@ -74,7 +74,7 @@ export function PostProductionMenu({ items }: PostProductionMenuProps) {
             hasScroll && "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-neutral-200 after:rounded-full"
           )}>
             <Tabs
-              tabs={['Tous', ...tabs]}
+              tabs={tabs}
               activeTab={activeTab}
               setActiveTab={handleTabChange}
             />
