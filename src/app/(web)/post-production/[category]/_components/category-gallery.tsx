@@ -58,19 +58,17 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
         {item.assets.map((asset, index) => (
           <div
             key={index}
-            className="relative w-full"
+            className="relative w-full aspect-[3/4] cursor-pointer"
             onClick={() => setSelectedImage(asset)}
           >
-            <div className="relative w-full h-auto">
-              <Image
-                src={asset.url}
-                alt={asset.alt}
-                className="w-full h-auto object-contain bg-white"
-                width={800}
-                height={1200}
-                priority={index < 3}
-              />
-            </div>
+            <Image
+              src={asset.url}
+              alt={asset.alt}
+              className="object-cover bg-white"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={index < 3}
+            />
           </div>
         ))}
       </div>
