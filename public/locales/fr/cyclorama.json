@@ -35,11 +35,11 @@
   "services": {
     "production": {
       "title": "Services complémentaires",
-      "description": "Nous pouvons vous fournir tous les services essentiels à votre production, : photographe, chef de projet, service de catering, producteur, styliste, maquilleur, assistant studio et bien plus encore."
+      "description": "Nous pouvons fournir tous les services essentiels à votre production : photographe, chef de projet, service de catering, producteur, styliste, maquilleur, assistant studio et bien plus encore."
     },
     "equipment": {
       "title": "Location d'équipements",
-      "description": "Pour toutes demandes, notre service de location met à disposition un large choix d’éclairage studio, accessoires, matériel photographique et matériel de production, disponible sur devis"
+      "description": "Pour toutes demandes, notre service de location met à votre disposition un large choix d’éclairage studio, accessoires, matériel photographique et matériel de production, disponible sur devis"
     }
   },
   "gallery": {
