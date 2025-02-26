@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 function Model() {
     const { scene } = useGLTF('/img/cyclorama.glb')
     return (
-        <Center scale={1.8} position={[0, 1, 0]}>
+        <Center scale={2} position={[0, 1, 0]}>
             <primitive object={scene} rotation={[0, -Math.PI / 2, 0]} />
         </Center>
     )
@@ -15,7 +15,7 @@ function Model() {
 
 export function CycloramaModel() {
     return (
-        <div className="w-full h-[55vh] -mt-16 sm:-mt-20 md:-mt-24 lg:-mt-32 -mx-4 md:-mx-8 lg:-mx-16 md:w-auto md:h-[55vh] md:pr-32 lg:pr-48">
+        <div className="w-full h-[55vh] pl-3 md:pl-0 -mt-16 sm:-mt-20 md:-mt-24 lg:-mt-32 -mx-4 md:-mx-8 lg:-mx-16 md:w-[40rem] md:h-[55vh] md:pr-32 lg:pr-64 lg:pt-12">
             <Canvas
                 camera={{
                     position: [40, 12, 40],
@@ -40,7 +40,7 @@ export function CycloramaModel() {
                         minPolarAngle={Math.PI / 4}
                         maxPolarAngle={Math.PI / 2}
                         autoRotate
-                        autoRotateSpeed={1}
+                        autoRotateSpeed={4.5}
                         target={[0, 1, 0]}
                     />
                 </Suspense>
