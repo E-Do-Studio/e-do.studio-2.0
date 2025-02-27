@@ -82,7 +82,7 @@
                 "society": "Société",
                 "email": "E-mail*",
                 "website": "Site internet",
-                "message": "Une idée de projet, besoin d'un devis, d'une prise de rendez-vous ? Ecrivez nous ;)"
+                "message": "Une idée de projet, besoin d'un devis, d'une prise de rendez-vous ? Ecrivez nous :)"
             },
             "errors": {
                 "lastName": {
