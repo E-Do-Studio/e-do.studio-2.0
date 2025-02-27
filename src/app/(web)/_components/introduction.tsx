@@ -80,47 +80,95 @@ export const Introduction = () => {
 
     // V2 HAUT DE PAGE 
 
+    // return (
+    //     <div className="relative h-screen w-full">
+    //         <Image
+    //             src="/studio.webp"
+    //             alt="Logo"
+    //             width={1920}
+    //             height={1080}
+    //             quality={95}
+    //             priority
+    //             className="w-full h-full object-cover"
+    //             sizes="100vw"
+    //         />
+
+    //         {/* Overlay gradient pour améliorer la lisibilité du texte */}
+    //         <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+
+    //         {/* Contenu texte */}
+    //         <div className="absolute inset-0 container flex flex-col justify-center">
+    //             <span className="text-2xl md:text-4xl mb-4 font-medium">
+    //                 <span className="text-primary">{t('introduction.brand').split('E-Do Studio')[0]}</span>
+    //                 <span className="text-white">E-Do Studio</span>
+    //             </span>
+    //             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-6">
+    //                 <span className="text-primary-foreground">Your hybrid</span>{" "}
+    //                 <span className="text-primary">playground</span>
+    //             </h1>
+    //             <ul className="flex flex-col space-y-1 list-none">
+    //                 {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
+    //                     <li
+    //                         key={keyword}
+    //                         className="text-white text-base md:text-xl"
+    //                     >
+    //                         {t(`introduction.keywords.${keyword}`)}
+    //                     </li>
+    //                 ))}
+    //             </ul>
+    //             <Button className="w-fit mt-8">
+    //                 <Link href="/reservation">
+    //                     {t('introduction.cta.book')}
+    //                 </Link>
+    //             </Button>
+    //         </div>
+    //     </div>
+    // )
+
+    // V3 HAUT DE PAGE AVEC TEXTE ET IMAGE COTE A COTE
     return (
-        <div className="relative h-screen w-full">
-            <Image
-                src="/studio.webp"
-                alt="Logo"
-                width={1920}
-                height={1080}
-                quality={95}
-                priority
-                className="w-full h-full object-cover"
-                sizes="100vw"
-            />
+        <div className="min-h-screen w-full bg-background">
+            <div className="container grid lg:grid-cols-2 gap-8 min-h-screen items-center py-16">
+                {/* Contenu texte */}
+                <div className="flex flex-col justify-center order-2 lg:order-1">
+                    <span className="text-2xl md:text-4xl mb-4 font-medium">
+                        <span className="text-primary">{t('introduction.brand').split('E-Do Studio')[0]}</span>
+                        <span className="text-foreground">E-Do Studio</span>
+                    </span>
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-6">
+                        <span className="text-foreground">Your hybrid</span>{" "}
+                        <span className="text-primary">playground</span>
+                    </h1>
+                    <ul className="flex flex-col space-y-3 list-none mb-8">
+                        {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
+                            <li
+                                key={keyword}
+                                className="text-muted-foreground text-base md:text-xl"
+                            >
+                                {t(`introduction.keywords.${keyword}`)}
+                            </li>
+                        ))}
+                    </ul>
+                    <Button size="lg" className="w-fit">
+                        <Link href="/reservation">
+                            {t('introduction.cta.book')}
+                        </Link>
+                    </Button>
+                </div>
 
-            {/* Overlay gradient pour améliorer la lisibilité du texte */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
-
-            {/* Contenu texte */}
-            <div className="absolute inset-0 container flex flex-col justify-center">
-                <span className="text-2xl md:text-4xl mb-4 font-medium">
-                    <span className="text-primary">{t('introduction.brand').split('E-Do Studio')[0]}</span>
-                    <span className="text-white">E-Do Studio</span>
-                </span>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-6">
-                    <span className="text-primary-foreground">Your hybrid</span>{" "}
-                    <span className="text-primary">playground</span>
-                </h1>
-                <ul className="flex flex-col space-y-1 list-none">
-                    {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
-                        <li
-                            key={keyword}
-                            className="text-white text-base md:text-xl"
-                        >
-                            {t(`introduction.keywords.${keyword}`)}
-                        </li>
-                    ))}
-                </ul>
-                <Button className="w-fit mt-8">
-                    <Link href="/reservation">
-                        {t('introduction.cta.book')}
-                    </Link>
-                </Button>
+                {/* Image */}
+                <div className="relative h-[50vh] lg:h-[70vh] order-1 lg:order-2 rounded-2xl overflow-hidden">
+                    <Image
+                        src="/studio.webp"
+                        alt="Studio"
+                        quality={95}
+                        priority
+                        className="object-cover"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+                </div>
             </div>
         </div>
     )

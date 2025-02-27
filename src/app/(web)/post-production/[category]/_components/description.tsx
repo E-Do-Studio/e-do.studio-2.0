@@ -7,7 +7,7 @@ export function Description() {
 
     return (
         <div className="mb-8 flex flex-col gap-4">
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="mb-8">
                 {t('post-production.description')}
             </p>
             <Button className='w-fit'>
