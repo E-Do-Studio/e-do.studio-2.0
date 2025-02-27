@@ -14,8 +14,7 @@ import { usePathname } from 'next/navigation'
 import { useScroll } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 import { useScrollDirection } from '@/hooks/use-scroll-direction'
-import ReactGA from 'react-ga4'
-import ReactPixel from 'react-facebook-pixel'
+
 
 type HeaderProps = {
   children: React.ReactNode
@@ -190,6 +189,19 @@ function LanguageSwitcher() {
   const isEnglish = i18n.language === 'en'
   const scrolled = useScroll()
 
+  const handleLanguageChange = async () => {
+    const newLang = isEnglish ? 'fr' : 'en'
+    await i18n.changeLanguage(newLang)
+
+    // Revalidate all routes
+    try {
+      const { revalidateOnLanguageChange } = await import('@/app/actions')
+      await revalidateOnLanguageChange()
+    } catch (error) {
+      console.error('Failed to revalidate routes:', error)
+    }
+  }
+
   return (
     <Button
       size="icon"
@@ -200,7 +212,7 @@ function LanguageSwitcher() {
           ? "min-w-7 min-h-7 w-7 h-7"
           : "min-w-8 min-h-8 w-8 h-8"
       )}
-      onClick={() => i18n.changeLanguage(isEnglish ? 'fr' : 'en')}
+      onClick={handleLanguageChange}
     >
       {isEnglish ? 'fr' : 'en'}
     </Button>
@@ -226,21 +238,29 @@ function NavigationItem({ children, href }: NavigationItemProps) {
   const isAnchorLink = href.startsWith('#')
   const scrolled = useScroll()
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (isAnchorLink) {
       e.preventDefault()
       if (pathname === '/') {
         const element = document.querySelector(href)
         element?.scrollIntoView({ behavior: 'smooth' })
       } else {
-        router.push(`/${href}`)
+        // First navigate to home page
+        await router.push('/')
+        // Then scroll to anchor after a short delay to ensure page is loaded
+        setTimeout(() => {
+          const element = document.querySelector(href)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 500)
       }
     }
   }
 
   return (
     <Link
-      href={href}
+      href={isAnchorLink ? '#' : href}
       onClick={handleClick}
       className={cn(
         'hover:text-neutral-500 hover:underline transition-colors',

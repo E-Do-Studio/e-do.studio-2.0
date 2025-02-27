@@ -45,3 +45,44 @@ A modern, multilingual website for E-Do Studio, a creative studio specializing i
 - PostgreSQL
 - AWS S3 bucket
 - Resend API key
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/e-do-studio/website.git
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Create environment file
+
+```bash
+cp .env.example .env
+```
+
+4. Start the development server
+
+```bash
+npm run dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [i18next](https://www.i18next.org/)
+- [SWR](https://swr.vercel.app/)
+- [Zustand](https://zustand.docs.pmnd.rs/)
+- [Payload CMS](https://payloadcms.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [AWS S3](https://aws.amazon.com/s3/)
+- [Resend](https://resend.com/)
