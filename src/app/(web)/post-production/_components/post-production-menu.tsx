@@ -64,14 +64,14 @@ export function PostProductionMenu({ items }: PostProductionMenuProps) {
       <div
         ref={scrollRef}
         className={cn(
-          "overflow-x-auto scrollbar-thin scrollbar-thumb-neutral-300 scrollbar-track-transparent",
-          "px-4 md:px-0 -mx-4 md:mx-0 pb-2"
+          "overflow-x-auto scrollbar-hide",
+          "pb-2"
         )}
       >
-        <div className="min-w-max md:min-w-0 px-4 md:px-0">
+        <div className="min-w-max md:min-w-0 md:px-0">
           <div className={cn(
             "relative",
-            hasScroll && "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-neutral-200 after:rounded-full"
+            hasScroll && "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:rounded-full"
           )}>
             <Tabs
               tabs={tabs}

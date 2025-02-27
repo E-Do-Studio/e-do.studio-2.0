@@ -18,7 +18,7 @@ export default function PostProductionLayout({
   children: React.ReactNode
 }) {
   return (
-    <main className='container'>
+    <main className="container">
       {children}
     </main>
   )

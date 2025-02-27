@@ -58,7 +58,7 @@ export default async function CategoryPage(params: {
     collection: 'post-production',
     where: {
       slug: {
-        equals: category // Utiliser directement le slug de l'URL
+        equals: category
       }
     },
     locale: language
@@ -72,7 +72,7 @@ export default async function CategoryPage(params: {
 
   return (
     <div className='mt-20'>
-      <LandingSection title="Post-Production">
+      <LandingSection title="POST-PRODUCTION">
         <Description />
         <PostProductionMenu items={menuItems} />
         <CategoryGallery item={item} />
