@@ -19,18 +19,18 @@ function AddressSection({ className }: AddressSectionProps) {
 
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-xl font-medium mb-6">{t('footer.address.title')}</h3>
-      <div className="space-y-2 text-gray-300">
+      <h3 className="text-white text-lg md:text-xl font-medium mb-3 md:mb-6">{t('footer.address.title')}</h3>
+      <div className="space-y-1 md:space-y-2 text-gray-300 text-sm md:text-base">
         <p>{t('footer.address.building')}</p>
         <p>{t('footer.address.city')}</p>
         <p>{t('footer.address.building_number')}</p>
-        <div className="mt-6 space-y-2">
+        <div className="mt-3 md:mt-6 space-y-1 md:space-y-2">
           {transportOptions.map((option) => (
             <div key={option.label} className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full border border-white flex items-center justify-center text-sm text-white">
+              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full border border-white flex items-center justify-center text-xs md:text-sm text-white">
                 {option.icon}
               </div>
-              <span className="text-white">{option.label}</span>
+              <span className="text-white text-sm md:text-base">{option.label}</span>
             </div>
           ))}
         </div>
@@ -48,8 +48,8 @@ function ScheduleSection({ className }: ScheduleSectionProps) {
 
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-xl font-medium mb-6">{t('footer.schedule.title')}</h3>
-      <div className="space-y-2 text-gray-300">
+      <h3 className="text-white text-lg md:text-xl font-medium mb-3 md:mb-6">{t('footer.schedule.title')}</h3>
+      <div className="space-y-1 md:space-y-2 text-gray-300 text-sm md:text-base">
         <p>{t('footer.schedule.weekdays')}</p>
         <p>{t('footer.schedule.hours')}</p>
         <p>{t('footer.schedule.weekend')}</p>
@@ -67,11 +67,11 @@ function ContactSection({ className }: ContactSectionProps) {
 
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-xl font-medium mb-6">{t('footer.contact.title')}</h3>
-      <div className="space-y-4 text-gray-300">
+      <h3 className="text-white text-lg md:text-xl font-medium mb-3 md:mb-6">{t('footer.contact.title')}</h3>
+      <div className="space-y-3 md:space-y-4 text-gray-300 text-sm md:text-base">
         <Link
           href="/#contact"
-          className="inline-block px-4 py-2 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors"
+          className="inline-block px-3 md:px-4 py-1.5 md:py-2 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors"
         >
           {t('footer.contact.email_button')}
         </Link>
@@ -138,9 +138,9 @@ function SocialLinks({ className }: SocialLinksProps) {
 
 export function Footer() {
   return (
-    <footer className="bg-black mt-32">
-      <div className="container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 md:gap-8">
+    <footer className="bg-black mt-16 md:mt-32">
+      <div className="container py-8 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8">
           <div className="lg:col-span-4">
             <AddressSection />
           </div>
@@ -151,7 +151,7 @@ export function Footer() {
             <ContactSection />
           </div>
           <div className="md:col-span-2 lg:col-span-12 flex justify-center lg:justify-end">
-            <SocialLinks className="mt-8 lg:mt-12" />
+            <SocialLinks className="mt-4 md:mt-8 lg:mt-12" />
           </div>
         </div>
       </div>

@@ -83,7 +83,7 @@
                 "society": "Company",
                 "email": "Email*",
                 "website": "Website",
-                "message": "An idea for a project, need a quote, make an appointment ? Write to us ;)"
+                "message": "An idea for a project, need a quote, make an appointment ? Write to us :)"
             },
             "errors": {
                 "lastName": {
