@@ -22,7 +22,7 @@ type HeaderProps = {
 
 const navigation = [
   { label: 'cyclorama', href: '/cyclorama' },
-  { label: 'post-production', href: '/post-production' },
+  { label: 'post-production', href: '/post-production/high_end' },
   { label: 'gallery', href: '/galerie?category=on_model' },
   { label: 'services', href: '#services' },
   { label: 'pricing', href: '#pricing' },

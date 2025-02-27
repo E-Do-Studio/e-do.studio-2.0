@@ -13,7 +13,7 @@ export function CycloramaView() {
 
   return (
     <Section
-      title="Cyclorama"
+      title="CYCLORAMA"
       image={() => <CycloramaModel />}
       description={
         () => (
