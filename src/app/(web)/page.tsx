@@ -6,7 +6,7 @@ import { ServiceSection } from './_components/service-section'
 import { LocationSection } from './_components/location-section'
 import { OurCustomersSection } from './_components/our-customers-section'
 import { Introduction } from './_components/introduction'
-
+import { Accompagnement } from './_components/accompagnement'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
@@ -23,6 +23,7 @@ export default async function Page() {
       <div className="container">
         <ServiceSection />
         <PricingSection categories={categoriesResponse} />
+        <Accompagnement />
         <OurCustomersSection />
         <ContactSection />
         <LocationSection />
