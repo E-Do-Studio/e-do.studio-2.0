@@ -23,6 +23,9 @@ export interface PostProductionDocument {
     url: string
     alt: string
     description?: string
+    brand?: {
+      name: string
+    }
   }>
   description?: string
   subcategories: Subcategory[]

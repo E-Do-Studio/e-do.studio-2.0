@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
-import { X } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Section } from '@/components/layout/section'
 const images = [
   {
@@ -41,6 +41,14 @@ const images = [
 export function CycloramaGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const { t } = useTranslation('cyclorama')
+
+  const handlePrevious = () => {
+    setSelectedImage((prev) => (prev === 1 ? images.length : prev! - 1))
+  }
+
+  const handleNext = () => {
+    setSelectedImage((prev) => (prev === images.length ? 1 : prev! + 1))
+  }
 
   return (
     <Section className="!mt-0">
@@ -103,23 +111,48 @@ export function CycloramaGallery() {
           className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
           onClick={() => setSelectedImage(null)}
         >
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              handlePrevious()
+            }}
+            className="fixed left-4 md:left-8 top-1/2 -translate-y-1/2 text-white hover:opacity-70 bg-black/50 p-2 rounded-full z-[60]"
+          >
+            <ChevronLeft size={32} />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              handleNext()
+            }}
+            className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 text-white hover:opacity-70 bg-black/50 p-2 rounded-full z-[60]"
+          >
+            <ChevronRight size={32} />
+          </button>
+
           <div
-            className="relative w-full max-w-5xl mx-4"
+            className="relative w-full max-w-3xl mx-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={images[selectedImage - 1].src}
-              alt={images[selectedImage - 1].alt}
-              width={1920}
-              height={1080}
-              className="w-full h-auto"
-            />
+            <div className="relative aspect-[16/10] max-h-[80vh]">
+              <Image
+                src={images[selectedImage - 1].src}
+                alt={images[selectedImage - 1].alt}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 80vw"
+                priority
+              />
+            </div>
             <p className="text-center text-white mt-4 text-lg">
               {t(images[selectedImage - 1].title)}
             </p>
           </div>
           <button
-            onClick={() => setSelectedImage(null)}
+            onClick={(e) => {
+              e.stopPropagation()
+              setSelectedImage(null)
+            }}
             className="absolute top-4 right-4 text-white hover:opacity-70"
           >
             <X size={24} />

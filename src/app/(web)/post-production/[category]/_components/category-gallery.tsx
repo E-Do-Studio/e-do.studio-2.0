@@ -6,10 +6,14 @@ import { PostProductionDocument } from '../page'
 import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from 'react-i18next'
+
 interface Asset {
   url: string
   alt: string
   description?: string
+  brand?: {
+    name: string
+  }
 }
 
 interface CategoryGalleryProps {
@@ -58,58 +62,58 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
         {item.assets.map((asset, index) => (
           <div
             key={index}
-            className="relative w-full aspect-[3/4] cursor-pointer"
+            className="relative w-full aspect-[3/4] cursor-pointer group overflow-hidden"
             onClick={() => setSelectedImage(asset)}
           >
             <Image
               src={asset.url}
               alt={asset.alt}
-              className="object-cover bg-white"
+              className="object-cover bg-white transition-all duration-300 group-hover:scale-105"
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               priority={index < 3}
             />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
+                <p className="text-white text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                  {asset.brand?.name?.toUpperCase() || 'SANS MARQUE'}
+                </p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
 
-      {/* {selectedImage && (
-        <GalleryItemOverlay selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
-      )} */}
-    </div>
-  )
-}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center p-16"
+          onClick={() => setSelectedImage(null)}
+        >
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-4 right-4 z-50"
+            onClick={(e) => {
+              e.stopPropagation()
+              setSelectedImage(null)
+            }}
+          >
+            <X className="h-16 w-16" />
+          </Button>
 
-
-export const GalleryItemOverlay = ({ selectedImage, setSelectedImage }: { selectedImage: Asset, setSelectedImage: (image: Asset | null) => void }) => {
-  return (
-    <div
-      className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center p-16"
-      onClick={() => setSelectedImage(null)}
-    >
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute top-4 right-4 z-50"
-        onClick={(e) => {
-          e.stopPropagation()
-          setSelectedImage(null)
-        }}
-      >
-        <X className="h-16 w-16" />
-      </Button>
-
-      <div className="relative w-full h-full flex items-center justify-center">
-        <Image
-          src={selectedImage.url}
-          alt={selectedImage.alt}
-          className="max-h-full w-auto object-contain"
-          width={1200}
-          height={1600}
-          priority
-        />
-      </div>
+          <div className="relative w-full h-full flex items-center justify-center">
+            <Image
+              src={selectedImage.url}
+              alt={selectedImage.alt}
+              className="max-h-full w-auto object-contain"
+              width={1200}
+              height={1600}
+              priority
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

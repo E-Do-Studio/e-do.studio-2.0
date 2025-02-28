@@ -98,15 +98,15 @@ export const Introduction = () => {
 
             {/* Contenu texte */}
             <div className="absolute inset-0 container flex flex-col justify-center">
-                <span className="text-2xl md:text-4xl mb-4 font-medium">
+                <span className="text-2xl md:text-4xl mb-2 font-medium">
                     <span className="text-primary">{t('introduction.brand').split('E-Do Studio')[0]}</span>
                     <span className="text-white">E-Do Studio</span>
                 </span>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-6">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-3">
                     <span className="text-primary-foreground">Your hybrid</span>{" "}
                     <span className="text-primary">playground</span>
                 </h1>
-                <ul className="flex flex-col space-y-1 list-none">
+                <ul className="flex flex-col space-y-0.5 list-none">
                     {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
                         <li
                             key={keyword}
@@ -116,7 +116,7 @@ export const Introduction = () => {
                         </li>
                     ))}
                 </ul>
-                <Button className="w-fit mt-8">
+                <Button className="w-fit mt-4">
                     <Link href="/reservation">
                         {t('introduction.cta.book')}
                     </Link>
