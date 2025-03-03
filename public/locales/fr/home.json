@@ -71,6 +71,17 @@
         },
         "weekend": "Tarif week-end +25%"
     },
+    "accompagnement": {
+        "title": "Full-service / Self-service",
+        "self_service": {
+            "title": "SELF-SERVICE : shootez en toute autonomie",
+            "description": "Besoin de visuels professionnels sans mobiliser une équipe de production ? Avec notre option self-service, réalisez vos shootings facilement et en toute autonomie. \n\n Réservez un créneau sur l’une de nos machines – Verticale, Horizontale, Eclipse ou Live – et venez avec vos produits. Nos machines sont simples à utiliser et accessibles à tous : pas besoin d’être photographe, c’est aussi intuitif qu’un iPhone. \n\n À votre arrivée, notre équipe vous guide et configure l’équipement selon vos besoins. Ensuite, vous êtes libre de shooter en toute simplicité. \n\n Idéal pour les marques qui gèrent leur production en interne, le self-service vous donne accès à un équipement de pointe, sans contraintes. Et si besoin, un opérateur peut vous accompagner sur demande."
+        },
+        "full_service": {
+            "title": "FULL-SERVICE : on s'occupe de tout",
+            "description": "Vous manquez de temps ou souhaitez déléguer la production de vos visuels ? Optez pour notre offre full-service. \n\n Envoyez-nous vos produits, on gère tout : réception, shooting et post-production. Grâce à notre expertise et à un équipement de pointe, nous livrons des visuels impeccables, prêts à être utilisés sur votre e-shop ou vos réseaux sociaux. \n\n Idéal pour les marques et e-commerçants qui veulent un rendu professionnel sans se déplacer, le full-service vous assure une prise en charge complète, avec un résultat soigné et livré dans les délais. \n\n Faites-nous confiance, on s’occupe du reste."
+        }
+    },
     "contact": {
         "title": "Vous avez des questions ?",
         "subtitle": "Des Besoins spécifiques ?",
