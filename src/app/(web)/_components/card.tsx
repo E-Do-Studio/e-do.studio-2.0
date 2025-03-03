@@ -28,7 +28,7 @@ export const Card = ({ timing, price, description }: CardProps) => {
         <p className="text-neutral-500">{description}</p>
       </div>
       <Separator className="hidden md:block mt-6" />
-      <div className='flex justify-between items-center'>
+      <div className='flex flex-col md:flex-row md:justify-between items-center'>
         <p className="text-2xl font-medium">
           {price}€ <span className="text-sm">{t('pricing.tax')}</span>
         </p>
