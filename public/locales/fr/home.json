@@ -71,6 +71,16 @@
         },
         "weekend": "Tarif week-end +25%"
     },
+    "accompagnement": {
+        "self_service": {
+            "title": "Self-service",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorem magni eveniet, odio earum rem modi voluptatum delectus harum. Odit earum dignissimos quidem ipsa expedita repellat quas quis cupiditate molestias?"
+        },
+        "full_service": {
+            "title": "Full service",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorem magni eveniet, odio earum rem modi voluptatum delectus harum. Odit earum dignissimos quidem ipsa expedita repellat quas quis cupiditate molestias?"
+        }
+    },
     "contact": {
         "title": "Vous avez des questions ?",
         "subtitle": "Des Besoins spécifiques ?",
