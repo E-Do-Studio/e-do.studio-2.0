@@ -73,13 +73,14 @@
         "weekend": "Weekend fee +25%"
     },
     "accompagnement": {
+        "title": "Full-service / Self-service",
         "self_service": {
-            "title": "Self-service",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorem magni eveniet, odio earum rem modi voluptatum delectus harum. Odit earum dignissimos quidem ipsa expedita repellat quas quis cupiditate molestias?"
+            "title": "SELF-SERVICE: shoot with full autonomy",
+            "description": "Need professional visuals without hiring a full production team? With our self-service option, you can easily manage your shoots on your own. \n\n Book a slot on one of our machines – Vertical, Horizontal, Eclipse, or Live – and bring your products. Our machines are user-friendly and accessible to everyone: no need to be a professional photographer, it’s as intuitive as shooting with an iPhone. \n\n Upon arrival, our team will guide you through the setup and configure the equipment to fit your needs. Once everything is set, you’re free to shoot with ease. \n\n Perfect for brands managing their own production, self-service gives you access to top-tier equipment without constraints. And if needed, an operator can assist you on request."
         },
         "full_service": {
-            "title": "Full service",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorem magni eveniet, odio earum rem modi voluptatum delectus harum. Odit earum dignissimos quidem ipsa expedita repellat quas quis cupiditate molestias?"
+            "title": "FULL-SERVICE: we take care of everything",
+            "description": "Short on time or simply want to outsource your visual production? Choose our full-service option. \n\n Send us your products, and we take care of the rest: receiving, shooting, and post-production. With our expertise and state-of-the-art equipment, we deliver flawless visuals, ready to use on your e-shop or social media. \n\n Perfect for brands and e-commerce businesses looking for professional results without having to be on-site, our full-service option guarantees a seamless process, with polished images delivered on time. \n\n Trust us—we’ve got it covered."
         }
     },
     "contact": {
