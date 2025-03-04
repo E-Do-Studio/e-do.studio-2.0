@@ -22,7 +22,12 @@ export function CycloramaView() {
               {t('description')}
             </p>
             <div className='flex gap-4'>
-              <Link href="/#contact">
+              <Link
+                href="/#contact"
+                prefetch={true}
+                scroll={false}
+                className="inline-block"
+              >
                 <Button size="lg" className="w-44">
                   {t('cta.contact')}
                 </Button>

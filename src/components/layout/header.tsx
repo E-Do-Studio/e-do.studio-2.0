@@ -238,22 +238,46 @@ function NavigationItem({ children, href }: NavigationItemProps) {
   const isAnchorLink = href.startsWith('#')
   const scrolled = useScroll()
 
+  const scrollToAnchor = (targetId: string) => {
+    const element = document.getElementById(targetId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (isAnchorLink) {
       e.preventDefault()
+      const targetId = href.slice(1) // Remove the # from href
+
       if (pathname === '/') {
-        const element = document.querySelector(href)
-        element?.scrollIntoView({ behavior: 'smooth' })
+        scrollToAnchor(targetId)
       } else {
-        // First navigate to home page
-        await router.push('/')
-        // Then scroll to anchor after a short delay to ensure page is loaded
-        setTimeout(() => {
-          const element = document.querySelector(href)
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
+        try {
+          // Prefetch home page
+          router.prefetch('/')
+
+          // Navigate to home page
+          await router.push('/')
+
+          // Wait for page to load and try to scroll
+          const maxAttempts = 10
+          let attempts = 0
+
+          const tryScroll = () => {
+            const element = document.getElementById(targetId)
+            if (element) {
+              scrollToAnchor(targetId)
+            } else if (attempts < maxAttempts) {
+              attempts++
+              setTimeout(tryScroll, 100)
+            }
           }
-        }, 500)
+
+          setTimeout(tryScroll, 100)
+        } catch (error) {
+          console.error('Navigation error:', error)
+        }
       }
     }
   }
@@ -262,6 +286,7 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     <Link
       href={isAnchorLink ? '#' : href}
       onClick={handleClick}
+      prefetch={!isPhoneLink && !isAnchorLink}
       className={cn(
         'hover:text-neutral-500 hover:underline transition-colors',
         scrolled ? 'text-[13px]' : 'text-sm',
