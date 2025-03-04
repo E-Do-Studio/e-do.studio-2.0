@@ -1,10 +1,11 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import useSWR from 'swr'
 import { useSearchParams } from 'next/navigation'
 import { MediaCard } from './media-card'
 import { Skeleton } from "@/components/ui/skeleton"
+import { useInView } from 'react-intersection-observer'
 
 interface GalleryImage {
   id: number
@@ -55,8 +56,8 @@ interface GroupedMedia {
   [brandName: string]: (GalleryImage | GalleryVideo)[]
 }
 
-// Définition du fetcher pour SWR
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const ITEMS_PER_PAGE = 12
+const PRIORITY_ITEMS = 4 // Number of items to load with priority
 
 function GalleryGridSkeleton() {
   return (
@@ -74,29 +75,62 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   const searchParams = useSearchParams()
   const category = searchParams.get('category') || initialCategory
   const subcategory = searchParams.get('subcategory')
+  const [page, setPage] = useState(1)
+  const { ref, inView } = useInView({
+    threshold: 0,
+    rootMargin: '200px 0px', // Start loading next page earlier
+  })
 
-  // Fetch images and videos if no category selected
+  // Optimized fetcher with cache-control
+  const fetcher = async (url: string) => {
+    const response = await fetch(url, {
+      next: { revalidate: 3600 },
+      headers: {
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+      },
+    })
+    if (!response.ok) throw new Error('Failed to fetch data')
+    return response.json()
+  }
+
+  // Fetch images and videos if no category selected with pagination
   const { data: allMediaData, error: allMediaError, isLoading: allMediaLoading } = useSWR<{ docs: any[] }>(
-    !category ? '/api/media?depth=2' : null,
+    !category ? `/api/media?depth=2&page=${page}&limit=${ITEMS_PER_PAGE}` : null,
     fetcher,
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
+      keepPreviousData: true,
+      revalidateIfStale: false,
+      dedupingInterval: 3600000, // 1 hour
     }
   )
 
   // Fetch les catégories seulement si une catégorie est sélectionnée
   const { data: categoriesData, error: categoriesError, isLoading: categoriesLoading } = useSWR<{ docs: any[] }>(
-    category ? '/api/categories?depth=2' : null,
+    category ? `/api/categories?depth=2&page=${page}&limit=${ITEMS_PER_PAGE}` : null,
     fetcher,
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
+      keepPreviousData: true,
+      revalidateIfStale: false,
+      dedupingInterval: 3600000, // 1 hour
     }
   )
 
   const isLoading = allMediaLoading || categoriesLoading
   const error = allMediaError || categoriesError
+
+  // Load more items when reaching the bottom with debounce
+  useEffect(() => {
+    if (inView && !isLoading) {
+      const timer = setTimeout(() => {
+        setPage(prev => prev + 1)
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [inView, isLoading])
 
   const media = useMemo(() => {
     if (category && categoriesData?.docs) {
@@ -180,26 +214,20 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
     }, new Array(sortedByHeight.length)).filter(Boolean);
   }, [media]);
 
-  if (isLoading) {
-    return (
-      <div className="pt-[12rem] lg:pt-0">
-        <GalleryGridSkeleton />
-      </div>
-    )
-  }
-
   if (error) return <div>Erreur de chargement</div>
   if (!media.length) return <div>Aucun média trouvé</div>
 
   return (
     <div className="pt-[12rem] lg:pt-0">
+      {isLoading && page === 1 && <GalleryGridSkeleton />}
+
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         style={{
           maxWidth: '2400px',
         }}
       >
-        {sortedMedia.map((item) => (
+        {sortedMedia.map((item, index) => (
           <div
             key={item.id}
             className="w-full aspect-[3/4]"
@@ -210,13 +238,26 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
                 className="w-full h-full rounded-lg"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
               />
             ) : (
-              <MediaCard item={item} />
+              <MediaCard
+                item={item}
+                priority={index < PRIORITY_ITEMS && page === 1}
+              />
             )}
           </div>
         ))}
       </div>
+
+      {/* Infinite scroll trigger */}
+      <div ref={ref} className="h-10" />
+
+      {isLoading && page > 1 && (
+        <div className="mt-8">
+          <GalleryGridSkeleton />
+        </div>
+      )}
     </div>
   )
 } 

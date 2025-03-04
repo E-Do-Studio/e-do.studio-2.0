@@ -1,54 +1,19 @@
-import { withPayload } from '@payloadcms/next/withPayload'
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'plus.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.citypng.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'e7.pngegg.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3000',
-      },
-      {
-        protocol: 'https',
-        hostname: 'e-do.studio',
-      },
-      {
-        protocol: 'https',
-        hostname: 'e-do.studio/admin',
-      },
-      {
-        protocol: 'https',
-        hostname: 'api.cappasity.com',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      },
-    ],
-    domains: ['localhost', '127.0.0.1', 'e-do.studio'],
+    domains: [
+      'localhost',
+      process.env.PAYLOAD_PUBLIC_SERVER_URL?.replace(/https?:\/\//, '')
+    ].filter(Boolean),
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 3600,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  // Your Next.js config here
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['@radix-ui/react-icons'],
+  },
 }
 
-export default withPayload(nextConfig)
+export default nextConfig 
