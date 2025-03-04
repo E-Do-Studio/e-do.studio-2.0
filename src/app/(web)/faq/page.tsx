@@ -1,3 +1,10 @@
+'use client'
+
+import { useTranslation } from 'react-i18next'
+import { Section } from '@/components/layout/section'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+
 import {
     Accordion,
     AccordionContent,
@@ -25,21 +32,35 @@ const faqItems: FaqItem[] = [
 ]
 
 export default function FaqPage() {
+    const { t } = useTranslation('faq')
     return (
-        <div className="mx-auto max-w-4xl">
-            <h1 className="mb-8 text-3xl font-bold tracking-tight">
-                Frequently Asked Questions
-            </h1>
-            <Accordion type="single" collapsible className="w-full">
-                {faqItems.map((item) => (
-                    <AccordionItem key={item.id} value={item.id}>
-                        <AccordionTrigger className="text-left">
-                            {item.question}
-                        </AccordionTrigger>
-                        <AccordionContent>{item.answer}</AccordionContent>
-                    </AccordionItem>
-                ))}
-            </Accordion>
-        </div>
+        <Section title="FAQ" description={() =>
+            <div className='flex flex-col gap-2'>
+                <p className="mb-8">
+                    {t('description')}
+                </p>
+                <Link href="/#contact">
+                    <Button size="lg" className="w-44">
+                        {t('cta.contact')}
+                    </Button>
+                </Link>
+            </div>
+        } >
+            <div className="mx-auto max-w-4xl">
+                <h1 className="mb-8 text-3xl font-bold tracking-tight">
+                    {t('title')}
+                </h1>
+                <Accordion type="single" collapsible className="w-full">
+                    {faqItems.map((item) => (
+                        <AccordionItem key={item.id} value={item.id}>
+                            <AccordionTrigger className="text-left">
+                                {item.question}
+                            </AccordionTrigger>
+                            <AccordionContent>{item.answer}</AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </div>
+        </Section>
     )
 }
