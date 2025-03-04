@@ -24,13 +24,6 @@ export function MobileMenu({ navigation, translations }: MobileMenuProps) {
   const pathname = usePathname()
   const router = useRouter()
 
-  const scrollToAnchor = (targetId: string) => {
-    const element = document.getElementById(targetId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
   const handleClick = async (href: string) => {
     const isAnchorLink = href.startsWith('#')
 
@@ -38,40 +31,41 @@ export function MobileMenu({ navigation, translations }: MobileMenuProps) {
     close()
 
     if (isAnchorLink) {
-      const targetId = href.slice(1) // Remove the # from href
+      const targetAnchor = href.split('#')[1]
 
       if (pathname === '/') {
-        scrollToAnchor(targetId)
+        const element = document.querySelector(`#${targetAnchor}`)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
       } else {
         try {
-          // Prefetch home page
-          router.prefetch('/')
-
-          // Navigate to home page
+          // Navigate to home page first
           await router.push('/')
 
-          // Wait for page to load and try to scroll
-          const maxAttempts = 10
-          let attempts = 0
+          // Use router.refresh() to ensure the page is fully loaded
+          router.refresh()
 
-          const tryScroll = () => {
-            const element = document.getElementById(targetId)
+          // Wait for the page to be fully loaded and then scroll
+          const checkAndScroll = () => {
+            const element = document.querySelector(`#${targetAnchor}`)
             if (element) {
-              scrollToAnchor(targetId)
-            } else if (attempts < maxAttempts) {
-              attempts++
-              setTimeout(tryScroll, 100)
+              setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth' })
+              }, 100)
+            } else {
+              // If element not found, try again after a short delay
+              setTimeout(checkAndScroll, 100)
             }
           }
 
-          setTimeout(tryScroll, 100)
+          // Start checking after initial delay
+          setTimeout(checkAndScroll, 500)
         } catch (error) {
           console.error('Navigation error:', error)
         }
       }
     } else {
-      // Prefetch the target page
-      router.prefetch(href)
       await router.push(href)
     }
   }
@@ -105,7 +99,6 @@ export function MobileMenu({ navigation, translations }: MobileMenuProps) {
                     e.preventDefault()
                     handleClick(item.href)
                   }}
-                  prefetch={true}
                   className="text-4xl font-light hover:text-neutral-500 transition-colors"
                 >
                   {t(`header.navigation.${item.label}`)}

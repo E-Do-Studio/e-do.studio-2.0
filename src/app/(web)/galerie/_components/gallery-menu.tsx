@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useMemo, Suspense } from "react"
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -34,28 +34,12 @@ function GalleryMenuSkeleton() {
 
 function CategoryLink({ category, isCurrentCategory }: { category: Category; isCurrentCategory: boolean }) {
   const searchParams = useSearchParams()
-  const router = useRouter()
   const currentSubcategorySlug = searchParams?.get('subcategory')
-
-  const handleCategoryClick = (e: React.MouseEvent<HTMLAnchorElement>, categorySlug: string) => {
-    e.preventDefault()
-    const url = `/galerie?category=${categorySlug}`
-    router.prefetch(url)
-    router.push(url, { scroll: false })
-  }
-
-  const handleSubcategoryClick = (e: React.MouseEvent<HTMLAnchorElement>, categorySlug: string, subcategorySlug: string) => {
-    e.preventDefault()
-    const url = `/galerie?category=${categorySlug}&subcategory=${subcategorySlug}`
-    router.prefetch(url)
-    router.push(url, { scroll: false })
-  }
 
   return (
     <li className="space-y-1">
       <Link
         href={`/galerie?category=${category.slug}`}
-        onClick={(e) => handleCategoryClick(e, category.slug)}
         className={cn(
           "hover:text-neutral-600 transition-colors",
           isCurrentCategory && "font-medium"
@@ -82,7 +66,6 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
               >
                 <Link
                   href={`/galerie?category=${category.slug}&subcategory=${subcategory.slug}`}
-                  onClick={(e) => handleSubcategoryClick(e, category.slug, subcategory.slug)}
                   className={cn(
                     "hover:text-neutral-600 transition-colors",
                     currentSubcategorySlug === subcategory.slug && "font-medium"
