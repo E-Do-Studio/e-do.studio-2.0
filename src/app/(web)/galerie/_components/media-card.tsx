@@ -42,11 +42,11 @@ export function MediaCard({ item }: MediaCardProps) {
   }
 
   return (
-    <Link href={`#${item.id}`} className="block w-full mb-4">
-      <div className="relative w-full overflow-hidden group">
+    <Link href={`#${item.id}`} className="block w-full h-full">
+      <div className="relative w-full h-full overflow-hidden group">
         {isLoading && (
           <Skeleton
-            className={cn("absolute inset-0", isVideo && videoHeight ? { height: `${videoHeight}px` } : undefined)}
+            className="absolute inset-0"
           />
         )}
 
@@ -61,7 +61,7 @@ export function MediaCard({ item }: MediaCardProps) {
             onLoadedData={() => setIsLoading(false)}
             onLoad={() => setIsLoading(false)}
             className={cn(
-              "w-full h-auto object-cover transition-all duration-300",
+              "w-full h-full object-cover transition-all duration-300",
               "group-hover:scale-105",
             )}
           />
@@ -69,16 +69,15 @@ export function MediaCard({ item }: MediaCardProps) {
           <Image
             src={mediaUrl}
             alt={item.alt || item.filename}
-            width={item.width || 800}
-            height={item.height || 1200}
             quality={80}
             className={cn(
-              "w-full h-auto object-cover transition-all duration-300",
+              "w-full h-full object-cover transition-all duration-300",
               "group-hover:scale-105",
               isLoading ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
             )}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             onLoad={() => setIsLoading(false)}
+            fill
           />
         )}
 

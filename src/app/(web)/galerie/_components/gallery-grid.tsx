@@ -194,26 +194,20 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   return (
     <div className="pt-[12rem] lg:pt-0">
       <div
-        className="columns-1 md:columns-2 lg:columns-3 gap-4 [column-fill:balance] mx-auto"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         style={{
           maxWidth: '2400px',
-          columnGap: '1rem',
-          columnFill: 'balance'
         }}
       >
         {sortedMedia.map((item) => (
           <div
             key={item.id}
-            className="mb-4 break-inside-avoid w-full inline-block"
-            style={{
-              pageBreakInside: 'avoid',
-              breakInside: 'avoid'
-            }}
+            className="w-full aspect-[3/4]"
           >
             {'type' in item && item.type === '360' ? (
               <iframe
                 src={item.url}
-                className="w-full aspect-square rounded-lg"
+                className="w-full h-full rounded-lg"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
