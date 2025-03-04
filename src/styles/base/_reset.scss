@@ -26,6 +26,28 @@ ol[role='list'] {
 }
 
 /* Set core root defaults */
+html {
+  scroll-behavior: smooth;
+  /* Valeur par défaut pour mobile : hauteur du header (64px) + marge de sécurité (24px) */
+  scroll-padding-top: 88px;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  html {
+    /* Pour desktop : hauteur du header (80px) + marge de sécurité (24px) */
+    scroll-padding-top: 104px;
+  }
+}
+
+/* Ajustement pour l'état défilé */
+@media (min-width: 768px) and (min-height: 100px) {
+  html {
+    /* Pour desktop défilé : hauteur du header (56px) + marge de sécurité (24px) */
+    scroll-padding-top: 80px;
+  }
+}
+
 html:focus-within {
   scroll-behavior: smooth;
 }
@@ -33,8 +55,11 @@ html:focus-within {
 /* Set core body defaults */
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 /* A elements that don't have a class get default styles */

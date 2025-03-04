@@ -6,7 +6,7 @@ interface LogoProps {
 
 export function Logo({ variant = 'default' }: LogoProps) {
   return variant === 'default' ? (
-    <Link href="/">
+    <Link href="/" prefetch={true}>
       {/* Mobile */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export function Logo({ variant = 'default' }: LogoProps) {
       </svg>
     </Link>
   ) : (
-    <Link href="/">
+    <Link href="/" prefetch={true}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="w-8 h-8 md:w-10 md:h-10"

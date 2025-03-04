@@ -61,6 +61,8 @@ export function CycloramaGallery() {
             fill
             className="object-cover"
             onClick={() => setSelectedImage(1)}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
           />
         </div>
 
@@ -73,6 +75,7 @@ export function CycloramaGallery() {
               fill
               className="object-cover"
               onClick={() => setSelectedImage(2)}
+              sizes="(max-width: 768px) 50vw, 25vw"
             />
           </div>
           <div className="relative aspect-square">
@@ -82,6 +85,7 @@ export function CycloramaGallery() {
               fill
               className="object-cover"
               onClick={() => setSelectedImage(3)}
+              sizes="(max-width: 768px) 50vw, 25vw"
             />
           </div>
           <div className="relative aspect-square">
@@ -91,6 +95,7 @@ export function CycloramaGallery() {
               fill
               className="object-cover"
               onClick={() => setSelectedImage(4)}
+              sizes="(max-width: 768px) 50vw, 25vw"
             />
           </div>
           <div className="relative aspect-square">
@@ -100,6 +105,7 @@ export function CycloramaGallery() {
               fill
               className="object-cover"
               onClick={() => setSelectedImage(5)}
+              sizes="(max-width: 768px) 50vw, 25vw"
             />
           </div>
         </div>

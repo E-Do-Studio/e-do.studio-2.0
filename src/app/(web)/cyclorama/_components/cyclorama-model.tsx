@@ -2,10 +2,25 @@
 
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Center, Stage } from '@react-three/drei'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 
 function Model() {
     const { scene } = useGLTF('/img/cyclorama.glb')
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            scene.traverse((obj) => {
+                if (obj.isMesh) {
+                    obj.geometry.dispose()
+                    if (obj.material.dispose) {
+                        obj.material.dispose()
+                    }
+                }
+            })
+        }
+    }, [scene])
+
     return (
         <Center scale={2} position={[0, 1, 0]}>
             <primitive object={scene} rotation={[0, -Math.PI / 2, 0]} />
@@ -22,6 +37,11 @@ export function CycloramaModel() {
                     fov: 35
                 }}
                 className="h-full"
+                gl={{
+                    antialias: true,
+                    preserveDrawingBuffer: true,
+                    powerPreference: "high-performance"
+                }}
             >
                 <Suspense fallback={null}>
                     <Stage

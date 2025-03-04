@@ -15,45 +15,49 @@ export function AnalyticsProvider() {
   const { cookieConsent } = useStore()
 
   useEffect(() => {
-    // Log l'état initial
-    console.log('Analytics Provider - Cookie Consent:', cookieConsent)
-    console.log('Local Storage:', localStorage.getItem('edo-studio-storage'))
-
-    if (!cookieConsent) {
-      console.log('Analytics disabled - no consent')
-      return
-    }
-
-    console.log('Initializing analytics...')
+    if (!cookieConsent) return
 
     try {
-      // Google Analytics 4
-      ReactGA.initialize(GOOGLE_ANALYTICS_ID)
-      ReactGA.send({ hitType: 'pageview', page: window.location.pathname })
-      console.log('GA initialized')
+      // Google Analytics 4 avec configuration pour les cookies tiers
+      ReactGA.initialize(GOOGLE_ANALYTICS_ID, {
+        gaOptions: {
+          cookieFlags: 'SameSite=None;Secure'
+        }
+      })
+      ReactGA.send({
+        hitType: 'pageview',
+        page: window.location.pathname
+      })
 
-      // Facebook Pixel
+      // Facebook Pixel avec configuration améliorée
       const fbOptions = {
         autoConfig: true,
-        debug: true
+        debug: false
       }
       ReactPixel.init(FB_PIXEL_ID, undefined, fbOptions)
       ReactPixel.pageView()
-      console.log('FB Pixel initialized')
 
-      // LinkedIn Pixel
-      const script = document.createElement('script')
-      script.innerHTML = `
-        _linkedin_partner_id = "${LINKEDIN_ID}";
-        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-        window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-      `
-      document.body.appendChild(script)
+      // LinkedIn Pixel avec gestion des erreurs
+      if (typeof window !== 'undefined') {
+        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []
+        window._linkedin_data_partner_ids.push(LINKEDIN_ID)
 
-      const linkedInScript = document.createElement('script')
-      linkedInScript.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js'
-      document.body.appendChild(linkedInScript)
-      console.log('LinkedIn Pixel initialized')
+        const script = document.createElement('script')
+        script.async = true
+        script.defer = true
+        script.innerHTML = `
+          _linkedin_partner_id = "${LINKEDIN_ID}";
+          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+          window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+        `
+        document.body.appendChild(script)
+
+        const linkedInScript = document.createElement('script')
+        linkedInScript.async = true
+        linkedInScript.defer = true
+        linkedInScript.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js'
+        document.body.appendChild(linkedInScript)
+      }
     } catch (error) {
       console.error('Error initializing analytics:', error)
     }

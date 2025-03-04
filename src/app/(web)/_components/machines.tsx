@@ -127,12 +127,7 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
                   <Button
                     onClick={() => {
                       const contactSection = document.getElementById('contact')
-                      if (contactSection) {
-                        contactSection.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'start'
-                        })
-                      }
+                      contactSection?.scrollIntoView({ behavior: 'smooth' })
                     }}
                   >
                     {machine.customContent.buttonText}
@@ -159,7 +154,7 @@ export const Machines = ({ categories }: { categories: CategoriesResponse }) => 
                     description={formatDescription(option.description)}
                   />
                 </motion.div>
-
+                
               ))
             )
           })}
