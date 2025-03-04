@@ -126,12 +126,20 @@ function SocialLinks({ className }: SocialLinksProps) {
           </Link>
         ))}
       </div>
-      <Link
-        href="/legal"
-        className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors"
-      >
-        {i18n.language === 'fr' ? 'Mentions Légales' : 'Legal Notice'}
-      </Link>
+      <div className="flex items-center gap-4">
+        <Link
+          href="/legal"
+          className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors"
+        >
+          {i18n.language === 'fr' ? 'Mentions Légales' : 'Legal Notice'}
+        </Link>
+        <Link
+          href="/faq"
+          className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors"
+        >
+          {i18n.language === 'fr' ? 'FAQ' : 'FAQ'}
+        </Link>
+      </div>
     </div>
   );
 }
