@@ -14,6 +14,7 @@ import { usePathname } from 'next/navigation'
 import { useScroll } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 import { useScrollDirection } from '@/hooks/use-scroll-direction'
+import { useEffect } from 'react'
 
 
 type HeaderProps = {
@@ -241,22 +242,39 @@ function NavigationItem({ children, href }: NavigationItemProps) {
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (isAnchorLink) {
       e.preventDefault()
+      const targetId = href.slice(1)
+
       if (pathname === '/') {
-        const element = document.querySelector(href)
-        element?.scrollIntoView({ behavior: 'smooth' })
+        const element = document.getElementById(targetId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
       } else {
-        // First navigate to home page
+        // Stocker l'ID de l'ancre pour le scroll après navigation
+        sessionStorage.setItem('scrollToId', targetId)
+
+        // Navigation vers la page d'accueil
         await router.push('/')
-        // Then scroll to anchor after a short delay to ensure page is loaded
-        setTimeout(() => {
-          const element = document.querySelector(href)
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-          }
-        }, 500)
       }
     }
   }
+
+  // Effet pour gérer le scroll après la navigation
+  useEffect(() => {
+    if (pathname === '/') {
+      const scrollToId = sessionStorage.getItem('scrollToId')
+      if (scrollToId) {
+        const element = document.getElementById(scrollToId)
+        if (element) {
+          // Petit délai pour s'assurer que la page est rendue
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth' })
+            sessionStorage.removeItem('scrollToId')
+          }, 100)
+        }
+      }
+    }
+  }, [pathname])
 
   return (
     <Link

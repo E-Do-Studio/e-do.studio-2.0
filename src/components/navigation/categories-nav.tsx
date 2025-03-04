@@ -1,6 +1,7 @@
 import { useCategories } from '@/store/use-categories'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 interface CategoryItemProps {
   category: {
@@ -15,6 +16,17 @@ interface CategoryItemProps {
 const CategoryItem = ({ category, level = 0 }: CategoryItemProps) => {
   const { activeCategory, setActiveCategory } = useCategories()
   const isActive = activeCategory === category.slug
+  const router = useRouter()
+
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    // Prefetch the category page
+    await router.prefetch(`/categories/${category.slug}`)
+    setActiveCategory(category.slug)
+    router.push(`/categories/${category.slug}`, {
+      scroll: false // Disable automatic scroll
+    })
+  }
 
   return (
     <div className={cn('flex flex-col', level > 0 && 'ml-4')}>
@@ -25,7 +37,8 @@ const CategoryItem = ({ category, level = 0 }: CategoryItemProps) => {
           isActive && 'font-medium',
           category.isGhost && 'text-gray-400'
         )}
-        onClick={() => setActiveCategory(category.slug)}
+        onClick={handleClick}
+        prefetch={!category.isGhost}
       >
         {category.name}
       </Link>

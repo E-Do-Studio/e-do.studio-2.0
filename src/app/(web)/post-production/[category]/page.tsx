@@ -1,5 +1,6 @@
 'use server'
 
+import { Suspense } from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { LandingSection } from '@/components/layout/landing-section'
@@ -35,28 +36,29 @@ export interface PostProductionDocument {
   }
 }
 
-export default async function CategoryPage(params: {
-  params: Promise<{ category: string }>
-}) {
-  const { category } = await params.params
-
+// Séparation des requêtes pour permettre le streaming
+async function getMenuItems() {
   const payload = await getPayload({ config })
   const language = await getLanguage()
 
-  // Get all categories for menu
   const allCategories = await payload.find({
     collection: 'post-production',
-    locale: language
+    locale: language,
+    depth: 0, // Réduire la profondeur de la requête
+    limit: 10 // Limiter le nombre de résultats
   })
 
-  // Transform en utilisant le slug
-  const menuItems = allCategories.docs.map(doc => ({
+  return allCategories.docs.map(doc => ({
     id: String((doc as PostProductionDocument).id),
     category: (doc as PostProductionDocument).category,
     slug: (doc as PostProductionDocument).slug
   }))
+}
 
-  // Recherche par slug
+async function getCategoryData(category: string) {
+  const payload = await getPayload({ config })
+  const language = await getLanguage()
+
   const postProduction = await payload.find({
     collection: 'post-production',
     where: {
@@ -64,22 +66,49 @@ export default async function CategoryPage(params: {
         equals: category
       }
     },
-    locale: language
+    locale: language,
+    depth: 1 // Réduire la profondeur de la requête
   })
 
   if (!postProduction.docs.length) {
     notFound()
   }
 
-  const item = postProduction.docs[0] as PostProductionDocument
+  return postProduction.docs[0] as PostProductionDocument
+}
+
+export default async function CategoryPage(params: {
+  params: Promise<{ category: string }>
+}) {
+  const { category } = await params.params
 
   return (
     <div className='mt-20'>
       <LandingSection title="POST-PRODUCTION">
         <Description />
-        <PostProductionMenu items={menuItems} />
-        <CategoryGallery item={item} />
+        <Suspense fallback={<div className="h-12 bg-neutral-100 animate-pulse rounded-lg" />}>
+          {/* @ts-expect-error Async Component */}
+          <MenuSection category={category} />
+        </Suspense>
+        <Suspense fallback={<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="aspect-[3/4] bg-neutral-100 animate-pulse rounded-lg" />
+          ))}
+        </div>}>
+          {/* @ts-expect-error Async Component */}
+          <GallerySection category={category} />
+        </Suspense>
       </LandingSection>
     </div>
   )
+}
+
+async function MenuSection({ category }: { category: string }) {
+  const menuItems = await getMenuItems()
+  return <PostProductionMenu items={menuItems} />
+}
+
+async function GallerySection({ category }: { category: string }) {
+  const item = await getCategoryData(category)
+  return <CategoryGallery item={item} />
 } 
