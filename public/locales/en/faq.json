@@ -3,5 +3,15 @@
     "description": "Here are the frequently asked questions we receive. If you have a question that is not answered here, please contact us.",
     "cta": {
         "contact": "Contact Us"
+    },
+    "items": {
+        "services": {
+            "question": "What services do you offer?",
+            "answer": "We offer a wide range of digital services including web development, mobile app development, and digital marketing solutions."
+        },
+        "support": {
+            "question": "How can I contact support?",
+            "answer": "You can reach our support team through our contact form, by email at support@edo-studio.com, or by phone during business hours."
+        }
     }
 }

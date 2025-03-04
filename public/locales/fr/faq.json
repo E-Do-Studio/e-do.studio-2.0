@@ -3,5 +3,15 @@
     "description": "Voici les questions fréquentes que nous recevons. Si vous avez une question qui n'est pas répondu ici, n'hésitez pas à nous contacter.",
     "cta": {
         "contact": "Contactez-nous"
+    },
+    "items": {
+        "services": {
+            "question": "Quels services proposez-vous ?",
+            "answer": "Nous proposons une large gamme de services numériques comprenant le développement web, le développement d'applications mobiles et des solutions de marketing digital."
+        },
+        "support": {
+            "question": "Comment puis-je contacter le support ?",
+            "answer": "Vous pouvez joindre notre équipe de support via notre formulaire de contact, par email à support@edo-studio.com, ou par téléphone pendant les heures de bureau."
+        }
     }
 }
