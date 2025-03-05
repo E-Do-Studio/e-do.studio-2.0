@@ -28,15 +28,13 @@ ol[role='list'] {
 /* Set core root defaults */
 html {
   scroll-behavior: smooth;
-  /* Valeur par défaut pour mobile : hauteur du header (64px) + marge de sécurité (24px) */
-  scroll-padding-top: 88px;
+  scroll-padding-top: 64px; /* Valeur fixe pour mobile */
   -webkit-overflow-scrolling: touch;
 }
 
 @media (min-width: 768px) {
   html {
-    /* Pour desktop : hauteur du header (80px) + marge de sécurité (24px) */
-    scroll-padding-top: 104px;
+    scroll-padding-top: 80px; /* Valeur fixe pour desktop */
   }
 }
 
@@ -97,3 +95,4 @@ select {
     scroll-behavior: auto !important;
   }
 }
+

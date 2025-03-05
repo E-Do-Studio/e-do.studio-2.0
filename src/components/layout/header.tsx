@@ -261,7 +261,7 @@ function NavigationItem({ children, href }: NavigationItemProps) {
       if (isMobile) {
         switch (targetId) {
           case 'services':
-            safetyMargin = 32 // Augmenter la marge pour services
+            safetyMargin = 64 // Augmenter significativement la marge pour services
             break
           case 'pricing':
             safetyMargin = 24 // Marge standard pour pricing
