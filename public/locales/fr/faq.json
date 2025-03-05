@@ -39,7 +39,7 @@
         },
         "weekend": {
             "question": "Peut-on réserver le studio le week-end ?",
-            "answer": "Oui, mais uniquement pour des réservations de 4h minimum. Un supplément de 25% s’applique sur le tarif des machines et de l’opérateur."
+            "answer": "Oui, mais uniquement pour des réservations d'une demi-journée minimum. Un supplément de 25% s'applique sur l'ensemble de nos tarifs."
         },
         "payment": {
             "question": "Quels sont les moyens de paiement acceptés ?",
