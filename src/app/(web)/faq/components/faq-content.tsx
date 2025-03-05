@@ -16,11 +16,11 @@ const FAQ_ITEMS = [
     'operator',
     'accessibility',
     'delegation',
-    'weekend',
     'production',
     'cyclorama',
     'booking',
     'hours',
+    'weekend',
     'payment'
 ] as const
 

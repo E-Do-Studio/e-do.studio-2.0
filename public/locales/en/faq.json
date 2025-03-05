@@ -21,10 +21,6 @@
             "question": "Can we entrust you with our entire e-commerce shoot?",
             "answer": "Yes, with our full service, we can handle the entire process, from receiving the products to delivering the retouched files."
         },
-        "weekend": {
-            "question": "Is the studio available for booking on weekends?",
-            "answer": "Yes, but only for a minimum booking of 4 hours. A 25% surcharge applies to machine and operator fees."
-        },
         "production": {
             "question": "Do you offer full production services?",
             "answer": "Yes! We provide a complete range of services, including production, art buying, casting, and custom shoot organization, as well as post-production."
@@ -39,7 +35,11 @@
         },
         "hours": {
             "question": "What are your opening hours?",
-            "answer": "We are open on weekdays from 10 AM to 6 PM. The studio can also open on weekends under certain conditions (see the weekend booking question)."
+            "answer": "We are open on weekdays from 10 AM to 6 PM (from 9 AM to 7 PM for the cyclorama). The studio can also open on weekends under certain conditions."
+        },
+        "weekend": {
+            "question": "Is the studio available for booking on weekends?",
+            "answer": "Yes, but only for a minimum booking of 4 hours. A 25% surcharge applies to machine and operator fees."
         },
         "payment": {
             "question": "What payment methods do you accept?",

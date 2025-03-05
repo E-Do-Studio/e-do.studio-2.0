@@ -21,10 +21,6 @@
             "question": "Peut-on vous déléguer notre shooting e-commerce de A à Z ?",
             "answer": "Oui, nous pouvons gérer l’ensemble du shooting, de la réception des articles à la livraison des fichiers retouchés."
         },
-        "weekend": {
-            "question": "Peut-on réserver le studio le week-end ?",
-            "answer": "Oui, mais uniquement pour des réservations de 4h minimum. Un supplément de 25% s’applique sur le tarif des machines et de l’opérateur."
-        },
         "production": {
             "question": "Proposez-vous un service de production complète ?",
             "answer": "Oui, nous couvrons toute la production : art buying, casting, organisation de shooting, post-production, etc."
@@ -39,7 +35,11 @@
         },
         "hours": {
             "question": "Quels sont vos horaires d’ouverture ?",
-            "answer": "Nous sommes ouverts en semaine de 10h à 18h. Le studio peut également ouvrir le week-end sous certaines conditions (voir question sur la réservation le week-end)."
+            "answer": "Nous sommes ouverts en semaine de 10h à 18h (de 9h à 19h pour la location du cyclorama). Le studio peut également ouvrir le week-end sous certaines conditions."
+        },
+        "weekend": {
+            "question": "Peut-on réserver le studio le week-end ?",
+            "answer": "Oui, mais uniquement pour des réservations de 4h minimum. Un supplément de 25% s’applique sur le tarif des machines et de l’opérateur."
         },
         "payment": {
             "question": "Quels sont les moyens de paiement acceptés ?",
