@@ -5,13 +5,10 @@
         "contact": "Contact Us"
     },
     "items": {
-        "services": {
-            "question": "What services do you offer?",
-            "answer": "We offer a wide range of digital services including web development, mobile app development, and digital marketing solutions."
-        },
-        "support": {
-            "question": "How can I contact support?",
-            "answer": "You can reach our support team through our contact form, by email at support@edo-studio.com, or by phone during business hours."
+        "pricing": {
+            "question": "What is the pricing for your services?",
+            "answer": "Our pricing is based on the complexity of the project and the time it takes to complete it. We offer a free consultation to discuss your project and provide a quote."
         }
+        
     }
 }

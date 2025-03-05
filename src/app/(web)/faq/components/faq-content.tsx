@@ -11,13 +11,24 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 
-const FAQ_ITEMS = ['services', 'support'] as const
+const FAQ_ITEMS = [
+    'machine',
+    'operator',
+    'accessibility',
+    'delegation',
+    'weekend',
+    'production',
+    'cyclorama',
+    'booking',
+    'hours',
+    'payment'
+] as const
 
 export function FaqContent() {
     const { t } = useTranslation('faq')
 
     return (
-        <Section title="FAQ" description={() =>
+        <Section className='md:mt-20' title="FAQ" description={() =>
             <div className='flex flex-col gap-2'>
                 <p className="mb-8">
                     {t('description')}
