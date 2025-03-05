@@ -7,7 +7,7 @@
     "items": {
         "machine": {
             "question": "Quels types de machines sont disponibles ?",
-            "answer": "Nous disposons de 4 machines pour répondre à vos besoins en e-commerce : Vertical pour les packshots Ghost et Piqué, Eclipse pour les chaussures accessoires cosmétiques et autres petits à moyens produits. Elle permet aussi la réalisation de vidéos 360 degrés, horizontal pour les packshots à plat et enfin Live pour les shootings sur mannequin."
+            "answer": "Nous disposons de 4 machines pour répondre à vos besoins en e-commerce : \n - Vertical pour les packshots Ghost et Piqué. \n - Eclipse pour les chaussures accessoires cosmétiques et autres petits à moyens produits. Elle permet aussi la réalisation de vidéos 360°. \n - Horizontal pour les packshots à plat. \n - Live pour les shootings sur mannequin."
         },
         "operator": {
             "question": "Peut-on louer les machines avec ou sans opérateur ?",

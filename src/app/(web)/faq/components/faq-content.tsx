@@ -50,7 +50,7 @@ export function FaqContent() {
                             <AccordionTrigger className="text-left w-full">
                                 {t(`items.${item}.question`)}
                             </AccordionTrigger>
-                            <AccordionContent className="w-full">
+                            <AccordionContent className="w-full whitespace-pre-wrap">
                                 {t(`items.${item}.answer`)}
                             </AccordionContent>
                         </AccordionItem>
