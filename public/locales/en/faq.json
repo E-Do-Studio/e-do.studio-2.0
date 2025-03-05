@@ -1,13 +1,13 @@
 {
     "title": "Frequently Asked Questions",
-    "description": "Here are the frequently asked questions we receive. If you have a question that is not answered here, please contact us.",
+    "description": "Here are the questions we are frequently asked. If you don't find the answer to your question, feel free to contact us",
     "cta": {
         "contact": "Contact Us"
     },
     "items": {
         "machine": {
             "question": "What types of machines are available?",
-            "answer": "We have four machines tailored for e-commerce needs: \n\n • Vertical: Ideal for Ghost and Piqué packshots. \n • Eclipse: Perfect for shoes, accessories, cosmetics, and other small to medium-sized products. It also allows for 360° video creation. \n • Horizontal: Designed for flat lay packshots. \n • Live: Dedicated to model photography."
+            "answer": "We have four machines tailored for e-commerce needs: \n\n • Vertical: Ideal for Ghost and Piqué packshots. \n\n • Eclipse: Perfect for shoes, accessories, cosmetics, and other small to medium-sized products. It also allows for 360° video creation. \n\n • Horizontal: Designed for flat lay packshots. \n\n • Live: Dedicated to model photography."
         },
         "operator": {
             "question": "Can the machines be rented with or without an operator?",

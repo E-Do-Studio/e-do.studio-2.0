@@ -1,13 +1,13 @@
 {
     "title": "Questions fréquentes",
-    "description": "Voici les questions fréquentes que nous recevons. Si vous avez une question qui n'est pas répondu ici, n'hésitez pas à nous contacter.",
+    "description": "Voici les questions que l'on nous pose fréquemment. Si vous ne trouvez pas la réponse à votre question, n'hésitez pas à nous contacter.",
     "cta": {
         "contact": "Contactez-nous"
     },
     "items": {
         "machine": {
             "question": "Quels types de machines sont disponibles ?",
-            "answer": "Nous disposons de 4 machines adaptées aux besoins de l’e-commerce : \n\n • Vertical : idéal pour les packshots Ghost et Piqué. \n • Eclipse : parfait pour les chaussures, accessoires, cosmétiques et autres petits à moyens produits. Elle permet aussi la réalisation de vidéos à 360°. \n • Horizontal : conçu pour les packshots à plat. \n • Live : dédié aux shootings sur mannequin."
+            "answer": "Nous disposons de 4 machines adaptées aux besoins de l’e-commerce : \n\n • Vertical : idéal pour les packshots Ghost et Piqué. \n\n • Eclipse : parfait pour les chaussures, accessoires, cosmétiques et autres petits à moyens produits. Elle permet aussi la réalisation de vidéos à 360°. \n\n • Horizontal : conçu pour les packshots à plat. \n\n • Live : dédié aux shootings sur mannequin."
         },
         "operator": {
             "question": "Peut-on louer les machines avec ou sans opérateur ?",
