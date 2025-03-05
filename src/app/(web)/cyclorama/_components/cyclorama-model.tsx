@@ -3,6 +3,7 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Center, Stage } from '@react-three/drei'
 import { Suspense, useEffect } from 'react'
+import { Mesh, Material } from 'three'
 
 function Model() {
     const { scene } = useGLTF('/img/cyclorama.glb')
@@ -11,10 +12,11 @@ function Model() {
     useEffect(() => {
         return () => {
             scene.traverse((obj) => {
-                if (obj.isMesh) {
+                if (obj instanceof Mesh) {
                     obj.geometry.dispose()
-                    if (obj.material.dispose) {
-                        obj.material.dispose()
+                    const material = obj.material as Material
+                    if (material.dispose) {
+                        material.dispose()
                     }
                 }
             })
