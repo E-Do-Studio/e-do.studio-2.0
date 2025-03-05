@@ -1,0 +1,14 @@
+{
+    "title": "Frequently Asked Questions",
+    "description": "Here are the frequently asked questions we receive. If you have a question that is not answered here, please contact us.",
+    "cta": {
+        "contact": "Contact Us"
+    },
+    "items": {
+        "pricing": {
+            "question": "What is the pricing for your services?",
+            "answer": "Our pricing is based on the complexity of the project and the time it takes to complete it. We offer a free consultation to discuss your project and provide a quote."
+        }
+        
+    }
+}
