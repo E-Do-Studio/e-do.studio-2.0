@@ -62,7 +62,7 @@ export function CycloramaModel() {
                         minPolarAngle={Math.PI / 4}
                         maxPolarAngle={Math.PI / 2}
                         autoRotate
-                        autoRotateSpeed={4.5}
+                        autoRotateSpeed={4}
                         target={[0, 1, 0]}
                     />
                 </Suspense>
