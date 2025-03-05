@@ -14,7 +14,6 @@ import { usePathname } from 'next/navigation'
 import { useScroll } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 import { useScrollDirection } from '@/hooks/use-scroll-direction'
-import { useEffect } from 'react'
 
 
 type HeaderProps = {
@@ -238,6 +237,57 @@ function NavigationItem({ children, href }: NavigationItemProps) {
   const isPhoneLink = href.startsWith('tel:')
   const isAnchorLink = href.startsWith('#')
   const scrolled = useScroll()
+  const { scrollDirection } = useScrollDirection()
+
+  const getHeaderHeight = () => {
+    const isMobile = window.innerWidth < 768
+    if (isMobile) {
+      if (!scrolled) return 64 // h-16
+      return scrollDirection === 'down' ? 40 : 48 // h-10 ou h-12
+    } else {
+      if (!scrolled) return 80 // h-20
+      return 56 // h-14
+    }
+  }
+
+  const scrollToElement = (targetId: string) => {
+    const element = document.getElementById(targetId)
+    if (element) {
+      const isMobile = window.innerWidth < 768
+      const headerHeight = getHeaderHeight()
+
+      // Ajustement des marges de sécurité selon la section
+      let safetyMargin = isMobile ? 0 : 24 // Garder desktop inchangé
+      if (isMobile) {
+        switch (targetId) {
+          case 'services':
+            safetyMargin = 64 // Augmenter significativement la marge pour services
+            break
+          case 'pricing':
+            safetyMargin = 24 // Marge standard pour pricing
+            break
+          case 'contact':
+            safetyMargin = 24 // Marge standard pour contact
+            break
+          default:
+            safetyMargin = 24
+        }
+      }
+
+      const offset = headerHeight + safetyMargin
+
+      // Attendre que le layout soit stable
+      setTimeout(() => {
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+        const offsetPosition = elementPosition - offset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }, 100)
+    }
+  }
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (isAnchorLink) {
@@ -245,36 +295,20 @@ function NavigationItem({ children, href }: NavigationItemProps) {
       const targetId = href.slice(1)
 
       if (pathname === '/') {
-        const element = document.getElementById(targetId)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
+        scrollToElement(targetId)
       } else {
-        // Stocker l'ID de l'ancre pour le scroll après navigation
-        sessionStorage.setItem('scrollToId', targetId)
-
-        // Navigation vers la page d'accueil
-        await router.push('/')
+        try {
+          await router.push('/')
+          // Attendre que la page soit chargée avant de scroller
+          setTimeout(() => {
+            scrollToElement(targetId)
+          }, 500)
+        } catch (error) {
+          console.error('Navigation error:', error)
+        }
       }
     }
   }
-
-  // Effet pour gérer le scroll après la navigation
-  useEffect(() => {
-    if (pathname === '/') {
-      const scrollToId = sessionStorage.getItem('scrollToId')
-      if (scrollToId) {
-        const element = document.getElementById(scrollToId)
-        if (element) {
-          // Petit délai pour s'assurer que la page est rendue
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth' })
-            sessionStorage.removeItem('scrollToId')
-          }, 100)
-        }
-      }
-    }
-  }, [pathname])
 
   return (
     <Link

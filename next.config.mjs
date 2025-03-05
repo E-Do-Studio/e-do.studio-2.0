@@ -14,6 +14,19 @@ const nextConfig = {
     optimizeCss: true,
     optimizePackageImports: ['@radix-ui/react-icons'],
   },
+  // Optimisation du chargement des ressources
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  // Optimisation du préchargement des ressources
+  onDemandEntries: {
+    // Période pendant laquelle une page doit rester en mémoire
+    maxInactiveAge: 25 * 1000,
+    // Nombre de pages à garder en mémoire
+    pagesBufferLength: 2,
+  },
 }
 
 export default nextConfig 

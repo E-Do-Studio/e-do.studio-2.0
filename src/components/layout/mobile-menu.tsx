@@ -8,7 +8,6 @@ import type { Navigation } from './header'
 import { useMobileMenu } from '@/store/use-mobile-menu'
 import { useTranslation } from 'react-i18next'
 import { useRouter, usePathname } from 'next/navigation'
-import { useEffect } from 'react'
 
 
 interface MobileMenuProps {
@@ -32,54 +31,56 @@ export function MobileMenu({ navigation, translations }: MobileMenuProps) {
     close()
 
     if (isAnchorLink) {
-      const targetId = href.slice(1)
+      const targetAnchor = href.split('#')[1]
 
       if (pathname === '/') {
-        const element = document.getElementById(targetId)
+        const element = document.querySelector(`#${targetAnchor}`)
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' })
         }
       } else {
-        // Stocker l'ID de l'ancre pour le scroll après navigation
-        sessionStorage.setItem('scrollToId', targetId)
+        try {
+          // Navigate to home page first
+          await router.push('/')
 
-        // Navigation vers la page d'accueil
-        await router.push('/')
+          // Use router.refresh() to ensure the page is fully loaded
+          router.refresh()
+
+          // Wait for the page to be fully loaded and then scroll
+          const checkAndScroll = () => {
+            const element = document.querySelector(`#${targetAnchor}`)
+            if (element) {
+              setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth' })
+              }, 100)
+            } else {
+              // If element not found, try again after a short delay
+              setTimeout(checkAndScroll, 100)
+            }
+          }
+
+          // Start checking after initial delay
+          setTimeout(checkAndScroll, 500)
+        } catch (error) {
+          console.error('Navigation error:', error)
+        }
       }
     } else {
       await router.push(href)
     }
   }
 
-  // Effet pour gérer le scroll après la navigation
-  useEffect(() => {
-    if (pathname === '/') {
-      const scrollToId = sessionStorage.getItem('scrollToId')
-      if (scrollToId) {
-        const element = document.getElementById(scrollToId)
-        if (element) {
-          // Petit délai pour s'assurer que la page est rendue
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth' })
-            sessionStorage.removeItem('scrollToId')
-          }, 100)
-        }
-      }
-    }
-  }, [pathname])
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }} // Reduced animation duration
       className={cn('fixed inset-0 z-50 md:hidden', 'bg-background flex flex-col', 'pt-24')}
     >
       <motion.nav
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.2 }} // Reduced animation duration
+        transition={{ delay: 0.1 }}
         className="flex flex-col container h-full"
       >
         <div className="flex flex-col flex-1 justify-center gap-8">
