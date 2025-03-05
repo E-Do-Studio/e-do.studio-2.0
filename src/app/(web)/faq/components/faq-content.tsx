@@ -59,4 +59,4 @@ export function FaqContent() {
             </div>
         </Section>
     )
-} 
+}
