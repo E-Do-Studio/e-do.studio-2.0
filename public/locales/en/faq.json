@@ -4,6 +4,13 @@
     "cta": {
         "contact": "Contact Us"
     },
+    "chat": {
+        "title": "Chat Assistant",
+        "custom_message": "For a personalized answer to your question, we invite you to contact us directly. Our team will be happy to help you.",
+        "contact_button": "Contact us",
+        "input_placeholder": "Write your message...",
+        "suggested_questions": "Frequently Asked Questions:"
+    },
     "items": {
         "machine": {
             "question": "What types of machines are available?",
