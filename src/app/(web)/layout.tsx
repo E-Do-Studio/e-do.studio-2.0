@@ -10,6 +10,7 @@ import { NewsletterPopup } from '@/components/layout/newsletter-popup'
 import { CookieBanner } from '@/components/layout/cookie-banner'
 import { AnalyticsProvider } from '@/providers/analytics-provider'
 import { Toaster } from 'sonner'
+import { ChatBot } from '@/components/chat/chat-bot'
 
 // Ajouter cette constante pour le nom du site
 const SITE_NAME = 'E-Do Studio'
@@ -87,6 +88,7 @@ export default async function WebLayout({
           <CookieBanner />
           <AnalyticsProvider />
           <Toaster />
+          <ChatBot />
         </I18nProvider>
       </body>
     </html>
