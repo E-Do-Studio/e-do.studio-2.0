@@ -46,7 +46,7 @@
         },
         "weekend": {
             "question": "Is the studio available for booking on weekends?",
-            "answer": "Yes, but only for a minimum booking of 4 hours. A 25% surcharge applies to machine and operator fees."
+            "answer": "Yes, but only for a minimum booking of half a day. A 25% surcharge applies to all our rates."
         },
         "payment": {
             "question": "What payment methods do you accept?",
