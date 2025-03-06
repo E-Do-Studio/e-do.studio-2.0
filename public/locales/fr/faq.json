@@ -9,7 +9,13 @@
         "custom_message": "Pour une réponse personnalisée à votre question, nous vous invitons à nous contacter directement. Notre équipe sera ravie de vous aider.",
         "contact_button": "Nous contacter",
         "input_placeholder": "Écrivez votre message...",
-        "suggested_questions": "Questions fréquentes :"
+        "suggested_questions": "Questions fréquentes :",
+        "error": {
+            "title": "Erreur de connexion",
+            "description": "La connexion au chat a été perdue",
+            "message": "Une erreur est survenue. Veuillez réessayer.",
+            "retry": "Reconnecter"
+        }
     },
     "items": {
         "machine": {

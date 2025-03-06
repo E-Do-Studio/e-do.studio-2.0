@@ -9,7 +9,13 @@
         "custom_message": "For a personalized answer to your question, we invite you to contact us directly. Our team will be happy to help you.",
         "contact_button": "Contact us",
         "input_placeholder": "Write your message...",
-        "suggested_questions": "Frequently Asked Questions:"
+        "suggested_questions": "Frequently Asked Questions:",
+        "error": {
+            "title": "Connection Error",
+            "description": "Lost connection to chat",
+            "message": "An error occurred. Please try again.",
+            "retry": "Reconnect"
+        }
     },
     "items": {
         "machine": {

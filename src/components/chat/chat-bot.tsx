@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { MessageCircle, X, Send } from 'lucide-react'
 import { useChatStore } from '@/store/use-chat-store'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { toast } from 'sonner'
 
 const FAQ_ITEMS = [
     'machine',
@@ -27,29 +28,60 @@ export function ChatBot() {
     const { t } = useTranslation('faq')
     const [message, setMessage] = useState('')
     const { isOpen, setIsOpen, messages, addMessage } = useChatStore()
+    const [isError, setIsError] = useState(false)
+
+    // Reset error state when chat is opened
+    useEffect(() => {
+        if (isOpen) {
+            setIsError(false)
+        }
+    }, [isOpen])
+
+    const handleError = () => {
+        setIsError(true)
+        toast.error(t('chat.error.title'), {
+            description: t('chat.error.description'),
+        })
+    }
 
     const handleSendMessage = () => {
         if (!message.trim()) return
 
-        addMessage({ type: 'user', content: message })
-        addMessage({
-            type: 'bot',
-            content: t('chat.custom_message'),
-            isCustomMessage: true
-        })
-        setMessage('')
+        try {
+            addMessage({ type: 'user', content: message })
+            addMessage({
+                type: 'bot',
+                content: t('chat.custom_message'),
+                isCustomMessage: true
+            })
+            setMessage('')
+            setIsError(false)
+        } catch (error) {
+            handleError()
+        }
     }
 
     const handleFaqClick = (item: typeof FAQ_ITEMS[number]) => {
-        addMessage({
-            type: 'user',
-            content: t(`items.${item}.question`)
-        })
-        addMessage({
-            type: 'bot',
-            content: t(`items.${item}.answer`),
-            isCustomMessage: false
-        })
+        try {
+            addMessage({
+                type: 'user',
+                content: t(`items.${item}.question`)
+            })
+            addMessage({
+                type: 'bot',
+                content: t(`items.${item}.answer`),
+                isCustomMessage: false
+            })
+            setIsError(false)
+        } catch (error) {
+            handleError()
+        }
+    }
+
+    const handleReconnect = () => {
+        setIsError(false)
+        setIsOpen(false)
+        setTimeout(() => setIsOpen(true), 1000)
     }
 
     const SuggestedQuestions = () => (
@@ -64,6 +96,7 @@ export function ChatBot() {
                         variant="outline"
                         className="justify-start h-auto py-3 px-4 whitespace-normal text-left text-sm font-normal"
                         onClick={() => handleFaqClick(item)}
+                        disabled={isError}
                     >
                         {t(`items.${item}.question`)}
                     </Button>
@@ -102,26 +135,42 @@ export function ChatBot() {
                     </div>
 
                     <ScrollArea className="flex-1 p-4">
-                        <div className="space-y-4 mb-6">
-                            {messages.map((msg, i) => (
-                                <div
-                                    key={i}
-                                    className={cn(
-                                        "max-w-[90%] rounded-lg p-4 text-sm whitespace-pre-wrap",
-                                        msg.type === 'user'
-                                            ? "bg-primary text-primary-foreground ml-auto"
-                                            : "bg-muted"
-                                    )}
+                        {isError ? (
+                            <div className="flex flex-col items-center justify-center h-full space-y-4">
+                                <p className="text-sm text-muted-foreground text-center">
+                                    {t('chat.error.message')}
+                                </p>
+                                <Button
+                                    variant="outline"
+                                    onClick={handleReconnect}
                                 >
-                                    {msg.content}
-                                    {msg.type === 'bot' && msg.isCustomMessage && (
-                                        <ContactButton />
-                                    )}
+                                    {t('chat.error.retry')}
+                                </Button>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="space-y-4 mb-6">
+                                    {messages.map((msg, i) => (
+                                        <div
+                                            key={i}
+                                            className={cn(
+                                                "max-w-[90%] rounded-lg p-4 text-sm whitespace-pre-wrap",
+                                                msg.type === 'user'
+                                                    ? "bg-primary text-primary-foreground ml-auto"
+                                                    : "bg-muted"
+                                            )}
+                                        >
+                                            {msg.content}
+                                            {msg.type === 'bot' && msg.isCustomMessage && (
+                                                <ContactButton />
+                                            )}
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
 
-                        <SuggestedQuestions />
+                                <SuggestedQuestions />
+                            </>
+                        )}
                     </ScrollArea>
 
                     <div className="p-4 border-t bg-muted/40">
@@ -137,11 +186,13 @@ export function ChatBot() {
                                 onChange={(e) => setMessage(e.target.value)}
                                 placeholder={t('chat.input_placeholder')}
                                 className="flex-1"
+                                disabled={isError}
                             />
                             <Button
                                 type="submit"
                                 size="icon"
                                 className="h-10 w-10"
+                                disabled={isError}
                             >
                                 <Send className="h-4 w-4" />
                             </Button>
