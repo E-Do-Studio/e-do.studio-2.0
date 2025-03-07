@@ -5,6 +5,7 @@ import Script from 'next/script'
 
 export function ReservationFrame() {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     window.scrollTo(0, 0)
   }, [])
 

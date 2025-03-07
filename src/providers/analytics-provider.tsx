@@ -15,33 +15,25 @@ export function AnalyticsProvider() {
   const { cookieConsent } = useCookieStore()
 
   useEffect(() => {
-    // Log l'état initial
-    console.log('Analytics Provider - Cookie Consent:', cookieConsent)
-    console.log('Local Storage:', localStorage.getItem('edo-studio-storage'))
-
-    if (!cookieConsent) {
-      console.log('Analytics disabled - no consent')
-      return
-    }
-
+    if (typeof window === 'undefined' || !cookieConsent) return;
 
     try {
       // Google Analytics 4
       ReactGA.initialize(GOOGLE_ANALYTICS_ID)
       ReactGA.send({ hitType: 'pageview', page: window.location.pathname })
-      console.log('GA initialized')
 
       // Facebook Pixel
       const fbOptions = {
         autoConfig: true,
-        debug: true
+        debug: process.env.NODE_ENV === 'development'
       }
       ReactPixel.init(FB_PIXEL_ID, undefined, fbOptions)
       ReactPixel.pageView()
-      console.log('FB Pixel initialized')
 
       // LinkedIn Pixel
       const script = document.createElement('script')
+      script.async = true
+      script.defer = true
       script.innerHTML = `
         _linkedin_partner_id = "${LINKEDIN_ID}";
         window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -50,9 +42,10 @@ export function AnalyticsProvider() {
       document.body.appendChild(script)
 
       const linkedInScript = document.createElement('script')
+      linkedInScript.async = true
+      linkedInScript.defer = true
       linkedInScript.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js'
       document.body.appendChild(linkedInScript)
-      console.log('LinkedIn Pixel initialized')
     } catch (error) {
       console.error('Error initializing analytics:', error)
     }
