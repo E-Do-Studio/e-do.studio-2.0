@@ -1,32 +1,54 @@
+import { withPayload } from '@payloadcms/next/withPayload'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'localhost',
-      process.env.PAYLOAD_PUBLIC_SERVER_URL?.replace(/https?:\/\//, ''),
-    ].filter(Boolean),
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 3600,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'plus.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.citypng.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'e7.pngegg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+      },
+      {
+        protocol: 'https',
+        hostname: 'e-do.studio',
+      },
+      {
+        protocol: 'https',
+        hostname: 'e-do.studio/admin',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.cappasity.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+    ],
+    domains: ['localhost', '127.0.0.1', 'e-do.studio'],
   },
-  experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['@radix-ui/react-icons'],
-  },
-  // Optimisation du chargement des ressources
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-  poweredByHeader: false,
-  reactStrictMode: true,
-  // Optimisation du préchargement des ressources
-  onDemandEntries: {
-    // Période pendant laquelle une page doit rester en mémoire
-    maxInactiveAge: 25 * 1000,
-    // Nombre de pages à garder en mémoire
-    pagesBufferLength: 2,
-  },
+  // Your Next.js config here
 }
 
-export default nextConfig
+export default withPayload(nextConfig)
