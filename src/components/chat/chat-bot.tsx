@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { MessageCircle, X, Send } from 'lucide-react'
 import { useChatStore } from '@/store/use-chat-store'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
@@ -29,6 +29,8 @@ export function ChatBot() {
     const [message, setMessage] = useState('')
     const { isOpen, setIsOpen, messages, addMessage } = useChatStore()
     const [isError, setIsError] = useState(false)
+    const lastQuestionRef = useRef<HTMLDivElement>(null)
+    const messagesLength = messages.length
 
     // Reset error state when chat is opened
     useEffect(() => {
@@ -36,6 +38,13 @@ export function ChatBot() {
             setIsError(false)
         }
     }, [isOpen])
+
+    // Scroll to question message when messages change
+    useEffect(() => {
+        if (lastQuestionRef.current && messagesLength >= 2) {
+            lastQuestionRef.current.scrollIntoView({ behavior: 'smooth' })
+        }
+    }, [messagesLength])
 
     const handleError = () => {
         setIsError(true)
@@ -153,6 +162,7 @@ export function ChatBot() {
                                     {messages.map((msg, i) => (
                                         <div
                                             key={i}
+                                            ref={msg.type === 'user' && i === messages.length - 2 ? lastQuestionRef : null}
                                             className={cn(
                                                 "max-w-[90%] rounded-lg p-4 text-sm whitespace-pre-wrap",
                                                 msg.type === 'user'
