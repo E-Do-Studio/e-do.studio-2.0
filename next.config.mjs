@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       'localhost',
-      process.env.PAYLOAD_PUBLIC_SERVER_URL?.replace(/https?:\/\//, '')
+      process.env.PAYLOAD_PUBLIC_SERVER_URL?.replace(/https?:\/\//, ''),
     ].filter(Boolean),
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 3600,
@@ -29,4 +29,4 @@ const nextConfig = {
   },
 }
 
-export default nextConfig 
+export default nextConfig
