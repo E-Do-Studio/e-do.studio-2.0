@@ -39,5 +39,4 @@ status = 200
 
 
 [functions]
-  external_node_modules = ["sharp"]
-  included_files = ["node_modules/sharp/**/*"]
+  included_files = ["node_modules/@img/**/*"]
