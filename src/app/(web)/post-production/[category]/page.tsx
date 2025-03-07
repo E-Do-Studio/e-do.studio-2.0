@@ -43,13 +43,10 @@ export default async function CategoryPage(params: {
   const payload = await getPayload({ config })
   const language = await getLanguage()
 
-  // Ensure language is of the correct type
-  const locale = language as 'fr' | 'en'
-
   // Get all categories for menu
   const allCategories = await payload.find({
     collection: 'post-production',
-    locale
+    locale: language
   })
 
   // Transform en utilisant le slug
@@ -67,7 +64,7 @@ export default async function CategoryPage(params: {
         equals: category
       }
     },
-    locale
+    locale: language
   })
 
   if (!postProduction.docs.length) {
