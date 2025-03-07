@@ -36,7 +36,3 @@ status = 200
 [dev]
   targetPort = 3000
   port = 8888
-
-
-[functions]
-  included_files = ["node_modules/@img/**/*"]
