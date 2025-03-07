@@ -25,13 +25,17 @@ const i18nConfig = {
   },
 };
 
-// Éviter l'initialisation côté serveur
+let i18nInstance: typeof i18next | null = null;
+
 if (typeof window !== 'undefined') {
-  i18next
+  i18nInstance = i18next
     .use(Backend)
     .use(LanguageDetector)
-    .use(initReactI18next)
-    .init(i18nConfig);
+    .use(initReactI18next);
+
+  if (!i18nInstance.isInitialized) {
+    i18nInstance.init(i18nConfig);
+  }
 }
 
-export default i18next;
+export default i18nInstance || i18next;
