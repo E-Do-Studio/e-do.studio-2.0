@@ -12,7 +12,12 @@ import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { PostProduction } from './collections/Post-Production'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 // import sharp from 'sharp'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const serverURL =
   process.env.NODE_ENV === 'development'
