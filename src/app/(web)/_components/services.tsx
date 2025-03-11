@@ -45,8 +45,8 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className={`w-full lg:w-[200px] object-contain transition-all duration-300 lg:flex-shrink-0
                             ${imagesDescription[1].includes('cyclorama')
-                                ? 'grayscale contrast-110 hover:grayscale-0 hover:contrast-100'
-                                : 'grayscale contrast-125 hover:grayscale-0 hover:contrast-100'
+                                ? 'lg:grayscale lg:contrast-110 lg:hover:grayscale-0 lg:hover:contrast-100'
+                                : 'lg:grayscale lg:contrast-125 lg:hover:grayscale-0 lg:hover:contrast-100'
                             }`}
                         priority
                     />

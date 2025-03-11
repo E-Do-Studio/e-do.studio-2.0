@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { X, ArrowRight } from "lucide-react";
+import { useCookieStore } from "@/store/use-cookies";
 
 export function NewsletterPopup() {
   const { t } = useTranslation("popup");
@@ -11,14 +12,25 @@ export function NewsletterPopup() {
   const [showPopup, setShowPopup] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const { cookieConsent } = useCookieStore();
 
   useEffect(() => {
     setMounted(true);
     const isPopupClosed = localStorage.getItem("popupClosed") === "true";
-    if (!isPopupClosed) {
-      setShowPopup(true);
+
+    // Only show the newsletter popup if:
+    // 1. Cookie consent has been handled (either accepted or refused)
+    // 2. Newsletter popup hasn't been closed before
+    // 3. Component is mounted
+    if (cookieConsent !== null && !isPopupClosed && mounted) {
+      // Add a small delay to ensure smooth transition after cookie banner
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+      }, 500);
+
+      return () => clearTimeout(timer);
     }
-  }, []);
+  }, [cookieConsent, mounted]);
 
   const handleClose = () => {
     localStorage.setItem("popupClosed", "true");
