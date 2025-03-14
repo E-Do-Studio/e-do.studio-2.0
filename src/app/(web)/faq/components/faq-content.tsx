@@ -48,7 +48,7 @@ export function FaqContent() {
                     {FAQ_ITEMS.map((item) => (
                         <AccordionItem key={item} value={item} className="w-full">
                             <AccordionTrigger className="text-left w-full">
-                                {t(`items.${item}.question`)}
+                                <p className="text-left text-base">{t(`items.${item}.question`)}</p>
                             </AccordionTrigger>
                             <AccordionContent className="w-full whitespace-pre-wrap">
                                 {t(`items.${item}.answer`)}

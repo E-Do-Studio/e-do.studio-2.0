@@ -19,6 +19,7 @@ export default async function Page() {
 
   return (
     <div className="text-xl min-h-screen">
+      <h1 className="sr-only">E-Do Studio - Studio de photographie professionnel</h1>
       <Introduction />
       <div className="container">
         <ServiceSection />

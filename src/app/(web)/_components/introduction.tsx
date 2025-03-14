@@ -102,10 +102,10 @@ export const Introduction = () => {
                     <span className="text-primary">{t('introduction.brand').split('E-Do Studio')[0]}</span>
                     <span className="text-white">E-Do Studio</span>
                 </span>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-3">
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-3">
                     <span className="text-primary-foreground">Your hybrid</span>{" "}
                     <span className="text-primary">playground</span>
-                </h1>
+                </h2>
                 <ul className="flex flex-col space-y-0.5 list-none">
                     {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
                         <li

@@ -29,10 +29,10 @@ export const Services = ({ imagesDescription, serviceName, title, description, n
             <span className="text-lg font-light lg:text-2xl lg:font-medium">{number}</span>
             <div className="flex flex-col gap-2 w-full lg:gap-5 lg:max-w-lg">
                 <div className="flex justify-between items-center">
-                    <h4 className="block lg:hidden">{serviceName}</h4>
+                    <h3 className="block lg:hidden">{serviceName}</h3>
                     <ChevronRight className="block lg:hidden border border-border rounded-full p-2 w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-medium lg:hidden">{title}</h3>
+                <h4 className="text-2xl font-medium lg:hidden">{title}</h4>
                 <h3 className="text-2xl font-medium hidden lg:block lg:h-14">{serviceName + " " + title}</h3>
                 <div className="flex flex-col lg:flex-row gap-4 items-start">
                     <p className="text-base font-medium text-neutral-500 lg:flex-1">{description}</p>
