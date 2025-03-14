@@ -1,9 +1,10 @@
 import { Metadata } from 'next'
+import { generateMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-    title: 'FAQ | E-do Studio',
-    description: 'Frequently asked questions about E-do Studio services and products',
-}
+export const metadata: Metadata = generateMetadata({
+    title: 'Questions Fréquentes',
+    description: 'Trouvez des réponses à vos questions sur nos services de packshot automatisé, nos tarifs, nos délais et notre processus de travail. Des réponses claires pour faciliter votre expérience.',
+})
 
 interface FaqLayoutProps {
     children: React.ReactNode

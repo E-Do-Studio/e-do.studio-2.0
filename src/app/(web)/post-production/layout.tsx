@@ -1,16 +1,11 @@
 import { Metadata } from 'next'
+import { generateMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Post Production',
-  description: 'Découvrez nos prestations de post-production',
-  robots: {
-    index: false,
-    follow: false,
-  },
-  openGraph: {
-    title: 'Post Production',
-  },
-}
+export const metadata: Metadata = generateMetadata({
+  title: 'Services de Post-Production Photo',
+  description: 'Services professionnels de post-production photo : retouche, montage, correction colorimétrique. Expertise en retouche de packshot et photo produit pour un rendu optimal.',
+  noIndex: false
+})
 
 export default function PostProductionLayout({
   children,

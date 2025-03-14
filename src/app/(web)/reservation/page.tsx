@@ -1,15 +1,12 @@
 import { Metadata } from 'next'
+import { generateMetadata } from '@/lib/metadata'
 import { ReservationFrame } from './_components/reservation-frame'
 
-export const metadata: Metadata = {
-  title: 'Studio Photofolio - Réservation - réservation en ligne',
-  description: 'Pour vos shootings à la journée ou demi-journée, effectuez une demande de réservation en choisissant vos dates et horaires ci-dessous. Si vous avez des questions rendez-vous sur la page Contact, nous vous répondrons très rapidement.',
-}
+export const metadata: Metadata = generateMetadata({
+  title: 'Réservation de Studio Photo',
+  description: 'Réservez votre séance de packshot automatisé en ligne. Choisissez vos dates et horaires pour des shootings à la journée ou demi-journée. Service client réactif pour répondre à vos besoins.',
+})
 
 export default function ReservationPage() {
-  return (
-    <main className="flex flex-col min-h-screen pt-20">
-      <ReservationFrame />
-    </main>
-  )
+  return <ReservationFrame />
 } 

@@ -11,26 +11,18 @@ import { CookieBanner } from '@/components/layout/cookie-banner'
 import { AnalyticsProvider } from '@/providers/analytics-provider'
 import { Toaster } from 'sonner'
 import { ChatBotWrapper } from '@/components/chat/chat-bot-wrapper'
+import { generateMetadata as generateBaseMetadata } from '@/lib/metadata'
 
 // Ajouter cette constante pour le nom du site
 const SITE_NAME = 'E-Do Studio'
 
-export const metadata: Metadata = {
-  title: {
-    template: `${SITE_NAME} - %s`,
-    default: `${SITE_NAME} - Découvrez nos services de packshot automatisé`,
-  },
-  description: 'E-Do Studio est une agence de packshot automatisé. Nous vous proposons des services de packshot automatisé pour vos produits.',
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: 'favicon.ico',
-  },
-}
+export const metadata: Metadata = generateBaseMetadata({
+  title: 'Découvrez nos services de packshot automatisé',
+  description: 'Studio de photographie professionnel spécialisé dans le packshot automatisé. Nous proposons des services de photographie et post-production de haute qualité pour mettre en valeur vos produits.',
+  templateTitle: false
+})
 
-// Import ABC Favorit font
+// Importation de la police ABC Favorit
 const abcFavorit = localFont({
   src: [
     {
@@ -66,6 +58,7 @@ async function getLanguageFromAcceptLanguage(): Promise<string> {
   return ['fr', 'en'].includes(preferredLanguage) ? preferredLanguage : 'fr'
 }
 
+// Générer les paramètres statiques pour les langues supportées
 export async function generateStaticParams() {
   return [{ lng: 'fr' }, { lng: 'en' }]
 }
