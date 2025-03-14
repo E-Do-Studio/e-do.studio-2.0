@@ -30,6 +30,9 @@ export function generateMetadata({
         robots: {
             index: !noIndex,
             follow: !noIndex,
+            'max-snippet': -1,
+            'max-image-preview': 'large',
+            'max-video-preview': -1
         },
         openGraph: {
             title: finalTitle,
