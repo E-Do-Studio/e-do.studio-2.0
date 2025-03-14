@@ -12,6 +12,7 @@ import { AnalyticsProvider } from '@/providers/analytics-provider'
 import { Toaster } from 'sonner'
 import { ChatBotWrapper } from '@/components/chat/chat-bot-wrapper'
 import { generateMetadata as generateBaseMetadata } from '@/lib/metadata'
+import { OrganizationSchema } from '@/components/schema/organization-schema'
 
 // Ajouter cette constante pour le nom du site
 const SITE_NAME = 'E-Do Studio'
@@ -72,6 +73,9 @@ export default async function WebLayout({
 
   return (
     <html lang={defaultLanguage} className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
+      <head>
+        <OrganizationSchema />
+      </head>
       <body>
         <I18nProvider defaultLanguage={defaultLanguage}>
           <Header />
