@@ -1,16 +1,11 @@
 import { Metadata } from "next";
+import { generateMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateMetadata({
   title: 'Galerie',
   description: 'Découvrez notre galerie de packshots automatisés',
-  robots: {
-    index: false,
-    follow: false,
-  },
-  openGraph: {
-    title: 'Galerie',
-  },
-}
+  noIndex: false
+})
 
 export default function GalerieLayout({ children }: { children: React.ReactNode }) {
   return (
