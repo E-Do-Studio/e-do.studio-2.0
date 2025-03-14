@@ -32,6 +32,6 @@ const faqItems: FaqItem[] = [
 export default function FaqPage() {
     const { t } = useTranslation('faq')
     return (
-        <FaqContent />
+            <FaqContent />
     )
 }
