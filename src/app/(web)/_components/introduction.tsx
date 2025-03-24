@@ -3,13 +3,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 
 export const Introduction = () => {
     const { t } = useTranslation('home')
     const [currentTextIndex, setCurrentTextIndex] = useState(0)
     const [isVideoLoading, setIsVideoLoading] = useState(true)
+    const videoRef = useRef<HTMLVideoElement>(null)
 
     // Textes statiques pour le défilement
     const rotatingTexts = [
@@ -25,6 +26,40 @@ export const Introduction = () => {
 
         return () => clearInterval(interval)
     }, [rotatingTexts.length])
+
+    useEffect(() => {
+        const video = videoRef.current
+        if (!video) return
+
+        const handlePlay = () => {
+            setIsVideoLoading(false)
+        }
+
+        const handleLoadedData = () => {
+            // Tentative de lecture dès que possible
+            const playPromise = video.play()
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        setIsVideoLoading(false)
+                    })
+                    .catch(() => {
+                        // En cas d'échec, on réessaie avec un délai
+                        setTimeout(() => {
+                            video.play()
+                        }, 100)
+                    })
+            }
+        }
+
+        video.addEventListener('play', handlePlay)
+        video.addEventListener('loadeddata', handleLoadedData)
+
+        return () => {
+            video.removeEventListener('play', handlePlay)
+            video.removeEventListener('loadeddata', handleLoadedData)
+        }
+    }, [])
 
     // return (
     //     <div className="relative h-screen w-full overflow-hidden">
@@ -97,7 +132,7 @@ export const Introduction = () => {
 
             {/* Pour le format mobile */}
             {isVideoLoading && (
-                <div className="absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 ease-out">
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-background transition-opacity duration-300 ease-out">
                     <div className="p-4 rounded-lg">
                         <Image
                             src="/img/logo.png"
@@ -110,16 +145,20 @@ export const Introduction = () => {
                 </div>
             )}
             <video
-                src="/welcome-to-the-studio.mp4"
-                autoPlay
+                ref={videoRef}
+                preload="auto"
                 playsInline
+                autoPlay
                 muted
                 loop
-                onCanPlay={() => setIsVideoLoading(false)}
+                controls={false}
+                webkit-playsinline="true"
                 className="w-full h-full object-cover block md:hidden"
                 width={1920}
                 height={1080}
-            />
+            >
+                <source src="/welcome-to-the-studio.mp4" type="video/mp4" />
+            </video>
 
             {/* Overlay gradient pour améliorer la lisibilité du texte */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
