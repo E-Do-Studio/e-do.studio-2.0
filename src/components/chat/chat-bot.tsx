@@ -128,7 +128,7 @@ export function ChatBot() {
     return (
         <div className="fixed bottom-4 right-4 z-50">
             {isOpen ? (
-                <div className="bg-background border rounded-lg shadow-lg w-[400px] h-[600px] flex flex-col">
+                <div className="bg-background border rounded-lg shadow-lg w-[calc(100vw-2rem)] sm:w-[400px] h-[80vh] sm:h-[600px] flex flex-col absolute bottom-0 right-0 sm:relative">
                     <div className="p-4 border-b flex justify-between items-center bg-muted/40">
                         <h2 className="text-lg font-medium tracking-tight">
                             {t('chat.title')}
@@ -213,9 +213,9 @@ export function ChatBot() {
                 <Button
                     onClick={() => setIsOpen(true)}
                     size="icon"
-                    className="h-12 w-12 rounded-full shadow-lg"
+                    className="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg"
                 >
-                    <MessageCircle className="h-6 w-6" />
+                    <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
                 </Button>
             )}
         </div>
