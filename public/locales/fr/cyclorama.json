@@ -1,0 +1,50 @@
+{
+  "description": "Notre cyclorama vous permet de mobiliser une équipe de production et de réaliser vos photos et vidéos sur un fond blanc infini. Avec une hauteur de 4,70m et une profondeur de 10m, vous avez libre cours pour tout type de mise en scène.",
+  "cta": {
+    "contact": "Contactez-nous",
+    "brochure": "Obtenir la brochure Cyclorama"
+  },
+  "specs": {
+    "title": "Le cyclorama",
+    "description": "Nous savons que le confort est essentiel au bon déroulement du processus créatif, c'est pourquoi nous avons équipé notre studio de toutes les commodités nécessaires.",
+    "dimensions": {
+      "sides": "Cyclo 2 faces",
+      "size": "6m L x 5m l x 4,7m H"
+    },
+    "amenities": {
+      "door": "Porte sectionnelle sur parking",
+      "changing": "Cabines de change",
+      "makeup": "Postes maquillage",
+      "water": "Fontaine à eau",
+      "kitchen": "Cuisine tout équipée",
+      "relax": "Espace détente",
+      "sound": "Sonorisation Sonos Airplay",
+      "parking": "Places de parking",
+      "wifi": "Wifi"
+    }
+  },
+  "rental": {
+    "title": "Tarif",
+    "estimate": "La location de notre cyclorama se fait sur devis uniquement. Pour que nous puissions vous transmettre un devis, merci de nous contacter via le formulaire prévu à cet effet. Notre équipe vous répondra au plus vite.",
+    "prices": {
+      "title": "TARIFS",
+      "weekend": "Majoration week-end 25%."
+    }
+  },
+  "services": {
+    "production": {
+      "title": "Services complémentaires",
+      "description": "Nous pouvons fournir tous les services essentiels à votre production : photographe, chef de projet, service de catering, producteur, styliste, maquilleur, assistant studio et bien plus encore."
+    },
+    "equipment": {
+      "title": "Location d'équipements",
+      "description": "Pour toutes demandes, notre service de location met à votre disposition un large choix d’éclairage studio, accessoires, matériel photographique et matériel de production, disponible sur devis"
+    }
+  },
+  "gallery": {
+    "cyclorama": "Cyclorama",
+    "changing": "Cabines de change & poste maquillage",
+    "studio": "Studio",
+    "kitchen": "Table & cuisine"
+  }
+}

@@ -1,0 +1,62 @@
+{
+    "title": "Frequently Asked Questions",
+    "description": "Here are the questions we are frequently asked. If you don't find the answer to your question, feel free to contact us",
+    "cta": {
+        "contact": "Contact Us"
+    },
+    "chat": {
+        "title": "Chat Assistant",
+        "custom_message": "For a personalized answer to your question, we invite you to contact us directly. Our team will be happy to help you.",
+        "contact_button": "Contact us",
+        "input_placeholder": "Write your message...",
+        "suggested_questions": "Frequently Asked Questions:",
+        "error": {
+            "title": "Connection Error",
+            "description": "Lost connection to chat",
+            "message": "An error occurred. Please try again.",
+            "retry": "Reconnect"
+        }
+    },
+    "items": {
+        "machine": {
+            "question": "What types of machines are available?",
+            "answer": "We have four machines tailored for e-commerce needs: \n\n • Vertical: Ideal for Ghost and Piqué packshots. \n\n • Eclipse: Perfect for shoes, accessories, cosmetics, and other small to medium-sized products. It also allows for 360° video creation. \n\n • Horizontal: Designed for flat lay packshots. \n\n • Live: Dedicated to model photography."
+        },
+        "operator": {
+            "question": "Can the machines be rented with or without an operator?",
+            "answer": "Yes, you can rent them independently or with the assistance of an operator."
+        },
+        "accessibility": {
+            "question": "Are the machines easy to use, even without photography experience?",
+            "answer": "Yes! Our machines are intuitive and user-friendly, even for those with no photography experience. If needed, an operator can assist you."
+        },
+        "delegation": {
+            "question": "Can we entrust you with our entire e-commerce shoot?",
+            "answer": "Yes, with our full service, we can handle the entire process, from receiving the products to delivering the retouched files."
+        },
+        "production": {
+            "question": "Do you offer full production services?",
+            "answer": "Yes! We provide a complete range of services, including production, art buying, casting, and custom shoot organization, as well as post-production."
+        },
+        "cyclorama": {
+            "question": "Do you have a cyclorama for larger productions?",
+            "answer": "Yes, our studio features a cyclorama to accommodate traditional studio productions."
+        },
+        "booking": {
+            "question": "How can I book a machine or service?",
+            "answer": "You can book directly through our online platform or contact us via email or phone to check availability and secure a slot."
+        },
+        "hours": {
+            "question": "What are your opening hours?",
+            "answer": "We are open on weekdays from 10 AM to 6 PM (from 9 AM to 7 PM for the cyclorama). The studio can also open on weekends under certain conditions."
+        },
+        "weekend": {
+            "question": "Is the studio available for booking on weekends?",
+            "answer": "Yes, but only for a minimum booking of half a day. A 25% surcharge applies to all our rates."
+        },
+        "payment": {
+            "question": "What payment methods do you accept?",
+            "answer": "We accept bank transfers and credit card payments."
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Our cyclorama allows you to mobilize a production team and take your photos and videos on an infinite white background. With a height of 4.70m and a depth of 10m, you have free rein for any type of set design.",
+  "cta": {
+    "contact": "Contact us",
+    "brochure": "Get the Cyclorama brochure"
+  },
+  "specs": {
+    "title": "The cyclorama",
+    "description": "We know that comfort is essential for a smooth creative process, which is why we have equipped our studio with all the necessary amenities.",
+    "dimensions": {
+      "sides": "Cyclo 2 sides",
+      "size": "6m L x 5m W x 4,7m H"
+    },
+    "amenities": {
+      "door": "Sectional door on parking",
+      "changing": "Changing rooms",
+      "makeup": "Make-up stations",
+      "water": "Water fountain",
+      "kitchen": "Fully equipped kitchen",
+      "relax": "Relaxation area",
+      "sound": "Sonos Airplay sound system",
+      "parking": "Parking spaces",
+      "wifi": "Wifi"
+    }
+  },
+  "rental": {
+    "title": "Pricing",
+    "estimate": "Our cyclorama rental is by quote only. To receive a quote, please contact us using the form below. Our team will get back to you as soon as possible.",
+    "prices": {
+      "title": "PRICES",
+      "weekend": "Weekend fee 25%."
+    }
+  },
+  "services": {
+    "production": {
+      "title": "Complementary services",
+      "description": "We can provide all the essential services for your production: photographer, project manager, catering service, producer, stylist, makeup artist, studio assistant, and much more."
+    },
+    "equipment": {
+      "title": "Equipment rental",
+      "description": "For any request, our rental service offers a wide range of studio lighting, accessories, photography equipment, and production gear, available upon request."
+    }
+  },
+  "gallery": {
+    "cyclorama": "Cyclorama",
+    "changing": "Changing rooms & make-up station",
+    "studio": "Studio",
+    "kitchen": "Table & kitchen"
+  }
+}

@@ -1,0 +1,157 @@
+{
+    "title": "Welcome to our site",
+    "description": "This is the homepage.",
+    "customers": {
+        "title": "Our customers"
+    },
+    "header": {
+        "navigation": {
+            "phone": "+33 1 44 04 11 49",
+            "post-production": "post-prod",
+            "gallery": "gallery",
+            "services": "services",
+            "pricing": "pricing",
+            "contact": "contact",
+            "cyclorama": "cyclorama"
+        },
+        "cta": {
+            "book": "book a session"
+        }
+    },
+    "services": {
+        "title": "Our services",
+        "button": "Book a session",
+        "live": {
+            "name": "LIVE",
+            "title": "(Shooting on model / Furniture)",
+            "description": "This smart studio system of 8m2 allows you to shoot your photos and videos of live models or scenographies in just a few minutes. Saved camera and light presets."
+        },
+        "horizontal": {
+            "name": "HORIZONTAL",
+            "title": "(Flat packshots)",
+            "description": "Horizontal allows you to style and shoot your products flat with the automatic removal of the background."
+        },
+        "vertical": {
+            "name": "VERTICAL",
+            "title": "(Ghost)",
+            "description": "Choose vertical and give your products a 3D ghost effect."
+        },
+        "eclipse": {
+            "name": "ECLIPSE",
+            "title": "(Accessories / Leather goods / Shoes / Sunglasses)",
+            "description": "Designed for accessories photography and video. Saved camera and light presets."
+        },
+        "cyclorama": {
+            "name": "CYCLORAMA",
+            "title": "(Free production)",
+            "description": "Our 30m² cyclorama allows you to mobilize a production team and carry out your photo and video shooting on an infinite white background.",
+            "button": "Contact us"
+        },
+        "postproduction": {
+            "name": "RETOUCHING",
+            "title": "(Post-production)",
+            "description": "In addition to our photo and video shooting services on our machines, we offer retouching services with different packages according to your needs."
+        }
+    },
+    "pricing": {
+        "title": "Choose the service.s that suit you",
+        "timing": {
+            "hour": "By the hour",
+            "half_day": "Half-day",
+            "day": "Full day"
+        },
+        "tax": "excl. VAT",
+        "description": {
+            "hour": "1 hour shooting\nSelf-service",
+            "half_day": "4 hour shooting\nSelf-service",
+            "day": "8 hour shooting\nSelf-service"
+        },
+        "cyclorama": {
+            "description": "Our cyclorama rental is by quote only. To receive a quote, please contact us using the form below. Our team will get back to you as soon as possible.",
+            "button": "Contact us"
+        },
+        "weekend": "Weekend fee +25%"
+    },
+    "accompagnement": {
+        "title": "Self-service / Full-service",
+        "self_service": {
+            "title": "SELF-SERVICE: shoot with full autonomy",
+            "description": "Need professional visuals without hiring a full production team? With our self-service option, you can easily manage your shoots on your own. \n\n Book a slot on one of our machines – Vertical, Horizontal, Eclipse, or Live – and bring your products. Our machines are user-friendly and accessible to everyone: no need to be a professional photographer, it’s as intuitive as shooting with an iPhone. \n\n Upon arrival, our team will guide you through the setup and configure the equipment to fit your needs. Once everything is set, you’re free to shoot with ease. \n\n Perfect for brands managing their own production, self-service gives you access to top-tier equipment without constraints. And if needed, an operator can assist you on request."
+        },
+        "full_service": {
+            "title": "FULL-SERVICE: we take care of everything",
+            "description": "Short on time or simply want to outsource your visual production? Choose our full-service option. \n\n Send us your products, and we take care of the rest: receiving, shooting, and post-production. With our expertise and state-of-the-art equipment, we deliver flawless visuals, ready to use on your e-shop or social media. \n\n Perfect for brands and e-commerce businesses looking for professional results without having to be on-site, our full-service option guarantees a seamless process, with polished images delivered on time. \n\n Trust us—we’ve got it covered."
+        }
+    },
+    "contact": {
+        "title": "Do you have any questions?",
+        "subtitle": "Any specific needs?",
+        "description": "Do not hesitate to contact us by filling in the form on the right. we will answer as soon as possible.",
+        "form": {
+            "placeholders": {
+                "lastName": "Last name*",
+                "firstName": "First name*",
+                "society": "Company",
+                "email": "Email*",
+                "website": "Website",
+                "message": "An idea for a project, need a quote, make an appointment ? Write to us :)"
+            },
+            "errors": {
+                "lastName": {
+                    "min": "Last name must contain at least 2 characters",
+                    "max": "Last name cannot exceed 50 characters"
+                },
+                "firstName": {
+                    "min": "First name must contain at least 2 characters",
+                    "max": "First name cannot exceed 50 characters"
+                },
+                "society": {
+                    "max": "Company name cannot exceed 100 characters"
+                },
+                "email": {
+                    "invalid": "Invalid email address",
+                    "min": "Email must contain at least 5 characters",
+                    "max": "Email cannot exceed 100 characters"
+                },
+                "website": {
+                    "max": "Website cannot exceed 200 characters"
+                },
+                "message": {
+                    "min": "Message must contain at least 10 characters",
+                    "max": "Message cannot exceed 1000 characters"
+                }
+            },
+            "submit": "Send",
+            "submitting": "Sending...",
+            "success": "Message sent successfully!",
+            "error": "Error sending message",
+            "errorDefault": "An error occurred"
+        }
+    },
+    "location": {
+        "title": "Where to find us ?"
+    },
+    "introduction": {
+        "brand": "Welcome to E-Do Studio",
+        "title": "Your hybrid playground",
+        "subtitle": "Welcome to E-Do Studio",
+        "description": "Creative studio specialized in custom digital content creation",
+        "keywords": {
+            "book": "Space rental",
+            "production": "Production services",
+            "post-production": "Post-production",
+            "consulting": "Digital consulting"
+        },
+        "rotating": {
+            "innovation": "Innovation and Creativity",
+            "excellence": "Excellence and Quality",
+            "expertise": "Expertise and Passion"
+        },
+        "cta": {
+            "book": "Book a session"
+        }
+    },
+    "clock": {
+        "title": "By the hour"
+    }
+}

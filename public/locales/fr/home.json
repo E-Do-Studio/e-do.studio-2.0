@@ -1,0 +1,169 @@
+{
+    "title": "Bienvenue sur notre site",
+    "description": "Ceci est la page d'accueil.",
+    "customers": {
+        "title": "Nos clients"
+    },
+    "header": {
+        "navigation": {
+            "phone": "+33 1 44 04 11 49",
+            "post-production": "post-prod",
+            "gallery": "galerie",
+            "services": "services",
+            "pricing": "tarifs",
+            "contact": "contact",
+            "cyclorama": "cyclorama"
+        },
+        "cta": {
+            "book": "réserver une séance"
+        }
+    },
+    "services": {
+        "title": "Nos services",
+        "button": "Réserver une séance",
+        "live": {
+            "name": "LIVE",
+            "title": "(Shooting porté / Mobilier)",
+            "description": "Ce système de studio intelligent de 8m2 vous permet de réaliser vos photos et vidéos de modèles vivants ou scénographies en quelques minutes. Presets caméra et lumière enregistrés."
+        },
+        "horizontal": {
+            "name": "HORIZONTAL",
+            "title": "(Packshots à plat)",
+            "description": "Horizontal vous donne la possibilité de styliser et de photographier vos produits à plat grâce à la suppression automatique de l'arrière-plan."
+        },
+        "vertical": {
+            "name": "VERTICAL",
+            "title": "(Ghost)",
+            "description": "Choisissez vertical et donnez à votre produit un effet 3D ghost."
+        },
+        "eclipse": {
+            "name": "ECLIPSE",
+            "title": "(Accessoires / Maroquinerie / Chaussures / Lunettes)",
+            "description": "Conçu pour la photographie et la vidéo d'accessoires. Presets caméra et lumière enregistrés."
+        },
+        "cyclorama": {
+            "name": "CYCLORAMA",
+            "title": "(Production libre)",
+            "description": "Notre cyclorama de 30m² vous permet de mobiliser une équipe de production et de réaliser vos prises de photos et vidéos sur un fond blanc infini."
+        },
+        "postproduction": {
+            "name": "RETOUCHE",
+            "title": "(Post-production)",
+            "description": "En complément de nos services de prise de photos et vidéos sur nos machines, nous vous proposons des services de retouches suivant différents forfaits en fonction de vos besoins."
+        }
+    },
+    "pricing": {
+        "title": "Choisissez le ou les services qui vous correspondent",
+        "timing": {
+            "hour": "À l'heure",
+            "half_day": "Demi-journée",
+            "day": "Journée"
+        },
+        "tax": "HT",
+        "description": {
+            "hour": "1 heure de shooting\nSelf-service",
+            "half_day": "4 heures de shooting\nSelf-service",
+            "day": "8 heures de shooting\nSelf-service"
+        },
+        "cyclorama": {
+            "description": "La location de notre cyclorama se fait sur devis uniquement. Pour que nous puissions vous transmettre un devis, merci de nous contacter via le formulaire prévu à cet effet. Notre équipe vous répondra au plus vite.",
+            "button": "Nous contacter"
+        },
+        "weekend": "Tarif week-end +25%"
+    },
+    "accompagnement": {
+        "title": "Self-service / Full-service",
+        "self_service": {
+            "title": "SELF-SERVICE : shootez en toute autonomie",
+            "description": "Besoin de visuels professionnels sans mobiliser une équipe de production ? Avec notre option self-service, réalisez vos shootings facilement et en toute autonomie. \n\n Réservez un créneau sur l’une de nos machines – Verticale, Horizontale, Eclipse ou Live – et venez avec vos produits. Nos machines sont simples à utiliser et accessibles à tous : pas besoin d’être photographe, c’est aussi intuitif qu’un iPhone. \n\n À votre arrivée, notre équipe vous guide et configure l’équipement selon vos besoins. Ensuite, vous êtes libre de shooter en toute simplicité. \n\n Idéal pour les marques qui gèrent leur production en interne, le self-service vous donne accès à un équipement de pointe, sans contraintes. Et si besoin, un opérateur peut vous accompagner sur demande."
+        },
+        "full_service": {
+            "title": "FULL-SERVICE : on s'occupe de tout",
+            "description": "Vous manquez de temps ou souhaitez déléguer la production de vos visuels ? Optez pour notre offre full-service. \n\n Envoyez-nous vos produits, on gère tout : réception, shooting et post-production. Grâce à notre expertise et à un équipement de pointe, nous livrons des visuels impeccables, prêts à être utilisés sur votre e-shop ou vos réseaux sociaux. \n\n Idéal pour les marques et e-commerçants qui veulent un rendu professionnel sans se déplacer, le full-service vous assure une prise en charge complète, avec un résultat soigné et livré dans les délais. \n\n Faites-nous confiance, on s’occupe du reste."
+        }
+    },
+    "contact": {
+        "title": "Vous avez des questions ?",
+        "subtitle": "Des Besoins spécifiques ?",
+        "description": "N'hésitez pas à nous contacter en remplissant le formulaire ci-contre et nous vous répondrons dans les plus brefs délais.",
+        "form": {
+            "placeholders": {
+                "lastName": "Nom*",
+                "firstName": "Prénom*",
+                "society": "Société",
+                "email": "E-mail*",
+                "website": "Site internet",
+                "message": "Une idée de projet, besoin d'un devis, d'une prise de rendez-vous ? Ecrivez nous :)"
+            },
+            "errors": {
+                "lastName": {
+                    "min": "Le nom doit contenir au moins 2 caractères",
+                    "max": "Le nom ne peut pas dépasser 50 caractères"
+                },
+                "firstName": {
+                    "min": "Le prénom doit contenir au moins 2 caractères",
+                    "max": "Le prénom ne peut pas dépasser 50 caractères"
+                },
+                "society": {
+                    "max": "Le nom de la société ne peut pas dépasser 100 caractères"
+                },
+                "email": {
+                    "invalid": "Adresse email invalide",
+                    "min": "L'email doit contenir au moins 5 caractères",
+                    "max": "L'email ne peut pas dépasser 100 caractères"
+                },
+                "website": {
+                    "max": "Le site internet ne peut pas dépasser 200 caractères"
+                },
+                "message": {
+                    "min": "Le message doit contenir au moins 10 caractères",
+                    "max": "Le message ne peut pas dépasser 1000 caractères"
+                }
+            },
+            "submit": "Envoyer",
+            "submitting": "Envoi en cours...",
+            "success": "Message envoyé avec succès !",
+            "error": "Erreur lors de l'envoi du message",
+            "errorDefault": "Une erreur s'est produite"
+        }
+    },
+    "location": {
+        "title": "Où nous trouver ?",
+        "building": "Parc d'activités Victor Hugo",
+        "building_number": "Batiment 6.7",
+        "city": "93400 Saint-Ouen",
+        "entrance": {
+            "victor_hugo": {
+                "address": "69 Boulevard Victor Hugo, 93400 Saint-Ouen",
+                "alt": "Entrée Victor Hugo"
+            },
+            "louis_blanc": {
+                "address": "22 Rue Louis Blanc, 93400 Saint-Ouen",
+                "alt": "Entrée Louis Blanc"
+            }
+        }
+    },
+    "introduction": {
+        "brand": "Bienvenue chez E-Do Studio",
+        "title": "Your hybrid playground",
+        "subtitle": "Welcome to E-Do Studio",
+        "description": "Studio créatif spécialisé dans la création de contenu digital sur mesure",
+        "keywords": {
+            "book": "Location d'espaces",
+            "production": "Services de production",
+            "post-production": "Retouche d'images",
+            "consulting": "Digital consulting"
+        },
+        "rotating": {
+            "innovation": "Innovation et Créativité",
+            "excellence": "Excellence et Qualité",
+            "expertise": "Expertise et Passion"
+        },
+        "cta": {
+            "book": "Réserver une session"
+        }
+    },
+    "clock": {
+        "title": "À l'heure"
+    }
+}

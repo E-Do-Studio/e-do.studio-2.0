@@ -1,0 +1,31 @@
+// Les déclarations @font-face sont gérées par next/font/local
+// Ce fichier est utilisé pour des styles de typographie spécifiques ou non couverts par Tailwind
+
+.font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Styles spécifiques pour ABCFavorit
+.abc-favorit {
+  font-feature-settings:
+    'ss01' 1,
+    'ss02' 1; // Activer les stylistic sets si disponibles
+  font-optical-sizing: auto;
+}
+
+h1 {
+  @apply text-4xl md:text-5xl font-medium max-w-lg;
+}
+
+h2 {
+  @apply text-4xl md:text-5xl font-medium max-w-lg;
+}
+
+h3 {
+  @apply text-xl md:text-2xl font-medium;
+}
+
+p {
+  @apply text-base md:text-lg max-w-[80%];
+}

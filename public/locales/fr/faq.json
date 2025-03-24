@@ -1,0 +1,62 @@
+{
+    "title": "Questions fréquentes",
+    "description": "Voici les questions que l'on nous pose fréquemment. Si vous ne trouvez pas la réponse à votre question, n'hésitez pas à nous contacter.",
+    "cta": {
+        "contact": "Contactez-nous"
+    },
+    "chat": {
+        "title": "Chat Assistant",
+        "custom_message": "Pour une réponse personnalisée à votre question, nous vous invitons à nous contacter directement. Notre équipe sera ravie de vous aider.",
+        "contact_button": "Nous contacter",
+        "input_placeholder": "Écrivez votre message...",
+        "suggested_questions": "Questions fréquentes :",
+        "error": {
+            "title": "Erreur de connexion",
+            "description": "La connexion au chat a été perdue",
+            "message": "Une erreur est survenue. Veuillez réessayer.",
+            "retry": "Reconnecter"
+        }
+    },
+    "items": {
+        "machine": {
+            "question": "Quels types de machines sont disponibles ?",
+            "answer": "Nous disposons de 4 machines adaptées aux besoins de l'e-commerce : \n\n • Vertical : idéal pour les packshots Ghost et Piqué. \n\n • Eclipse : parfait pour les chaussures, accessoires, cosmétiques et autres petits à moyens produits. Elle permet aussi la réalisation de vidéos à 360°. \n\n • Horizontal : conçu pour les packshots à plat. \n\n • Live : dédié aux shootings sur mannequin."
+        },
+        "operator": {
+            "question": "Peut-on louer les machines avec ou sans opérateur ?",
+            "answer": "Oui, vous pouvez les louer en autonomie ou avec l'accompagnement d'un opérateur."
+        },
+        "accessibility": {
+            "question": "Les machines sont-elles accessibles sans connaissance en photographie ?",
+            "answer": "Oui, elles sont intuitives et faciles d'utilisation, même sans expérience en photographie. Un opérateur peut également vous assister si besoin."
+        },
+        "delegation": {
+            "question": "Peut-on vous déléguer notre shooting e-commerce de A à Z ?",
+            "answer": "Oui, nous pouvons gérer l'ensemble du shooting, de la réception des articles à la livraison des fichiers retouchés."
+        },
+        "production": {
+            "question": "Proposez-vous un service de production complète ?",
+            "answer": "Oui, nous couvrons toute la production : art buying, casting, organisation de shooting, post-production, etc."
+        },
+        "cyclorama": {
+            "question": "Avez-vous un cyclorama pour des productions plus importantes ?",
+            "answer": "Oui, notre studio dispose d'un cyclorama pour accueillir des productions classiques en studio."
+        },
+        "booking": {
+            "question": "Comment réserver une machine ou un service ?",
+            "answer": "Vous pouvez réserver directement via notre plateforme en ligne ou nous contacter par e-mail ou téléphone pour vérifier les disponibilités et bloquer un créneau."
+        },
+        "hours": {
+            "question": "Quels sont vos horaires d'ouverture ?",
+            "answer": "Nous sommes ouverts en semaine de 10h à 18h (de 9h à 19h pour la location du cyclorama). Le studio peut également ouvrir le week-end sous certaines conditions."
+        },
+        "weekend": {
+            "question": "Peut-on réserver le studio le week-end ?",
+            "answer": "Oui, mais uniquement pour des réservations de 4h minimum. Un supplément de 25% s'applique sur le tarif des machines et de l'opérateur."
+        },
+        "payment": {
+            "question": "Quels sont les moyens de paiement acceptés ?",
+            "answer": "Nous acceptons les virements bancaires et les paiements par carte de crédit"
+        }
+    }
+}
