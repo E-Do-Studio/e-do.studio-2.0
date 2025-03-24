@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 export const Introduction = () => {
     const { t } = useTranslation('home')
     const [currentTextIndex, setCurrentTextIndex] = useState(0)
+    const [isVideoLoading, setIsVideoLoading] = useState(true)
 
     // Textes statiques pour le défilement
     const rotatingTexts = [
@@ -82,6 +83,7 @@ export const Introduction = () => {
 
     return (
         <div className="relative h-screen w-full">
+            {/* Pour le format desktop */}
             <Image
                 src="/studio.webp"
                 alt="Logo"
@@ -89,8 +91,34 @@ export const Introduction = () => {
                 height={1080}
                 quality={95}
                 priority
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hidden md:block"
                 sizes="100vw"
+            />
+
+            {/* Pour le format mobile */}
+            {isVideoLoading && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 ease-out">
+                    <div className="p-4 rounded-lg">
+                        <Image
+                            src="/img/logo.png"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="object-contain w-[100px] h-[100px]"
+                        />
+                    </div>
+                </div>
+            )}
+            <video
+                src="/welcome-to-the-studio.mp4"
+                autoPlay
+                playsInline
+                muted
+                loop
+                onCanPlay={() => setIsVideoLoading(false)}
+                className="w-full h-full object-cover block md:hidden"
+                width={1920}
+                height={1080}
             />
 
             {/* Overlay gradient pour améliorer la lisibilité du texte */}
