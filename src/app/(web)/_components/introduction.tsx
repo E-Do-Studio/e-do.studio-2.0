@@ -139,7 +139,7 @@ export const Introduction = () => {
                             alt="Logo"
                             width={100}
                             height={100}
-                            className="object-contain w-[100px] h-[100px]"
+                            className="object-contain w-[100px] h-[100px] animate-spin-slow"
                         />
                     </div>
                 </div>
@@ -174,12 +174,18 @@ export const Introduction = () => {
                     <span className="text-primary">playground</span>
                 </h2>
                 <ul className="flex flex-col space-y-0.5 list-none">
-                    {['book', 'production', 'post-production', 'consulting'].map((keyword) => (
-                        <li
-                            key={keyword}
-                            className="text-white text-base md:text-xl"
-                        >
-                            {t(`introduction.keywords.${keyword}`)}
+                    {[
+                        { key: 'book', href: '/cyclorama' },
+                        { key: 'post-production', href: '/post-production' },
+                        { key: 'real', href: '/galerie?category=on_model' }
+                    ].map(({ key, href }) => (
+                        <li key={key}>
+                            <Link
+                                href={href}
+                                className="text-white text-base md:text-xl inline-block relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white/30 before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[1px] before:bg-white before:transition-all before:duration-300 hover:before:w-full"
+                            >
+                                {t(`introduction.keywords.${key}`)}
+                            </Link>
                         </li>
                     ))}
                 </ul>

@@ -192,7 +192,7 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   if (!media.length) return <div>Aucun média trouvé</div>
 
   return (
-    <div className="pt-[12rem] lg:pt-0">
+    <div className="pt-56 lg:pt-0">
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         style={{
