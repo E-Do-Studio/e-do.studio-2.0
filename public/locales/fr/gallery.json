@@ -1,5 +1,14 @@
 {
   "gallery": {
-    "title": "Galerie"
+    "title": "Galerie",
+    "descriptions": {
+      "on_model": "No inspi",
+      "access": "No inspi",
+      "ghost": "No inspi",
+      "pique": "No inspi",
+      "flat": "No inspi",
+      "360": "Une expérience visuelle complète. Plongez dans nos créations et découvrez chaque détail sous tous les angles.",
+      "cyclorama": "L'espace infini de création. Notre cyclorama offre une toile blanche parfaite pour donner vie à vos projets les plus ambitieux."
+    }
   }
 }

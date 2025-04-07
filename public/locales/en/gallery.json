@@ -1,5 +1,14 @@
 {
   "gallery": {
-    "title": "Gallery"
+    "title": "Gallery",
+    "descriptions": {
+      "on_model": "No inspi",
+      "access": "No inspi",
+      "ghost": "No inspi",
+      "pique": "No inspi",
+      "flat": "No inspi",
+      "360": "A complete visual experience. Dive into our creations and discover every detail from all angles.",
+      "cyclorama": "The infinite space of creation. Our cyclorama offers a perfect white canvas to bring your most ambitious projects to life."
+    }
   }
 }
