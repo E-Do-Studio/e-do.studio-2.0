@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useGalleryStore } from "./store"
 import { Category, Subcategory } from "./types"
 import i18n from "@/lib/i18n"
+import React from "react"
 
 function GalleryMenuSkeleton() {
   return (
@@ -35,6 +36,24 @@ function GalleryMenuSkeleton() {
 function CategoryLink({ category, isCurrentCategory }: { category: Category; isCurrentCategory: boolean }) {
   const searchParams = useSearchParams()
   const currentSubcategorySlug = searchParams?.get('subcategory')
+  const menuRef = React.useRef<HTMLUListElement>(null)
+
+  React.useEffect(() => {
+    if (isCurrentCategory && category.subcategories && category.subcategories.length > 0) {
+      const updateMenuHeight = () => {
+        if (menuRef.current) {
+          document.documentElement.style.setProperty('--menu-height', `${menuRef.current.scrollHeight}px`)
+        }
+      }
+      updateMenuHeight()
+      const observer = new ResizeObserver(updateMenuHeight)
+      observer.observe(menuRef.current!)
+      return () => {
+        observer.disconnect()
+        document.documentElement.style.setProperty('--menu-height', '0px')
+      }
+    }
+  }, [isCurrentCategory, category.subcategories])
 
   return (
     <li className="space-y-1">
@@ -51,6 +70,7 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
       <AnimatePresence>
         {isCurrentCategory && category.subcategories && category.subcategories.length > 0 && (
           <motion.ul
+            ref={menuRef}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
