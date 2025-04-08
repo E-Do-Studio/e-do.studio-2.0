@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { generateMetadata } from '@/lib/metadata'
+import { CycloramaStructuredData } from '@/components/schema/cyclorama-structured-data'
 
 export const metadata: Metadata = generateMetadata({
     title: 'Studio Cyclorama Professionnel',
@@ -7,6 +8,11 @@ export const metadata: Metadata = generateMetadata({
 })
 
 export default function CycloramaLayout({ children }: { children: React.ReactNode }) {
-    return <main className='container'>{children}</main>
+    return (
+        <>
+            <CycloramaStructuredData />
+            <main className='container'>{children}</main>
+        </>
+    )
 }
 

@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { generateMetadata } from '@/lib/metadata'
+import { PostProductionStructuredData } from '@/components/schema/post-production-structured-data'
 
 export const metadata: Metadata = generateMetadata({
   title: 'Services de Post-Production Photo',
@@ -13,8 +14,11 @@ export default function PostProductionLayout({
   children: React.ReactNode
 }) {
   return (
-    <main className="container">
-      {children}
-    </main>
+    <>
+      <PostProductionStructuredData />
+      <main className="container">
+        {children}
+      </main>
+    </>
   )
 }
