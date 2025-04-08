@@ -47,16 +47,30 @@ export const siteConfig = {
             name: 'Post-Production Photo',
             url: '/post-production/high_end',
             image: 'https://e-do.studio/img/post-production.jpg',
-            description: 'Services professionnels de post-production photo : retouche, montage, correction colorimétrique. Expertise en retouche de packshot et photo produit pour un rendu optimal.',
+            description: 'Services professionnels de post-production photo haute qualité : retouche avancée, montage créatif, correction colorimétrique experte. Spécialisation en retouche beauté et photo de mode.',
             features: [
-                'Retouche professionnelle',
-                'Correction colorimétrique',
-                'Détourage précis',
-                'Optimisation web',
-                'Formats multiples'
+                'Retouche beauté avancée',
+                'Correction colorimétrique professionnelle',
+                'Retouche créative',
+                'Optimisation haute qualité',
+                'Formats adaptés à vos besoins'
             ],
-            priceRange: '€€',
-            turnaroundTime: '24-48h'
+            priceRange: '€€€',
+            turnaroundTime: '48-72h'
+        },
+        gallery: {
+            name: 'Galerie Photo',
+            url: '/galerie?category=on_model',
+            image: 'https://e-do.studio/img/gallery-on-model.jpg',
+            description: 'Découvrez notre galerie de photos on model, mettant en valeur notre expertise en photographie de mode et notre maîtrise technique.',
+            categories: ['on_model', 'fashion', 'beauty'],
+            features: [
+                'Photos haute résolution',
+                'Retouche professionnelle',
+                'Direction artistique',
+                'Mise en scène créative',
+                'Éclairage professionnel'
+            ]
         }
     }
 } as const; 

@@ -10,18 +10,7 @@ export function generateCycloramaSchema() {
         provider: {
             '@type': 'PhotographyBusiness',
             name: siteConfig.name,
-            image: siteConfig.logo,
-            address: {
-                '@type': 'PostalAddress',
-                streetAddress: siteConfig.address.street,
-                addressLocality: siteConfig.address.city,
-                postalCode: siteConfig.address.postalCode,
-                addressCountry: siteConfig.address.country
-            }
-        },
-        areaServed: {
-            '@type': 'City',
-            name: 'Paris'
+            image: siteConfig.logo
         },
         image: siteConfig.services.cyclorama.image,
         offers: {
@@ -53,14 +42,7 @@ export function generatePostProductionSchema() {
         provider: {
             '@type': 'PhotographyBusiness',
             name: siteConfig.name,
-            image: siteConfig.logo,
-            address: {
-                '@type': 'PostalAddress',
-                streetAddress: siteConfig.address.street,
-                addressLocality: siteConfig.address.city,
-                postalCode: siteConfig.address.postalCode,
-                addressCountry: siteConfig.address.country
-            }
+            image: siteConfig.logo
         },
         image: siteConfig.services.postProduction.image,
         offers: {
@@ -83,5 +65,31 @@ export function generatePostProductionSchema() {
                 value: siteConfig.services.postProduction.turnaroundTime
             }
         ]
+    };
+}
+
+export function generateGallerySchema() {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        '@id': `${siteConfig.url}${siteConfig.services.gallery.url}`,
+        name: siteConfig.services.gallery.name,
+        description: siteConfig.services.gallery.description,
+        image: siteConfig.services.gallery.image,
+        provider: {
+            '@type': 'PhotographyBusiness',
+            name: siteConfig.name,
+            image: siteConfig.logo
+        },
+        about: {
+            '@type': 'PhotographyService',
+            serviceType: 'Fashion Photography',
+            category: siteConfig.services.gallery.categories,
+            additionalProperty: siteConfig.services.gallery.features.map(feature => ({
+                '@type': 'PropertyValue',
+                name: 'Feature',
+                value: feature
+            }))
+        }
     };
 } 
