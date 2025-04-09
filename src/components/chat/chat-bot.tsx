@@ -75,7 +75,7 @@ export function ChatBot() {
             })
             setMessage('')
             setIsError(false)
-        } catch (error) {
+        } catch (_error) {
             handleError()
         }
     }
@@ -92,7 +92,7 @@ export function ChatBot() {
                 isCustomMessage: false
             })
             setIsError(false)
-        } catch (error) {
+        } catch (_error) {
             handleError()
         }
     }

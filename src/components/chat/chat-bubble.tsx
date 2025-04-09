@@ -29,7 +29,7 @@ export function ChatBubble() {
                     isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"
                 )}
             >
-                Besoin d'aide ?
+                Besoin d&apos;aide ?
             </span>
         </div>
     );
