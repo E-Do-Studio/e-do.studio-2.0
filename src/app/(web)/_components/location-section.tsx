@@ -30,40 +30,16 @@ export const LocationSection = () => {
     const { t } = useTranslation("home");
     const [isMapLoaded, setIsMapLoaded] = useState(false);
     const [hasMapError, setHasMapError] = useState(false);
-    const [retryCount, setRetryCount] = useState(0);
-    const maxRetries = 3;
 
     useEffect(() => {
-        let timeout: NodeJS.Timeout;
-        let retryTimeout: NodeJS.Timeout;
-
-        const handleMapLoad = () => {
-            clearTimeout(timeout);
-            setIsMapLoaded(true);
-        };
-
-        const handleMapError = () => {
-            if (retryCount < maxRetries) {
-                setRetryCount(prev => prev + 1);
-                retryTimeout = setTimeout(() => {
-                    setHasMapError(false);
-                }, 2000); // Retry after 2 seconds
-            } else {
+        const timeout = setTimeout(() => {
+            if (!isMapLoaded) {
                 setHasMapError(true);
             }
-        };
+        }, 5000); // 5 secondes pour charger la carte
 
-        timeout = setTimeout(() => {
-            if (!isMapLoaded) {
-                handleMapError();
-            }
-        }, 8000); // Increased timeout to 8 seconds
-
-        return () => {
-            clearTimeout(timeout);
-            clearTimeout(retryTimeout);
-        };
-    }, [isMapLoaded, retryCount]);
+        return () => clearTimeout(timeout);
+    }, [isMapLoaded]);
 
     return (
         <LandingSection title={t("location.title")}>
@@ -129,17 +105,16 @@ export const LocationSection = () => {
                 {hasMapError ? (
                     <MapFallback />
                 ) : (
-                    <iframe
-                        key={retryCount}
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5244.773141109535!2d2.32734981223126!3d48.90802677121941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f6a786a45ab%3A0xe5eaaf6a57cac9ef!2sE-Do%20-%20Studio%20%2F%20Agence%20Digitale!5e0!3m2!1sfr!2sfr"
-                        className="flex-1 w-full h-full min-h-[500px] md:h-full md:min-h-[650px] rounded-lg"
-                        style={{ border: 0 }}
-                        allowFullScreen={true}
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5244.773141109535!2d2.32734981223126!3d48.90802677121941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f6a786a45ab%3A0xe5eaaf6a57cac9ef!2sE-Do%20-%20Studio%20%2F%20Agence%20Digitale!5e0!3m2!1sfr!2sfr!4v1738158151145!5m2!1sfr!2sfr"
+                    className="flex-1 w-full h-full min-h-[500px] md:h-full md:min-h-[650px] rounded-lg"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
                         onLoad={() => setIsMapLoaded(true)}
                         onError={() => setHasMapError(true)}
-                    />
+                />
                 )}
             </div>
         </LandingSection>
