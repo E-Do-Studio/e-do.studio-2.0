@@ -2,11 +2,11 @@
   "gallery": {
     "title": "Galerie",
     "descriptions": {
-      "on_model": "No inspi",
-      "access": "No inspi",
-      "ghost": "No inspi",
-      "pique": "No inspi",
-      "flat": "No inspi",
+      "on_model": "L’authenticité du porté. Des clichés vivants qui capturent l’allure, l’attitude et l’essence de vos créations.",
+      "access": "Un focus sur les pièces qui complètent le style. Chaque détail mis en lumière pour révéler toute la personnalité d’un look.",
+      "ghost": "L'essence pure du vêtement. Sans mannequin, rien ne détourne l’œil de la coupe et des finitions.",
+      "pique": "Un angle signature. Une vue plongeante qui souligne structure, matières et précision du vêtement.",
+      "flat": "Une mise en scène soignée à plat. Des visuels épurés qui valorisent formes, matières et finitions avec clarté.",
       "360": "Une expérience visuelle complète. Plongez dans nos créations et découvrez chaque détail sous tous les angles.",
       "cyclorama": "L'espace infini de création. Notre cyclorama offre une toile blanche parfaite pour donner vie à vos projets les plus ambitieux."
     }

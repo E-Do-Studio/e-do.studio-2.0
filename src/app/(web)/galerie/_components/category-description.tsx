@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
+import { Asterisk } from 'lucide-react';
 
 export function CategoryDescription() {
     const searchParams = useSearchParams()
@@ -20,10 +21,9 @@ export function CategoryDescription() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="bg-neutral-50 border border-neutral-200 rounded-lg p-4 backdrop-blur-sm"
         >
-            <p className="text-xs md:text-sm text-neutral-600 leading-relaxed">
-                {description}
+            <p className="text-xs md:text-sm text-black leading-relaxed">
+                <Asterisk className='w-4 h-4 inline-block mr-1 mb-2' /> {description}
             </p>
         </motion.div>
     )
