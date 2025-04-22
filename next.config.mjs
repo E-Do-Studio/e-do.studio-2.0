@@ -1,4 +1,4 @@
-import { withPayload } from '@payloadcms/next/withPayload'
+import { withPayload } from '@payloadcms/next/withPayload';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -29,10 +29,7 @@ const nextConfig = {
         hostname: 'localhost',
         port: '3000',
       },
-      {
-        protocol: 'https',
-        hostname: 'e-do.studio',
-      },
+      { protocol: 'https', hostname: 'e-do.studio' },
       {
         protocol: 'https',
         hostname: 'e-do.studio/admin',
@@ -45,10 +42,16 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
       },
+      {
+        protocol: 'http',
+        hostname: '195.35.25.154',
+      },
+      {
+        protocol: 'https',
+        hostname: '195.35.25.154',
+      },
     ],
-    domains: ['localhost', '127.0.0.1', 'e-do.studio'],
+    domains: ['localhost', '127.0.0.1', '195.35.25.154', 'e-do.studio'],
   },
   // Your Next.js config here
-}
-
-export default withPayload(nextConfig)
+};
