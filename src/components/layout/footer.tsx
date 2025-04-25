@@ -146,7 +146,7 @@ function SocialLinks({ className }: SocialLinksProps) {
 
 export function Footer() {
   return (
-    <footer className="bg-black mt-8 sm:mt-12 relative z-20">
+    <footer className="bg-black mt-8 sm:mt-12">
       <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         <div className="w-full max-w-5xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
