@@ -6,6 +6,7 @@
     },
     "chat": {
         "title": "Chat Assistant",
+        "need_help": "Need help ?",
         "custom_message": "For a personalized answer to your question, we invite you to contact us directly. Our team will be happy to help you.",
         "contact_button": "Contact us",
         "input_placeholder": "Write your message...",
