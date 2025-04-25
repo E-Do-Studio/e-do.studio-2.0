@@ -10,7 +10,14 @@ export const Introduction = () => {
     const { t } = useTranslation('home')
     const [currentTextIndex, setCurrentTextIndex] = useState(0)
     const [isVideoLoading, setIsVideoLoading] = useState(true)
+    const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const videoRef = useRef<HTMLVideoElement>(null)
+
+    const backgroundImages = [
+        '/studio.webp',
+        '/studio2.jpg',
+        '/studio3.jpg'
+    ]
 
     // Textes statiques pour le défilement
     const rotatingTexts = [
@@ -26,6 +33,14 @@ export const Introduction = () => {
 
         return () => clearInterval(interval)
     }, [rotatingTexts.length])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length)
+        }, 2000)
+
+        return () => clearInterval(interval)
+    }, [])
 
     useEffect(() => {
         const video = videoRef.current
@@ -119,16 +134,22 @@ export const Introduction = () => {
     return (
         <div className="relative h-screen w-full">
             {/* Pour le format desktop */}
-            <Image
-                src="/studio.webp"
-                alt="Logo"
-                width={1920}
-                height={1080}
-                quality={95}
-                priority
-                className="w-full h-full object-cover hidden md:block"
-                sizes="100vw"
-            />
+            <div className="relative w-full h-full hidden md:block">
+                {backgroundImages.map((src, index) => (
+                    <Image
+                        key={src}
+                        src={src}
+                        alt="Studio background"
+                        width={1920}
+                        height={1080}
+                        quality={95}
+                        priority
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                            }`}
+                        sizes="100vw"
+                    />
+                ))}
+            </div>
 
             {/* Pour le format mobile */}
             {isVideoLoading && (
@@ -170,8 +191,8 @@ export const Introduction = () => {
                     <span className="text-white">E-Do Studio</span>
                 </span>
                 <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-3">
-                    <span className="text-primary-foreground">Your hybrid</span>{" "}
-                    <span className="text-primary">playground</span>
+                    <span className="text-primary-foreground [text-shadow:_-0.5px_-0.5px_0_rgba(0,0,0,0.3),0.5px_-0.5px_0_rgba(0,0,0,0.3),-0.5px_0.5px_0_rgba(0,0,0,0.3),0.5px_0.5px_0_rgba(0,0,0,0.3)]">Your hybrid</span>{" "}
+                    <span className="text-primary [text-shadow:_-0.5px_-0.5px_0_rgba(255,255,255,0.3),0.5px_-0.5px_0_rgba(255,255,255,0.3),-0.5px_0.5px_0_rgba(255,255,255,0.3),0.5px_0.5px_0_rgba(255,255,255,0.3)]">playground</span>
                 </h2>
                 <ul className="flex flex-col space-y-0.5 list-none">
                     {[

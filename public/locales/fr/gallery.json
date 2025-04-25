@@ -2,13 +2,13 @@
   "gallery": {
     "title": "Galerie",
     "descriptions": {
-      "on_model": "L’authenticité du porté. Des clichés vivants qui capturent l’allure, l’attitude et l’essence de vos créations.",
-      "access": "Un focus sur les pièces qui complètent le style. Chaque détail mis en lumière pour révéler toute la personnalité d’un look.",
-      "ghost": "L'essence pure du vêtement. Sans mannequin, rien ne détourne l’œil de la coupe et des finitions.",
-      "pique": "Un angle signature. Une vue plongeante qui souligne structure, matières et précision du vêtement.",
-      "flat": "Une mise en scène soignée à plat. Des visuels épurés qui valorisent formes, matières et finitions avec clarté.",
-      "360": "Une expérience visuelle complète. Plongez dans nos créations et découvrez chaque détail sous tous les angles.",
-      "cyclorama": "L'espace infini de création. Notre cyclorama offre une toile blanche parfaite pour donner vie à vos projets les plus ambitieux."
+      "on_model": "L'authenticité du porté. Des clichés vivants qui capturent l'allure, l'attitude et l'essence de vos collections.",
+      "access": "Un focus sur les accessoires, capturés avec une précision qui révèle chaque détail et met en valeur le travail et la beauté du produit.",
+      "ghost": "Une vision plus moderne du packshot textile, sans mannequin, tout est centré sur la coupe et les finitions.",
+      "pique": "L'élégance intemporelle du piqué, précis, joli, efficace.",
+      "flat": "Le packshot à plat, une mise en scène simple et claire, pour révéler texture, matières et finitions.",
+      "360": "Avec nos packshots 360, visualisez vos produit sous tous les angles. Une expérience plus immersive et complète pour révéler le maximum de détails à vos clients.",
+      "cyclorama": "Notre cyclorama, votre terrain de jeu : un espace sans limites pour donner vie à toutes vos idées, des plus simples aux plus ambitieuses."
     }
   }
 }

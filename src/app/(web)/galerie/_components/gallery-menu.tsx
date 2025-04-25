@@ -10,6 +10,7 @@ import { useGalleryStore } from "./store"
 import { Category, Subcategory } from "./types"
 import i18n from "@/lib/i18n"
 import React from "react"
+import { ChevronRight } from 'lucide-react'
 
 function GalleryMenuSkeleton() {
   return (
@@ -60,12 +61,20 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
       <Link
         href={`/galerie?category=${category.slug}`}
         className={cn(
-          "hover:text-neutral-600 transition-colors",
+          "hover:text-neutral-600 transition-colors flex items-center gap-1",
           isCurrentCategory && "font-medium"
         )}
         prefetch={true}
       >
         {category.name}
+        {category.subcategories && category.subcategories.length > 0 && (
+          <motion.div
+            animate={{ rotate: isCurrentCategory ? 90 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ChevronRight className="w-4 h-4" />
+          </motion.div>
+        )}
       </Link>
       <AnimatePresence>
         {isCurrentCategory && category.subcategories && category.subcategories.length > 0 && (

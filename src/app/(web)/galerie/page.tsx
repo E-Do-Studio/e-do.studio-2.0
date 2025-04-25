@@ -32,7 +32,7 @@ function GalleryContent() {
               </div>
             </div>
           </div>
-          <div className="hidden lg:block fixed top-[450px] left-0 right-0 container">
+          <div className="hidden lg:block fixed top-[400px] left-0 right-0 container">
             <div className="lg:max-w-[200px] transition-[margin] duration-200" style={{ marginTop: 'var(--menu-height, 0)' }}>
               <CategoryDescription />
             </div>
