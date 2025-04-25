@@ -9,8 +9,6 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useGalleryStore } from "./store"
 import { Category, Subcategory } from "./types"
 import i18n from "@/lib/i18n"
-import React from "react"
-import { ChevronRight } from 'lucide-react'
 
 function GalleryMenuSkeleton() {
   return (
@@ -37,49 +35,22 @@ function GalleryMenuSkeleton() {
 function CategoryLink({ category, isCurrentCategory }: { category: Category; isCurrentCategory: boolean }) {
   const searchParams = useSearchParams()
   const currentSubcategorySlug = searchParams?.get('subcategory')
-  const menuRef = React.useRef<HTMLUListElement>(null)
-
-  React.useEffect(() => {
-    if (isCurrentCategory && category.subcategories && category.subcategories.length > 0) {
-      const updateMenuHeight = () => {
-        if (menuRef.current) {
-          document.documentElement.style.setProperty('--menu-height', `${menuRef.current.scrollHeight}px`)
-        }
-      }
-      updateMenuHeight()
-      const observer = new ResizeObserver(updateMenuHeight)
-      observer.observe(menuRef.current!)
-      return () => {
-        observer.disconnect()
-        document.documentElement.style.setProperty('--menu-height', '0px')
-      }
-    }
-  }, [isCurrentCategory, category.subcategories])
 
   return (
     <li className="space-y-1">
       <Link
         href={`/galerie?category=${category.slug}`}
         className={cn(
-          "hover:text-neutral-600 transition-colors flex items-center gap-1",
+          "hover:text-neutral-600 transition-colors",
           isCurrentCategory && "font-medium"
         )}
         prefetch={true}
       >
         {category.name}
-        {category.subcategories && category.subcategories.length > 0 && (
-          <motion.div
-            animate={{ rotate: isCurrentCategory ? 90 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ChevronRight className="w-4 h-4" />
-          </motion.div>
-        )}
       </Link>
       <AnimatePresence>
         {isCurrentCategory && category.subcategories && category.subcategories.length > 0 && (
           <motion.ul
-            ref={menuRef}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
