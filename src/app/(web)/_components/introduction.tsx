@@ -16,7 +16,9 @@ export const Introduction = () => {
     const backgroundImages = [
         '/studio.webp',
         '/studio2.jpg',
-        '/studio3.jpg'
+        '/studio3.jpg',
+        '/studio4.jpg',
+        '/studio5.jpg',
     ]
 
     // Textes statiques pour le défilement
@@ -191,8 +193,8 @@ export const Introduction = () => {
                     <span className="text-white">E-Do Studio</span>
                 </span>
                 <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-3xl mb-3">
-                    <span className="text-primary-foreground [text-shadow:_-0.5px_-0.5px_0_rgba(0,0,0,0.3),0.5px_-0.5px_0_rgba(0,0,0,0.3),-0.5px_0.5px_0_rgba(0,0,0,0.3),0.5px_0.5px_0_rgba(0,0,0,0.3)]">Your hybrid</span>{" "}
-                    <span className="text-primary [text-shadow:_-0.5px_-0.5px_0_rgba(255,255,255,0.3),0.5px_-0.5px_0_rgba(255,255,255,0.3),-0.5px_0.5px_0_rgba(255,255,255,0.3),0.5px_0.5px_0_rgba(255,255,255,0.3)]">playground</span>
+                    <span className="text-primary-foreground">Your hybrid</span>{" "}
+                    <span className="text-primary">playground</span>
                 </h2>
                 <ul className="flex flex-col space-y-0.5 list-none">
                     {[
