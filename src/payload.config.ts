@@ -81,9 +81,6 @@ export default buildConfig({
       'https://e-do.studio/admin',
       'http://localhost:3000',
       'http://localhost:3001',
-      'http://195.35.25.154:3001',
-      'http://195.35.25.154',
-      'http://195.35.25.154:3200',      
     ],
     headers: [
       'Content-Type',

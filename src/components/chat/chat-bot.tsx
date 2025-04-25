@@ -29,23 +29,13 @@ export function ChatBot() {
     const [message, setMessage] = useState('')
     const { isOpen, setIsOpen, messages, addMessage } = useChatStore()
     const [isError, setIsError] = useState(false)
-    const [isExpanded, setIsExpanded] = useState(false)
     const lastQuestionRef = useRef<HTMLDivElement>(null)
     const messagesLength = messages.length
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsExpanded(true);
-        }, 8000); // 8 secondes
-
-        return () => clearTimeout(timer);
-    }, []);
 
     // Reset error state when chat is opened
     useEffect(() => {
         if (isOpen) {
             setIsError(false)
-            setIsExpanded(false)
         }
     }, [isOpen])
 
@@ -75,7 +65,7 @@ export function ChatBot() {
             })
             setMessage('')
             setIsError(false)
-        } catch (_error) {
+        } catch (error) {
             handleError()
         }
     }
@@ -92,7 +82,7 @@ export function ChatBot() {
                 isCustomMessage: false
             })
             setIsError(false)
-        } catch (_error) {
+        } catch (error) {
             handleError()
         }
     }
@@ -223,31 +213,9 @@ export function ChatBot() {
                 <Button
                     onClick={() => setIsOpen(true)}
                     size="icon"
-                    className={cn(
-                        "transition-all duration-700 ease-in-out shadow-lg overflow-hidden",
-                        isExpanded
-                            ? "flex items-center gap-2 w-auto px-2 rounded-full hover:bg-primary/90"
-                            : "relative w-10 sm:w-12 h-10 sm:h-12 rounded-full hover:bg-primary/90"
-                    )}
+                    className="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg"
                 >
-                    <div className={cn(
-                        isExpanded
-                            ? "flex items-center"
-                            : "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                    )}>
-                        <MessageCircle className={cn(
-                            "h-6 w-6 sm:h-7 sm:w-7 transition-all duration-700 flex-shrink-0",
-                            isExpanded ? "h-7 w-7 sm:h-8 sm:w-8" : ""
-                        )} />
-                    </div>
-                    <span
-                        className={cn(
-                            "overflow-hidden transition-all duration-700 whitespace-nowrap text-sm sm:text-base",
-                            isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"
-                        )}
-                    >
-                        {t('chat.need_help')}
-                    </span>
+                    <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
                 </Button>
             )}
         </div>
