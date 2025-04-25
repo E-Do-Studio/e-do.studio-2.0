@@ -28,6 +28,7 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         port: '3000',
+        pathname: '/api/assets/**',
       },
       { protocol: 'https', hostname: 'e-do.studio' },
       {
@@ -41,6 +42,7 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
+        port: '3000',
       },
       {
         protocol: 'http',
@@ -55,3 +57,5 @@ const nextConfig = {
   },
   // Your Next.js config here
 };
+
+export default withPayload(nextConfig);
