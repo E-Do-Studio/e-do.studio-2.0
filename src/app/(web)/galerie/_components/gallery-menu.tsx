@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useMemo, Suspense } from "react"
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -38,9 +38,11 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
   const searchParams = useSearchParams()
   const currentSubcategorySlug = searchParams?.get('subcategory')
   const menuRef = React.useRef<HTMLUListElement>(null)
+  const [isSubmenuOpen, setIsSubmenuOpen] = React.useState(isCurrentCategory)
+  const router = useRouter()
 
   React.useEffect(() => {
-    if (isCurrentCategory && category.subcategories && category.subcategories.length > 0) {
+    if (isSubmenuOpen && category.subcategories && category.subcategories.length > 0) {
       const updateMenuHeight = () => {
         if (menuRef.current) {
           document.documentElement.style.setProperty('--menu-height', `${menuRef.current.scrollHeight}px`)
@@ -54,7 +56,19 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
         document.documentElement.style.setProperty('--menu-height', '0px')
       }
     }
-  }, [isCurrentCategory, category.subcategories])
+  }, [isSubmenuOpen, category.subcategories])
+
+  const handleCategoryClick = (e: React.MouseEvent) => {
+    if (isCurrentCategory) {
+      e.preventDefault()
+      setIsSubmenuOpen(!isSubmenuOpen)
+      if (isSubmenuOpen) {
+        router.push(`/galerie?category=${category.slug}`, { scroll: false })
+      }
+    } else if (category.subcategories && category.subcategories.length > 0) {
+      setIsSubmenuOpen(true)
+    }
+  }
 
   return (
     <li className="space-y-1">
@@ -65,11 +79,12 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
           isCurrentCategory && "font-medium"
         )}
         prefetch={true}
+        onClick={handleCategoryClick}
       >
         {category.name}
         {category.subcategories && category.subcategories.length > 0 && (
           <motion.div
-            animate={{ rotate: isCurrentCategory ? 90 : 0 }}
+            animate={{ rotate: isSubmenuOpen ? 90 : 0 }}
             transition={{ duration: 0.2 }}
           >
             <ChevronRight className="w-4 h-4" />
@@ -77,7 +92,7 @@ function CategoryLink({ category, isCurrentCategory }: { category: Category; isC
         )}
       </Link>
       <AnimatePresence>
-        {isCurrentCategory && category.subcategories && category.subcategories.length > 0 && (
+        {isSubmenuOpen && category.subcategories && category.subcategories.length > 0 && (
           <motion.ul
             ref={menuRef}
             initial={{ height: 0, opacity: 0 }}
