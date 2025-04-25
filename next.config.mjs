@@ -30,7 +30,10 @@ const nextConfig = {
         port: '3000',
         pathname: '/api/assets/**',
       },
-      { protocol: 'https', hostname: 'e-do.studio' },
+      { 
+        protocol: 'https', 
+        hostname: 'e-do.studio' 
+      },
       {
         protocol: 'https',
         hostname: 'e-do.studio/admin',
