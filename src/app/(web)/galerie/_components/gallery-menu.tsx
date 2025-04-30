@@ -186,7 +186,7 @@ function GalleryContent() {
       "fixed top-[5rem] left-0 right-0 z-30 container py-6",
       "lg:sticky lg:top-32 lg:px-0 lg:py-0"
     )}>
-      <h1>{menuTitle}</h1>
+      <h1 className="whitespace-nowrap overflow-visible">{menuTitle}</h1>
       <nav className="overflow-y-auto lg:max-h-[calc(100vh-12rem)]">
         <ul className="flex flex-col gap-1 text-base">
           {sortedCategories.map((category) => (
