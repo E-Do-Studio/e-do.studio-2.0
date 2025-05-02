@@ -25,6 +25,17 @@ jobs:
           script: |
             echo "===== Starting deployment ====="
             
+            # Check Node.js version
+            echo "Current Node.js version: $(node -v)"
+            
+            # Update Node.js if needed
+            if [[ $(node -v | cut -d. -f1 | tr -d 'v') -lt 14 ]]; then
+              echo "Updating Node.js..."
+              curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+              echo "New Node.js version: $(node -v)"
+            fi
+            
             # Check if the directory exists
             if [ -d "/home/e-do.studio-2.0" ]; then
               echo "Directory exists, navigating to /home/e-do.studio-2.0"
@@ -36,45 +47,46 @@ jobs:
             
             echo "Current directory: $(pwd)"
             
-            # Check if git is initialized
-            if [ ! -d .git ]; then
-              echo "Initializing git repository"
+            # Fix Git repository issues
+            echo "Fixing Git repository"
+            if [ -d ".git" ]; then
+              # Fix locked refs by removing them
+              rm -rf .git/refs/remotes/origin
+              rm -f .git/index.lock
+              
+              # Re-initialize Git configuration
+              git config --global user.email "deploy@example.com"
+              git config --global user.name "Deployment Bot"
+              
+              # Re-add origin if needed
+              if ! git remote | grep -q origin; then
+                git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
+              fi
+              
+              # Clean and hard reset
+              git fetch origin
+              git reset --hard origin/main
+            else
+              # Initialize new repository
               git init
               git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
-            else
-              echo "Git already initialized"
-              git remote -v
+              git fetch
+              git checkout main || git checkout -b main origin/main
             fi
             
-            # Ensure git knows who we are
-            git config --global user.email "deploy@example.com"
-            git config --global user.name "Deployment Bot"
+            # Use npm instead of pnpm to avoid compatibility issues
+            echo "Installing dependencies with npm"
+            npm install
             
-            # Pull latest changes
-            echo "Fetching latest changes from GitHub"
-            git fetch --all
-            git reset --hard origin/main
-            
-            # Install pnpm if not available
-            if ! command -v pnpm &> /dev/null; then
-              echo "Installing pnpm"
-              npm install -g pnpm
-            else
-              echo "pnpm already installed: $(pnpm --version)"
-            fi
-            
-            # Install dependencies and build
-            echo "Installing dependencies"
-            export PATH=$PATH:/root/.local/share/pnpm
-            export PATH=$PATH:/root/.npm-global/bin
-            pnpm install
-            
-            echo "Building application"
-            pnpm build
+            echo "Building application with npm"
+            npm run build
             
             # Restart PM2 process
             echo "Checking PM2 processes"
             pm2 list
+            
+            echo "Updating PM2 if needed"
+            pm2 update || true
             
             echo "Restarting e-do-studio process"
             pm2 restart e-do-studio
