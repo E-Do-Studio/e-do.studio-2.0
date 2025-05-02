@@ -18,6 +18,9 @@ export default async function Page() {
     depth: 2,
   })
 
+
+  console.log("UPDATED")
+
   return (
     <div className="text-xl min-h-screen">
       <h1 className="sr-only">E-Do Studio - Studio de photographie professionnel</h1>
