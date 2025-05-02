@@ -63,16 +63,46 @@ jobs:
               git checkout main || git checkout -b main origin/main
             fi
             
+            # Check Node.js version and update if needed
+            echo "Checking Node.js version..."
+            NODE_VERSION=$(node -v)
+            echo "Current Node.js version: $NODE_VERSION"
+            
+            # Extract version number without 'v' prefix and split by dots
+            VERSION_NUMBER=${NODE_VERSION#v}
+            MAJOR_VERSION=$(echo $VERSION_NUMBER | cut -d. -f1)
+            
+            # Next.js 15+ requires Node.js 18.17.0 or higher
+            if [ "$MAJOR_VERSION" -lt 18 ]; then
+              echo "Node.js version is below 18, updating to Node.js 18 LTS..."
+              
+              # Install NVM if not already installed
+              if [ ! -d "$HOME/.nvm" ]; then
+                echo "Installing NVM..."
+                curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+              fi
+              
+              # Load NVM
+              export NVM_DIR="$HOME/.nvm"
+              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+              
+              # Install and use Node.js 18 LTS
+              nvm install 18
+              nvm use 18
+              
+              echo "Node.js updated to: $(node -v)"
+            fi
+            
             # Install pnpm if not already available
             if ! command -v pnpm &> /dev/null; then
               echo "pnpm not found, installing..."
               npm install -g pnpm
             fi
             
-            echo "Installing dependencies with pnpm"
+            echo "Installing dependencies with npm"
             npm install
             
-            echo "Building application with pnpm"
+            echo "Building application with npm"
             npm run build
             
             # Mise à jour de la configuration PM2 
