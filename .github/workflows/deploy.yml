@@ -25,17 +25,6 @@ jobs:
           script: |
             echo "===== Starting deployment ====="
             
-            # Check Node.js version
-            echo "Current Node.js version: $(node -v)"
-            
-            # Update Node.js if needed
-            if [[ $(node -v | cut -d. -f1 | tr -d 'v') -lt 14 ]]; then
-              echo "Updating Node.js..."
-              curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-              sudo apt-get install -y nodejs
-              echo "New Node.js version: $(node -v)"
-            fi
-            
             # Check if the directory exists
             if [ -d "/home/e-do.studio-2.0" ]; then
               echo "Directory exists, navigating to /home/e-do.studio-2.0"
@@ -81,14 +70,16 @@ jobs:
             echo "Building application with npm"
             npm run build
             
-            # Restart PM2 process
-            echo "Checking PM2 processes"
-            pm2 list
-            
-            echo "Updating PM2 if needed"
-            pm2 update || true
-            
-            echo "Restarting e-do-studio process"
-            pm2 restart e-do-studio
+            # Gestion du processus PM2 nommé e-do.studio
+            echo "Vérification du processus PM2 e-do.studio"
+            if pm2 list | grep -q "e-do.studio"; then
+              echo "Le processus e-do.studio existe déjà, redémarrage..."
+              pm2 restart e-do.studio
+            else
+              echo "Création du processus e-do.studio..."
+              # Démarrer depuis le répertoire actuel
+              pm2 start npm --name "e-do.studio" -- start
+            fi
             
             echo "===== Deployment complete ====="
+            echo "ATTENTION: PM2 restart NON EFFECTUÉ - À faire manuellement"
