@@ -23,14 +23,27 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_SSH_PORT }}
           script: |
-            # Navigate to the correct directory
-            cd /home/e-do.studio-2.0
+            echo "===== Starting deployment ====="
+            
+            # Check if the directory exists
+            if [ -d "/home/e-do.studio-2.0" ]; then
+              echo "Directory exists, navigating to /home/e-do.studio-2.0"
+              cd /home/e-do.studio-2.0
+            else
+              echo "Directory does not exist, navigating to the correct location"
+              cd /home/studio
+            fi
+            
+            echo "Current directory: $(pwd)"
             
             # Check if git is initialized
             if [ ! -d .git ]; then
               echo "Initializing git repository"
               git init
               git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
+            else
+              echo "Git already initialized"
+              git remote -v
             fi
             
             # Ensure git knows who we are
@@ -38,6 +51,7 @@ jobs:
             git config --global user.name "Deployment Bot"
             
             # Pull latest changes
+            echo "Fetching latest changes from GitHub"
             git fetch --all
             git reset --hard origin/main
             
@@ -45,24 +59,24 @@ jobs:
             if ! command -v pnpm &> /dev/null; then
               echo "Installing pnpm"
               npm install -g pnpm
+            else
+              echo "pnpm already installed: $(pnpm --version)"
             fi
             
             # Install dependencies and build
+            echo "Installing dependencies"
             export PATH=$PATH:/root/.local/share/pnpm
             export PATH=$PATH:/root/.npm-global/bin
             pnpm install
+            
+            echo "Building application"
             pnpm build
             
-            # Check if PM2 config file exists
-            if [ -f "/home/ecosystem.config.js" ]; then
-              # Restart using the ecosystem file
-              cd /home
-              pm2 restart ecosystem.config.js
-            elif pm2 list | grep -q "e-do-studio"; then
-              # Restart using the correct process name
-              pm2 restart e-do-studio
-            else
-              # Start as a new process
-              echo "PM2 process not found, starting new instance"
-              pm2 start npm --name "e-do-studio" -- start
-            fi
+            # Restart PM2 process
+            echo "Checking PM2 processes"
+            pm2 list
+            
+            echo "Restarting e-do-studio process"
+            pm2 restart e-do-studio
+            
+            echo "===== Deployment complete ====="
