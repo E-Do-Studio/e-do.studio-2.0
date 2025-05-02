@@ -22,6 +22,7 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_SSH_PORT }}
+          timeout: 60m # Increase timeout to 60 minutes
           script: |
             echo "===== Starting deployment ====="
             
@@ -93,17 +94,18 @@ jobs:
               echo "Node.js updated to: $(node -v)"
             fi
             
-            # Install pnpm if not already available
-            if ! command -v pnpm &> /dev/null; then
-              echo "pnpm not found, installing..."
-              npm install -g pnpm
-            fi
+            # Clean cache directories to avoid errors
+            echo "Cleaning cache directories..."
+            rm -rf .next/cache
+            rm -rf node_modules/.cache
             
-            echo "Installing dependencies with npm"
-            npm install
+            # Install dependencies with npm
+            echo "Installing dependencies with npm..."
+            npm install --no-fund --no-audit --prefer-offline
             
-            echo "Building application with npm"
-            npm run build
+            # Build with optimized settings
+            echo "Building application with production settings..."
+            NODE_OPTIONS="--max-old-space-size=4096 --no-deprecation" npm run build
             
             # Mise à jour de la configuration PM2 
             echo "Mise à jour du processus PM2 e-do.studio"
