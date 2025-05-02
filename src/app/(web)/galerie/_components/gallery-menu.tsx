@@ -2,13 +2,15 @@
 
 import Link from "next/link"
 import { useEffect, useMemo, Suspense } from "react"
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useGalleryStore } from "./store"
 import { Category, Subcategory } from "./types"
 import i18n from "@/lib/i18n"
+import React from "react"
+import { ChevronRight } from 'lucide-react'
 
 function GalleryMenuSkeleton() {
   return (
@@ -35,22 +37,64 @@ function GalleryMenuSkeleton() {
 function CategoryLink({ category, isCurrentCategory }: { category: Category; isCurrentCategory: boolean }) {
   const searchParams = useSearchParams()
   const currentSubcategorySlug = searchParams?.get('subcategory')
+  const menuRef = React.useRef<HTMLUListElement>(null)
+  const [isSubmenuOpen, setIsSubmenuOpen] = React.useState(isCurrentCategory)
+  const router = useRouter()
+
+  React.useEffect(() => {
+    if (isSubmenuOpen && category.subcategories && category.subcategories.length > 0) {
+      const updateMenuHeight = () => {
+        if (menuRef.current) {
+          document.documentElement.style.setProperty('--menu-height', `${menuRef.current.scrollHeight}px`)
+        }
+      }
+      updateMenuHeight()
+      const observer = new ResizeObserver(updateMenuHeight)
+      observer.observe(menuRef.current!)
+      return () => {
+        observer.disconnect()
+        document.documentElement.style.setProperty('--menu-height', '0px')
+      }
+    }
+  }, [isSubmenuOpen, category.subcategories])
+
+  const handleCategoryClick = (e: React.MouseEvent) => {
+    if (isCurrentCategory) {
+      e.preventDefault()
+      setIsSubmenuOpen(!isSubmenuOpen)
+      if (isSubmenuOpen) {
+        router.push(`/galerie?category=${category.slug}`, { scroll: false })
+      }
+    } else if (category.subcategories && category.subcategories.length > 0) {
+      setIsSubmenuOpen(true)
+    }
+  }
 
   return (
     <li className="space-y-1">
       <Link
         href={`/galerie?category=${category.slug}`}
         className={cn(
-          "hover:text-neutral-600 transition-colors",
+          "hover:text-neutral-600 transition-colors flex items-center gap-1",
           isCurrentCategory && "font-medium"
         )}
         prefetch={true}
+        onClick={handleCategoryClick}
       >
         {category.name}
+        {category.subcategories && category.subcategories.length > 0 && (
+          <motion.div
+            animate={{ rotate: isSubmenuOpen ? 90 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ChevronRight className="w-4 h-4" />
+          </motion.div>
+        )}
       </Link>
       <AnimatePresence>
-        {isCurrentCategory && category.subcategories && category.subcategories.length > 0 && (
+        {isSubmenuOpen && category.subcategories && category.subcategories.length > 0 && (
           <motion.ul
+            ref={menuRef}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -142,7 +186,7 @@ function GalleryContent() {
       "fixed top-[5rem] left-0 right-0 z-30 container py-6",
       "lg:sticky lg:top-32 lg:px-0 lg:py-0"
     )}>
-      <h1>{menuTitle}</h1>
+      <h1 className="whitespace-nowrap overflow-visible">{menuTitle}</h1>
       <nav className="overflow-y-auto lg:max-h-[calc(100vh-12rem)]">
         <ul className="flex flex-col gap-1 text-base">
           {sortedCategories.map((category) => (

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -49,6 +49,27 @@ export function CycloramaGallery() {
   const handleNext = () => {
     setSelectedImage((prev) => (prev === images.length ? 1 : prev! + 1))
   }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedImage) return
+
+      switch (e.key) {
+        case 'ArrowLeft':
+          handlePrevious()
+          break
+        case 'ArrowRight':
+          handleNext()
+          break
+        case 'Escape':
+          setSelectedImage(null)
+          break
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedImage])
 
   return (
     <Section className="!mt-0">
@@ -137,16 +158,16 @@ export function CycloramaGallery() {
           </button>
 
           <div
-            className="relative w-full max-w-3xl mx-4"
+            className="relative w-full max-w-5xl mx-4 flex flex-col items-center justify-center min-h-screen pt-24"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-[16/10] max-h-[80vh]">
+            <div className="relative aspect-[16/10] max-h-[90vh] w-full">
               <Image
                 src={images[selectedImage - 1].src}
                 alt={images[selectedImage - 1].alt}
                 fill
                 className="object-contain"
-                sizes="(max-width: 768px) 100vw, 80vw"
+                sizes="(max-width: 768px) 100vw, 90vw"
                 priority
               />
             </div>

@@ -12,8 +12,9 @@ import { AnalyticsProvider } from '@/providers/analytics-provider'
 import { Toaster } from 'sonner'
 import { ChatBotWrapper } from '@/components/chat/chat-bot-wrapper'
 import { generateMetadata as generateBaseMetadata } from '@/lib/metadata'
-import { StructuredData } from '@/components/schema/structured-data'
+import { OrganizationSchema } from '@/components/schema/organization-schema'
 
+// Ajouter cette constante pour le nom du site
 const SITE_NAME = 'E-Do Studio'
 
 export const metadata: Metadata = generateBaseMetadata({
@@ -22,6 +23,7 @@ export const metadata: Metadata = generateBaseMetadata({
   templateTitle: false
 })
 
+// Importation de la police ABC Favorit
 const abcFavorit = localFont({
   src: [
     {
@@ -43,15 +45,21 @@ const abcFavorit = localFont({
   variable: '--font-abc-favorit',
 })
 
+// Fonction pour détecter la langue préférée du navigateur
 async function getLanguageFromAcceptLanguage(): Promise<string> {
   const headersList = await headers()
   const acceptLanguage = headersList.get('accept-language')
 
   if (!acceptLanguage) return 'fr'
+
+  // Extraire la première langue préférée
   const preferredLanguage = acceptLanguage.split(',')[0].split('-')[0]
+
+  // Vérifier si la langue est supportée
   return ['fr', 'en'].includes(preferredLanguage) ? preferredLanguage : 'fr'
 }
 
+// Générer les paramètres statiques pour les langues supportées
 export async function generateStaticParams() {
   return [{ lng: 'fr' }, { lng: 'en' }]
 }
@@ -66,14 +74,12 @@ export default async function WebLayout({
   return (
     <html lang={defaultLanguage} className={cn(abcFavorit.variable, 'font-abc-favorit font-light antialiased')}>
       <head>
-        <StructuredData />
+        <OrganizationSchema />
       </head>
-      <body className="min-h-screen bg-background">
+      <body>
         <I18nProvider defaultLanguage={defaultLanguage}>
           <Header />
-          <main>
-            {children}
-          </main>
+          {children}
           <Footer />
           <NewsletterPopup />
           <CookieBanner />

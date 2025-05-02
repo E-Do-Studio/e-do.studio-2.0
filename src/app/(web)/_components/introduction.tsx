@@ -10,7 +10,16 @@ export const Introduction = () => {
     const { t } = useTranslation('home')
     const [currentTextIndex, setCurrentTextIndex] = useState(0)
     const [isVideoLoading, setIsVideoLoading] = useState(true)
+    const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const videoRef = useRef<HTMLVideoElement>(null)
+
+    const backgroundImages = [
+        '/studio.webp',
+        '/studio2.jpg',
+        '/studio3.jpg',
+        '/studio4.jpg',
+        '/studio5.jpg',
+    ]
 
     // Textes statiques pour le défilement
     const rotatingTexts = [
@@ -26,6 +35,14 @@ export const Introduction = () => {
 
         return () => clearInterval(interval)
     }, [rotatingTexts.length])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length)
+        }, 2000)
+
+        return () => clearInterval(interval)
+    }, [])
 
     useEffect(() => {
         const video = videoRef.current
@@ -119,16 +136,22 @@ export const Introduction = () => {
     return (
         <div className="relative h-screen w-full">
             {/* Pour le format desktop */}
-            <Image
-                src="/studio.webp"
-                alt="Logo"
-                width={1920}
-                height={1080}
-                quality={95}
-                priority
-                className="w-full h-full object-cover hidden md:block"
-                sizes="100vw"
-            />
+            <div className="relative w-full h-full hidden md:block">
+                {backgroundImages.map((src, index) => (
+                    <Image
+                        key={src}
+                        src={src}
+                        alt="Studio background"
+                        width={1920}
+                        height={1080}
+                        quality={95}
+                        priority
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                            }`}
+                        sizes="100vw"
+                    />
+                ))}
+            </div>
 
             {/* Pour le format mobile */}
             {isVideoLoading && (

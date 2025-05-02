@@ -1,5 +1,14 @@
 {
   "gallery": {
-    "title": "Gallery"
+    "title": "Gallery",
+    "descriptions": {
+      "on_model": "Authentic wear. Vivid shots that capture the look, attitude and essence of your collections.",
+      "access": "A focus on accessories, captured with a precision that reveals every detail and highlights the workmanship and beauty of the product.",
+      "ghost": "A more modern vision of the clothing packshot, with no mannequin and a focus on cut and finish.",
+      "pique": "The timeless elegance of sharpness, precise, pretty, effective.",
+      "flat": "Le packshot à plat, une mise en scène simple et claire, pour révéler texture, matières et finitions.",
+      "360": "With our 360° packshots, view your products from every angle. A more immersive and complete experience to reveal maximum detail to your customers.",
+      "cyclorama": "Our cyclorama, your playground: a limitless space to bring all your ideas to life, from the simplest to the most ambitious."
+    }
   }
 }
