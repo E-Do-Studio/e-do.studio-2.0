@@ -79,6 +79,16 @@ jobs:
               echo "Node.js updated to: $(node -v)"
             fi
             
+            # Create .env.local file with environment variables
+            echo "Creating .env.local file with environment variables"
+            cat > "$TEMP_DIR/.env.local" << EOL
+            # API Keys
+            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            
+            # Add any other environment variables your app needs
+            NEXT_PUBLIC_SITE_URL=https://e-do.studio
+            EOL
+            
             # Install dependencies in temp directory
             echo "Installing dependencies with npm..."
             cd "$TEMP_DIR"
