@@ -24,38 +24,44 @@ jobs:
           port: ${{ secrets.VPS_SSH_PORT }}
           timeout: 60m # Increase timeout to 60 minutes
           script: |
-            echo "===== Starting zero-downtime deployment ====="
+            echo "===== Starting deployment ====="
             
-            # Set up directories
-            MAIN_DIR="/home/e-do.studio-2.0"
-            BUILD_DIR="/home/e-do.studio-2.0-build"
-            BACKUP_DIR="/home/e-do.studio-2.0-backup"
-            
-            # Setup build directory
-            if [ ! -d "$BUILD_DIR" ]; then
-              echo "Creating build directory"
-              mkdir -p "$BUILD_DIR"
+            # Check if the directory exists
+            if [ -d "/home/e-do.studio-2.0" ]; then
+              echo "Directory exists, navigating to /home/e-do.studio-2.0"
+              cd /home/e-do.studio-2.0
             else
-              echo "Cleaning build directory"
-              rm -rf "$BUILD_DIR"
-              mkdir -p "$BUILD_DIR"
+              echo "Directory does not exist, navigating to the correct location"
+              cd /home/studio
             fi
             
-            # Clone or update repository in build directory
-            if [ -d "$MAIN_DIR/.git" ]; then
-              echo "Copying existing repository to build directory"
-              cp -a "$MAIN_DIR/.git" "$BUILD_DIR/"
-              cd "$BUILD_DIR"
-              git reset --hard HEAD
-              git clean -fd
-              git pull origin main
+            echo "Current directory: $(pwd)"
+            
+            # Fix Git repository issues
+            echo "Fixing Git repository"
+            if [ -d ".git" ]; then
+              # Fix locked refs by removing them
+              rm -rf .git/refs/remotes/origin
+              rm -f .git/index.lock
+              
+              # Re-initialize Git configuration
+              git config --global user.email "deploy@example.com"
+              git config --global user.name "Deployment Bot"
+              
+              # Re-add origin if needed
+              if ! git remote | grep -q origin; then
+                git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
+              fi
+              
+              # Clean and hard reset
+              git fetch origin
+              git reset --hard origin/main
             else
-              echo "Cloning fresh repository to build directory"
-              cd "$BUILD_DIR"
+              # Initialize new repository
               git init
               git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
-              git fetch origin main
-              git checkout -b main origin/main
+              git fetch
+              git checkout main || git checkout -b main origin/main
             fi
             
             # Check Node.js version and update if needed
@@ -88,118 +94,29 @@ jobs:
               echo "Node.js updated to: $(node -v)"
             fi
             
-            # Create .env.local file with environment variables
-            echo "Creating .env.local file with environment variables"
-            cat > "$BUILD_DIR/.env.local" << EOL
-            # API Keys
-            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            # Clean cache directories to avoid errors
+            echo "Cleaning cache directories..."
+            rm -rf .next/cache
+            rm -rf node_modules/.cache
             
-            # Add any other environment variables your app needs
-            NEXT_PUBLIC_SITE_URL=https://e-do.studio
-            NODE_ENV=production
-            EOL
-            
-            # Clean npm cache to avoid potential issues
-            echo "Cleaning npm cache..."
-            npm cache clean --force
-            
-            # Remove node_modules to ensure clean install
-            echo "Removing old node_modules directory..."
-            rm -rf "$BUILD_DIR/node_modules"
-            rm -rf "$BUILD_DIR/.next"
-            
-            # Check if next.config.js needs to be modified to disable font optimization
-            echo "Checking if font optimization needs to be disabled..."
-            if grep -q "nextFontGoogle" "$BUILD_DIR/next.config.js"; then
-              echo "Disabling font optimization in next.config.js..."
-              
-              # Create backup of original config
-              cp "$BUILD_DIR/next.config.js" "$BUILD_DIR/next.config.js.bak"
-              
-              # Modify next.config.js to disable font optimization
-              sed -i 's/nextFontGoogle: {}/nextFontGoogle: false/' "$BUILD_DIR/next.config.js"
-              # Alternative approach if the above doesn't work
-              sed -i 's/experimental: {/experimental: {\n    nextFontGoogle: false,/' "$BUILD_DIR/next.config.js"
-            fi
-            
-            # Install dependencies in build directory
+            # Install dependencies with npm
             echo "Installing dependencies with npm..."
-            cd "$BUILD_DIR"
-            npm install --no-fund --no-audit --prefer-offline --production=false
-            
-            # Create an empty font manifest file to prevent the build error
-            echo "Creating empty font manifest file to prevent build errors..."
-            mkdir -p "$BUILD_DIR/.next/server"
-            echo '{}' > "$BUILD_DIR/.next/server/next-font-manifest.json"
+            npm install --no-fund --no-audit --prefer-offline
             
             # Build with optimized settings
             echo "Building application with production settings..."
-            cd "$BUILD_DIR"
-            export NODE_ENV=production
-            export NEXT_TELEMETRY_DISABLED=1
             NODE_OPTIONS="--max-old-space-size=4096 --no-deprecation" npm run build
             
-            # Check build status
-            BUILD_STATUS=$?
-            if [ $BUILD_STATUS -ne 0 ]; then
-              echo "Build failed with status: $BUILD_STATUS"
-              exit 1
-            fi
+            # Mise à jour de la configuration PM2 
+            echo "Mise à jour du processus PM2 e-do.studio"
             
-            # Verify .next directory exists
-            if [ ! -d "$BUILD_DIR/.next" ]; then
-              echo "Build failed: .next directory not found"
-              exit 1
-            fi
-            
-            echo "Build successful, swapping directories..."
-            
-            # Backup current production directory if it exists
-            if [ -d "$MAIN_DIR" ]; then
-              echo "Backing up current production directory"
-              if [ -d "$BACKUP_DIR" ]; then
-                rm -rf "$BACKUP_DIR"
-              fi
-              mv "$MAIN_DIR" "$BACKUP_DIR"
-            fi
-            
-            # Move build directory to production
-            echo "Moving build to production"
-            mv "$BUILD_DIR" "$MAIN_DIR"
-            
-            # Restart or start with PM2
-            echo "Updating PM2 service"
-            cd "$MAIN_DIR"
-            
-            # Start in production mode
-            export NODE_ENV=production
-            
+            # Démarrer ou redémarrer avec la nouvelle configuration
             if pm2 list | grep -q "e-do-studio"; then
-              echo "Restarting existing PM2 process..."
-              pm2 restart e-do-studio --update-env
+              echo "Redémarrage du processus existant..."
+              pm2 restart e-do-studio
             else
-              echo "Starting new PM2 process..."
+              echo "Démarrage d'un nouveau processus..."
               pm2 start npm --name "e-do-studio" -- start
             fi
-            
-            # Health check (wait for service to start)
-            echo "Performing health check..."
-            sleep 10
-            
-            # Try to restore from backup if PM2 process fails after restart
-            if ! pm2 list | grep -q "e-do-studio.*online"; then
-              echo "Health check failed, reverting to previous version..."
-              pm2 stop e-do-studio
-              
-              # Restore from backup
-              rm -rf "$MAIN_DIR"
-              mv "$BACKUP_DIR" "$MAIN_DIR"
-              cd "$MAIN_DIR"
-              
-              # Restart from backup
-              pm2 restart e-do-studio
-              echo "Reverted to previous version"
-              exit 1
-            fi
-            
-            echo "Deployment complete!"
+                      
+            echo "===== Deployment complete ====="
