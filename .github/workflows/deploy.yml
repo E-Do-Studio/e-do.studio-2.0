@@ -24,45 +24,30 @@ jobs:
           port: ${{ secrets.VPS_SSH_PORT }}
           timeout: 60m # Increase timeout to 60 minutes
           script: |
-            echo "===== Starting deployment ====="
+            echo "===== Starting zero-downtime deployment ====="
             
-            # Check if the directory exists
-            if [ -d "/home/e-do.studio-2.0" ]; then
-              echo "Directory exists, navigating to /home/e-do.studio-2.0"
-              cd /home/e-do.studio-2.0
-            else
-              echo "Directory does not exist, navigating to the correct location"
-              cd /home/studio
+            # Set up directories
+            MAIN_DIR="/home/e-do.studio-2.0"
+            TEMP_DIR="/home/e-do.studio-2.0-build"
+            BACKUP_DIR="/home/e-do.studio-2.0-backup"
+            
+            # Create temp directory if it doesn't exist
+            if [ ! -d "$TEMP_DIR" ]; then
+              echo "Creating temporary build directory: $TEMP_DIR"
+              mkdir -p "$TEMP_DIR"
             fi
             
-            echo "Current directory: $(pwd)"
+            # Clean the temp directory
+            echo "Cleaning temporary build directory"
+            rm -rf "$TEMP_DIR"/*
             
-            # Fix Git repository issues
-            echo "Fixing Git repository"
-            if [ -d ".git" ]; then
-              # Fix locked refs by removing them
-              rm -rf .git/refs/remotes/origin
-              rm -f .git/index.lock
-              
-              # Re-initialize Git configuration
-              git config --global user.email "deploy@example.com"
-              git config --global user.name "Deployment Bot"
-              
-              # Re-add origin if needed
-              if ! git remote | grep -q origin; then
-                git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
-              fi
-              
-              # Clean and hard reset
-              git fetch origin
-              git reset --hard origin/main
-            else
-              # Initialize new repository
-              git init
-              git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
-              git fetch
-              git checkout main || git checkout -b main origin/main
-            fi
+            # Clone fresh repository into temp directory
+            echo "Cloning repository into temporary directory"
+            cd "$TEMP_DIR"
+            git init
+            git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
+            git fetch origin
+            git checkout main || git checkout -b main origin/main
             
             # Check Node.js version and update if needed
             echo "Checking Node.js version..."
@@ -94,29 +79,50 @@ jobs:
               echo "Node.js updated to: $(node -v)"
             fi
             
-            # Clean cache directories to avoid errors
-            echo "Cleaning cache directories..."
-            rm -rf .next/cache
-            rm -rf node_modules/.cache
-            
-            # Install dependencies with npm
+            # Install dependencies in temp directory
             echo "Installing dependencies with npm..."
+            cd "$TEMP_DIR"
             npm install --no-fund --no-audit --prefer-offline
             
-            # Build with optimized settings
+            # Build with optimized settings in temp directory
             echo "Building application with production settings..."
+            cd "$TEMP_DIR"
             NODE_OPTIONS="--max-old-space-size=4096 --no-deprecation" npm run build
             
-            # Mise à jour de la configuration PM2 
-            echo "Mise à jour du processus PM2 e-do.studio"
-            
-            # Démarrer ou redémarrer avec la nouvelle configuration
-            if pm2 list | grep -q "e-do-studio"; then
-              echo "Redémarrage du processus existant..."
-              pm2 restart e-do-studio
+            # If build succeeds, proceed with the swap
+            if [ $? -eq 0 ]; then
+              echo "Build successful, preparing to swap directories..."
+              
+              # Keep backup of current version
+              echo "Backing up current version"
+              if [ -d "$BACKUP_DIR" ]; then
+                rm -rf "$BACKUP_DIR"
+              fi
+              
+              # Only backup if main directory exists
+              if [ -d "$MAIN_DIR" ]; then
+                mv "$MAIN_DIR" "$BACKUP_DIR"
+              fi
+              
+              # Move new build to main directory
+              echo "Moving new build to main directory"
+              mv "$TEMP_DIR" "$MAIN_DIR"
+              
+              # Update PM2 configuration
+              echo "Updating PM2 configuration"
+              cd "$MAIN_DIR"
+              
+              # Restart or start with PM2
+              if pm2 list | grep -q "e-do-studio"; then
+                echo "Restarting existing PM2 process..."
+                pm2 restart e-do-studio
+              else
+                echo "Starting new PM2 process..."
+                pm2 start npm --name "e-do-studio" -- start
+              fi
+              
+              echo "Zero-downtime deployment complete!"
             else
-              echo "Démarrage d'un nouveau processus..."
-              pm2 start npm --name "e-do-studio" -- start
+              echo "Build failed, not deploying new version"
+              exit 1
             fi
-                      
-            echo "===== Deployment complete ====="
