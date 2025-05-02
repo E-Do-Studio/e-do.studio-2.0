@@ -96,17 +96,34 @@ jobs:
             
             # Add any other environment variables your app needs
             NEXT_PUBLIC_SITE_URL=https://e-do.studio
+            NODE_ENV=production
             EOL
+            
+            # Clean npm cache to avoid potential issues
+            echo "Cleaning npm cache..."
+            npm cache clean --force
+            
+            # Remove node_modules to ensure clean install
+            echo "Removing old node_modules directory..."
+            rm -rf "$BUILD_DIR/node_modules"
+            rm -rf "$BUILD_DIR/.next"
             
             # Install dependencies in build directory
             echo "Installing dependencies with npm..."
             cd "$BUILD_DIR"
-            npm install --no-fund --no-audit --prefer-offline
+            npm install --no-fund --no-audit --prefer-offline --production=false
             
             # Build with optimized settings
             echo "Building application with production settings..."
             cd "$BUILD_DIR"
+            export NODE_ENV=production
             NODE_OPTIONS="--max-old-space-size=4096 --no-deprecation" npm run build
+            
+            # Verify build integrity
+            if [ ! -d "$BUILD_DIR/.next/server" ] || [ ! -d "$BUILD_DIR/.next/static" ]; then
+              echo "Build failed: .next directory is missing expected content"
+              exit 1
+            fi
             
             # If build succeeds, swap directories
             if [ $? -eq 0 ]; then
@@ -128,12 +145,36 @@ jobs:
               # Restart or start with PM2
               echo "Updating PM2 service"
               cd "$MAIN_DIR"
+              
+              # Start in production mode
+              export NODE_ENV=production
+              
               if pm2 list | grep -q "e-do-studio"; then
                 echo "Restarting existing PM2 process..."
-                pm2 restart e-do-studio
+                pm2 restart e-do-studio --update-env
               else
                 echo "Starting new PM2 process..."
                 pm2 start npm --name "e-do-studio" -- start
+              fi
+              
+              # Health check (wait for service to start)
+              echo "Performing health check..."
+              sleep 10
+              
+              # Try to restore from backup if PM2 process fails after restart
+              if ! pm2 list | grep -q "e-do-studio.*online"; then
+                echo "Health check failed, reverting to previous version..."
+                pm2 stop e-do-studio
+                
+                # Restore from backup
+                rm -rf "$MAIN_DIR"
+                mv "$BACKUP_DIR" "$MAIN_DIR"
+                cd "$MAIN_DIR"
+                
+                # Restart from backup
+                pm2 restart e-do-studio
+                echo "Reverted to previous version"
+                exit 1
               fi
               
               echo "Deployment complete!"
