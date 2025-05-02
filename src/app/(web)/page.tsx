@@ -19,7 +19,7 @@ export default async function Page() {
   })
 
 
-  console.log("UPDATED 1")
+  console.log("UPDATED 2")
 
   return (
     <div className="text-xl min-h-screen">

@@ -23,8 +23,46 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_SSH_PORT }}
           script: |
-            git pull origin main
+            # Navigate to the correct directory
+            cd /home/e-do.studio-2.0
+            
+            # Check if git is initialized
+            if [ ! -d .git ]; then
+              echo "Initializing git repository"
+              git init
+              git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
+            fi
+            
+            # Ensure git knows who we are
+            git config --global user.email "deploy@example.com"
+            git config --global user.name "Deployment Bot"
+            
+            # Pull latest changes
+            git fetch --all
+            git reset --hard origin/main
+            
+            # Install pnpm if not available
+            if ! command -v pnpm &> /dev/null; then
+              echo "Installing pnpm"
+              npm install -g pnpm
+            fi
+            
+            # Install dependencies and build
+            export PATH=$PATH:/root/.local/share/pnpm
+            export PATH=$PATH:/root/.npm-global/bin
             pnpm install
             pnpm build
-            cd ..
-            pm2 restart e-do.studio-2.0
+            
+            # Check if PM2 config file exists
+            if [ -f "/home/ecosystem.config.js" ]; then
+              # Restart using the ecosystem file
+              cd /home
+              pm2 restart ecosystem.config.js
+            elif pm2 list | grep -q "e-do.studio-2.0"; then
+              # Restart using the existing process name
+              pm2 restart e-do.studio-2.0
+            else
+              # Start as a new process
+              echo "PM2 process not found, starting new instance"
+              pm2 start npm --name "e-do.studio-2.0" -- start
+            fi
