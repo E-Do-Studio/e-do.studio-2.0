@@ -70,10 +70,10 @@ jobs:
             fi
             
             echo "Installing dependencies with pnpm"
-            pnpm install
+            npm install
             
             echo "Building application with pnpm"
-            pnpm build
+            npm run build
             
             # Mise à jour de la configuration PM2 
             echo "Mise à jour du processus PM2 e-do.studio"
