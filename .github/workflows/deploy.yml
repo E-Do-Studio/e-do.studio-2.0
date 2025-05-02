@@ -58,11 +58,11 @@ jobs:
               # Restart using the ecosystem file
               cd /home
               pm2 restart ecosystem.config.js
-            elif pm2 list | grep -q "e-do.studio-2.0"; then
-              # Restart using the existing process name
-              pm2 restart e-do.studio-2.0
+            elif pm2 list | grep -q "e-do-studio"; then
+              # Restart using the correct process name
+              pm2 restart e-do-studio
             else
               # Start as a new process
               echo "PM2 process not found, starting new instance"
-              pm2 start npm --name "e-do.studio-2.0" -- start
+              pm2 start npm --name "e-do-studio" -- start
             fi
