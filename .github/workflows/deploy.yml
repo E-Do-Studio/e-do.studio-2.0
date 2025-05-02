@@ -63,24 +63,28 @@ jobs:
               git checkout main || git checkout -b main origin/main
             fi
             
-            # Use npm instead of pnpm to avoid compatibility issues
-            echo "Installing dependencies with npm"
+            # Install pnpm if not already available
+            if ! command -v pnpm &> /dev/null; then
+              echo "pnpm not found, installing..."
+              npm install -g pnpm
+            fi
+            
+            echo "Installing dependencies with pnpm"
             pnpm install
             
-            echo "Building application with npm"
-            pnpm run build
+            echo "Building application with pnpm"
+            pnpm build
             
             # Mise à jour de la configuration PM2 
             echo "Mise à jour du processus PM2 e-do.studio"
             
-            # Création d'un écosystème simple pour e-do.studio
-        
             # Démarrer ou redémarrer avec la nouvelle configuration
             if pm2 list | grep -q "e-do-studio"; then
               echo "Redémarrage du processus existant..."
               pm2 restart e-do-studio
             else
               echo "Démarrage d'un nouveau processus..."
+              pm2 start npm --name "e-do-studio" -- start
             fi
                       
             echo "===== Deployment complete ====="
