@@ -28,24 +28,34 @@ jobs:
             
             # Set up directories
             MAIN_DIR="/home/e-do.studio-2.0"
-            TEMP_DIR="/home/e-do.studio-2.0-temp"
+            BUILD_DIR="/home/e-do.studio-2.0-build"
+            BACKUP_DIR="/home/e-do.studio-2.0-backup"
             
-            # Ensure main directory exists
-            if [ ! -d "$MAIN_DIR" ]; then
-              echo "Creating main directory and initializing repository"
-              mkdir -p "$MAIN_DIR"
-              cd "$MAIN_DIR"
+            # Setup build directory
+            if [ ! -d "$BUILD_DIR" ]; then
+              echo "Creating build directory"
+              mkdir -p "$BUILD_DIR"
+            else
+              echo "Cleaning build directory"
+              rm -rf "$BUILD_DIR"
+              mkdir -p "$BUILD_DIR"
+            fi
+            
+            # Clone or update repository in build directory
+            if [ -d "$MAIN_DIR/.git" ]; then
+              echo "Copying existing repository to build directory"
+              cp -a "$MAIN_DIR/.git" "$BUILD_DIR/"
+              cd "$BUILD_DIR"
+              git reset --hard HEAD
+              git clean -fd
+              git pull origin main
+            else
+              echo "Cloning fresh repository to build directory"
+              cd "$BUILD_DIR"
               git init
               git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
               git fetch origin main
               git checkout -b main origin/main
-            else
-              echo "Main directory exists, updating the repository"
-              cd "$MAIN_DIR"
-              # Clean and reset to handle any local changes
-              git reset --hard HEAD
-              git clean -f -d
-              git pull origin main
             fi
             
             # Check Node.js version and update if needed
@@ -80,7 +90,7 @@ jobs:
             
             # Create .env.local file with environment variables
             echo "Creating .env.local file with environment variables"
-            cat > "$MAIN_DIR/.env.local" << EOL
+            cat > "$BUILD_DIR/.env.local" << EOL
             # API Keys
             RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
             
@@ -88,26 +98,36 @@ jobs:
             NEXT_PUBLIC_SITE_URL=https://e-do.studio
             EOL
             
-            # Clean cache directories to avoid errors
-            echo "Cleaning cache directories..."
-            rm -rf "$MAIN_DIR/.next/cache"
-            rm -rf "$MAIN_DIR/node_modules/.cache"
-            
-            # Install dependencies
+            # Install dependencies in build directory
             echo "Installing dependencies with npm..."
-            cd "$MAIN_DIR"
+            cd "$BUILD_DIR"
             npm install --no-fund --no-audit --prefer-offline
             
             # Build with optimized settings
             echo "Building application with production settings..."
-            cd "$MAIN_DIR"
+            cd "$BUILD_DIR"
             NODE_OPTIONS="--max-old-space-size=4096 --no-deprecation" npm run build
             
-            # If build succeeds, restart or start with PM2
+            # If build succeeds, swap directories
             if [ $? -eq 0 ]; then
-              echo "Build successful, updating PM2 service..."
+              echo "Build successful, swapping directories..."
+              
+              # Backup current production directory if it exists
+              if [ -d "$MAIN_DIR" ]; then
+                echo "Backing up current production directory"
+                if [ -d "$BACKUP_DIR" ]; then
+                  rm -rf "$BACKUP_DIR"
+                fi
+                mv "$MAIN_DIR" "$BACKUP_DIR"
+              fi
+              
+              # Move build directory to production
+              echo "Moving build to production"
+              mv "$BUILD_DIR" "$MAIN_DIR"
               
               # Restart or start with PM2
+              echo "Updating PM2 service"
+              cd "$MAIN_DIR"
               if pm2 list | grep -q "e-do-studio"; then
                 echo "Restarting existing PM2 process..."
                 pm2 restart e-do-studio
@@ -118,6 +138,6 @@ jobs:
               
               echo "Deployment complete!"
             else
-              echo "Build failed, not updating PM2 service"
+              echo "Build failed, not updating production"
               exit 1
             fi
