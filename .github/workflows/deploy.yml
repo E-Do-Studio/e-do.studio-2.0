@@ -31,23 +31,21 @@ jobs:
             TEMP_DIR="/home/e-do.studio-2.0-build"
             BACKUP_DIR="/home/e-do.studio-2.0-backup"
             
-            # Create temp directory if it doesn't exist
-            if [ ! -d "$TEMP_DIR" ]; then
-              echo "Creating temporary build directory: $TEMP_DIR"
-              mkdir -p "$TEMP_DIR"
-            fi
+            # Completely remove and recreate temp directory
+            echo "Preparing temporary build directory"
+            rm -rf "$TEMP_DIR"
+            mkdir -p "$TEMP_DIR"
             
-            # Clean the temp directory
-            echo "Cleaning temporary build directory"
-            rm -rf "$TEMP_DIR"/*
-            
-            # Clone fresh repository into temp directory
+            # Clone repository directly into the temp directory
             echo "Cloning repository into temporary directory"
+            git clone --depth=1 https://github.com/E-Do-Studio/e-do.studio-2.0.git "$TEMP_DIR"
             cd "$TEMP_DIR"
-            git init
-            git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
-            git fetch origin
-            git checkout main || git checkout -b main origin/main
+            
+            # Verify the clone was successful by checking for package.json
+            if [ ! -f "$TEMP_DIR/package.json" ]; then
+              echo "Error: package.json not found. Repository may not have been cloned correctly."
+              exit 1
+            fi
             
             # Check Node.js version and update if needed
             echo "Checking Node.js version..."
@@ -88,6 +86,10 @@ jobs:
             # Add any other environment variables your app needs
             NEXT_PUBLIC_SITE_URL=https://e-do.studio
             EOL
+            
+            # List directory contents to verify files are present
+            echo "Verifying repository contents:"
+            ls -la "$TEMP_DIR"
             
             # Install dependencies in temp directory
             echo "Installing dependencies with npm..."
