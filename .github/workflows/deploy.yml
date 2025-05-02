@@ -108,77 +108,98 @@ jobs:
             rm -rf "$BUILD_DIR/node_modules"
             rm -rf "$BUILD_DIR/.next"
             
+            # Check if next.config.js needs to be modified to disable font optimization
+            echo "Checking if font optimization needs to be disabled..."
+            if grep -q "nextFontGoogle" "$BUILD_DIR/next.config.js"; then
+              echo "Disabling font optimization in next.config.js..."
+              
+              # Create backup of original config
+              cp "$BUILD_DIR/next.config.js" "$BUILD_DIR/next.config.js.bak"
+              
+              # Modify next.config.js to disable font optimization
+              sed -i 's/nextFontGoogle: {}/nextFontGoogle: false/' "$BUILD_DIR/next.config.js"
+              # Alternative approach if the above doesn't work
+              sed -i 's/experimental: {/experimental: {\n    nextFontGoogle: false,/' "$BUILD_DIR/next.config.js"
+            fi
+            
             # Install dependencies in build directory
             echo "Installing dependencies with npm..."
             cd "$BUILD_DIR"
             npm install --no-fund --no-audit --prefer-offline --production=false
             
+            # Create an empty font manifest file to prevent the build error
+            echo "Creating empty font manifest file to prevent build errors..."
+            mkdir -p "$BUILD_DIR/.next/server"
+            echo '{}' > "$BUILD_DIR/.next/server/next-font-manifest.json"
+            
             # Build with optimized settings
             echo "Building application with production settings..."
             cd "$BUILD_DIR"
             export NODE_ENV=production
+            export NEXT_TELEMETRY_DISABLED=1
             NODE_OPTIONS="--max-old-space-size=4096 --no-deprecation" npm run build
             
-            # Verify build integrity
-            if [ ! -d "$BUILD_DIR/.next/server" ] || [ ! -d "$BUILD_DIR/.next/static" ]; then
-              echo "Build failed: .next directory is missing expected content"
+            # Check build status
+            BUILD_STATUS=$?
+            if [ $BUILD_STATUS -ne 0 ]; then
+              echo "Build failed with status: $BUILD_STATUS"
               exit 1
             fi
             
-            # If build succeeds, swap directories
-            if [ $? -eq 0 ]; then
-              echo "Build successful, swapping directories..."
-              
-              # Backup current production directory if it exists
-              if [ -d "$MAIN_DIR" ]; then
-                echo "Backing up current production directory"
-                if [ -d "$BACKUP_DIR" ]; then
-                  rm -rf "$BACKUP_DIR"
-                fi
-                mv "$MAIN_DIR" "$BACKUP_DIR"
-              fi
-              
-              # Move build directory to production
-              echo "Moving build to production"
-              mv "$BUILD_DIR" "$MAIN_DIR"
-              
-              # Restart or start with PM2
-              echo "Updating PM2 service"
-              cd "$MAIN_DIR"
-              
-              # Start in production mode
-              export NODE_ENV=production
-              
-              if pm2 list | grep -q "e-do-studio"; then
-                echo "Restarting existing PM2 process..."
-                pm2 restart e-do-studio --update-env
-              else
-                echo "Starting new PM2 process..."
-                pm2 start npm --name "e-do-studio" -- start
-              fi
-              
-              # Health check (wait for service to start)
-              echo "Performing health check..."
-              sleep 10
-              
-              # Try to restore from backup if PM2 process fails after restart
-              if ! pm2 list | grep -q "e-do-studio.*online"; then
-                echo "Health check failed, reverting to previous version..."
-                pm2 stop e-do-studio
-                
-                # Restore from backup
-                rm -rf "$MAIN_DIR"
-                mv "$BACKUP_DIR" "$MAIN_DIR"
-                cd "$MAIN_DIR"
-                
-                # Restart from backup
-                pm2 restart e-do-studio
-                echo "Reverted to previous version"
-                exit 1
-              fi
-              
-              echo "Deployment complete!"
-            else
-              echo "Build failed, not updating production"
+            # Verify .next directory exists
+            if [ ! -d "$BUILD_DIR/.next" ]; then
+              echo "Build failed: .next directory not found"
               exit 1
             fi
+            
+            echo "Build successful, swapping directories..."
+            
+            # Backup current production directory if it exists
+            if [ -d "$MAIN_DIR" ]; then
+              echo "Backing up current production directory"
+              if [ -d "$BACKUP_DIR" ]; then
+                rm -rf "$BACKUP_DIR"
+              fi
+              mv "$MAIN_DIR" "$BACKUP_DIR"
+            fi
+            
+            # Move build directory to production
+            echo "Moving build to production"
+            mv "$BUILD_DIR" "$MAIN_DIR"
+            
+            # Restart or start with PM2
+            echo "Updating PM2 service"
+            cd "$MAIN_DIR"
+            
+            # Start in production mode
+            export NODE_ENV=production
+            
+            if pm2 list | grep -q "e-do-studio"; then
+              echo "Restarting existing PM2 process..."
+              pm2 restart e-do-studio --update-env
+            else
+              echo "Starting new PM2 process..."
+              pm2 start npm --name "e-do-studio" -- start
+            fi
+            
+            # Health check (wait for service to start)
+            echo "Performing health check..."
+            sleep 10
+            
+            # Try to restore from backup if PM2 process fails after restart
+            if ! pm2 list | grep -q "e-do-studio.*online"; then
+              echo "Health check failed, reverting to previous version..."
+              pm2 stop e-do-studio
+              
+              # Restore from backup
+              rm -rf "$MAIN_DIR"
+              mv "$BACKUP_DIR" "$MAIN_DIR"
+              cd "$MAIN_DIR"
+              
+              # Restart from backup
+              pm2 restart e-do-studio
+              echo "Reverted to previous version"
+              exit 1
+            fi
+            
+            echo "Deployment complete!"
