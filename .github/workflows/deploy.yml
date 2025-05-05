@@ -36,7 +36,11 @@ jobs:
             fi
 
             echo "Current directory: $(pwd)"
-                        
+
+            # Pull the latest changes from the main branch
+            echo "Pulling latest changes from the main branch..."
+            git pull origin main
+
             # Check Node.js version and update if needed
             echo "Checking Node.js version..."
             NODE_VERSION=$(node -v)
