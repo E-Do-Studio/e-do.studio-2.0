@@ -45,6 +45,22 @@ export function CycloramaGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const { t } = useTranslation('cyclorama')
 
+  // Lock scroll when modal is open
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = 'var(--removed-body-scroll-bar-size)' // Prevent layout shift
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+    }
+  }, [selectedImage])
+
   const handlePrevious = () => {
     setSelectedImage((prev) => (prev === 1 ? images.length : prev! - 1))
   }
