@@ -2,10 +2,10 @@ name: Deploy to VPS
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    types: [ closed ]
-    branches: [ main ]
+    types: [closed]
+    branches: [main]
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     # Only run on merged PRs or direct pushes to main
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-    
+
     steps:
       - name: SSH and Deploy
         uses: appleboy/ssh-action@master
@@ -25,7 +25,7 @@ jobs:
           timeout: 60m # Increase timeout to 60 minutes
           script: |
             echo "===== Starting deployment ====="
-            
+
             # Check if the directory exists
             if [ -d "/home/e-do.studio-2.0" ]; then
               echo "Directory exists, navigating to /home/e-do.studio-2.0"
@@ -34,45 +34,18 @@ jobs:
               echo "Directory does not exist, navigating to the correct location"
               cd /home/studio
             fi
-            
+
             echo "Current directory: $(pwd)"
-            
-            # Fix Git repository issues
-            echo "Fixing Git repository"
-            if [ -d ".git" ]; then
-              # Fix locked refs by removing them
-              rm -rf .git/refs/remotes/origin
-              rm -f .git/index.lock
-              
-              # Re-initialize Git configuration
-              git config --global user.email "deploy@example.com"
-              git config --global user.name "Deployment Bot"
-              
-              # Re-add origin if needed
-              if ! git remote | grep -q origin; then
-                git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
-              fi
-              
-              # Clean and hard reset
-              git fetch origin
-              git reset --hard origin/main
-            else
-              # Initialize new repository
-              git init
-              git remote add origin https://github.com/E-Do-Studio/e-do.studio-2.0.git
-              git fetch
-              git checkout main || git checkout -b main origin/main
-            fi
-            
+                        
             # Check Node.js version and update if needed
             echo "Checking Node.js version..."
             NODE_VERSION=$(node -v)
             echo "Current Node.js version: $NODE_VERSION"
-            
+
             # Extract version number without 'v' prefix and split by dots
             VERSION_NUMBER=${NODE_VERSION#v}
             MAJOR_VERSION=$(echo $VERSION_NUMBER | cut -d. -f1)
-            
+
             # Next.js 15+ requires Node.js 18.17.0 or higher
             if [ "$MAJOR_VERSION" -lt 18 ]; then
               echo "Node.js version is below 18, updating to Node.js 18 LTS..."
@@ -93,23 +66,23 @@ jobs:
               
               echo "Node.js updated to: $(node -v)"
             fi
-            
+
             # Clean cache directories to avoid errors
             echo "Cleaning cache directories..."
             rm -rf .next/cache
             rm -rf node_modules/.cache
-            
+
             # Install dependencies with npm
             echo "Installing dependencies with npm..."
             npm install --no-fund --no-audit --prefer-offline
-            
+
             # Build with optimized settings
             echo "Building application with production settings..."
             NODE_OPTIONS="--max-old-space-size=4096 --no-deprecation" npm run build
-            
+
             # Mise à jour de la configuration PM2 
             echo "Mise à jour du processus PM2 e-do.studio"
-            
+
             # Démarrer ou redémarrer avec la nouvelle configuration
             if pm2 list | grep -q "e-do-studio"; then
               echo "Redémarrage du processus existant..."
