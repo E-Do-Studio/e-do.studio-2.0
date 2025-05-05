@@ -31,18 +31,19 @@ const images = [
     id: 4,
     src: '/cyclo/table.jpg',
     alt: 'Table & cuisine E-Do',
-    title: 'gallery.kitchen'
+    title: 'gallery.kitchen-space'
   },
   {
     id: 5,
     src: '/cyclo/cuisine.jpg',
     alt: 'Cuisine toute équipée E-Do',
-    title: 'gallery.kitchen'
+    title: 'gallery.kitchen-equiped'
   }
 ]
 
 export function CycloramaGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [direction, setDirection] = useState(0)
   const { t } = useTranslation('cyclorama')
 
   // Lock scroll when modal is open
@@ -62,10 +63,12 @@ export function CycloramaGallery() {
   }, [selectedImage])
 
   const handlePrevious = () => {
+    setDirection(-1)
     setSelectedImage((prev) => (prev === 1 ? images.length : prev! - 1))
   }
 
   const handleNext = () => {
+    setDirection(1)
     setSelectedImage((prev) => (prev === images.length ? 1 : prev! + 1))
   }
 
@@ -100,6 +103,23 @@ export function CycloramaGallery() {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [selectedImage])
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  }
 
   return (
     <Section className="!mt-0">
@@ -162,22 +182,36 @@ export function CycloramaGallery() {
               className="relative w-full max-w-5xl mx-4 flex flex-col items-center justify-center min-h-screen pt-24"
               onClick={(e) => e.stopPropagation()}
             >
-              <motion.div
-                className="relative aspect-[16/10] max-h-[90vh] w-full cursor-grab active:cursor-grabbing"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.7}
-                onDragEnd={handleDragEnd}
-              >
-                <Image
-                  src={images[selectedImage - 1].src}
-                  alt={images[selectedImage - 1].alt}
-                  fill
-                  className="object-contain pointer-events-none"
-                  sizes="(max-width: 768px) 100vw, 90vw"
-                  priority
-                />
-              </motion.div>
+              <div className="relative aspect-[16/10] max-h-[90vh] w-full overflow-hidden">
+                <AnimatePresence initial={false} custom={direction}>
+                  <motion.div
+                    key={selectedImage}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      x: { type: "spring", stiffness: 300, damping: 30 },
+                      opacity: { duration: 0.2 }
+                    }}
+                    className="absolute inset-0"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.7}
+                    onDragEnd={handleDragEnd}
+                  >
+                    <Image
+                      src={images[selectedImage - 1].src}
+                      alt={images[selectedImage - 1].alt}
+                      fill
+                      className="object-contain pointer-events-none"
+                      sizes="(max-width: 768px) 100vw, 90vw"
+                      priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
@@ -189,14 +223,16 @@ export function CycloramaGallery() {
               </motion.p>
 
               {/* Pagination Dots */}
-              <div className="flex items-center justify-center gap-2 mt-4">
+              <div className="flex items-center justify-center gap-1.5 md:gap-2 mt-4">
                 {images.map((image) => (
                   <motion.button
                     key={image.id}
                     onClick={() => setSelectedImage(image.id)}
                     className={cn(
-                      "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                      selectedImage === image.id ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
+                      "w-1.5 h-1.5 md:w-1.5 md:h-1.5 lg:w-2 lg:h-2 rounded-full transition-all duration-300",
+                      selectedImage === image.id
+                        ? "bg-white scale-125"
+                        : "bg-white/50 hover:bg-white/70"
                     )}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
