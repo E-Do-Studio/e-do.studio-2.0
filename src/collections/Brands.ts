@@ -16,5 +16,11 @@ export const Brands: CollectionConfig = {
       required: true,
       unique: true,
     },
+    {
+      name: 'logo',
+      type: 'upload',
+      required: false,
+      relationTo: 'assets',
+    },
   ],
 }

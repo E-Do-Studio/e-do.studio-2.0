@@ -217,13 +217,13 @@ export function CycloramaGallery() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-center text-white mt-4 text-lg"
+                className="text-center text-white mt-4 text-lg min-h-[3.5rem] flex items-center justify-center"
               >
                 {t(images[selectedImage - 1].title)}
               </motion.p>
 
               {/* Pagination Dots */}
-              <div className="flex items-center justify-center gap-1.5 md:gap-2 mt-4">
+              <div className="flex items-center justify-center gap-1.5 md:gap-2 mt-2">
                 {images.map((image) => (
                   <motion.button
                     key={image.id}
