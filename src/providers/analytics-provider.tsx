@@ -16,7 +16,6 @@ export function AnalyticsProvider() {
 
   useEffect(() => {
     // Log l'état initial
-    console.log("TEST 4")
     console.log('Analytics Provider - Cookie Consent:', cookieConsent)
     console.log('Local Storage:', localStorage.getItem('edo-studio-storage'))
 
