@@ -5,6 +5,7 @@ import useSWR from 'swr'
 import { useSearchParams } from 'next/navigation'
 import { MediaCard } from './media-card'
 import { Skeleton } from "@/components/ui/skeleton"
+import Image from 'next/image'
 
 interface GalleryImage {
   id: number
@@ -12,6 +13,12 @@ interface GalleryImage {
   url: string
   brand?: {
     name: string
+    logo?: {
+      id: string
+      url: string
+      filename: string
+      alt?: string
+    }
   }
   subcategory?: {
     name: string
@@ -25,6 +32,12 @@ interface GalleryVideo {
   url: string
   brand?: {
     name: string
+    logo?: {
+      id: string
+      url: string
+      filename: string
+      alt?: string
+    }
   }
   subCategory?: {
     name: string
@@ -70,6 +83,45 @@ function GalleryGridSkeleton() {
   )
 }
 
+function BrandOverlay({ brand }: { brand?: { name: string; logo?: { id: string; url: string; filename: string; alt?: string } } }) {
+  if (!brand) return null
+
+  const logoUrl = brand.logo?.url
+  const hasValidLogo = typeof logoUrl === 'string' && logoUrl.trim() !== ''
+
+  const getLogoUrl = (): string => {
+    if (!brand.logo || !logoUrl) return ''
+    return logoUrl.startsWith('http')
+      ? logoUrl
+      : `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${brand.logo.filename}`
+  }
+
+  const finalLogoUrl = getLogoUrl()
+  if (!finalLogoUrl) {
+    return (
+      <div className="absolute bottom-4 right-4 z-10">
+        <span className="text-black text-sm font-medium tracking-wide">
+          {brand.name}
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <div className="absolute bottom-4 right-4 z-10">
+      <div className="relative w-16 h-16">
+        <Image
+          src={finalLogoUrl}
+          alt={brand.logo?.alt || `${brand.name} logo`}
+          fill
+          className="object-contain"
+          sizes="64px"
+        />
+      </div>
+    </div>
+  )
+}
+
 export function GalleryGrid({ initialCategory }: GalleryGridProps) {
   const searchParams = useSearchParams()
   const category = searchParams.get('category') || initialCategory
@@ -77,7 +129,7 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
   // Fetch images and videos if no category selected
   const { data: allMediaData, error: allMediaError, isLoading: allMediaLoading } = useSWR<{ docs: any[] }>(
-    !category ? '/api/media?depth=2' : null,
+    !category ? '/api/media?depth=3' : null,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -87,7 +139,7 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
 
   // Fetch les catégories seulement si une catégorie est sélectionnée
   const { data: categoriesData, error: categoriesError, isLoading: categoriesLoading } = useSWR<{ docs: any[] }>(
-    category ? '/api/categories?depth=2' : null,
+    category ? '/api/categories?depth=3' : null,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -202,7 +254,7 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
         {sortedMedia.map((item) => (
           <div
             key={item.id}
-            className="w-full aspect-[3/4]"
+            className="w-full aspect-[3/4] relative"
           >
             {'type' in item && item.type === '360' ? (
               <iframe
@@ -212,7 +264,10 @@ export function GalleryGrid({ initialCategory }: GalleryGridProps) {
                 allowFullScreen
               />
             ) : (
-              <MediaCard item={item} />
+              <>
+                <MediaCard item={item} />
+                <BrandOverlay brand={item.brand} />
+              </>
             )}
           </div>
         ))}

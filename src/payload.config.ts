@@ -12,6 +12,7 @@ import { Categories } from './collections/Categories'
 import { Assets } from './collections/Assets'
 import { Subcategories } from './collections/Sub-Category'
 import { PostProduction } from './collections/Post-Production'
+import { Logos } from './collections/Logos'
 // import sharp from 'sharp'
 
 const serverURL =
@@ -29,7 +30,7 @@ export default buildConfig({
     },
   },
   serverURL,
-  collections: [Users, Brands, Categories, Assets, Subcategories, PostProduction],
+  collections: [Users, Brands, Categories, Assets, Subcategories, PostProduction, Logos],
   localization: {
     locales: ['fr', 'en'],
     defaultLocale: 'en',
