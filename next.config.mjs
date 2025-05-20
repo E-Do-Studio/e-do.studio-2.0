@@ -52,6 +52,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '195.35.25.154',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.brandfetch.io',
+      },
     ],
     domains: ['localhost', '127.0.0.1', '195.35.25.154', 'e-do.studio'],
   },

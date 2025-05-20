@@ -24,78 +24,102 @@ export function OurCustomersSection() {
     // IMG suctomers
     const customers: Customer[] = [
         {
-            img: '/img/logo-jean-paul-gauthier.png',
-            name: 'Jean Paul Gauthier'
-        },
-        {
-            img: '/img/logo-vectoriel-the-kooples.jpg',
-            name: 'The Kooples'
-        },
-        {
-            img: '/img/logo-john_lobb.svg',
-            name: 'John Lobb'
-        },
-        {
-            img: '/img/logo-jennyfer.webp',
-            name: 'Jennyfer'
-        },
-        {
-            img: '/img/logo-inoui_editions-black.png.webp',
-            name: 'Inoui Editions'
-        },
-        {
-            img: '/img/logo-hartford.png.avif',
-            name: 'Hartford'
-        },
-        {
-            img: '/img/logo-giambattista_Valli.webp',
-            name: 'Giambattista Valli'
-        },
-        {
-            img: '/img/logo-celio.webp',
-            name: 'Célio'
+            img: '/img/logo-balenciaga.png',
+            name: 'Balenciaga'
         },
         {
             img: '/img/logo-bompard.png',
             name: 'Bompard'
         },
         {
-            img: '/img/logo-numero.webp',
-            name: 'Numéro'
+            img: '/img/logo-calvinklein.png',
+            name: 'Calvin Klein'
         },
         {
-            img: '/img/logo-nodaleto.webp',
-            name: 'Nodaleto'
+            img: '/img/logo-carven.png',
+            name: 'Carven'
         },
         {
-            img: '/img/logo-rimowa.webp',
-            name: 'Rimowa'
+            img: '/img/logo-coperni.png',
+            name: 'Coperni'
         },
         {
-            img: '/img/logo-tanneur.webp',
-            name: 'Le Tanneur'
+            img: '/img/logo-giambattista.png',
+            name: 'Giambattista Valli'
         },
         {
-            img: '/img/logo-vuarnet.webp',
+            img: '/img/logo-hartford.png',
+            name: 'Hartford'
+        },
+        {
+            img: '/img/logo-hermes.png',
+            name: 'Hermès'
+        },
+        {
+            img: '/img/logo-inoui_editions-black.png',
+            name: 'Inouï Editions'
+        },
+        {
+            img: '/img/logo-jean-paul-gauthier.png',
+            name: 'Jean Paul Gaultier'
+        },
+        {
+            img: '/img/logo-john_lobb.png',
+            name: 'John Lobb'
+        },
+        {
+            img: '/img/logo-marine-serre.png',
+            name: 'Marine Serre'
+        },
+        {
+            img: '/img/logo-mirae.png',
+            name: 'Mirae'
+        },
+        {
+            img: '/img/logo-normcore.png',
+            name: 'Normcore'
+        },
+        {
+            img: '/img/logo-numero.png',
+            name: 'Numero'
+        },
+        {
+            img: '/img/logo-orlinski.png',
+            name: 'Orlinski'
+        },
+        {
+            img: '/img/logo-vaillant.png',
+            name: 'Vaillant'
+        },
+        {
+            img: '/img/logo-vectoriel-the-kooples.png',
+            name: 'The Kooples'
+        },
+        {
+            img: '/img/logo-vuarnet.png',
             name: 'Vuarnet'
         }
     ]
     return (
         <LandingSection title={t("customers.title")}>
             <motion.div
-                className="w-full mx-auto border-b border-t border-black py-12"
+                className="w-full mx-auto border-b border-t border-black py-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
             >
                 <Carousel
                     opts={{
-                        align: "start",
+                        align: "center",
                         loop: true,
                         dragFree: true,
                         containScroll: false,
                         slidesToScroll: 1,
                         duration: 36500,
+                        inViewThreshold: 0,
+                        skipSnaps: true,
+                        dragThreshold: 1,
+                        breakpoints: { 768: { active: true } }
                     }}
                     plugins={[
                         Autoplay({
@@ -105,13 +129,13 @@ export function OurCustomersSection() {
                             jump: false,
                         }),
                     ]}
-                    className="w-full px-4"
+                    className="w-full"
                 >
-                    <CarouselContent className="-ml-1 flex items-center">
+                    <CarouselContent className="flex items-center m-0 p-0 gap-0 [&>*]:ml-0">
                         {[...customers, ...customers, ...customers].map((customer, index) => (
-                            <CarouselItem key={index} className="pl-1 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
+                            <CarouselItem key={index} className="basis-2/5 sm:basis-1/3 md:basis-1/5 lg:basis-1/6 xl:basis-1/7 p-0 m-0">
                                 <motion.div
-                                    className="px-2 sm:px-4 py-2 sm:py-4 flex items-center justify-center"
+                                    className="flex items-center justify-center w-full"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.3 }}
@@ -119,11 +143,11 @@ export function OurCustomersSection() {
                                     <Image
                                         src={customer.img}
                                         alt={customer.name}
-                                        width={200}
-                                        height={80}
-                                        quality={80}
-                                        sizes="(max-width: 640px) 150px, (max-width: 768px) 160px, (max-width: 1024px) 180px, 200px"
-                                        className="w-auto h-[40px] sm:h-[50px] md:h-[60px] object-contain"
+                                        width={320}
+                                        height={130}
+                                        quality={100}
+                                        sizes="(max-width: 640px) 240px, (max-width: 768px) 270px, (max-width: 1024px) 300px, 320px"
+                                        className="w-auto h-[70px] sm:h-[80px] md:h-[90px] lg:h-[110px] object-contain -mx-1"
                                     />
                                 </motion.div>
                             </CarouselItem>
