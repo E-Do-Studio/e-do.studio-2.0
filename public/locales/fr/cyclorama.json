@@ -34,7 +34,7 @@
   "services": {
     "production": {
       "title": "Services complémentaires",
-      "description": "Nous pouvons fournir tous les services essentiels à votre production : photographe, chef de projet, service de catering, producteur, styliste, maquilleur, assistant studio et bien plus encore."
+      "description": "Nous pouvons fournir tous les services essentiels à votre production : <strong>photographe, chef.fe de projet, service de catering, producteur.ice, styliste, maquilleur, assistant.e photo</strong> et bien plus encore."
     },
     "equipment": {
       "title": "Location d'équipements",

@@ -34,7 +34,7 @@
   "services": {
     "production": {
       "title": "Complementary services",
-      "description": "We can provide all the essential services for your production: photographer, project manager, catering service, producer, stylist, makeup artist, studio assistant, and much more."
+      "description": "We can provide all the essential services for your production: <strong>photographer, project manager, catering service, producer, stylist, makeup artist, studio assistant</strong>, and much more."
     },
     "equipment": {
       "title": "Equipment rental",
