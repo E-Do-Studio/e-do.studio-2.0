@@ -27,7 +27,7 @@ function Introduction() {
     <div className='flex flex-col lg:flex-row lg:justify-between gap-8'>
       <div className="flex flex-col gap-8">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-light mb-4">{t('specs.title')}</h2>
+          <h2 className="text-3xl font-medium mb-4">{t('specs.title')}</h2>
           {/* <h3 className="text-5xl font-light mb-4">30m²</h3> */}
           <p className='min-w-full'>
             {t('specs.dimensions.sides')}
@@ -92,7 +92,7 @@ function RentalSection() {
   const { t } = useTranslation('cyclorama')
   return (
     <div className="flex flex-col">
-      <h3 className="text-3xl font-light mb-4">{t('rental.title')}</h3>
+      <h3 className="text-2xl font-medium mb-4">{t('rental.title')}</h3>
       <div className='flex flex-col gap-4'>
         <div className='flex flex-col gap-10'>
           <p>{t('rental.estimate')}</p>
@@ -123,11 +123,11 @@ function ServicesInfo() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 text-sm gap-8 md:gap-4">
       <div className='flex flex-col gap-2'>
-        <h3 className='text-2xl font-light mb-4'>{t('services.production.title')}</h3>
+        <h3 className='text-2xl font-medium mb-4'>{t('services.production.title')}</h3>
         <p>{t('services.production.description')}</p>
       </div>
       <div className='flex flex-col gap-2'>
-        <h3 className='text-2xl font-light mb-4'>{t('services.equipment.title')}</h3>
+        <h3 className='text-2xl font-medium mb-4'>{t('services.equipment.title')}</h3>
         <p>{t('services.equipment.description')}</p>
       </div>
     </div>
