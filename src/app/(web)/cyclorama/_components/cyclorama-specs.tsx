@@ -15,8 +15,8 @@ interface AmenityProps {
 function Amenity({ translationKey }: AmenityProps) {
   const { t } = useTranslation('cyclorama')
   return (
-    <div className="flex items-center space-x-2">
-      <span>{t(`specs.amenities.${translationKey}`)}</span>
+    <div className="flex space-x-2">
+      <span>• {t(`specs.amenities.${translationKey}`)}</span>
     </div>
   )
 }
