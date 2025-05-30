@@ -161,7 +161,8 @@ function GalleryContent() {
       if (subcategory) return subcategory.name
     }
 
-    return category.name
+    // Supprimer les parenthèses et leur contenu du titre principal
+    return category.name.replace(/\s*\([^)]*\)\s*/, '')
   }, [categories, currentCategorySlug, currentSubcategorySlug])
 
   useEffect(() => {
