@@ -25,7 +25,6 @@ export const Section = ({
         className
       )}
       id={id}
-
     >
       <div className={cn('flex-1 flex flex-col', description != null && 'justify-between')}>
         {image ? (
@@ -48,7 +47,6 @@ export const Section = ({
             {description != null && description()}
           </div>
         )}
-
       </div>
       {children}
     </section>

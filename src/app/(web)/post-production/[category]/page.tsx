@@ -50,11 +50,19 @@ export default async function CategoryPage(params: {
   })
 
   // Transform en utilisant le slug
-  const menuItems = allCategories.docs.map(doc => ({
+  let menuItems = allCategories.docs.map(doc => ({
     id: String((doc as PostProductionDocument).id),
     category: (doc as PostProductionDocument).category,
     slug: (doc as PostProductionDocument).slug
   }))
+  
+  // Inverser l'ordre de "High-End" et "Lookbook"
+  menuItems = menuItems.sort((a, b) => {
+    // Mettre Lookbook avant High-End
+    if (a.category === 'Lookbook' && b.category === 'High-End') return -1;
+    if (a.category === 'High-End' && b.category === 'Lookbook') return 1;
+    return 0;
+  })
 
   // Recherche par slug
   const postProduction = await payload.find({

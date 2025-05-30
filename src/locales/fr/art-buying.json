@@ -1,0 +1,44 @@
+{
+  "title": "Art Buying / Catering / Casting",
+  "description": "E-Do Studio vous propose un service complet d'accompagnement pour vos productions photographiques et vidéo. Notre équipe d'experts s'occupe de tous les aspects logistiques de votre projet, du casting des modèles à la sélection des accessoires, en passant par la restauration sur le plateau, vous permettant de vous concentrer pleinement sur l'aspect créatif.",
+  "services": [
+    {
+      "title": "Art Buying",
+      "description": "Notre service d'Art Buying comprend la recherche et l'acquisition de tous les éléments visuels nécessaires à votre shooting : accessoires, décors, props et objets spécifiques. Nous travaillons avec un réseau étendu de fournisseurs pour trouver exactement ce dont vous avez besoin, dans les délais et le budget impartis.",
+      "features": [
+        "Recherche et sélection d'accessoires et props",
+        "Création de décors sur mesure",
+        "Location d'objets spécifiques",
+        "Gestion logistique complète"
+      ]
+    },
+    {
+      "title": "Catering",
+      "description": "Un shooting réussi passe aussi par le bien-être de votre équipe. Notre service de catering s'adapte à toutes les exigences diététiques et propose des repas de qualité, des en-cas et des boissons tout au long de la journée, maintenant l'énergie et la concentration de tous les participants.",
+      "features": [
+        "Petit-déjeuner, déjeuner et collations",
+        "Options végétariennes, véganes et sans allergènes",
+        "Service continu pendant toute la durée du shooting",
+        "Adaptabilité aux contraintes de temps et d'espace"
+      ]
+    },
+    {
+      "title": "Casting",
+      "description": "Trouvez les visages parfaits pour incarner votre marque grâce à notre service de casting. Nous collaborons avec les meilleures agences et disposons d'une base de données de talents diversifiés pour répondre précisément à vos besoins, qu'il s'agisse de mannequins professionnels ou de profils plus spécifiques.",
+      "features": [
+        "Sélection de mannequins et talents",
+        "Organisation des castings et callbacks",
+        "Gestion des contrats et des droits",
+        "Coordination le jour du shooting"
+      ]
+    }
+  ],
+  "benefits": {
+    "title": "Avantages",
+    "content": "En confiant ces aspects logistiques à E-Do Studio, vous bénéficiez d'une gestion professionnelle et sans stress de votre production. Notre approche intégrée vous fait gagner du temps et optimise votre budget, tout en garantissant une qualité irréprochable pour chaque élément de votre projet."
+  },
+  "cta": {
+    "contact": "Nous contacter",
+    "quote": "Demander un devis"
+  }
+}

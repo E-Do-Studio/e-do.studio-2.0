@@ -1,0 +1,73 @@
+{
+  "title": "Eclipse",
+  "subtitle": "Studio photo et vidéo créatif",
+  "description": "Eclipse vous permet de repousser vos limites créatives. Conçu pour la photo et la vidéo d'accessoires. Créez vos décors et jouez avec la lumière, l'arrière-plan et les reflets. Organisez vos séries de photos ou séquences vidéos, vous obtiendrez vos rendus en quelques secondes.",
+  "features": {
+    "title": "Caractéristiques",
+    "list": [
+      "Création de décors personnalisés",
+      "Contrôle des reflets et de la lumière",
+      "Photos et vidéos en quelques secondes",
+      "Choix des arrière-plans",
+      "Idéal pour les accessoires"
+    ]
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "items": [
+      {
+        "duration": "À l'heure",
+        "description": "1 heure de shooting",
+        "time": "1 heure de shooting",
+        "price": 150,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Demi-journée",
+        "description": "4 heures de shooting",
+        "time": "4 heures de shooting",
+        "price": 530,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Journée",
+        "description": "8 heures de shooting",
+        "time": "8 heures de shooting",
+        "price": 890,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Tarif week-end +25%"
+  },
+  "process": {
+    "title": "Notre accompagnement",
+    "steps": [
+      {
+        "title": "Prise en charge",
+        "description": "Nous pouvons prendre entièrement en charge le shoot de vos produits."
+      },
+      {
+        "title": "Production",
+        "description": "Réalisation des photos et vidéos dans notre studio avec un accompagnement personnalisé."
+      },
+      {
+        "title": "Retouche",
+        "description": "Pour un rendu optimal, l'équipe E-Do peut se charger de la retouche de vos visuels."
+      },
+      {
+        "title": "Livraison",
+        "description": "Remise de vos fichiers prêts à l'emploi pour tous vos besoins marketing."
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Bijoux et accessoires",
+      "Produits de luxe",
+      "Objets techniques",
+      "Collections spéciales"
+    ]
+  },
+  "cta": "Réserver une séance"
+}

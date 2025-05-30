@@ -1,0 +1,71 @@
+{
+  "title": "Retouche Vidéo",
+  "description": "E-Do Studio propose un service de retouche vidéo professionnel pour sublimer vos contenus audiovisuels. Notre équipe d'experts utilise les dernières technologies pour transformer vos rushes en vidéos percutantes, avec une attention particulière portée à la cohérence visuelle, la colorimétrie et les effets spéciaux.",
+  "services": [
+    {
+      "title": "Montage",
+      "description": "Notre équipe assure un montage fluide et dynamique de vos séquences, en respectant votre storyboard et en optimisant le rythme narratif pour captiver votre audience.",
+      "features": [
+        "Sélection et assemblage des meilleures prises",
+        "Transitions fluides et professionnelles",
+        "Synchronisation audio précise",
+        "Respect du storytelling et du rythme"
+      ]
+    },
+    {
+      "title": "Étalonnage",
+      "description": "Nous harmonisons les couleurs et l'exposition de vos vidéos pour créer une ambiance cohérente et renforcer l'impact visuel de votre message, en accord avec l'identité de votre marque.",
+      "features": [
+        "Correction des couleurs et de l'exposition",
+        "Création d'ambiances visuelles spécifiques",
+        "Harmonisation entre différentes sources",
+        "Respect des standards de diffusion"
+      ]
+    },
+    {
+      "title": "Effets spéciaux",
+      "description": "De simples animations à des effets complexes, nous enrichissons vos vidéos avec des éléments visuels qui renforcent votre message et impressionnent votre audience.",
+      "features": [
+        "Animations et motion design",
+        "Compositing et intégration d'éléments 3D",
+        "Correction et amélioration d'image",
+        "Effets visuels personnalisés"
+      ]
+    },
+    {
+      "title": "Finalisation",
+      "description": "Nous assurons la finalisation technique de vos vidéos avec une attention particulière à la qualité sonore, aux sous-titres et à l'optimisation pour différentes plateformes de diffusion.",
+      "features": [
+        "Mixage audio professionnel",
+        "Sous-titrage et incrustation de textes",
+        "Exports adaptés à chaque plateforme",
+        "Vérification qualité rigoureuse"
+      ]
+    }
+  ],
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Vidéos produits",
+        "description": "Mise en valeur dynamique de vos produits et services"
+      },
+      {
+        "title": "Contenus pour réseaux sociaux",
+        "description": "Formats optimisés et accrocheurs pour toutes les plateformes"
+      },
+      {
+        "title": "Films corporate",
+        "description": "Présentation professionnelle de votre entreprise et de ses valeurs"
+      },
+      {
+        "title": "Publicités",
+        "description": "Spots impactants pour promouvoir votre marque"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Nous contacter",
+    "quote": "Demander un devis"
+  }
+}

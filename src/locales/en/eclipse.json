@@ -1,0 +1,40 @@
+{
+  "title": "Eclipse",
+  "description": "Our Eclipse service offers an advanced photography solution that uses specific lighting to create product images without shadows and with exceptional clarity. Ideal for transparent, reflective, or complex objects, our Eclipse technology captures every detail with remarkable precision, while eliminating unwanted reflections.",
+  "features": [
+    "Complete elimination of shadows and reflections",
+    "Perfect rendering of transparent and reflective materials",
+    "Ultra-precise details for complex objects",
+    "Uniform lighting across the entire surface",
+    "Ideal for jewelry, cosmetics, glassware, and luxury products"
+  ],
+  "benefits": {
+    "title": "Benefits",
+    "content": "The Eclipse technique allows you to obtain images of unparalleled quality, highlighting every detail of your products. This solution is particularly suitable for objects that are difficult to photograph such as jewelry, glassware, or products with reflective surfaces."
+  },
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Jewelry",
+        "description": "Perfect capture of precious stones and shiny metals"
+      },
+      {
+        "title": "Cosmetics",
+        "description": "Enhancement of transparent packaging and textures"
+      },
+      {
+        "title": "Glassware",
+        "description": "Impeccable rendering of glass and crystal objects"
+      },
+      {
+        "title": "Luxury Products",
+        "description": "High-end presentation for exceptional items"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Contact us",
+    "learn_more": "Learn more"
+  }
+}

@@ -18,7 +18,7 @@ export function CycloramaView() {
       description={
         () => (
           <div className='flex flex-col gap-2'>
-            <p className="mb-8">
+            <p className="mb-8 text-lg">
               {t('description')}
             </p>
             <div className='flex gap-4'>
@@ -31,6 +31,7 @@ export function CycloramaView() {
           </div>
         )
       }
+      className="!mt-0 pt-32"
     >
       <CycloramaGallery />
       <CycloramaSpecs />

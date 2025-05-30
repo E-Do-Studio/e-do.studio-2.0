@@ -1,0 +1,40 @@
+{
+  "title": "Horizontal",
+  "description": "Our Horizontal service specializes in flat lay photography, offering an ideal solution for clothing, accessories, and objects presented in a top-down view. Thanks to our specific setup and expertise, we guarantee perfectly aligned images with consistent quality, essential for a professional presentation of your products online.",
+  "features": [
+    "Specific setup for flat lay photography",
+    "Optimized lighting to eliminate unwanted shadows",
+    "Precise product positioning",
+    "Professional image processing",
+    "Ideal for clothing, accessories, and flat objects"
+  ],
+  "benefits": {
+    "title": "Benefits",
+    "content": "Horizontal photography allows you to present your products in a clear and detailed manner, ideal for e-commerce catalogs. Our service ensures perfect visual consistency across all your products, thus strengthening the professional image of your brand."
+  },
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Fashion",
+        "description": "Optimal presentation of clothing and textiles"
+      },
+      {
+        "title": "Accessories",
+        "description": "Highlighting details of bags, shoes, and jewelry"
+      },
+      {
+        "title": "Stationery",
+        "description": "Precise capture of books, magazines, and documents"
+      },
+      {
+        "title": "Flat Objects",
+        "description": "Perfect rendering for any product presented flat"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Contact us",
+    "learn_more": "Learn more"
+  }
+}

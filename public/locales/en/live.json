@@ -1,0 +1,92 @@
+{
+  "title": "Live",
+  "subtitle": "Real-time photography and videography",
+  "description": "This smart studio system of 8m2 allows you to make your photos and videos of live models or scenographies in a few minutes. In an instant, your productions are self-edited, formatted, turnkey for e-commerce, Instagram, Snapchat or Facebook. Gain in efficiency to be first on your market.",
+  "additionalInfo": {
+    "services": [
+      "For an optimal rendering, the E-Do team can take care of the retouching of your visuals",
+      "We can take care of the entire shoot for your products"
+    ],
+    "pricing": {
+      "title": "Pricing",
+      "items": [
+        "Half-day (4h): €450 excl. tax",
+        "Full day (8h): €750 excl. tax"
+      ]
+    }
+  },
+  "features": {
+    "title": "Features",
+    "list": [
+      "8m2 smart studio",
+      "Real-time photos and videos",
+      "Instant self-editing",
+      "Compatible with e-commerce, Instagram, Snapchat, Facebook",
+      "Automated shooting system"
+    ]
+  },
+  "pricing": {
+    "title": "Pricing",
+    "items": [
+      {
+        "duration": "Hourly",
+        "description": "1 hour of shooting",
+        "price": 170,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Half-day",
+        "description": "4 hours of shooting",
+        "price": 590,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Full day",
+        "description": "8 hours of shooting",
+        "price": 1020,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Weekend fee +25%"
+  },
+  "process": {
+    "title": "Our support",
+    "steps": [
+      {
+        "title": "Taking charge",
+        "description": "We can take care of the entire shoot for your products with our technical expertise."
+      },
+      {
+        "title": "Production",
+        "description": "Taking photos and videos in our smart studio with personalized support."
+      },
+      {
+        "title": "Retouching",
+        "description": "For optimal results, the E-Do team can handle the retouching of your visuals."
+      },
+      {
+        "title": "Delivery",
+        "description": "Delivery of your ready-to-use files for all your marketing needs."
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Benefits",
+    "list": [
+      "Direct interaction with your audience",
+      "Dynamic and engaging content",
+      "Archiving possibility for future use",
+      "Flexibility and adaptability according to your needs"
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Product launches",
+      "Technical demonstrations",
+      "Brand events",
+      "Training sessions and webinars"
+    ]
+  },
+  "cta": "Book a session"
+}

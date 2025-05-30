@@ -1,0 +1,40 @@
+{
+  "title": "Vertical",
+  "description": "Our Vertical service is designed for photographing products in a standing position, ideal for showcasing objects that require a height presentation. Thanks to our specialized setup and technical expertise, we capture each product at its best angle, with special attention to proportions and details.",
+  "features": [
+    "Specific setup for vertical photography",
+    "Adapted lighting for optimal enhancement",
+    "Precise capture of proportions and height",
+    "Professional post-production",
+    "Ideal for bottles, packaging, and tall objects"
+  ],
+  "benefits": {
+    "title": "Benefits",
+    "content": "Vertical photography allows you to present your products in their natural position, highlighting their height and silhouette. Our service guarantees high-quality images that respect the real proportions of your products, essential for a faithful representation online."
+  },
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Bottles",
+        "description": "Elegant presentation of wines, spirits, and perfumes"
+      },
+      {
+        "title": "Packaging",
+        "description": "Enhancement of boxes and packaging"
+      },
+      {
+        "title": "Decorative Objects",
+        "description": "Perfect capture of vases, lamps, and sculptures"
+      },
+      {
+        "title": "Technical Products",
+        "description": "Precise rendering of electronic devices and gadgets"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Contact us",
+    "learn_more": "Learn more"
+  }
+}

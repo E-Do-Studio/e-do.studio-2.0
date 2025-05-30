@@ -1,0 +1,35 @@
+{
+  "title": "Système E-comm",
+  "subtitle": "Solutions complètes pour la photographie e-commerce",
+  "description": "Notre Système E-comm offre une gamme complète de services de photographie spécialisés pour le e-commerce, conçus pour mettre en valeur vos produits et optimiser votre présence en ligne.",
+  "intro": "Découvrez nos différentes solutions adaptées à tous vos besoins de photographie e-commerce.",
+  "services": {
+    "eclipse": {
+      "title": "Eclipse",
+      "description": "Photographie de produit avec éclairage spécifique éliminant les ombres, idéale pour les objets brillants et transparents."
+    },
+    "horizontal": {
+      "title": "Horizontal",
+      "description": "Photographie à plat parfaite pour les vêtements, accessoires et objets présentés en vue de dessus."
+    },
+    "vertical": {
+      "title": "Vertical",
+      "description": "Photographie de produits en position debout, idéale pour les bouteilles, le mobilier et les objets nécessitant une présentation en hauteur."
+    },
+    "live": {
+      "title": "Live",
+      "description": "Photographie et vidéographie en temps réel pour les démonstrations de produits, événements et sessions interactives."
+    }
+  },
+  "benefits": {
+    "title": "Pourquoi choisir notre Système E-comm ?",
+    "list": [
+      "Équipement professionnel de pointe",
+      "Équipe expérimentée et spécialisée",
+      "Solutions adaptées à tous types de produits",
+      "Post-production de qualité incluse",
+      "Délais de livraison rapides"
+    ]
+  },
+  "cta": "Découvrir nos services"
+}

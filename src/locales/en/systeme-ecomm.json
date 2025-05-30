@@ -1,0 +1,40 @@
+{
+  "title": "E-comm System",
+  "description": "Our E-comm system is a comprehensive solution for e-commerce product photography. With our advanced technology, we offer an automated process that ensures consistent quality and fast turnaround times for all your product imaging needs. Our system is designed to adapt to all types of products, from the smallest to the largest, with exceptional precision.",
+  "features": [
+    "Complete automation of the shooting process",
+    "High-resolution image processing",
+    "Easy integration with your e-commerce platform",
+    "Significant reduction in production time",
+    "Guaranteed uniformity for all your product images"
+  ],
+  "benefits": {
+    "title": "Benefits",
+    "content": "Our E-comm system allows you to significantly reduce production costs while increasing the quality and consistency of your images. With high processing capacity, you can photograph hundreds of products per day, which is ideal for large catalogs or seasonal updates."
+  },
+  "process": {
+    "title": "Our process",
+    "steps": [
+      {
+        "title": "Preparation",
+        "description": "Your products are prepared and styled by our team of experts"
+      },
+      {
+        "title": "Capture",
+        "description": "Our automated system captures images from multiple angles"
+      },
+      {
+        "title": "Post-production",
+        "description": "Professional processing and retouching for a perfect result"
+      },
+      {
+        "title": "Delivery",
+        "description": "Final images are delivered in the required formats for your platform"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Contact us",
+    "learn_more": "Learn more"
+  }
+}

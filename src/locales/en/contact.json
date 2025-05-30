@@ -1,0 +1,40 @@
+{
+  "title": "Contact",
+  "description": "We are here to answer all your questions and support you in your projects. Feel free to contact us to discuss your needs or to schedule a visit to our studio.",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "message": "Message",
+    "submit": "Send",
+    "success": "Your message has been sent successfully. We will respond to you as soon as possible.",
+    "error": "An error occurred while sending your message. Please try again."
+  },
+  "contact_info": {
+    "title": "Contact Information",
+    "address": {
+      "title": "Address",
+      "line1": "E-Do Studio",
+      "line2": "75 rue de Turbigo",
+      "line3": "75003 Paris, France"
+    },
+    "phone": {
+      "title": "Phone",
+      "number": "+33 1 44 04 11 49"
+    },
+    "email": {
+      "title": "Email",
+      "address": "contact@e-do.studio"
+    },
+    "hours": {
+      "title": "Opening Hours",
+      "weekdays": "Monday - Friday: 9:00 AM - 7:00 PM",
+      "weekend": "Saturday - Sunday: By appointment only"
+    }
+  },
+  "cta": {
+    "book": "Book a Session",
+    "visit": "Visit the Studio"
+  }
+}

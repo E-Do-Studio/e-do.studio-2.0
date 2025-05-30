@@ -1,0 +1,73 @@
+{
+  "title": "Vertical",
+  "subtitle": "Photographie avec effet 3D",
+  "description": "Donner à votre produit un effet 3D, choisissez votre arrière-plan et shootez-le grâce à notre machine Vertical. L'Ipad Pro vous permet de configurer la lumière et la caméra.",
+  "features": {
+    "title": "Caractéristiques",
+    "list": [
+      "Effet 3D automatique",
+      "Configuration via iPad Pro",
+      "Choix de l'arrière-plan",
+      "Contrôle total de la lumière",
+      "Photos haute résolution"
+    ]
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "items": [
+      {
+        "duration": "À l'heure",
+        "description": "1 heure de shooting",
+        "time": "1 heure de shooting",
+        "price": 110,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Demi-journée",
+        "description": "4 heures de shooting",
+        "time": "4 heures de shooting",
+        "price": 390,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Journée",
+        "description": "8 heures de shooting",
+        "time": "8 heures de shooting",
+        "price": 650,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Tarif week-end +25%"
+  },
+  "process": {
+    "title": "Notre accompagnement",
+    "steps": [
+      {
+        "title": "Prise en charge",
+        "description": "Nous pouvons prendre entièrement en charge le shoot de vos produits."
+      },
+      {
+        "title": "Production",
+        "description": "Réalisation des photos dans notre studio avec un accompagnement personnalisé."
+      },
+      {
+        "title": "Retouche",
+        "description": "De la post-production est souvent nécessaire afin d'optimiser le rendu de votre produit."
+      },
+      {
+        "title": "Livraison",
+        "description": "Remise de vos fichiers prêts à l'emploi pour tous vos besoins marketing."
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Bouteilles et contenants",
+      "Objets décoratifs",
+      "Emballages",
+      "Produits cosmétiques"
+    ]
+  },
+  "cta": "Réserver une séance"
+}

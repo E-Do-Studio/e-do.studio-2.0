@@ -2,14 +2,24 @@
   "header": {
     "navigation": {
       "phone": "+33 1 44 04 11 49",
-      "post-production": "post-prod",
-      "gallery": "galerie",
+      "post-production": "post-production",
+      "galerie": "galerie",
       "services": "services",
       "pricing": "tarifs",
       "contact": "contact",
-      "cyclorama": "cyclorama"
+      "cyclorama": "cyclorama",
+      "systeme_ecomm": "système e-comm",
+      "eclipse": "eclipse",
+      "horizontal": "horizontal",
+      "vertical": "vertical",
+      "live": "live",
+      "production": "production",
+      "location_equipements": "location d'équipements",
+      "art_buying": "art buying",
+      "retouche_video": "retouche vidéo"
     },
     "cta": {
+
       "book": "réserver une session"
     }
   },

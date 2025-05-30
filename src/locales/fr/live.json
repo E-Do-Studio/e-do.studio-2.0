@@ -1,0 +1,40 @@
+{
+  "title": "Live",
+  "description": "Notre service Live offre une solution de photographie et vidéographie en temps réel, idéale pour les démonstrations de produits, les événements et les sessions interactives. Grâce à notre équipement de pointe et notre expertise technique, nous capturons l'essence de votre marque ou produit en action, créant un contenu dynamique et engageant pour votre audience.",
+  "features": [
+    "Captation en temps réel de haute qualité",
+    "Équipement professionnel pour photo et vidéo",
+    "Diffusion possible sur vos plateformes digitales",
+    "Post-production rapide et efficace",
+    "Solutions adaptées aux événements et démonstrations"
+  ],
+  "benefits": {
+    "title": "Avantages",
+    "content": "Le service Live vous permet de créer un contenu authentique et immersif qui engage votre audience de manière plus profonde. Que ce soit pour des démonstrations de produits, des événements de marque ou des tutoriels, notre équipe capture chaque moment important avec une qualité professionnelle."
+  },
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Démonstrations de produits",
+        "description": "Présentation interactive de vos produits en action"
+      },
+      {
+        "title": "Événements de marque",
+        "description": "Couverture complète de vos lancements et événements"
+      },
+      {
+        "title": "Tutoriels et formations",
+        "description": "Création de contenu éducatif pour vos clients"
+      },
+      {
+        "title": "Réseaux sociaux",
+        "description": "Production de contenu engageant pour vos plateformes"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Nous contacter",
+    "learn_more": "En savoir plus"
+  }
+}
