@@ -64,7 +64,7 @@ const navigation: NavItem[] = [
     href: '/post-production'
   },
   { label: 'galerie', href: '/galerie?category=on_model' },
-  { label: 'contact', href: '/contact' },
+  { label: 'contact', href: '#contact' },
 ]
 
 interface NavigationItemProps {

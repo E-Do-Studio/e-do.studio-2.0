@@ -4,9 +4,9 @@ import { ServiceView } from '@/components/service/service-view'
 
 export function LocationEquipementsView() {
   return (
-    <ServiceView 
+    <ServiceView
       namespace="location-equipements"
-      imageUrl="/images/production/location-equipements.jpg"
+      hideImage={true}
     />
   )
 }

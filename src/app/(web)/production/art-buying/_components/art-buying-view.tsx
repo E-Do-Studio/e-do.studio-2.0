@@ -6,7 +6,7 @@ export function ArtBuyingView() {
   return (
     <ServiceView 
       namespace="art-buying"
-      imageUrl="/images/production/art-buying.jpg"
+      hideImage={true}
     />
   )
 }

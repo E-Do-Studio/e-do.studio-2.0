@@ -11,6 +11,7 @@ interface ServiceViewProps {
   namespace: string;
   title?: string;
   imageUrl?: string;
+  hideImage?: boolean;
   process?: {
     title: string;
     steps: {
@@ -26,6 +27,7 @@ export function ServiceView({
   namespace,
   title,
   imageUrl,
+  hideImage = false,
   process,
   children,
   showPricing = true
@@ -44,14 +46,16 @@ export function ServiceView({
       title={title || t('title')}
       image={() => (
         <div className="w-full max-w-[500px] mx-auto">
-          <Image
-            src={imageUrl || fallbackImage}
-            alt={title || t('title', namespace)}
-            width={500}
-            height={375}
-            className="w-full h-auto"
-            priority
-          />
+          {!hideImage ? (
+            <Image
+              src={imageUrl || fallbackImage}
+              alt={title || t('title', namespace)}
+              width={500}
+              height={375}
+              className="w-full h-auto"
+              priority
+            />
+          ) : null}
         </div>
       )}
       description={
@@ -63,9 +67,9 @@ export function ServiceView({
             </div>
 
             <div className='flex gap-4 mt-2'>
-              <Link href="/reservation">
+              <Link href={namespace === 'location-equipements' || namespace === 'art-buying' ? "/#contact" : "/reservation"}>
                 <Button size="lg" className="w-auto px-6">
-                  {tLayout('header.cta.book')}
+                  {hasTranslation && t('cta', { defaultValue: tLayout('header.cta.book') })}
                 </Button>
               </Link>
             </div>
@@ -94,45 +98,18 @@ export function ServiceView({
         </div>
       )}
 
-      {hasTranslation && t('pricing.items', { returnObjects: true }) && t('features.list', { returnObjects: true }) && (
-        <div className="mt-12 bg-neutral-100 rounded-lg p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Tarifs */}
-            <div>
-              <h3 className="text-2xl font-medium mb-6">{t('pricing.title')}</h3>
-              <div className="space-y-4">
-                {(t('pricing.items', { returnObjects: true }) as any[]).map((item, index) => (
-                  <div key={index} className="border-b border-neutral-200 py-4 last:border-0">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h4 className="text-lg font-medium">{item.duration}</h4>
-                        <div className="text-neutral-600 inline-block">
-                          <span className="inline-block whitespace-nowrap">{item.time || item.description}</span>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xl font-semibold">{item.price}</p>
-                        <p className="text-sm text-neutral-500">HT</p>
-                        <p className="text-sm text-neutral-500">{item.service}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+      {hasTranslation && t('equipment', { returnObjects: true }) && t('equipment.categories', { returnObjects: true }) && (
+        <div className="mt-12 mb-12">
+          <h2 className="text-2xl font-medium mb-6">{t('equipment.title')}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(t('equipment.categories', { returnObjects: true }) as any[]).map((category: any, index: number) => (
+              <div key={index} className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
+                <div>
+                  <h3 className="text-lg font-medium mb-2">{category.title}</h3>
+                  <p className="text-neutral-600">{category.description}</p>
+                </div>
               </div>
-            </div>
-
-            {/* Caractéristiques */}
-            <div>
-              <h3 className="text-2xl font-medium mb-6">{t('features.title')}</h3>
-              <ul className="space-y-3">
-                {(t('features.list', { returnObjects: true }) as string[]).map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="text-primary text-xl">•</span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       )}

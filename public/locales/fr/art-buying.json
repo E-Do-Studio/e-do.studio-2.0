@@ -1,0 +1,52 @@
+{
+  "title": "Art Buying",
+  "subtitle": "Service de recherche de talents et production créative",
+  "description": "E-Do Studio propose des services complets d'art buying, spécialisés dans la recherche et la sélection de photographes, stylistes, décorateurs et autres talents artistiques. Nous organisons et coordonnons tous les aspects des productions de shooting, en vous connectant avec les professionnels créatifs parfaits pour vos projets dans n'importe quelle discipline artistique.",
+  "equipment": {
+    "title": "Nos catégories de talents",
+    "categories": [
+      {
+        "title": "Photographie",
+        "description": "Photographes professionnels spécialisés dans différents styles et techniques pour vos projets visuels."
+      },
+      {
+        "title": "Stylisme",
+        "description": "Stylistes experts qui peuvent créer le look et l'esthétique parfaits pour votre production."
+      },
+      {
+        "title": "Décoration",
+        "description": "Décorateurs créatifs qui peuvent transformer les espaces en environnements visuels captivants."
+      },
+      {
+        "title": "Direction",
+        "description": "Metteurs en scène et chorégraphes qualifiés qui peuvent apporter mouvement et performance à vos productions."
+      },
+      {
+        "title": "Talents Artistiques",
+        "description": "Professionnels créatifs diversifiés dans différentes disciplines artistiques pour enrichir vos projets."
+      }
+    ]
+  },
+  "process": {
+    "title": "Comment ça fonctionne",
+    "steps": [
+      {
+        "title": "Brief",
+        "description": "Partagez votre vision du projet, vos exigences et votre direction artistique avec notre équipe."
+      },
+      {
+        "title": "Recherche de talents",
+        "description": "Nous identifions et proposons les professionnels créatifs les plus adaptés à vos besoins spécifiques."
+      },
+      {
+        "title": "Sélection",
+        "description": "Examinez nos options de talents sélectionnés et choisissez la correspondance parfaite pour votre projet."
+      },
+      {
+        "title": "Production",
+        "description": "Nous coordonnons tous les aspects du processus de production, garantissant une collaboration créative fluide et réussie."
+      }
+    ]
+  },
+  "cta": "Contactez-nous pour l'Art Buying"
+}
