@@ -158,10 +158,14 @@ function GalleryContent() {
       const subcategory = category.subcategories?.find(
         sub => sub.slug === currentSubcategorySlug
       )
-      if (subcategory) return subcategory.name
+      if (subcategory) {
+        // Supprimer tout contenu entre parenthèses ainsi que les parenthèses elles-mêmes
+        return subcategory.name.replace(/\s*\([^)]*\)\s*/g, '')
+      }
     }
 
-    return category.name
+    // Supprimer tout contenu entre parenthèses ainsi que les parenthèses elles-mêmes
+    return category.name.replace(/\s*\([^)]*\)\s*/g, '')
   }, [categories, currentCategorySlug, currentSubcategorySlug])
 
   useEffect(() => {
