@@ -384,7 +384,13 @@ function NavigationItem({ children, href, subItems }: NavigationItemProps) {
             strokeWidth="2" 
             strokeLinecap="round" 
             strokeLinejoin="round"
-            className={cn('transition-transform', showSubMenu ? 'rotate-180' : '')}
+            className={cn(
+              'transition-transform', 
+              // Sur mobile (ou tablette), utiliser showSubMenu pour la rotation
+              // Sur desktop, utiliser group-hover pour la rotation
+              'md:group-hover:rotate-180',
+              showSubMenu ? 'rotate-180 md:rotate-0' : ''
+            )}
           >
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
@@ -423,6 +429,7 @@ function NavigationItem({ children, href, subItems }: NavigationItemProps) {
                     strokeWidth="2" 
                     strokeLinecap="round" 
                     strokeLinejoin="round"
+                    className="transition-transform group-hover/item:translate-x-1"
                   >
                     <polyline points="9 6 15 12 9 18"></polyline>
                   </svg>
