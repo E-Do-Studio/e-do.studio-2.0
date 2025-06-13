@@ -5,17 +5,49 @@
         "contact": "Contactez-nous"
     },
     "chat": {
-        "title": "Chat Assistant",
-        "custom_message": "Pour une réponse personnalisée à votre question, nous vous invitons à nous contacter directement. Notre équipe sera ravie de vous aider.",
+        "title": "Comment pouvons-nous vous aider ?",
+        "custom_message": "Pour une réponse personnalisée à votre question, nous vous invitons à nous contacter directement. Notre équipe se fera un plaisir de vous aider.",
         "contact_button": "Nous contacter",
+        "whatsapp_button": "Contact via WhatsApp",
+        "whatsapp_default_message": "Bonjour, j'ai une question concernant E-Do Studio.",
         "input_placeholder": "Écrivez votre message...",
         "suggested_questions": "Questions fréquentes :",
+        "tabs": {
+            "chat": "Chat",
+            "whatsapp": "WhatsApp"
+        },
+        "whatsapp": {
+            "title": "Contactez-nous sur WhatsApp",
+            "description": "Laissez-nous votre numéro et votre message, nous vous répondrons rapidement sur WhatsApp.",
+            "phone_label": "Votre numéro de téléphone",
+            "phone_help": "Format international recommandé (ex: +33 6 12 34 56 78)",
+            "phone_prefix": "Numéro",
+            "message_label": "Votre message",
+            "message_placeholder": "Décrivez votre demande...",
+            "send_button": "Envoyer le message",
+            "error": "Formulaire incomplet",
+            "error_description": "Veuillez remplir tous les champs.",
+            "error_sending": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+            "success": "Message envoyé !",
+            "success_description": "Nous avons bien reçu votre message et vous contacterons très bientôt.",
+            "direct_link_description": "WhatsApp va s'ouvrir avec votre message.",
+            "intro_message": "Message envoyé depuis le site e-do.studio :",
+            "sending": "Envoi en cours...",
+            "sent_message_prefix": "J'ai envoyé le message suivant :",
+            "confirmation_message": "Merci pour votre message ! Nous l'avons bien reçu et vous contacterons très prochainement."
+        },
         "error": {
             "title": "Erreur de connexion",
-            "description": "La connexion au chat a été perdue",
-            "message": "Une erreur est survenue. Veuillez réessayer.",
+            "description": "Connexion au chat perdue",
+            "message": "Une erreur s'est produite. Veuillez réessayer.",
             "retry": "Reconnecter"
         }
+    },
+    "error": {
+        "title": "Erreur de connexion",
+        "description": "La connexion au chat a été perdue",
+        "message": "Une erreur est survenue. Veuillez réessayer.",
+        "retry": "Reconnecter"
     },
     "items": {
         "machine": {
@@ -56,7 +88,7 @@
         },
         "payment": {
             "question": "Quels sont les moyens de paiement acceptés ?",
-            "answer": "Nous acceptons les virements bancaires et les paiements par carte de crédit"
+            "answer": "Nous acceptons les virements bancaires et les paiements par carte de crédit."
         }
     }
 }

@@ -102,14 +102,19 @@ export function ServiceView({
         <div className="mt-12 mb-12">
           <h2 className="text-2xl font-medium mb-6">{t('equipment.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(t('equipment.categories', { returnObjects: true }) as any[]).map((category: any, index: number) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
-                <div>
-                  <h3 className="text-lg font-medium mb-2">{category.title}</h3>
-                  <p className="text-neutral-600">{category.description}</p>
+            {Array.isArray(t('equipment.categories', { returnObjects: true })) ? 
+              (t('equipment.categories', { returnObjects: true }) as any[]).map((category: any, index: number) => (
+                <div key={index} className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">{category.title}</h3>
+                    <p className="text-neutral-600">{category.description}</p>
+                  </div>
                 </div>
+              )) : 
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
+                <p className="text-neutral-600">Aucun équipement disponible</p>
               </div>
-            ))}
+            }
           </div>
         </div>
       )}

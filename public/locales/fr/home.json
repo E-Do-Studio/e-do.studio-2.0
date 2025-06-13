@@ -15,12 +15,12 @@
             "cyclorama": "cyclorama"
         },
         "cta": {
-            "book": "réserver une séance"
+            "book": "réserver une session"
         }
     },
     "services": {
         "title": "Nos services",
-        "button": "Réserver une séance",
+        "button": "Réserver une session",
         "live": {
             "name": "LIVE",
             "title": "(Shooting porté / Mobilier)",
