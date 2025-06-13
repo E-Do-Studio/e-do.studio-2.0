@@ -18,8 +18,8 @@ import { OrganizationSchema } from '@/components/schema/organization-schema'
 const SITE_NAME = 'E-Do Studio'
 
 export const metadata: Metadata = generateBaseMetadata({
-  title: 'Découvrez nos services de packshot automatisé',
-  description: 'Studio de photographie professionnel spécialisé dans le packshot automatisé. Nous proposons des services de photographie et post-production de haute qualité pour mettre en valeur vos produits.',
+  title: 'Découvrez nos services de productions',
+  description: 'E-Do Studio est un espace hybride dédié à la production d\'images. Cyclorama, Systèmes E-Commerce, Production, Retouche d\'images et vidéos…',
   templateTitle: false
 })
 
