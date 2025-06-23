@@ -2,7 +2,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
-import { MessageCircle, X, Send } from 'lucide-react'
+import { MessageCircle, X, Send, MessageSquare, Loader2 } from 'lucide-react'
 import { useChatStore } from '@/store/use-chat-store'
 import { useState, useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
@@ -10,6 +10,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { Label } from '@/components/ui/label'
 
 const FAQ_ITEMS = [
     'machine',
@@ -114,16 +115,54 @@ export function ChatBot() {
         </div>
     )
 
-    const ContactButton = () => (
-        <Link href="/#contact" className="block mt-4">
-            <Button
-                size="lg"
-                className="w-full font-medium"
-            >
-                {t('chat.contact_button')}
-            </Button>
-        </Link>
-    )
+    const ContactButton = () => {
+        // Numéro WhatsApp Business (format international sans espaces ni tirets)
+        const whatsappNumber = '33744888537'; // 07 44 88 85 37 au format international
+
+        // Créer un lien direct vers WhatsApp avec un message prédéfini
+        const createWhatsAppLink = () => {
+            const message = encodeURIComponent(t('chat.whatsapp_default_message') || 'Bonjour, je vous contacte depuis votre site web.');
+            return `https://wa.me/${whatsappNumber}?text=${message}`;
+        };
+
+        // Fonction pour ouvrir WhatsApp dans une popup
+        const openWhatsAppPopup = () => {
+            const url = createWhatsAppLink();
+            const width = 600;
+            const height = 600;
+            const left = (window.innerWidth - width) / 2;
+            const top = (window.innerHeight - height) / 2;
+
+            // Ouvrir dans une popup
+            window.open(
+                url,
+                'whatsapp_popup',
+                `width=${width},height=${height},left=${left},top=${top},location=no,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes`
+            );
+        };
+
+        return (
+            <div className="flex flex-col gap-2 mt-4">
+                <Link href="/#contact" className="block">
+                    <Button
+                        size="lg"
+                        className="w-full font-medium"
+                    >
+                        {t('chat.contact_button')}
+                    </Button>
+                </Link>
+                <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full font-medium bg-green-500 hover:bg-green-600 text-white border-green-500 hover:border-green-600"
+                    onClick={openWhatsAppPopup}
+                >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    {t('chat.whatsapp_button') || 'WhatsApp'}
+                </Button>
+            </div>
+        );
+    }
 
     return (
         <div className="fixed bottom-4 right-4 z-50">
