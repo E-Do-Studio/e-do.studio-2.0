@@ -10,6 +10,8 @@
         "contact_button": "Nous contacter",
         "input_placeholder": "Écrivez votre message...",
         "suggested_questions": "Questions fréquentes :",
+        "whatsapp_button": "WhatsApp",
+        "whatsapp_default_message": "Bonjour, je vous contacte depuis votre site web.",
         "error": {
             "title": "Erreur de connexion",
             "description": "La connexion au chat a été perdue",
