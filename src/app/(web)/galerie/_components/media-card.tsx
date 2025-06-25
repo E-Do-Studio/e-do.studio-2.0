@@ -81,8 +81,8 @@ export function MediaCard({ item }: MediaCardProps) {
           />
         )}
 
-        {!isLoading && (
-          <GalleryItemOverlay title={item.brand?.name || 'SANS MARQUE'} />
+        {!isLoading && item.brand?.name && (
+          <GalleryItemOverlay title={item.brand.name} />
         )}
       </div>
     </Link>
