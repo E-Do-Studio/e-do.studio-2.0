@@ -5,11 +5,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Section } from '@/components/layout/section'
+import { ImageCarousel } from '@/components/ui/image-carousel'
+import { ImageGrid } from '@/components/ui/image-grid'
 
 interface MachineSectionProps {
   namespace: string;
   title?: string;
   imageUrl?: string;
+  imageUrls?: string[];
   showPricing?: boolean;
 }
 
@@ -17,6 +20,7 @@ export function MachineSection({
   namespace,
   title,
   imageUrl,
+  imageUrls,
   showPricing = true
 }: MachineSectionProps) {
   const { t } = useTranslation(namespace)
@@ -29,20 +33,35 @@ export function MachineSection({
       title={title || t('title')}
       image={() => (
         <div className="w-80 flex-1 md:w-full md:flex md:justify-end">
-          <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden rounded-lg">
-            <Image
-              src={imageUrl || '/img/placeholder.jpg'}
-              alt={title || t('title')}
-              fill
-              className="object-contain"
-              priority
-            />
+          <div className="relative w-full h-auto min-h-[400px] md:min-h-[500px] overflow-hidden rounded-lg">
+            {imageUrls && imageUrls.length > 0 ? (
+              // Afficher la grille d'images si des images sont fournies
+              <div className="w-full h-full p-0 m-0">
+                {/* Grille d'images 3x3 avec transitions douces */}
+                <ImageGrid
+                  images={imageUrls}
+                  alt={title || t('title')}
+                  gridSize={9}
+                  changeInterval={3000}
+                  className="w-full p-0 m-0"
+                />
+              </div>
+            ) : (
+              // Sinon, afficher l'image statique
+              <Image
+                src={imageUrl || '/img/placeholder.jpg'}
+                alt={title || t('title')}
+                fill
+                className="object-contain"
+                priority
+              />
+            )}
           </div>
         </div>
       )}
       description={() => (
         <div className="flex flex-col gap-4">
-          <p className="text-lg">{t('description')}</p>
+          <p className="text-lg whitespace-pre-line">{t('description')}</p>
           <Link href="/#contact">
             <Button size="lg">
               {t('cta', { defaultValue: 'Contact us' })}

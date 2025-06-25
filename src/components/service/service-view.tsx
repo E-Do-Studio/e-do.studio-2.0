@@ -6,11 +6,14 @@ import Link from 'next/link'
 import { Section } from '@/components/layout/section'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import { ImageCarousel } from '@/components/ui/image-carousel'
+import { useEffect, useState } from 'react'
 
 interface ServiceViewProps {
   namespace: string;
   title?: string;
   imageUrl?: string;
+  imageUrls?: string[];
   hideImage?: boolean;
   process?: {
     title: string;
@@ -27,6 +30,7 @@ export function ServiceView({
   namespace,
   title,
   imageUrl,
+  imageUrls,
   hideImage = false,
   process,
   children,
@@ -46,24 +50,32 @@ export function ServiceView({
       title={title || t('title')}
       image={() => (
         <div className="w-full max-w-[500px] mx-auto">
-          {!hideImage ? (
-            <Image
-              src={imageUrl || fallbackImage}
-              alt={title || t('title', namespace)}
-              width={500}
-              height={375}
-              className="w-full h-auto"
-              priority
-            />
-          ) : null}
+          {!hideImage && (
+            <div className="border-2 border-red-500 p-2">
+              <h3 className="text-center mb-2">CAROUSEL FORCÉ</h3>
+              {/* Images hardcodées pour test */}
+              <ImageCarousel 
+                images={[
+                  '/img/logo.png',
+                  '/images/services/live.jpg',
+                  '/images/services/eclipse.jpg'
+                ]} 
+                alt={title || t('title', namespace)}
+                className="w-full"
+              />
+            </div>
+          )}
         </div>
       )}
       description={
         () => (
           <div className='flex flex-col gap-4'>
-            <div className="mb-4 whitespace-pre-line">
-              {hasTranslation ? t('description') :
-                "Notre service professionnel offre une solution complète pour répondre à vos besoins spécifiques. Avec une expertise technique avancée et une attention particulière aux détails, nous garantissons des résultats de haute qualité qui dépasseront vos attentes."}
+            <div className="mb-4">
+              {hasTranslation ? (
+                <div className="whitespace-pre-line">{t('description')}</div>
+              ) : (
+                "Notre service professionnel offre une solution complète pour répondre à vos besoins spécifiques. Avec une expertise technique avancée et une attention particulière aux détails, nous garantissons des résultats de haute qualité qui dépasseront vos attentes."
+              )}
             </div>
 
             <div className='flex gap-4 mt-2'>
@@ -102,7 +114,7 @@ export function ServiceView({
         <div className="mt-12 mb-12">
           <h2 className="text-2xl font-medium mb-6">{t('equipment.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.isArray(t('equipment.categories', { returnObjects: true })) ? 
+            {Array.isArray(t('equipment.categories', { returnObjects: true })) ?
               (t('equipment.categories', { returnObjects: true }) as any[]).map((category: any, index: number) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
                   <div>
@@ -110,7 +122,7 @@ export function ServiceView({
                     <p className="text-neutral-600">{category.description}</p>
                   </div>
                 </div>
-              )) : 
+              )) :
               <div className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
                 <p className="text-neutral-600">Aucun équipement disponible</p>
               </div>
