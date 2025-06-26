@@ -64,7 +64,7 @@ export function MachineSection({
           {/* Utiliser un div au lieu d'un p pour pouvoir appliquer des styles spécifiques à chaque ligne */}
           <div className="text-lg">
             {t('description').split('\n').map((line, index) => (
-              <div key={index} className="whitespace-nowrap overflow-visible mb-2">{line}</div>
+              <div key={index} className="md:whitespace-nowrap overflow-visible mb-2">{line}</div>
             ))}
           </div>
           <Link href="/#contact">

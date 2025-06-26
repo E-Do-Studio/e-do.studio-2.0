@@ -28,17 +28,17 @@ export const Section = ({
     >
       <div className={cn('flex-1 flex flex-col', description != null && 'justify-between')}>
         {image ? (
-          <div className='flex flex-col gap-8 md:flex-row justify-between'>
+          <div className='flex flex-col gap-8 lg:flex-row justify-between'>
             <div className="flex-1 flex flex-col w-full gap-1 md:gap-2">
               <div>
                 {title && <Title title={title} />}
                 {subtitle && <Subtitle subtitle={subtitle} />}
               </div>
-              <div className='flex flex-col md:flex-row justify-between gap-8 mt-4'>
+              <div className='flex flex-col lg:flex-row justify-between gap-8 mt-4'>
                 <div>
                   {description != null && description()}
                 </div>
-                <div className='w-80 flex-1 md:w-full md:flex md:justify-end md:max-w-[50%]'>
+                <div className='w-80 flex-1 flex justify-start lg:w-full lg:flex lg:justify-end lg:max-w-[50%]'>
                   {image && image()}
                 </div>
               </div>
