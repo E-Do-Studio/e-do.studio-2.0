@@ -42,10 +42,10 @@ const navigation: NavItem[] = [
         label: 'systeme_ecomm', 
         href: '#',
         subItems: [
-          { label: 'eclipse', href: '/services/systeme-ecomm/eclipse' },
-          { label: 'horizontal', href: '/services/systeme-ecomm/horizontal' },
-          { label: 'vertical', href: '/services/systeme-ecomm/vertical' },
-          { label: 'live', href: '/services/systeme-ecomm/live' },
+          { label: 'eclipse', href: '/services/eclipse' },
+          { label: 'horizontal', href: '/services/horizontal' },
+          { label: 'vertical', href: '/services/vertical' },
+          { label: 'live', href: '/services/live' },
         ]
       },
       { label: 'cyclorama', href: '/cyclorama' },

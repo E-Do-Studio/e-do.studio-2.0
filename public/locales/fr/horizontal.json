@@ -1,7 +1,7 @@
 {
   "title": "Horizontal",
   "subtitle": "Photographie packshot à plat",
-  "description": "• Réalisez des packshots à plat professionnels avec notre machine Horizontal\n• Configurez facilement la lumière et la caméra via iPad Pro\n• Suppression automatique de l'arrière-plan pour des rendus parfaits\n• Stylisez vos produits selon vos besoins spécifiques\n• Idéal pour la photographie e-commerce de qualité",
+  "description": "• Conçu pour les packshots à plat professionnels\n• Configurez facilement la lumière et la caméra via iPad\n• Suppression automatique de l'arrière-plan pour des rendus en png\n• Idéal pour la photographie e-commerce simple et de qualité",
   "features": {
     "title": "Caractéristiques",
     "list": [
@@ -17,22 +17,22 @@
     "items": [
       {
         "duration": "À l'heure",
-        "description": "1 heure de shooting",
-        "time": "1 heure de shooting",
+        "description": "1 heure de shooting",
+        "time": "1 heure de shooting",
         "price": 110,
         "service": "Self-service"
       },
       {
         "duration": "Demi-journée",
-        "description": "4 heures de shooting",
-        "time": "4 heures de shooting",
+        "description": "4 heures de shooting",
+        "time": "4 heures de shooting",
         "price": 390,
         "service": "Self-service"
       },
       {
         "duration": "Journée",
-        "description": "8 heures de shooting",
-        "time": "8 heures de shooting",
+        "description": "8 heures de shooting",
+        "time": "8 heures de shooting",
         "price": 650,
         "service": "Self-service"
       }

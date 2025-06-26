@@ -30,14 +30,18 @@ export const Section = ({
         {image ? (
           <div className='flex flex-col gap-8 md:flex-row justify-between'>
             <div className="flex-1 flex flex-col w-full gap-1 md:gap-2">
-              {title && <Title title={title} />}
-              {subtitle && <Subtitle subtitle={subtitle} />}
-              <div className='pt-8'>
-                {description != null && description()}
+              <div>
+                {title && <Title title={title} />}
+                {subtitle && <Subtitle subtitle={subtitle} />}
               </div>
-            </div>
-            <div className='w-80 flex-1 md:w-full md:flex md:justify-end'>
-              {image && image()}
+              <div className='flex flex-col md:flex-row justify-between gap-8 mt-4'>
+                <div>
+                  {description != null && description()}
+                </div>
+                <div className='w-80 flex-1 md:w-full md:flex md:justify-end md:max-w-[50%]'>
+                  {image && image()}
+                </div>
+              </div>
             </div>
           </div>
         ) : (

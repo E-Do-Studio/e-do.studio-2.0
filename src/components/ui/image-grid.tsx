@@ -231,10 +231,13 @@ export function ImageGrid({
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gridTemplateRows: 'repeat(2, 1fr)',
-          gap: 0,
+          gridTemplateRows: 'repeat(2, 0.7fr)',
+          columnGap: '10px',
+          rowGap: '30px',
           borderCollapse: 'collapse',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          maxHeight: '380px',
+          marginBottom: '-40px'
         }}
       >
         {gridItems.slice(0, 6).map((item, index) => (
@@ -291,7 +294,8 @@ export function ImageGrid({
                   maxWidth: '100%',
                   maxHeight: '100%',
                   willChange: 'transform, opacity',
-                  transform: 'translateZ(0)' // Activer l'accélération GPU
+                  transform: 'translateZ(0)', // Activer l'accélération GPU
+                  backgroundColor: 'transparent' // Fond transparent pour mieux voir les images
                 }}
                 priority
               />

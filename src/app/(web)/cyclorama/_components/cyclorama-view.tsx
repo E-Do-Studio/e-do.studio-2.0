@@ -23,7 +23,7 @@ export function CycloramaView() {
             </p>
             <div className='flex gap-4'>
               <Link href="/#contact">
-                <Button size="lg" className="w-44">
+                <Button size="lg">
                   {t('cta.contact')}
                 </Button>
               </Link>

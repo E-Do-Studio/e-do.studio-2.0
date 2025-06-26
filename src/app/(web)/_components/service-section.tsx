@@ -83,7 +83,7 @@ export const ServiceSection = () => {
                 />
             </Link>
             <Separator className="my-1" />
-            <Link href='/services/systeme-ecomm/eclipse'>
+            <Link href='/services/eclipse'>
                 <Services
                     imagesDescription={['/img/machine-eclipse.webp', 'Services machine eclipse']}
                     serviceName={t('services.eclipse.name')}
@@ -94,7 +94,7 @@ export const ServiceSection = () => {
                 />
             </Link>
             <Separator className="my-1" />
-            <Link href='/services/systeme-ecomm/live'>
+            <Link href='/services/live'>
                 <Services
                     imagesDescription={['/img/machine-live.webp', 'Services machine live']}
                     serviceName={t('services.live.name')}
@@ -105,7 +105,7 @@ export const ServiceSection = () => {
                 />
             </Link>
             <Separator className="my-1" />
-            <Link href='/services/systeme-ecomm/vertical'>
+            <Link href='/services/vertical'>
                 <Services
                     imagesDescription={['/img/machine-vertical.webp', 'Services machine verticale']}
                     serviceName={t('services.vertical.name')}
@@ -116,7 +116,7 @@ export const ServiceSection = () => {
                 />
             </Link>
             <Separator className="my-1" />
-            <Link href='/services/systeme-ecomm/horizontal'>
+            <Link href='/services/horizontal'>
                 <Services
                     imagesDescription={['/img/machine-horizontal.webp', 'Services machine horizontale']}
                     serviceName={t('services.horizontal.name')}

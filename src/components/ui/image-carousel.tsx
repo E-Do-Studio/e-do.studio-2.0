@@ -68,7 +68,7 @@ export function ImageCarousel({
             alt={`${alt} - Image ${currentIndex + 1}`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-contain transition-opacity duration-500"
+            className="object-contain transition-opacity duration-500 bg-transparent"
             priority
             onError={() => handleImageError(currentIndex)}
           />
