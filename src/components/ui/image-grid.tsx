@@ -225,19 +225,17 @@ export function ImageGrid({
   }, [replaceRandomImage, changeInterval, images.length, gridItems.length])
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("w-full p-0 m-0", className)}>
       <div
-        className="grid max-w-md mx-auto"
+        className="grid grid-cols-3 gap-x-2 gap-y-4 md:gap-y-5 w-full"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gridTemplateRows: 'repeat(2, 0.7fr)',
-          columnGap: '10px',
-          rowGap: '30px',
           borderCollapse: 'collapse',
-          overflow: 'hidden',
-          maxHeight: '380px',
-          marginBottom: '-40px'
+          overflow: 'visible',
+          height: 'auto',
+          minHeight: '300px',
+          margin: 0,
+          padding: 0
         }}
       >
         {gridItems.slice(0, 6).map((item, index) => (
@@ -257,7 +255,8 @@ export function ImageGrid({
               width: '100%',
               height: 0,
               paddingBottom: '100%',
-              position: 'relative'
+              position: 'relative',
+              aspectRatio: '1/1'
             }}
           >
             {/* Overlay pour l'effet de transition */}
@@ -295,7 +294,8 @@ export function ImageGrid({
                   maxHeight: '100%',
                   willChange: 'transform, opacity',
                   transform: 'translateZ(0)', // Activer l'accélération GPU
-                  backgroundColor: 'transparent' // Fond transparent pour mieux voir les images
+                  backgroundColor: 'transparent', // Fond transparent pour mieux voir les images
+                  aspectRatio: '1/1' // Maintenir un ratio carré
                 }}
                 priority
               />

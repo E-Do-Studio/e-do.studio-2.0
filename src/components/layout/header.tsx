@@ -39,7 +39,7 @@ const navigation: NavItem[] = [
     href: '#', 
     subItems: [
       { 
-        label: 'systeme_ecomm', 
+        label: 'solution_ecomm', 
         href: '#',
         subItems: [
           { label: 'eclipse', href: '/services/eclipse' },

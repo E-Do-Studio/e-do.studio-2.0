@@ -16,7 +16,6 @@ export function HorizontalView() {
 
   // Images réelles du dossier de la machine Horizontal
   const machineImages = [
-    '/img/machines/horizontal/BOMPARD-AK569_T5351.png',
     '/img/machines/horizontal/BOMPARD-AK584_T4535.png',
     '/img/machines/horizontal/BOMPARD-a928_T4977.png',
     '/img/machines/horizontal/ET19MYC43_2.jpg',
@@ -26,6 +25,7 @@ export function HorizontalView() {
     '/img/machines/horizontal/MARE-Kimono_Brown_Stripe_Front .jpg',
     '/img/machines/horizontal/MARE-short crème _Front_JPG.jpg',
     '/img/machines/horizontal/Paris navy 65_2.jpg',
+    '/img/machines/horizontal/SKATEBOARDS-1-TIFF-1 alex mileshin.jpg',
     '/img/machines/horizontal/manteau 2_Front.jpg',
     '/img/machines/horizontal/veste beige - front_Front-2.jpg'
   ]

@@ -124,7 +124,7 @@ function ServicesInfo() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 text-sm gap-8 md:gap-4">
       <div className='flex flex-col gap-4'>
-        <h3 className='text-2xl font-medium mb-4 flex flex-row gap-2 items-center'>{t('services.production.title')}<DiamondPlus/></h3>
+        <h3 className='text-2xl font-medium mb-4 flex flex-row gap-2 items-center'>{t('services.production.title')}<DiamondPlus /></h3>
         <p dangerouslySetInnerHTML={{ __html: t('services.production.description') }}></p>
       </div>
       <div className='flex flex-col gap-1'>
@@ -137,20 +137,20 @@ function ServicesInfo() {
 
 export function CycloramaSpecs() {
   return (
-    <Section className="!mt-0">
-      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-8 md:mb-4 ">
+    <Section className="!mt-0 !mb-2">
+      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-4 md:px-8 md:py-4 md:mb-0">
 
         <Introduction />
-        <Separator className="my-8" />
+        <Separator className="my-3" />
         <AmenitiesList />
 
       </Card>
 
-      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-8 md:mt-4">
+      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-4 md:px-8 md:py-4 mt-2">
 
 
         <ServicesInfo />
-        <Separator className="my-8" />
+        <Separator className="my-3" />
 
         <RentalSection />
       </Card>

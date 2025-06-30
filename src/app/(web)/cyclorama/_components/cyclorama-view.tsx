@@ -31,7 +31,7 @@ export function CycloramaView() {
           </div>
         )
       }
-      className="!mt-0 pt-32"
+      className="!mt-0 pt-32 !gap-2"
     >
       <CycloramaGallery />
       <CycloramaSpecs />

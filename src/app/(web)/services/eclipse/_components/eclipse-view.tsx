@@ -16,6 +16,7 @@ export function EclipseView() {
 
   // Images réelles du dossier de la machine Eclipse
   const machineImages = [
+    '/img/machines/eclipse/13:09_CUDCRBSS25-TOP-6.jpg',
     '/img/machines/eclipse/ALTER-P241218103146-Front-5.webp',
     '/img/machines/eclipse/A_MAGAZINE-Side-tiff-16.webp',
     '/img/machines/eclipse/CARVEN-BELMONDO PINK-Side-1.webp',

@@ -29,11 +29,30 @@ export function MachineSection({
 
   return (
     <Section
-      className="container"
-      title={(title || t('title')).toUpperCase()}
-      image={() => (
-        <div className="w-80 flex-1 md:w-full md:flex md:justify-end">
-          <div className="relative w-full h-auto min-h-[280px] md:min-h-[380px] overflow-hidden rounded-lg mb-[-40px]">
+      className="container !gap-4"
+    >
+      <div className="flex flex-col lg:flex-row justify-between items-start gap-8 !mt-0 !pt-0">
+        {/* Colonne de gauche avec titre et description */}
+        <div className="flex-1 flex flex-col gap-4">
+          <h1>{(title || t('title')).toUpperCase()}</h1>
+          <div className="flex flex-col gap-4">
+            {/* Utiliser un div au lieu d'un p pour pouvoir appliquer des styles spécifiques à chaque ligne */}
+            <div className="text-lg">
+              {t('description').split('\n').map((line, index) => (
+                <div key={index} className="md:whitespace-nowrap overflow-visible mb-2">{line}</div>
+              ))}
+            </div>
+            <Link href="/#contact">
+              <Button size="lg">
+                {t('cta', { defaultValue: 'Contact us' })}
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Colonne de droite avec le carousel */}
+        <div className="w-full lg:w-1/2 lg:max-w-[50%]">
+          <div className="relative w-full h-auto min-h-[320px] md:min-h-[400px] overflow-visible rounded-lg">
             {imageUrls && imageUrls.length > 0 ? (
               // Afficher la grille d'images si des images sont fournies
               <div className="w-full h-full p-0 m-0">
@@ -43,7 +62,7 @@ export function MachineSection({
                   alt={title || t('title')}
                   gridSize={9}
                   changeInterval={3000}
-                  className="w-full p-0 m-0"
+                  className="w-full h-full p-0 m-0"
                 />
               </div>
             ) : (
@@ -58,23 +77,7 @@ export function MachineSection({
             )}
           </div>
         </div>
-      )}
-      description={() => (
-        <div className="flex flex-col gap-4">
-          {/* Utiliser un div au lieu d'un p pour pouvoir appliquer des styles spécifiques à chaque ligne */}
-          <div className="text-lg">
-            {t('description').split('\n').map((line, index) => (
-              <div key={index} className="md:whitespace-nowrap overflow-visible mb-2">{line}</div>
-            ))}
-          </div>
-          <Link href="/#contact">
-            <Button size="lg">
-              {t('cta', { defaultValue: 'Contact us' })}
-            </Button>
-          </Link>
-        </div>
-      )}
-    >
+      </div>
       {/* Process Section */}
       {hasTranslation && t('process', { returnObjects: true }) && t('process.steps', { returnObjects: true }) && (
         <div className="mt-4 mb-4">

@@ -23,6 +23,7 @@ export function LiveView() {
     '/img/machines/live/FROB28162KBLA01_C.webp',
     '/img/machines/live/FTOP28051KBLA01_B.webp',
     '/img/machines/live/JA024BLACK-Fullbody-1.webp',
+    '/img/machines/live/Kendall-Fullbody-JPG-2.jpg',
     '/img/machines/live/OCEAN BRAZIL-Fullbody-TIFF-2.webp',
     '/img/machines/live/P230614125726-_14-TIFF-3.webp',
     '/img/machines/live/P230614150900-_12-TIFF-5.webp',
