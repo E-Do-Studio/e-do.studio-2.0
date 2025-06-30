@@ -123,12 +123,23 @@ function ServicesInfo() {
   const { t } = useTranslation('cyclorama')
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 text-sm gap-8 md:gap-4">
+      {/* Utilisation de hauteur fixe pour les titres */}
       <div className='flex flex-col gap-4'>
-        <h3 className='text-2xl font-medium mb-4 flex flex-row gap-2 items-center'>{t('services.production.title')}<DiamondPlus /></h3>
+        <div className='h-14 flex items-center'>
+          <h3 className='text-2xl font-medium flex flex-row gap-2 items-center'>
+            {t('services.production.title')}
+            <DiamondPlus className='w-6 h-6' />
+          </h3>
+        </div>
         <p dangerouslySetInnerHTML={{ __html: t('services.production.description') }}></p>
       </div>
-      <div className='flex flex-col gap-1'>
-        <h3 className='text-2xl font-medium mb-4 flex flex-row  items-center'>{t('services.equipment.title')} <img src="/img/icon-location.png" alt="" className='w-11 h-11' /></h3>
+      <div className='flex flex-col gap-4'>
+        <div className='h-14 flex items-center'>
+          <h3 className='text-2xl font-medium flex flex-row gap-2 items-center'>
+            {t('services.equipment.title')}
+            <img src="/img/icon-location.png" alt="" className='w-6 h-6' />
+          </h3>
+        </div>
         <p dangerouslySetInnerHTML={{ __html: t('services.equipment.description') }}></p>
       </div>
     </div>

@@ -36,10 +36,7 @@ export function ImageGrid({
 }: ImageGridProps) {
   // État pour stocker les images affichées dans la grille
   const [gridItems, setGridItems] = useState<GridItem[]>([])
-  // État pour suivre les images en cours de transition
-  const [transitioning, setTransitioning] = useState<number[]>([])
-  // État pour le type d'animation à appliquer (aléatoire pour chaque image)
-  const [animationTypes, setAnimationTypes] = useState<string[]>([])
+  // Plus besoin de suivre les transitions ou les types d'animation
   // Référence pour suivre l'index actuel dans l'ordre de remplacement
   const currentReplacementIndexRef = useRef<number>(0)
   // Référence pour suivre l'index de la prochaine image à utiliser
@@ -55,15 +52,7 @@ export function ImageGrid({
     // Réinitialiser l'index de la prochaine image
     nextImageIndexRef.current = 0;
 
-    // Types d'animation disponibles
-    const animationOptions = ['fade', 'slide', 'zoom'];
-
-    // Générer un type d'animation aléatoire pour chaque cellule de la grille
-    const initialAnimationTypes = Array.from({ length: 6 }, () => {
-      return animationOptions[Math.floor(Math.random() * animationOptions.length)];
-    });
-
-    setAnimationTypes(initialAnimationTypes);
+    // Plus besoin d'initialiser les types d'animation
 
     // Créer la grille initiale avec les 6 premières images (ou moins si pas assez d'images)
     const initialGrid: GridItem[] = [];
@@ -93,11 +82,7 @@ export function ImageGrid({
     // Passer à la position suivante dans l'ordre de remplacement
     currentReplacementIndexRef.current = (currentReplacementIndexRef.current + 1) % REPLACEMENT_ORDER.length;
     
-    // Vérifier si la position est en cours de transition
-    if (transitioning.includes(positionToReplace)) {
-      // Si la position est en transition, attendre le prochain cycle
-      return;
-    }
+    // Plus besoin de vérifier si la position est en transition
 
     // Récupérer l'index de l'image actuellement affichée à cette position
     const currentImageIndex = gridItems[positionToReplace].imageIndex;
@@ -113,41 +98,17 @@ export function ImageGrid({
       nextImageIndexRef.current = (nextImageIndexRef.current + 1) % images.length;
     }
     
-    // Mettre à jour l'état de transition
-    setTransitioning(prev => [...prev, positionToReplace]);
-
-    // Types d'animation disponibles
-    const animationOptions = ['fade', 'slide', 'zoom'];
-    // Sélectionner un nouveau type d'animation aléatoire pour cette cellule
-    const newAnimationType = animationOptions[Math.floor(Math.random() * animationOptions.length)];
-
-    // Mettre à jour le type d'animation pour cette cellule
-    setAnimationTypes(prev => {
+    // Mettre à jour la grille avec la nouvelle image immédiatement, sans transition
+    setGridItems(prev => {
       const updated = [...prev];
-      updated[positionToReplace] = newAnimationType;
+      updated[positionToReplace] = {
+        key: `grid-item-${positionToReplace}-${Date.now()}`,
+        src: images[newImageIndex],
+        imageIndex: newImageIndex
+      };
       return updated;
     });
-
-    // Mettre à jour la grille avec la nouvelle image après un court délai pour la transition
-    setTimeout(() => {
-      setGridItems(prev => {
-        const updated = [...prev];
-        updated[positionToReplace] = {
-          key: `grid-item-${positionToReplace}-${Date.now()}`,
-          src: images[newImageIndex],
-          imageIndex: newImageIndex
-        };
-        return updated;
-      });
-
-      // Attendre que la nouvelle image soit chargée et retirer l'état de transition
-      setTimeout(() => {
-        setTransitioning(prev =>
-          prev.filter(index => index !== positionToReplace)
-        );
-      }, 600); // Durée de la transition d'entrée
-    }, 500); // Durée de la transition de sortie
-  }, [images, gridItems, transitioning]);
+  }, [images, gridItems]);
 
   // Démarrer le changement d'images à intervalles réguliers
   useEffect(() => {
@@ -159,12 +120,12 @@ export function ImageGrid({
     // Attendre un peu avant de commencer les transitions
     const initialTimeout = setTimeout(() => {
       // Configurer l'intervalle pour remplacer une image selon l'ordre fixe
-      const interval = setInterval(replaceRandomImage, changeInterval);
+      const interval = setInterval(replaceRandomImage, 1500); // Temps fixe de 1,5s entre chaque transition
       return () => clearInterval(interval);
     }, 1500); // Délai initial avant de commencer les transitions
 
     return () => clearTimeout(initialTimeout);
-  }, [replaceRandomImage, changeInterval, images.length, gridItems.length]);
+  }, [replaceRandomImage, images.length, gridItems.length]);
 
   return (
     <div className={cn("w-full p-0 m-0", className)}>
@@ -183,10 +144,7 @@ export function ImageGrid({
         {gridItems.slice(0, 6).map((item, index) => (
           <div
             key={item.key}
-            className={cn(
-              "relative overflow-hidden",
-              transitioning.includes(index) ? "opacity-90" : "opacity-100"
-            )}
+            className="relative overflow-hidden"
             style={{
               margin: 0,
               padding: 0,
@@ -201,31 +159,13 @@ export function ImageGrid({
               aspectRatio: '1/1'
             }}
           >
-            {/* Overlay pour l'effet de transition */}
-            <div className={cn(
-              "absolute inset-0 transition-all duration-700 ease-in-out z-10",
-              transitioning.includes(index) 
-                ? animationTypes[index] === 'fade' ? "opacity-80 bg-white" 
-                : animationTypes[index] === 'slide' ? "opacity-60 bg-white translate-y-full" 
-                : "opacity-60 bg-white scale-150" 
-                : "opacity-0 scale-100 translate-y-0"
-            )} />
-
-            {/* Image */}
+            {/* Image sans overlay ni transition */}
             <div className="absolute inset-0 m-0 p-0">
               <Image
                 src={item.src || '/img/placeholder.jpg'}
                 alt={alt}
                 fill
                 sizes="(max-width: 768px) 33vw, (max-width: 1200px) 33vw, 33vw"
-                className={cn(
-                  "transition-all ease-out",
-                  transitioning.includes(index) 
-                    ? animationTypes[index] === 'fade' ? "duration-700 opacity-0" 
-                    : animationTypes[index] === 'slide' ? "duration-700 translate-y-[-10%]" 
-                    : "duration-700 scale-90" 
-                    : "duration-700 opacity-100 scale-100 translate-y-0"
-                )}
                 style={{
                   objectFit: 'contain', // Utiliser contain pour ne pas couper les images
                   objectPosition: 'center',
@@ -234,8 +174,6 @@ export function ImageGrid({
                   height: '100%',
                   maxWidth: '100%',
                   maxHeight: '100%',
-                  willChange: 'transform, opacity',
-                  transform: 'translateZ(0)', // Activer l'accélération GPU
                   backgroundColor: 'transparent', // Fond transparent pour mieux voir les images
                   aspectRatio: '1/1' // Maintenir un ratio carré
                 }}
