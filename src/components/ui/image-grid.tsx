@@ -18,6 +18,15 @@ interface GridItem {
   imageIndex: number
 }
 
+// Ordre fixe de remplacement des images (indices des positions dans la grille)
+// 1. Position 1 (colonne du haut celle du milieu)
+// 2. Position 5 (2ème colonne tout à droite)
+// 3. Position 3 (2ème colonne tout à gauche)
+// 4. Position 2 (1ère colonne tout à droite)
+// 5. Position 4 (2ème colonne au milieu)
+// 6. Position 0 (1ère colonne tout à gauche)
+const REPLACEMENT_ORDER = [1, 5, 3, 2, 4, 0];
+
 export function ImageGrid({
   images,
   alt = 'Grid Image',
@@ -31,198 +40,131 @@ export function ImageGrid({
   const [transitioning, setTransitioning] = useState<number[]>([])
   // État pour le type d'animation à appliquer (aléatoire pour chaque image)
   const [animationTypes, setAnimationTypes] = useState<string[]>([])
-  // Référence pour suivre les indices d'images actuellement utilisées dans la grille
-  const currentIndicesRef = useRef<Set<number>>(new Set())
-  // Référence pour suivre les indices d'images en cours de transition
-  const transitioningIndicesRef = useRef<Set<number>>(new Set())
+  // Référence pour suivre l'index actuel dans l'ordre de remplacement
+  const currentReplacementIndexRef = useRef<number>(0)
+  // Référence pour suivre l'index de la prochaine image à utiliser
+  const nextImageIndexRef = useRef<number>(0)
 
-  // Initialisation de la grille avec des images aléatoires sans répétition
+  // Initialisation de la grille avec des images sans répétition
   useEffect(() => {
-    if (images.length === 0) return
-
-    // Réinitialiser les références d'indices
-    currentIndicesRef.current.clear()
-    transitioningIndicesRef.current.clear()
-
-    // Fonction pour obtenir des indices aléatoires sans répétition
-    const getRandomIndicesWithoutRepetition = (max: number, count: number): number[] => {
-      // Si on demande plus d'indices que disponibles, on utilise tous les indices disponibles
-      if (count >= max) {
-        return Array.from({ length: max }, (_, i) => i);
-      }
-
-      const indices: number[] = [];
-      const usedIndices = new Set<number>();
-
-      while (indices.length < count) {
-        const randomIndex = Math.floor(Math.random() * max);
-        if (!usedIndices.has(randomIndex)) {
-          indices.push(randomIndex);
-          usedIndices.add(randomIndex);
-        }
-      }
-
-      return indices;
-    };
-
-    // Obtenir des indices aléatoires sans répétition
-    const randomIndices = getRandomIndicesWithoutRepetition(images.length, Math.min(gridSize, images.length));
-
-    // Enregistrer les indices utilisés dans la référence
-    randomIndices.forEach(index => {
-      currentIndicesRef.current.add(index);
-    });
+    if (images.length === 0) return;
+    
+    // Réinitialiser l'index de remplacement
+    currentReplacementIndexRef.current = 0;
+    
+    // Réinitialiser l'index de la prochaine image
+    nextImageIndexRef.current = 0;
 
     // Types d'animation disponibles
     const animationOptions = ['fade', 'slide', 'zoom'];
 
     // Générer un type d'animation aléatoire pour chaque cellule de la grille
-    const initialAnimationTypes = Array.from({ length: gridSize }, () => {
+    const initialAnimationTypes = Array.from({ length: 6 }, () => {
       return animationOptions[Math.floor(Math.random() * animationOptions.length)];
     });
 
     setAnimationTypes(initialAnimationTypes);
 
+    // Créer la grille initiale avec les 6 premières images (ou moins si pas assez d'images)
     const initialGrid: GridItem[] = [];
-    for (let i = 0; i < gridSize; i++) {
-      // Si on a plus d'images que nécessaire, on utilise les indices aléatoires sans répétition
-      // Sinon, on fait une rotation des images disponibles
-      const index = i < randomIndices.length ? randomIndices[i] : randomIndices[i % randomIndices.length];
+    for (let i = 0; i < 6; i++) {
+      // Utiliser l'image disponible à l'index i, ou revenir au début si pas assez d'images
+      const imageIndex = i % images.length;
       initialGrid.push({
         key: `grid-item-${i}-${Date.now()}`,
-        src: images[index],
-        imageIndex: index // Stocker l'index de l'image pour référence
+        src: images[imageIndex],
+        imageIndex: imageIndex
       });
     }
 
     setGridItems(initialGrid);
-  }, [images, gridSize])
+    
+    // Définir l'index de la prochaine image à utiliser
+    nextImageIndexRef.current = Math.min(6, images.length) % images.length;
+  }, [images]);
 
-  // Fonction pour remplacer une image aléatoire avec une transition élégante
+  // Fonction pour remplacer une image en suivant un ordre fixe de remplacement
   const replaceRandomImage = useCallback(() => {
-    if (images.length === 0 || gridItems.length === 0) return
+    if (images.length === 0 || gridItems.length === 0) return;
 
-    // Sélectionner un index aléatoire qui n'est pas déjà en transition
-    let availableIndices = Array.from(
-      { length: gridItems.length },
-      (_, i) => i
-    ).filter(i => !transitioning.includes(i))
-
-    if (availableIndices.length === 0) return
-
-    const randomGridIndex =
-      availableIndices[Math.floor(Math.random() * availableIndices.length)]
+    // Obtenir la position à remplacer selon l'ordre fixe
+    const positionToReplace = REPLACEMENT_ORDER[currentReplacementIndexRef.current];
+    
+    // Passer à la position suivante dans l'ordre de remplacement
+    currentReplacementIndexRef.current = (currentReplacementIndexRef.current + 1) % REPLACEMENT_ORDER.length;
+    
+    // Vérifier si la position est en cours de transition
+    if (transitioning.includes(positionToReplace)) {
+      // Si la position est en transition, attendre le prochain cycle
+      return;
+    }
 
     // Récupérer l'index de l'image actuellement affichée à cette position
-    const currentImageIndex = gridItems[randomGridIndex].imageIndex
-
-    // Trouver un nouvel index d'image qui n'est pas déjà utilisé
-    let newImageIndex: number = -1
-    let newImageSrc: string = ''
-
-    // Créer un tableau d'indices disponibles (indices qui ne sont pas actuellement utilisés)
-    const availableImageIndices: number[] = []
-    for (let i = 0; i < images.length; i++) {
-      // Vérifier si l'indice n'est pas déjà dans la grille ou en transition
-      if (!currentIndicesRef.current.has(i) && !transitioningIndicesRef.current.has(i)) {
-        availableImageIndices.push(i)
-      }
-    }
-
-    if (availableImageIndices.length > 0) {
-      // Choisir un index aléatoire parmi les indices disponibles
-      const randomIndex = Math.floor(Math.random() * availableImageIndices.length)
-      newImageIndex = availableImageIndices[randomIndex]
-      newImageSrc = images[newImageIndex]
-
-      // Ajouter le nouvel index aux indices en transition
-      transitioningIndicesRef.current.add(newImageIndex)
-    } else {
-      // Si tous les indices sont utilisés (cas où il y a moins d'images que de cellules dans la grille)
-      // Choisir un index différent de celui actuellement affiché à cette position
-      const otherIndices = Array.from({ length: images.length }, (_, i) => i)
-        .filter(i => i !== currentImageIndex && !transitioningIndicesRef.current.has(i))
-
-      if (otherIndices.length > 0) {
-        const randomOtherIndex = Math.floor(Math.random() * otherIndices.length)
-        newImageIndex = otherIndices[randomOtherIndex]
-        newImageSrc = images[newImageIndex]
-        transitioningIndicesRef.current.add(newImageIndex)
-      } else {
-        // Cas extrême: s'il n'y a pas d'indices disponibles sans transition
-        // Choisir n'importe quel index différent de celui actuellement affiché
-        const anyOtherIndices = Array.from({ length: images.length }, (_, i) => i)
-          .filter(i => i !== currentImageIndex)
-
-        if (anyOtherIndices.length > 0) {
-          const randomIndex = Math.floor(Math.random() * anyOtherIndices.length)
-          newImageIndex = anyOtherIndices[randomIndex]
-          newImageSrc = images[newImageIndex]
-          transitioningIndicesRef.current.add(newImageIndex)
-        } else {
-          // Cas extrême: s'il n'y a qu'une seule image disponible
-          newImageIndex = 0
-          newImageSrc = images[0]
-        }
-      }
+    const currentImageIndex = gridItems[positionToReplace].imageIndex;
+    
+    // Obtenir la prochaine image à afficher
+    const newImageIndex = nextImageIndexRef.current;
+    
+    // Mettre à jour l'index de la prochaine image
+    nextImageIndexRef.current = (nextImageIndexRef.current + 1) % images.length;
+    
+    // Si la nouvelle image est la même que l'actuelle, passer à la suivante
+    if (newImageIndex === currentImageIndex && images.length > 1) {
+      nextImageIndexRef.current = (nextImageIndexRef.current + 1) % images.length;
     }
     
+    // Mettre à jour l'état de transition
+    setTransitioning(prev => [...prev, positionToReplace]);
+
     // Types d'animation disponibles
     const animationOptions = ['fade', 'slide', 'zoom'];
     // Sélectionner un nouveau type d'animation aléatoire pour cette cellule
     const newAnimationType = animationOptions[Math.floor(Math.random() * animationOptions.length)];
-    
+
     // Mettre à jour le type d'animation pour cette cellule
     setAnimationTypes(prev => {
-      const newTypes = [...prev];
-      newTypes[randomGridIndex] = newAnimationType;
-      return newTypes;
+      const updated = [...prev];
+      updated[positionToReplace] = newAnimationType;
+      return updated;
     });
 
-    // Marquer l'image comme étant en transition
-    setTransitioning(prev => [...prev, randomGridIndex])
-
-    // Attendre que l'animation de transition soit terminée avant de remplacer l'image
+    // Mettre à jour la grille avec la nouvelle image après un court délai pour la transition
     setTimeout(() => {
-      // Retirer l'ancien index de l'image des indices actuels
-      currentIndicesRef.current.delete(currentImageIndex)
-      // Ajouter le nouvel index aux indices actuels
-      currentIndicesRef.current.add(newImageIndex)
-
-      setGridItems(prevItems => {
-        const newItems = [...prevItems]
-        newItems[randomGridIndex] = {
-          key: `grid-item-${randomGridIndex}-${Date.now()}`,
-          src: newImageSrc,
+      setGridItems(prev => {
+        const updated = [...prev];
+        updated[positionToReplace] = {
+          key: `grid-item-${positionToReplace}-${Date.now()}`,
+          src: images[newImageIndex],
           imageIndex: newImageIndex
-        }
-        return newItems
-      })
+        };
+        return updated;
+      });
 
       // Attendre que la nouvelle image soit chargée et retirer l'état de transition
       setTimeout(() => {
         setTransitioning(prev =>
-          prev.filter(index => index !== randomGridIndex)
-        )
-        // Retirer l'index de la liste des indices en transition
-        transitioningIndicesRef.current.delete(newImageIndex)
-      }, 600) // Durée de la transition d'entrée
-    }, 500) // Durée de la transition de sortie
-  }, [images, gridItems, transitioning])
+          prev.filter(index => index !== positionToReplace)
+        );
+      }, 600); // Durée de la transition d'entrée
+    }, 500); // Durée de la transition de sortie
+  }, [images, gridItems, transitioning]);
 
   // Démarrer le changement d'images à intervalles réguliers
   useEffect(() => {
-    if (images.length === 0 || gridItems.length === 0) return
+    if (images.length === 0 || gridItems.length === 0) return;
+    
+    // Afficher dans la console le nombre d'images disponibles et le nombre d'images dans la grille
+    console.log(`ImageGrid: ${images.length} images disponibles, ${gridItems.length} images dans la grille`);
 
     // Attendre un peu avant de commencer les transitions
     const initialTimeout = setTimeout(() => {
-      // Configurer l'intervalle pour remplacer une image aléatoire
-      const interval = setInterval(replaceRandomImage, changeInterval)
-      return () => clearInterval(interval)
-    }, 1500) // Délai initial avant de commencer les transitions
+      // Configurer l'intervalle pour remplacer une image selon l'ordre fixe
+      const interval = setInterval(replaceRandomImage, changeInterval);
+      return () => clearInterval(interval);
+    }, 1500); // Délai initial avant de commencer les transitions
 
-    return () => clearTimeout(initialTimeout)
-  }, [replaceRandomImage, changeInterval, images.length, gridItems.length])
+    return () => clearTimeout(initialTimeout);
+  }, [replaceRandomImage, changeInterval, images.length, gridItems.length]);
 
   return (
     <div className={cn("w-full p-0 m-0", className)}>
@@ -304,5 +246,5 @@ export function ImageGrid({
         ))}
       </div>
     </div>
-  )
+  );
 }
