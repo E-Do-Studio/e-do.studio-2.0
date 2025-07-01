@@ -19,15 +19,15 @@ export function EclipseView() {
     '/img/machines/eclipse/13:09_CUDCRBSS25-TOP-6.jpg',
     '/img/machines/eclipse/ALTER-P241218103146-Front-5.webp',
     '/img/machines/eclipse/A_MAGAZINE-Side-tiff-16.webp',
-    '/img/machines/eclipse/CARVEN-BELMONDO PINK-Side-1.webp',
-    '/img/machines/eclipse/combo4-face + boite-tiff-1.webp',
-    '/img/machines/eclipse/Coperni-FOIL BRIDGE BOOT-34-tiff-1.webp',
-    '/img/machines/eclipse/Coperni-MÉDIUM BELT CABAS RED-45-tiff-1 copy.webp',
+    '/img/machines/eclipse/CARVEN-BELMONDO_PINK-Side-1.webp',
+    '/img/machines/eclipse/combo4-face_+_boite-tiff-1.webp',
+    '/img/machines/eclipse/Coperni-FOIL_BRIDGE_BOOT-34-tiff-1.webp',
+    '/img/machines/eclipse/Coperni-MÉDIUM_BELT_CABAS_RED-45-tiff-1_copy.webp',
     '/img/machines/eclipse/Gants-coussin-tiff-6.webp',
     '/img/machines/eclipse/HAT-FRONT-tiff-3 copy.jpg',
-    '/img/machines/eclipse/Multipink Necklace-TOP-_-2.webp',
-    '/img/machines/eclipse/Nick Nora.jpg',
-    '/img/machines/eclipse/ORLINSKI POMPOM-cote droit-tiff-1.webp'
+    '/img/machines/eclipse/Multipink_Necklace-TOP-_-2.webp',
+    '/img/machines/eclipse/Nick_Nora.jpg',
+    '/img/machines/eclipse/ORLINSKI_POMPOM-cote droit-tiff-1.webp'
   ]
 
   return (
