@@ -62,11 +62,11 @@ export function ImageCard({ asset }: ImageCardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           onLoadingComplete={() => setIsLoading(false)}
         />
-        {!isLoading && (
+        {!isLoading && asset.brand?.name && (
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
               <p className="text-white text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                {asset.brand?.name.toUpperCase() || 'Sans marque'}
+                {asset.brand.name.toUpperCase()}
               </p>
             </div>
           </div>

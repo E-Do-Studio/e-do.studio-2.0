@@ -1,4 +1,9 @@
 export const GalleryItemOverlay = ({ title }: { title: string }) => {
+  // Si le titre est 'SANS MARQUE' ou vide, ne pas afficher l'overlay
+  if (!title || title.toUpperCase() === 'SANS MARQUE') {
+    return null;
+  }
+  
   return (
     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
@@ -8,5 +13,4 @@ export const GalleryItemOverlay = ({ title }: { title: string }) => {
       </div>
     </div>
   )
-
 }

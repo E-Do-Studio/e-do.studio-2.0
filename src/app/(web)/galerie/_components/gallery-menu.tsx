@@ -163,7 +163,6 @@ function GalleryContent() {
         return subcategory.name.replace(/\s*\([^)]*\)\s*/g, '')
       }
     }
-
     // Supprimer tout contenu entre parenthèses ainsi que les parenthèses elles-mêmes
     return category.name.replace(/\s*\([^)]*\)\s*/g, '')
   }, [categories, currentCategorySlug, currentSubcategorySlug])

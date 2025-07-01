@@ -31,30 +31,46 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
             <p>{item.description}</p>
           </div>
         )} */}
-        {item.subcategories && item.subcategories.length > 0 ? (
-          <div className="space-y-4 flex-1">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {item.subcategories.map((subcategory) => (
+        <div className="space-y-4 flex-1">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {item.subcategories && item.subcategories.length > 0 ? (
+              item.subcategories.map((subcategory) => (
                 <div
                   key={subcategory.id}
-                  className="p-4 rounded-lg border border-border"
+                  className={`p-3 rounded-lg border border-border h-full flex flex-col ${item.slug === 'lookbook' ? 'justify-center' : 'justify-between'}`}
+                  style={{ minHeight: '80px', width: '100%' }}
                 >
-                  <div className="font-medium">{subcategory.name}</div>
-                  <div className="text-lg font-bold">
-                    {t('post-production.a_partir_de')} {subcategory.price.toFixed(2)}&euro;
+                  {/* Ne pas afficher le nom pour Lookbook */}
+                  {item.slug !== 'lookbook' && (
+                    <div className="font-medium mb-2">{subcategory.name}</div>
+                  )}
+                  <div className={`flex justify-between items-center ${item.slug !== 'lookbook' ? 'mt-auto' : ''}`}>
+                    <div className="text-lg font-bold">
+                      {t('post-production.a_partir_de')} {subcategory.price.toFixed(2)}&euro;
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {t('post-production.hors_taxe')}
+                    </div>
                   </div>
-                  <div className="text-sm text-end text-muted-foreground">
+                </div>
+              ))
+            ) : (
+              <div 
+                className="p-3 rounded-lg border border-border h-full flex flex-col justify-center" 
+                style={{ minHeight: '80px', width: '100%' }}
+              >
+                <div className="flex justify-between items-center">
+                  <div className="text-lg font-bold">
+                    {t('post-production.on_quotation')}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
                     {t('post-production.hors_taxe')}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="flex-1 rounded-lg border border-border p-4">
-            <p>{t('post-production.on_quotation')}</p>
-          </div>
-        )}
+        </div>
       </div>
 
 
@@ -73,13 +89,15 @@ export function CategoryGallery({ item }: CategoryGalleryProps) {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               priority={index < 3}
             />
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
-                <p className="text-white text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                  {asset.brand?.name?.toUpperCase() || 'SANS MARQUE'}
-                </p>
+            {asset.brand?.name && (
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4">
+                  <p className="text-white text-lg tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                    {asset.brand.name.toUpperCase()}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         ))}
       </div>
