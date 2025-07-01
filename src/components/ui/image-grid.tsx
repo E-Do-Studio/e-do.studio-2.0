@@ -116,6 +116,13 @@ export function ImageGrid({
     
     // Afficher dans la console le nombre d'images disponibles et le nombre d'images dans la grille
     console.log(`ImageGrid: ${images.length} images disponibles, ${gridItems.length} images dans la grille`);
+    
+    // Vérifier et normaliser les chemins d'images
+    images.forEach((src, index) => {
+      if (src && typeof src === 'string') {
+        console.log(`Image ${index}: ${src}`);
+      }
+    });
 
     // Attendre un peu avant de commencer les transitions
     const initialTimeout = setTimeout(() => {
@@ -166,6 +173,14 @@ export function ImageGrid({
                 alt={alt}
                 fill
                 sizes="(max-width: 768px) 33vw, (max-width: 1200px) 33vw, 33vw"
+                onError={(e) => {
+                  // En cas d'erreur, remplacer par l'image placeholder
+                  const imgElement = e.currentTarget as HTMLImageElement;
+                  if (imgElement.src !== '/img/placeholder.jpg') {
+                    console.error(`Erreur de chargement d'image: ${imgElement.src}`);
+                    imgElement.src = '/img/placeholder.jpg';
+                  }
+                }}
                 style={{
                   objectFit: 'contain', // Utiliser contain pour ne pas couper les images
                   objectPosition: 'center',
