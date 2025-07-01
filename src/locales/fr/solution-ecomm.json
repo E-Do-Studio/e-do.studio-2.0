@@ -1,0 +1,40 @@
+{
+  "title": "Solution E-comm",
+  "description": "Notre solution E-comm est une solution complète pour la photographie de produits en e-commerce. Grâce à notre technologie avancée, nous offrons un processus automatisé qui garantit une qualité constante et des délais rapides pour tous vos besoins en imagerie de produits. Notre solution est conçue pour s'adapter à tous types de produits, des plus petits aux plus grands, avec une précision exceptionnelle.",
+  "features": [
+    "Automatisation complète du processus de prise de vue",
+    "Traitement d'images haute résolution",
+    "Intégration facile avec votre plateforme e-commerce",
+    "Réduction significative des délais de production",
+    "Uniformité garantie pour toutes vos images de produits"
+  ],
+  "benefits": {
+    "title": "Avantages",
+    "content": "Notre solution E-comm vous permet de réduire considérablement les coûts de production tout en augmentant la qualité et la cohérence de vos images. Avec une capacité de traitement élevée, vous pouvez photographier des centaines de produits par jour, ce qui est idéal pour les catalogues volumineux ou les mises à jour saisonnières."
+  },
+  "process": {
+    "title": "Notre processus",
+    "steps": [
+      {
+        "title": "Préparation",
+        "description": "Vos produits sont préparés et stylisés par notre équipe d'experts"
+      },
+      {
+        "title": "Capture",
+        "description": "Notre système automatisé capture des images sous plusieurs angles"
+      },
+      {
+        "title": "Post-production",
+        "description": "Traitement et retouche professionnels pour un résultat parfait"
+      },
+      {
+        "title": "Livraison",
+        "description": "Les images finales sont livrées dans les formats requis pour votre plateforme"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Nous contacter",
+    "learn_more": "En savoir plus"
+  }
+}

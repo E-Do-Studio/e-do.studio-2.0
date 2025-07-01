@@ -1,5 +1,30 @@
 {
   "footer": {
-    "legal_notice": "Legal Notice"
+    "legal_notice": "Legal Notice",
+    "address": {
+      "building": "E-Do Studio, 75 rue de Turbigo",
+      "city": "75003 Paris, France"
+    }
+  },
+  "header": {
+    "navigation": {
+      "services": "Services",
+      "cyclorama": "CYCLORAMA",
+      "post-production": "Post-Production",
+      "galerie": "Gallery",
+      "contact": "Contact",
+      "production": "Production",
+      "solution_ecomm": "E-comm Solution",
+      "eclipse": "Eclipse",
+      "horizontal": "Horizontal",
+      "vertical": "Vertical",
+      "live": "Live",
+      "location_equipements": "Equipment Rental",
+      "art_buying": "Art Buying / Catering / Casting",
+      "retouche_video": "Video Editing"
+    },
+    "cta": {
+      "book": "Book a Session"
+    }
   }
-} 
+}

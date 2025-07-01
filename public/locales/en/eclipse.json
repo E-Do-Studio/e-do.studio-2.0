@@ -1,0 +1,71 @@
+{
+  "title": "Eclipse",
+  "subtitle": "Creative photo and video studio",
+  "description": "• Specifically designed for accessory photography and video\n• Control light, background and reflections\n• Saved presets for your next shoots\n• Create your own custom sets\n• Get your renderings in seconds",
+  "features": {
+    "title": "Features",
+    "list": [
+      "Custom set creation",
+      "Reflection and light control",
+      "Photos and videos in seconds",
+      "Background selection",
+      "Custom presets saving",
+      "Perfect for accessories"
+    ]
+  },
+  "pricing": {
+    "title": "Pricing",
+    "items": [
+      {
+        "duration": "Hourly",
+        "description": "1 hour of shooting",
+        "price": 150,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Half-day",
+        "description": "4 hours of shooting",
+        "price": 530,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Full day",
+        "description": "8 hours of shooting",
+        "price": 890,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Weekend fee +25%"
+  },
+  "process": {
+    "title": "Our support",
+    "steps": [
+      {
+        "title": "Take charge",
+        "description": "We can take care of the entire shoot for your products."
+      },
+      {
+        "title": "Production",
+        "description": "Taking photos and videos in our studio with personalized support."
+      },
+      {
+        "title": "Retouching",
+        "description": "For an optimal rendering, the E-Do team can take care of the retouching of your visuals."
+      },
+      {
+        "title": "Delivery",
+        "description": "Delivery of your files ready to use for all your marketing needs."
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Jewelry and accessories",
+      "Luxury products",
+      "Technical objects",
+      "Special collections"
+    ]
+  },
+  "cta": "Book a session"
+}

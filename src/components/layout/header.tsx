@@ -14,27 +14,59 @@ import { usePathname } from 'next/navigation'
 import { useScroll } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 import { useScrollDirection } from '@/hooks/use-scroll-direction'
+import React from 'react'
 
 
 type HeaderProps = {
   children: React.ReactNode
 }
 
-const navigation = [
-  { label: 'cyclorama', href: '/cyclorama' },
-  { label: 'post-production', href: '/post-production/high_end' },
-  { label: 'gallery', href: '/galerie?category=on_model' },
-  { label: 'services', href: '#services' },
-  { label: 'pricing', href: '#pricing' },
+export type SubNavItem = {
+  label: string;
+  href: string;
+  subItems?: SubNavItem[];
+}
+
+type NavItem = {
+  label: string;
+  href: string;
+  subItems?: SubNavItem[];
+}
+
+const navigation: NavItem[] = [
+  { 
+    label: 'services', 
+    href: '#', 
+    subItems: [
+      { 
+        label: 'solution_ecomm', 
+        href: '#',
+        subItems: [
+          { label: 'eclipse', href: '/services/eclipse' },
+          { label: 'horizontal', href: '/services/horizontal' },
+          { label: 'vertical', href: '/services/vertical' },
+          { label: 'live', href: '/services/live' },
+        ]
+      },
+      { label: 'cyclorama', href: '/cyclorama' },
+    ] 
+  },
+  { 
+    label: 'post-production', 
+    href: '/post-production'
+  },
+  { label: 'galerie', href: '/galerie?category=on_model' },
   { label: 'contact', href: '#contact' },
-] as const
+]
 
 interface NavigationItemProps {
   children: React.ReactNode
   href: string
+  hasSubItems?: boolean
+  subItems?: SubNavItem[]
 }
 
-export type Navigation = typeof navigation
+export type Navigation = NavItem[]
 
 export function Header() {
   const { t } = useTranslation('layout')
@@ -96,7 +128,11 @@ export function Header() {
             'transition-all duration-300 ease-in-out'
           )}>
             {navigation.map((item) => (
-              <NavigationItem key={item.label} href={item.href}>
+              <NavigationItem 
+                key={item.label} 
+                href={item.href}
+                subItems={item.subItems}
+              >
                 {t(`header.navigation.${item.label}`)}
               </NavigationItem>
             ))}
@@ -231,13 +267,19 @@ function Navigation({ children, className = '' }: HeaderProps & { className?: st
   )
 }
 
-function NavigationItem({ children, href }: NavigationItemProps) {
+function NavigationItem({ children, href, subItems }: NavigationItemProps) {
   const pathname = usePathname()
   const router = useRouter()
   const isPhoneLink = href.startsWith('tel:')
   const isAnchorLink = href.startsWith('#')
   const scrolled = useScroll()
   const { scrollDirection } = useScrollDirection()
+  const [showSubMenu, setShowSubMenu] = React.useState(false)
+  const hasSubItems = subItems && subItems.length > 0
+  const { t } = useTranslation('layout')
+  
+  // État pour suivre quel sous-menu est actuellement survolé
+  const [hoveredSubItem, setHoveredSubItem] = React.useState<string | null>(null)
 
   const getHeaderHeight = () => {
     const isMobile = window.innerWidth < 768
@@ -310,17 +352,109 @@ function NavigationItem({ children, href }: NavigationItemProps) {
     }
   }
 
+
+
   return (
-    <Link
-      href={isAnchorLink ? '#' : href}
-      onClick={handleClick}
-      className={cn(
-        'hover:text-neutral-500 hover:underline transition-colors',
-        scrolled ? 'text-[13px]' : 'text-sm',
-        isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
+    <div className="relative group">
+      {hasSubItems ? (
+        <button
+          className={cn(
+            'hover:text-neutral-500 hover:underline transition-colors flex items-center gap-1',
+            scrolled ? 'text-[13px]' : 'text-sm',
+            isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
+          )}
+          onClick={() => setShowSubMenu(!showSubMenu)}
+        >
+          {children}
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="12" 
+            height="12" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            className={cn(
+              'transition-transform', 
+              // Sur mobile (ou tablette), utiliser showSubMenu pour la rotation
+              // Sur desktop, utiliser group-hover pour la rotation
+              'md:group-hover:rotate-180',
+              showSubMenu ? 'rotate-180 md:rotate-0' : ''
+            )}
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      ) : (
+        <Link
+          href={isAnchorLink ? '#' : href}
+          onClick={handleClick}
+          className={cn(
+            'hover:text-neutral-500 hover:underline transition-colors',
+            scrolled ? 'text-[13px]' : 'text-sm',
+            isPhoneLink ? 'hidden [@media(min-width:1000px)]:block' : ''
+          )}
+        >
+          {children}
+        </Link>
       )}
-    >
-      {children}
-    </Link>
+      
+      {hasSubItems && (
+        <div className="absolute top-full left-0 mt-1 bg-white shadow-md rounded-md py-2 min-w-[180px] z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          {subItems?.map((item) => (
+            <div 
+              key={item.label}
+              className="relative group/item"
+            >
+              {item.subItems ? (
+                <div className="flex items-center justify-between px-4 py-2 text-sm hover:bg-gray-100 transition-colors cursor-pointer">
+                  <span>{t(`header.navigation.${item.label}`)}</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="12" 
+                    height="12" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="transition-transform group-hover/item:translate-x-1"
+                  >
+                    <polyline points="9 6 15 12 9 18"></polyline>
+                  </svg>
+                </div>
+              ) : (
+                <Link
+                  href={item.href}
+                  className="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+                >
+                  {t(`header.navigation.${item.label}`)}
+                </Link>
+              )}
+              
+              {/* Sous-menu de niveau 2 */}
+              {item.subItems && (
+                <div 
+                  className="absolute left-full top-0 bg-white shadow-md rounded-md py-2 min-w-[180px] z-50 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200"
+                >
+                  {item.subItems.map((subItem) => (
+                    <Link
+                      key={subItem.label}
+                      href={subItem.href}
+                      className="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+                    >
+                      {t(`header.navigation.${subItem.label}`)}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }

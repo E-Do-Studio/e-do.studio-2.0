@@ -8,6 +8,7 @@ import { Section } from '@/components/layout/section'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
+import { ReceiptEuro, PocketKnife, HandHelping, DiamondPlus, Camera, BadgeEuro, Euro } from 'lucide-react'
 interface AmenityProps {
   translationKey: string
 }
@@ -92,7 +93,7 @@ function RentalSection() {
   const { t } = useTranslation('cyclorama')
   return (
     <div className="flex flex-col">
-      <h3 className="text-2xl font-medium mb-4">{t('rental.title')}</h3>
+      <h3 className="text-2xl font-medium mb-4 flex flex-row gap-1 items-center">{t('rental.title')} <img className='w-11 h-11' src="img/icon-tarif.png" alt="" /> </h3>
       <div className='flex flex-col gap-4'>
         <div className='flex flex-col gap-10'>
           <p>{t('rental.estimate')}</p>
@@ -122,13 +123,24 @@ function ServicesInfo() {
   const { t } = useTranslation('cyclorama')
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 text-sm gap-8 md:gap-4">
-      <div className='flex flex-col gap-2'>
-        <h3 className='text-2xl font-medium mb-4'>{t('services.production.title')}</h3>
-        <p>{t('services.production.description')}</p>
+      {/* Utilisation de hauteur fixe pour les titres */}
+      <div className='flex flex-col gap-4'>
+        <div className='h-14 flex items-center'>
+          <h3 className='text-2xl font-medium flex flex-row gap-2 items-center'>
+            {t('services.production.title')}
+            <DiamondPlus className='w-6 h-6' />
+          </h3>
+        </div>
+        <p dangerouslySetInnerHTML={{ __html: t('services.production.description') }}></p>
       </div>
-      <div className='flex flex-col gap-2'>
-        <h3 className='text-2xl font-medium mb-4'>{t('services.equipment.title')}</h3>
-        <p>{t('services.equipment.description')}</p>
+      <div className='flex flex-col gap-4'>
+        <div className='h-14 flex items-center'>
+          <h3 className='text-2xl font-medium flex flex-row gap-2 items-center'>
+            {t('services.equipment.title')}
+            <img src="/img/icon-location.png" alt="" className='w-6 h-6' />
+          </h3>
+        </div>
+        <p dangerouslySetInnerHTML={{ __html: t('services.equipment.description') }}></p>
       </div>
     </div>
   )
@@ -136,20 +148,20 @@ function ServicesInfo() {
 
 export function CycloramaSpecs() {
   return (
-    <Section className="!mt-0">
-      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-8 md:mb-4 ">
+    <Section className="!mt-0 !mb-2">
+      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-4 md:px-8 md:py-4 md:mb-0">
 
         <Introduction />
-        <Separator className="my-8" />
+        <Separator className="my-3" />
         <AmenitiesList />
 
       </Card>
 
-      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-8 md:px-8 md:py-8 md:mt-4">
+      <Card className="bg-neutral-100 border-none shadow-none rounded-2xl px-4 py-4 md:px-8 md:py-4 mt-2">
 
 
         <ServicesInfo />
-        <Separator className="my-8" />
+        <Separator className="my-3" />
 
         <RentalSection />
       </Card>

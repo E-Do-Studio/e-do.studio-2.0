@@ -9,4 +9,3 @@ export const metadata: Metadata = generateMetadata({
 export default function CycloramaLayout({ children }: { children: React.ReactNode }) {
     return <main className='container'>{children}</main>
 }
-

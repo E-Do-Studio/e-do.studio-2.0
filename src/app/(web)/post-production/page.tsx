@@ -17,8 +17,13 @@ export default async function PostProduction() {
   // Filtrer les items pour exclure la catégorie avec le slug "360"
   const items = postProduction.docs.filter(doc => doc.slug !== '360')
 
-  // Rediriger vers la première catégorie
-  if (items.length > 0) {
+  // Chercher la catégorie Lookbook
+  const lookbookItem = items.find(item => item.slug === 'lookbook')
+  
+  // Rediriger vers Lookbook si elle existe, sinon vers la première catégorie disponible
+  if (lookbookItem) {
+    redirect(`/post-production/lookbook`)
+  } else if (items.length > 0) {
     redirect(`/post-production/${items[0].slug}`)
   }
 

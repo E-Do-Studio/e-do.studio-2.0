@@ -1,0 +1,52 @@
+{
+  "title": "Location d'Équipements",
+  "subtitle": "Service de location d'équipements professionnels",
+  "description": "E-Do Studio vous propose un service de location d'équipements photo et vidéo de haute qualité. Nous louons directement le matériel professionnel dont vous avez besoin, garantissant ainsi un accès à des équipements de qualité supérieure pour tous vos projets créatifs.",
+  "equipment": {
+    "title": "Nos catégories d'équipements",
+    "categories": [
+      {
+        "title": "Photo & Vidéo",
+        "description": "Caméras, appareils photo, objectifs et accessoires professionnels pour vos productions."
+      },
+      {
+        "title": "Lumières",
+        "description": "Équipements d'éclairage professionnels pour tous types de tournages et shootings."
+      },
+      {
+        "title": "Digipack (Digitech)",
+        "description": "Solutions numériques et équipements techniques pour la gestion de vos données et workflow."
+      },
+      {
+        "title": "Matériel de Régie",
+        "description": "Cintres, tables, portants, steamer et autres équipements essentiels pour votre plateau."
+      },
+      {
+        "title": "Catering",
+        "description": "Équipement pour le service de restauration sur vos tournages et productions."
+      }
+    ]
+  },
+  "process": {
+    "title": "Comment ça fonctionne",
+    "steps": [
+      {
+        "title": "Demande",
+        "description": "Contactez-nous avec vos besoins spécifiques en équipement pour votre projet."
+      },
+      {
+        "title": "Sélection",
+        "description": "Nous vous proposons les équipements les plus adaptés à vos besoins et budget."
+      },
+      {
+        "title": "Réservation",
+        "description": "Finalisez votre réservation directement avec notre équipe."
+      },
+      {
+        "title": "Utilisation",
+        "description": "Récupérez et utilisez l'équipement pour votre projet avec l'assurance d'un matériel de qualité."
+      }
+    ]
+  },
+  "cta": "Contactez-nous pour une location"
+}

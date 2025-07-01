@@ -1,0 +1,40 @@
+{
+  "title": "LIVE",
+  "description": "Our Live service offers a real-time photography and videography solution, ideal for product demonstrations, events, and interactive sessions. Thanks to our cutting-edge equipment and technical expertise, we capture the essence of your brand or product in action, creating dynamic and engaging content for your audience.",
+  "features": [
+    "High-quality real-time capture",
+    "Professional equipment for photo and video",
+    "Possible streaming on your digital platforms",
+    "Fast and efficient post-production",
+    "Solutions adapted to events and demonstrations"
+  ],
+  "benefits": {
+    "title": "Benefits",
+    "content": "The Live service allows you to create authentic and immersive content that engages your audience more deeply. Whether for product demonstrations, brand events, or tutorials, our team captures every important moment with professional quality."
+  },
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Product Demonstrations",
+        "description": "Interactive presentation of your products in action"
+      },
+      {
+        "title": "Brand Events",
+        "description": "Complete coverage of your launches and events"
+      },
+      {
+        "title": "Tutorials and Training",
+        "description": "Creation of educational content for your customers"
+      },
+      {
+        "title": "Social Media",
+        "description": "Production of engaging content for your platforms"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Contact us",
+    "learn_more": "Learn more"
+  }
+}

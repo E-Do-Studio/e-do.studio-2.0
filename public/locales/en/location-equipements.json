@@ -1,0 +1,52 @@
+{
+  "title": "Equipment Rental",
+  "subtitle": "Professional equipment rental service",
+  "description": "E-Do Studio offers high-quality photo and video equipment rental services. We directly rent the professional equipment you need, ensuring access to superior quality gear for all your creative projects.",
+  "equipment": {
+    "title": "Our Equipment Categories",
+    "categories": [
+      {
+        "title": "Photo & Video",
+        "description": "Professional cameras, photography equipment, lenses and accessories for your productions."
+      },
+      {
+        "title": "Lighting",
+        "description": "Professional lighting equipment for all types of shoots and filming."
+      },
+      {
+        "title": "Digipack (Digitech)",
+        "description": "Digital solutions and technical equipment for data management and workflow."
+      },
+      {
+        "title": "Production Equipment",
+        "description": "Clothing racks, tables, steamers and other essential equipment for your set."
+      },
+      {
+        "title": "Catering",
+        "description": "Equipment for food service on your shoots and productions."
+      }
+    ]
+  },
+  "process": {
+    "title": "How It Works",
+    "steps": [
+      {
+        "title": "Request",
+        "description": "Contact us with your specific equipment needs for your project."
+      },
+      {
+        "title": "Selection",
+        "description": "We offer you equipment best suited to your needs and budget."
+      },
+      {
+        "title": "Booking",
+        "description": "Finalize your reservation directly with our team."
+      },
+      {
+        "title": "Usage",
+        "description": "Pick up and use the equipment for your project with the assurance of quality material."
+      }
+    ]
+  },
+  "cta": "Contact Us for Rental"
+}

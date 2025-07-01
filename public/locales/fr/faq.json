@@ -5,19 +5,27 @@
         "contact": "Contactez-nous"
     },
     "chat": {
-        "title": "Chat Assistant",
-        "custom_message": "Pour une réponse personnalisée à votre question, nous vous invitons à nous contacter directement. Notre équipe sera ravie de vous aider.",
+        "title": "Comment pouvons-nous vous aider ?",
+        "custom_message": "Pour une réponse personnalisée à votre question, nous vous invitons à nous contacter directement. Notre équipe se fera un plaisir de vous aider.",
         "contact_button": "Nous contacter",
+        "whatsapp_button": "Contact via WhatsApp",
+        "whatsapp_default_message": "Bonjour, j'ai une question concernant E-Do Studio.",
         "input_placeholder": "Écrivez votre message...",
         "suggested_questions": "Questions fréquentes :",
         "whatsapp_button": "WhatsApp",
         "whatsapp_default_message": "Bonjour, je vous contacte depuis votre site web.",
         "error": {
             "title": "Erreur de connexion",
-            "description": "La connexion au chat a été perdue",
-            "message": "Une erreur est survenue. Veuillez réessayer.",
+            "description": "Connexion au chat perdue",
+            "message": "Une erreur s'est produite. Veuillez réessayer.",
             "retry": "Reconnecter"
         }
+    },
+    "error": {
+        "title": "Erreur de connexion",
+        "description": "La connexion au chat a été perdue",
+        "message": "Une erreur est survenue. Veuillez réessayer.",
+        "retry": "Reconnecter"
     },
     "items": {
         "machine": {
@@ -58,7 +66,7 @@
         },
         "payment": {
             "question": "Quels sont les moyens de paiement acceptés ?",
-            "answer": "Nous acceptons les virements bancaires et les paiements par carte de crédit"
+            "answer": "Nous acceptons les virements bancaires et les paiements par carte de crédit."
         }
     }
 }

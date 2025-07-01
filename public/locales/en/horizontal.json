@@ -1,0 +1,70 @@
+{
+  "title": "Horizontal",
+  "subtitle": "Flat packshot photography",
+  "description": "• Designed for professional flat packshots\n• Easily configure light and camera via iPad\n• Automatic background removal for PNG renderings\n• Ideal for simple and quality e-commerce photography",
+  "features": {
+    "title": "Features",
+    "list": [
+      "Automatic background removal",
+      "iPad Pro configuration",
+      "Total light control",
+      "High resolution photos",
+      "Perfect for flat packshots"
+    ]
+  },
+  "pricing": {
+    "title": "Pricing",
+    "items": [
+      {
+        "duration": "Hourly",
+        "description": "1 hour of shooting",
+        "price": 110,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Half-day",
+        "description": "4 hours of shooting",
+        "price": 390,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Full day",
+        "description": "8 hours of shooting",
+        "price": 650,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Weekend fee +25%"
+  },
+  "process": {
+    "title": "Our support",
+    "steps": [
+      {
+        "title": "Take charge",
+        "description": "We can take care of the entire shoot for your products."
+      },
+      {
+        "title": "Production",
+        "description": "Taking photos in our studio with personalized support."
+      },
+      {
+        "title": "Retouching",
+        "description": "For an optimal rendering, the E-Do team can take care of the retouching of your visuals."
+      },
+      {
+        "title": "Delivery",
+        "description": "Delivery of your files ready to use for all your marketing needs."
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Fashion and accessories",
+      "Stationery and books",
+      "Design objects and decoration",
+      "Food products"
+    ]
+  },
+  "cta": "Book a session"
+}

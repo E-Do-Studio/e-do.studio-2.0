@@ -1,0 +1,44 @@
+{
+  "title": "Art Buying / Catering / Casting",
+  "description": "E-Do Studio offers a complete support service for your photography and video productions. Our team of experts takes care of all the logistical aspects of your project, from casting models to selecting accessories and providing catering on set, allowing you to focus fully on the creative aspect.",
+  "services": [
+    {
+      "title": "Art Buying",
+      "description": "Our Art Buying service includes the research and acquisition of all visual elements necessary for your shoot: accessories, sets, props, and specific objects. We work with an extensive network of suppliers to find exactly what you need, within the allocated time and budget.",
+      "features": [
+        "Research and selection of accessories and props",
+        "Creation of custom sets",
+        "Rental of specific objects",
+        "Complete logistics management"
+      ]
+    },
+    {
+      "title": "Catering",
+      "description": "A successful shoot also depends on the well-being of your team. Our catering service adapts to all dietary requirements and offers quality meals, snacks, and drinks throughout the day, maintaining the energy and focus of all participants.",
+      "features": [
+        "Breakfast, lunch, and snacks",
+        "Vegetarian, vegan, and allergen-free options",
+        "Continuous service throughout the shoot",
+        "Adaptability to time and space constraints"
+      ]
+    },
+    {
+      "title": "Casting",
+      "description": "Find the perfect faces to embody your brand with our casting service. We collaborate with the best agencies and have a database of diverse talents to precisely meet your needs, whether you're looking for professional models or more specific profiles.",
+      "features": [
+        "Selection of models and talents",
+        "Organization of castings and callbacks",
+        "Management of contracts and rights",
+        "Coordination on the day of the shoot"
+      ]
+    }
+  ],
+  "benefits": {
+    "title": "Benefits",
+    "content": "By entrusting these logistical aspects to E-Do Studio, you benefit from professional and stress-free management of your production. Our integrated approach saves you time and optimizes your budget, while ensuring impeccable quality for every element of your project."
+  },
+  "cta": {
+    "contact": "Contact us",
+    "quote": "Request a quote"
+  }
+}

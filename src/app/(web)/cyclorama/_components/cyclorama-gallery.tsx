@@ -122,11 +122,11 @@ export function CycloramaGallery() {
   }
 
   return (
-    <Section className="!mt-0">
-      <div className="grid grid-cols-1 md:grid-cols-2">
+    <Section className="!mt-0 !p-0 !m-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {/* Large Main Image */}
         <motion.div
-          className="relative aspect-[4/3] md:aspect-square"
+          className="relative aspect-[4/3] md:aspect-[3/4] lg:aspect-[4/5]"
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
@@ -142,11 +142,11 @@ export function CycloramaGallery() {
         </motion.div>
 
         {/* Right Side Grid */}
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 gap-2">
           {images.slice(1).map((image, index) => (
             <motion.div
               key={image.id}
-              className="relative aspect-square"
+              className="relative aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5]"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >

@@ -8,6 +8,8 @@
         "title": "Chat Assistant",
         "custom_message": "For a personalized answer to your question, we invite you to contact us directly. Our team will be happy to help you.",
         "contact_button": "Contact us",
+        "whatsapp_button": "Contact via WhatsApp",
+        "whatsapp_default_message": "Hello, I have a question about E-Do Studio.",
         "input_placeholder": "Write your message...",
         "suggested_questions": "Frequently Asked Questions:",
         "whatsapp_button": "WhatsApp",

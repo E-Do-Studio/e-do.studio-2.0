@@ -1,0 +1,73 @@
+{
+  "title": "Horizontal",
+  "subtitle": "Photographie packshot à plat",
+  "description": "• Conçu pour les packshots à plat professionnels\n• Configurez facilement la lumière et la caméra via iPad\n• Suppression automatique de l'arrière-plan pour des rendus en png\n• Idéal pour la photographie e-commerce simple et de qualité",
+  "features": {
+    "title": "Caractéristiques",
+    "list": [
+      "Suppression automatique de l'arrière-plan",
+      "Configuration via iPad Pro",
+      "Contrôle total de la lumière",
+      "Photos haute résolution",
+      "Idéal pour les packshots à plat"
+    ]
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "items": [
+      {
+        "duration": "À l'heure",
+        "description": "1 heure de shooting",
+        "time": "1 heure de shooting",
+        "price": 110,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Demi-journée",
+        "description": "4 heures de shooting",
+        "time": "4 heures de shooting",
+        "price": 390,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Journée",
+        "description": "8 heures de shooting",
+        "time": "8 heures de shooting",
+        "price": 650,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Tarif week-end +25%"
+  },
+  "process": {
+    "title": "Notre accompagnement",
+    "steps": [
+      {
+        "title": "Prise en charge",
+        "description": "Nous pouvons prendre entièrement en charge le shoot de vos produits."
+      },
+      {
+        "title": "Production",
+        "description": "Réalisation des photos dans notre studio avec un accompagnement personnalisé."
+      },
+      {
+        "title": "Retouche",
+        "description": "Pour un rendu optimal, l'équipe E-Do peut se charger de la retouche de vos visuels."
+      },
+      {
+        "title": "Livraison",
+        "description": "Remise de vos fichiers prêts à l'emploi pour tous vos besoins marketing."
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Mode et accessoires",
+      "Papeterie et livres",
+      "Objets design et décoration",
+      "Produits alimentaires"
+    ]
+  },
+  "cta": "Réserver une session"
+}

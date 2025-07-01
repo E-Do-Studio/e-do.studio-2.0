@@ -1,0 +1,70 @@
+{
+  "title": "Vertical",
+  "subtitle": "Photography with 3D effect",
+  "description": "• Designed for Ghost packshot\n• Give your products a 3D effect\n• Intuitive light and camera configuration via iPad\n• High-quality renderings for your e-commerce",
+  "features": {
+    "title": "Features",
+    "list": [
+      "Automatic 3D effect",
+      "iPad Pro configuration",
+      "Background selection",
+      "Total light control",
+      "High resolution photos"
+    ]
+  },
+  "pricing": {
+    "title": "Pricing",
+    "items": [
+      {
+        "duration": "Hourly",
+        "description": "1 hour of shooting",
+        "price": 110,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Half-day",
+        "description": "4 hours of shooting",
+        "price": 390,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Full day",
+        "description": "8 hours of shooting",
+        "price": 650,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Weekend fee +25%"
+  },
+  "process": {
+    "title": "Our support",
+    "steps": [
+      {
+        "title": "Take charge",
+        "description": "We can take care of the entire shoot for your products."
+      },
+      {
+        "title": "Production",
+        "description": "Taking photos in our studio with personalized support."
+      },
+      {
+        "title": "Retouching",
+        "description": "Post-production is often necessary to optimize the rendering of your product."
+      },
+      {
+        "title": "Delivery",
+        "description": "Delivery of your files ready to use for all your marketing needs."
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Bottles and containers",
+      "Decorative objects",
+      "Packaging",
+      "Cosmetic products"
+    ]
+  },
+  "cta": "Book a session"
+}

@@ -19,12 +19,12 @@ function AddressSection({ className }: AddressSectionProps) {
 
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-base sm:text-lg font-medium mb-2 sm:mb-4">{t('footer.address.title')}</h3>
-      <div className="space-y-1 text-gray-300 text-sm">
+      <h3 className="text-white text-base sm:text-lg font-medium mb-1 sm:mb-2">{t('footer.address.title')}</h3>
+      <div className="space-y-0.5 text-gray-300 text-sm">
         <p>{t('footer.address.building')}</p>
         <p>{t('footer.address.city')}</p>
         <p>{t('footer.address.building_number')}</p>
-        <div className="mt-2 sm:mt-4 space-y-1">
+        <div className="mt-1 sm:mt-2 space-y-0.5">
           {transportOptions.map((option) => (
             <div key={option.label} className="flex items-center gap-2">
               <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-white flex items-center justify-center text-[10px] sm:text-xs text-white">
@@ -48,8 +48,8 @@ function ScheduleSection({ className }: ScheduleSectionProps) {
 
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-base sm:text-lg font-medium mb-2 sm:mb-4">{t('footer.schedule.title')}</h3>
-      <div className="space-y-1 text-gray-300 text-sm">
+      <h3 className="text-white text-base sm:text-lg font-medium mb-1 sm:mb-2">{t('footer.schedule.title')}</h3>
+      <div className="space-y-0.5 text-gray-300 text-sm">
         <p>{t('footer.schedule.weekdays')}</p>
         <p>{t('footer.schedule.hours')}</p>
         <p>{t('footer.schedule.weekend')}</p>
@@ -67,11 +67,11 @@ function ContactSection({ className }: ContactSectionProps) {
 
   return (
     <div className={cn(className)}>
-      <h3 className="text-white text-base sm:text-lg font-medium mb-2 sm:mb-4">{t('footer.contact.title')}</h3>
-      <div className="space-y-2 sm:space-y-3 text-gray-300 text-sm">
+      <h3 className="text-white text-base sm:text-lg font-medium mb-1 sm:mb-2">{t('footer.contact.title')}</h3>
+      <div className="space-y-1 sm:space-y-2 text-gray-300 text-sm">
         <Link
           href="/#contact"
-          className="inline-block px-3 py-1.5 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors"
+          className="inline-block px-3 py-1 border border-gray-300 rounded-full hover:bg-white hover:text-black transition-colors"
         >
           {t('footer.contact.email_button')}
         </Link>
@@ -112,14 +112,14 @@ function SocialLinks({ className }: SocialLinksProps) {
   ];
 
   return (
-    <div className={cn("flex flex-col items-center gap-4", className)}>
-      <div className="flex items-center gap-4 sm:gap-6">
+    <div className={cn("flex flex-col items-center gap-2", className)}>
+      <div className="flex items-center gap-3 sm:gap-4">
         {socialLinks.map((link) => (
           <Link
             key={link.label}
             href={link.href}
             target="_blank"
-            className="text-white hover:text-gray-300 transition-colors p-2"
+            className="text-white hover:text-gray-300 transition-colors p-1"
             aria-label={link.label}
           >
             {link.icon}
@@ -146,15 +146,15 @@ function SocialLinks({ className }: SocialLinksProps) {
 
 export function Footer() {
   return (
-    <footer className="bg-black mt-8 sm:mt-12 relative z-20">
-      <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+    <footer className="bg-black mt-6 sm:mt-8 relative z-20">
+      <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <div className="w-full max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <AddressSection className="sm:text-left" />
             <ScheduleSection className="sm:text-left" />
             <ContactSection className="sm:text-left col-span-1 sm:col-span-2 lg:col-span-1" />
           </div>
-          <div className="w-full h-px bg-gray-800 my-6 sm:my-8" />
+          <div className="w-full h-px bg-gray-800 my-3 sm:my-4" />
           <div className="flex flex-col items-center">
             <SocialLinks />
           </div>

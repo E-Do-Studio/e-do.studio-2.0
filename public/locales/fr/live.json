@@ -1,0 +1,95 @@
+{
+  "title": "Live",
+  "subtitle": "Photographie et vidéographie en temps réel",
+  "description": "• Conçu pour la photo modèle porté, production de lookbook et shoot de mobilier\n• Studio intelligent compact de 8m2\n• Production de photos et vidéos en HD et 4K\n• Presets lumière et caméra pré-enregistrés pour vos prochains shoots\n• Gain de temps et d'efficacité pour la production de contenu",
+  "additionalInfo": {
+    "services": [
+      "Pour un rendu optimal, l'équipe E-Do peut se charger de la retouche de vos visuels",
+      "Nous pouvons prendre entièrement en charge le shoot de vos produits"
+    ],
+    "pricing": {
+      "title": "Tarifs",
+      "items": [
+        "Demi-journée (4h) : 450€ HT",
+        "Journée (8h) : 750€ HT"
+      ]
+    }
+  },
+  "features": {
+    "title": "Caractéristiques",
+    "list": [
+      "Studio intelligent de 8m2",
+      "Photos et vidéos en temps réel",
+      "Auto-édition instantanée",
+      "Compatible e-commerce, Instagram, Snapchat, Facebook",
+      "Système de prise de vue automatisé"
+    ]
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "items": [
+      {
+        "duration": "À l'heure",
+        "description": "1 heure de shooting",
+        "time": "1 heure de shooting",
+        "price": 170,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Demi-journée",
+        "description": "4 heures de shooting",
+        "time": "4 heures de shooting",
+        "price": 590,
+        "service": "Self-service"
+      },
+      {
+        "duration": "Journée",
+        "description": "8 heures de shooting",
+        "time": "8 heures de shooting",
+        "price": 1020,
+        "service": "Self-service"
+      }
+    ],
+    "weekend": "Tarif week-end +25%"
+  },
+  "process": {
+    "title": "Notre accompagnement",
+    "steps": [
+      {
+        "title": "Prise en charge",
+        "description": "Nous pouvons prendre entièrement en charge le shoot de vos produits avec notre expertise technique."
+      },
+      {
+        "title": "Production",
+        "description": "Réalisation des photos et vidéos dans notre studio intelligent avec un accompagnement personnalisé."
+      },
+      {
+        "title": "Retouche",
+        "description": "Pour un rendu optimal, l'équipe E-Do peut se charger de la retouche de vos visuels."
+      },
+      {
+        "title": "Livraison",
+        "description": "Remise de vos fichiers prêts à l'emploi pour tous vos besoins marketing."
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Avantages",
+    "list": [
+      "Interaction directe avec votre audience",
+      "Contenu dynamique et engageant",
+      "Possibilité d'archivage pour utilisation future",
+      "Flexibilité et adaptabilité selon vos besoins"
+    ]
+  },
+  "applications": {
+    "title": "Applications",
+    "list": [
+      "Lancements de produits",
+      "Démonstrations techniques",
+      "Événements de marque",
+      "Sessions de formation et webinaires"
+    ]
+  },
+  "cta": "Réserver une session"
+}

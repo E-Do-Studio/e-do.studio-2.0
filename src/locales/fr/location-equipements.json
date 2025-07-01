@@ -1,0 +1,71 @@
+{
+  "title": "Location d'Équipements Photo",
+  "description": "E-Do Studio met à votre disposition une large gamme d'équipements photographiques professionnels pour vos projets. Que vous soyez un photographe indépendant, une agence ou une marque, notre service de location vous offre accès à du matériel haut de gamme, parfaitement entretenu et adapté à tous types de shootings.",
+  "equipment_categories": [
+    {
+      "title": "Appareils photo",
+      "items": [
+        "Canon EOS R5",
+        "Sony Alpha A7R IV",
+        "Phase One XF IQ4 150MP",
+        "Hasselblad H6D-100c"
+      ]
+    },
+    {
+      "title": "Objectifs",
+      "items": [
+        "Canon RF 24-70mm f/2.8L IS USM",
+        "Sony FE 90mm f/2.8 Macro G OSS",
+        "Phase One Schneider Kreuznach 80mm LS f/2.8",
+        "Hasselblad HC 100mm f/2.2"
+      ]
+    },
+    {
+      "title": "Éclairage",
+      "items": [
+        "Profoto B10 Plus",
+        "Broncolor Siros 800 L",
+        "Godox AD600Pro",
+        "Elinchrom ELB 500 TTL"
+      ]
+    },
+    {
+      "title": "Accessoires",
+      "items": [
+        "Trépieds Manfrotto et Gitzo",
+        "Fonds et supports",
+        "Modificateurs de lumière",
+        "Tables de prise de vue"
+      ]
+    }
+  ],
+  "rental_process": {
+    "title": "Processus de location",
+    "steps": [
+      {
+        "title": "Réservation",
+        "description": "Contactez-nous pour vérifier la disponibilité et réserver votre équipement"
+      },
+      {
+        "title": "Retrait",
+        "description": "Récupérez votre matériel à notre studio ou optez pour la livraison"
+      },
+      {
+        "title": "Utilisation",
+        "description": "Profitez d'un équipement professionnel parfaitement entretenu"
+      },
+      {
+        "title": "Retour",
+        "description": "Rapportez l'équipement à la date convenue ou demandez une extension"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Avantages",
+    "content": "Notre service de location vous permet d'accéder à des équipements haut de gamme sans investissement majeur. Vous bénéficiez de conseils d'experts pour choisir le matériel le plus adapté à votre projet, et d'une flexibilité totale dans la durée de location."
+  },
+  "cta": {
+    "contact": "Nous contacter",
+    "equipment_list": "Voir la liste complète"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "title": "Contact",
+  "description": "Nous sommes à votre écoute pour répondre à toutes vos questions et vous accompagner dans vos projets. N'hésitez pas à nous contacter pour discuter de vos besoins ou pour planifier une visite de notre studio.",
+  "form": {
+    "name": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "company": "Entreprise",
+    "message": "Message",
+    "submit": "Envoyer",
+    "success": "Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.",
+    "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer."
+  },
+  "contact_info": {
+    "title": "Informations de contact",
+    "address": {
+      "title": "Adresse",
+      "line1": "E-Do Studio",
+      "line2": "75 rue de Turbigo",
+      "line3": "75003 Paris, France"
+    },
+    "phone": {
+      "title": "Téléphone",
+      "number": "+33 1 44 04 11 49"
+    },
+    "email": {
+      "title": "Email",
+      "address": "contact@e-do.studio"
+    },
+    "hours": {
+      "title": "Horaires d'ouverture",
+      "weekdays": "Lundi - Vendredi: 9h00 - 19h00",
+      "weekend": "Samedi - Dimanche: Sur rendez-vous uniquement"
+    }
+  },
+  "cta": {
+    "book": "Réserver une session",
+    "visit": "Visiter le studio"
+  }
+}

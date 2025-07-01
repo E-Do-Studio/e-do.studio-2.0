@@ -1,0 +1,40 @@
+{
+  "title": "HORIZONTAL",
+  "description": "Notre service Horizontal est spécialisé dans la photographie de produits à plat, offrant une solution idéale pour les vêtements, accessoires, et objets présentés en vue de dessus. Grâce à notre installation spécifique et notre expertise, nous garantissons des images parfaitement alignées avec une qualité constante, essentielles pour une présentation professionnelle de vos produits en ligne.",
+  "features": [
+    "Installation spécifique pour photographie à plat",
+    "Éclairage optimisé pour éliminer les ombres indésirables",
+    "Positionnement précis des produits",
+    "Traitement d'image professionnel",
+    "Idéal pour les vêtements, accessoires et objets plats"
+  ],
+  "benefits": {
+    "title": "Avantages",
+    "content": "La photographie horizontale permet de présenter vos produits de manière claire et détaillée, idéale pour les catalogues e-commerce. Notre service garantit une cohérence visuelle parfaite entre tous vos produits, renforçant ainsi l'image professionnelle de votre marque."
+  },
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Mode",
+        "description": "Présentation optimale des vêtements et textiles"
+      },
+      {
+        "title": "Accessoires",
+        "description": "Mise en valeur des détails des sacs, chaussures et bijoux"
+      },
+      {
+        "title": "Papeterie",
+        "description": "Capture précise des livres, magazines et documents"
+      },
+      {
+        "title": "Objets plats",
+        "description": "Rendu parfait pour tout produit présenté à plat"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Nous contacter",
+    "learn_more": "En savoir plus"
+  }
+}

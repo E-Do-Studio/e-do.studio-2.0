@@ -1,0 +1,52 @@
+{
+  "title": "Art Buying",
+  "subtitle": "Professional talent sourcing and creative production services",
+  "description": "E-Do Studio offers comprehensive art buying services, specializing in the search and selection of photographers, stylists, set designers, and other artistic talents. We organize and coordinate all aspects of production shoots, connecting you with the perfect creative professionals for your projects across any artistic discipline.",
+  "equipment": {
+    "title": "Our Talent Categories",
+    "categories": [
+      {
+        "title": "Photography",
+        "description": "Professional photographers specialized in various styles and techniques for your visual projects."
+      },
+      {
+        "title": "Styling",
+        "description": "Expert stylists who can create the perfect look and aesthetic for your production."
+      },
+      {
+        "title": "Set Design",
+        "description": "Creative set designers who can transform spaces into captivating visual environments."
+      },
+      {
+        "title": "Direction",
+        "description": "Skilled directors and choreographers who can bring movement and performance to your productions."
+      },
+      {
+        "title": "Artistic Talents",
+        "description": "Diverse creative professionals across various artistic disciplines to enhance your projects."
+      }
+    ]
+  },
+  "process": {
+    "title": "How It Works",
+    "steps": [
+      {
+        "title": "Brief",
+        "description": "Share your project vision, requirements, and artistic direction with our team."
+      },
+      {
+        "title": "Talent Search",
+        "description": "We identify and propose the most suitable creative professionals for your specific needs."
+      },
+      {
+        "title": "Selection",
+        "description": "Review our curated talent options and select the perfect match for your project."
+      },
+      {
+        "title": "Production",
+        "description": "We coordinate all aspects of the production process, ensuring a smooth and successful creative collaboration."
+      }
+    ]
+  },
+  "cta": "Contact Us for Art Buying"
+}

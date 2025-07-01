@@ -19,7 +19,7 @@ const SITE_NAME = 'E-Do Studio'
 
 export const metadata: Metadata = generateBaseMetadata({
   title: 'Découvrez nos services de productions',
-  description: 'E-Do Studio est un espace hybride dédié à la production d\'images. Cyclorama, Systèmes E-Commerce, Production, Retouche d\'images et vidéos…',
+  description: 'E-Do Studio est un espace hybride dédié à la production d\'images. Cyclorama, Solutions E-Commerce, Production, Retouche d\'images et vidéos…',
   templateTitle: false
 })
 

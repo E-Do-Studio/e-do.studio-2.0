@@ -12,9 +12,9 @@ export function Description() {
             <p className="max-w-full max-md:min-w-full md:max-w-[80%]">
                 {t('post-production.description')}
             </p>
-            <div className='flex gap-4'>
+            <div className="w-fit">
                 <Link href="/#contact">
-                    <Button size="lg" className="w-44">
+                    <Button size="lg">
                         {t('post-production.contact')}
                     </Button>
                 </Link>

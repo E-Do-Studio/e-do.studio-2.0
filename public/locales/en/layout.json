@@ -2,14 +2,24 @@
   "header": {
     "navigation": {
       "phone": "+33 1 44 04 11 49",
-      "post-production": "post-prod",
-      "gallery": "gallery",
+      "post-production": "post-production",
+      "galerie": "gallery",
       "services": "services",
       "pricing": "pricing",
       "contact": "contact",
-      "cyclorama": "cyclorama"
+      "cyclorama": "cyclorama",
+      "solution_ecomm": "e-comm solution",
+      "eclipse": "eclipse",
+      "horizontal": "horizontal",
+      "vertical": "vertical",
+      "live": "live",
+      "production": "production",
+      "location_equipements": "equipment rental",
+      "art_buying": "art buying",
+      "retouche_video": "video editing"
     },
     "cta": {
+
       "book": "book a session"
     }
   },
@@ -52,5 +62,8 @@
     }
   },
   "bookSession": "book a session",
-  "address": "69 Boulevard Victor Hugo, 93400 Saint-Ouen"
+  "address": "69 Boulevard Victor Hugo, 93400 Saint-Ouen",
+  "common": {
+    "cancel": "Cancel"
+  }
 }

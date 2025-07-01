@@ -1,0 +1,71 @@
+{
+  "title": "Photo Equipment Rental",
+  "description": "E-Do Studio provides a wide range of professional photographic equipment for your projects. Whether you're an independent photographer, an agency, or a brand, our rental service gives you access to high-end, perfectly maintained equipment suitable for all types of shoots.",
+  "equipment_categories": [
+    {
+      "title": "Cameras",
+      "items": [
+        "Canon EOS R5",
+        "Sony Alpha A7R IV",
+        "Phase One XF IQ4 150MP",
+        "Hasselblad H6D-100c"
+      ]
+    },
+    {
+      "title": "Lenses",
+      "items": [
+        "Canon RF 24-70mm f/2.8L IS USM",
+        "Sony FE 90mm f/2.8 Macro G OSS",
+        "Phase One Schneider Kreuznach 80mm LS f/2.8",
+        "Hasselblad HC 100mm f/2.2"
+      ]
+    },
+    {
+      "title": "Lighting",
+      "items": [
+        "Profoto B10 Plus",
+        "Broncolor Siros 800 L",
+        "Godox AD600Pro",
+        "Elinchrom ELB 500 TTL"
+      ]
+    },
+    {
+      "title": "Accessories",
+      "items": [
+        "Manfrotto and Gitzo tripods",
+        "Backgrounds and supports",
+        "Light modifiers",
+        "Shooting tables"
+      ]
+    }
+  ],
+  "rental_process": {
+    "title": "Rental Process",
+    "steps": [
+      {
+        "title": "Reservation",
+        "description": "Contact us to check availability and reserve your equipment"
+      },
+      {
+        "title": "Pickup",
+        "description": "Collect your equipment at our studio or opt for delivery"
+      },
+      {
+        "title": "Usage",
+        "description": "Enjoy perfectly maintained professional equipment"
+      },
+      {
+        "title": "Return",
+        "description": "Return the equipment on the agreed date or request an extension"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Benefits",
+    "content": "Our rental service allows you to access high-end equipment without major investment. You benefit from expert advice to choose the most suitable equipment for your project, and total flexibility in the rental duration."
+  },
+  "cta": {
+    "contact": "Contact us",
+    "equipment_list": "See the complete list"
+  }
+}

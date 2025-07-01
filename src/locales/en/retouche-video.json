@@ -1,0 +1,71 @@
+{
+  "title": "Video Editing",
+  "description": "E-Do Studio offers professional video editing services to enhance your audiovisual content. Our team of experts uses the latest technologies to transform your raw footage into impactful videos, with special attention to visual consistency, color grading, and special effects.",
+  "services": [
+    {
+      "title": "Editing",
+      "description": "Our team ensures smooth and dynamic editing of your sequences, respecting your storyboard and optimizing the narrative rhythm to captivate your audience.",
+      "features": [
+        "Selection and assembly of the best takes",
+        "Smooth and professional transitions",
+        "Precise audio synchronization",
+        "Respect for storytelling and rhythm"
+      ]
+    },
+    {
+      "title": "Color Grading",
+      "description": "We harmonize the colors and exposure of your videos to create a consistent atmosphere and strengthen the visual impact of your message, in line with your brand identity.",
+      "features": [
+        "Color and exposure correction",
+        "Creation of specific visual atmospheres",
+        "Harmonization between different sources",
+        "Compliance with broadcasting standards"
+      ]
+    },
+    {
+      "title": "Special Effects",
+      "description": "From simple animations to complex effects, we enhance your videos with visual elements that reinforce your message and impress your audience.",
+      "features": [
+        "Animations and motion design",
+        "Compositing and integration of 3D elements",
+        "Image correction and enhancement",
+        "Custom visual effects"
+      ]
+    },
+    {
+      "title": "Finalization",
+      "description": "We ensure the technical finalization of your videos with special attention to sound quality, subtitles, and optimization for different broadcasting platforms.",
+      "features": [
+        "Professional audio mixing",
+        "Subtitling and text overlay",
+        "Exports adapted to each platform",
+        "Rigorous quality verification"
+      ]
+    }
+  ],
+  "applications": {
+    "title": "Applications",
+    "items": [
+      {
+        "title": "Product Videos",
+        "description": "Dynamic showcase of your products and services"
+      },
+      {
+        "title": "Social Media Content",
+        "description": "Optimized and eye-catching formats for all platforms"
+      },
+      {
+        "title": "Corporate Films",
+        "description": "Professional presentation of your company and its values"
+      },
+      {
+        "title": "Advertisements",
+        "description": "Impactful spots to promote your brand"
+      }
+    ]
+  },
+  "cta": {
+    "contact": "Contact us",
+    "quote": "Request a quote"
+  }
+}
