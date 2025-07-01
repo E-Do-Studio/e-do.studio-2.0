@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Section } from '@/components/layout/section'
 import { ImageCarousel } from '@/components/ui/image-carousel'
-import { ImageGrid } from '@/components/ui/image-grid'
+import { MotionCarousel } from '@/components/ui/motion-carousel'
 
 interface MachineSectionProps {
   namespace: string;
@@ -56,12 +56,11 @@ export function MachineSection({
             {imageUrls && imageUrls.length > 0 ? (
               // Afficher la grille d'images si des images sont fournies
               <div className="w-full h-full p-0 m-0">
-                {/* Grille d'images 3x3 avec transitions douces */}
-                <ImageGrid
+                {/* Grille d'images avec animations Motion One */}
+                <MotionCarousel
                   images={imageUrls}
                   alt={title || t('title')}
                   gridSize={9}
-                  changeInterval={3000}
                   className="w-full h-full p-0 m-0"
                 />
               </div>

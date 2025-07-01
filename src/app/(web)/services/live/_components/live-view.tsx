@@ -1,7 +1,6 @@
 'use client'
 
 import { MachineSection } from '@/components/service/machine-section'
-import { ImageGrid } from '@/components/ui/image-grid'
 import { useMachineImages } from '@/hooks/use-machine-images'
 import { useEffect, useState } from 'react'
 
