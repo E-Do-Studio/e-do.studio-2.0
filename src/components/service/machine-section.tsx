@@ -73,14 +73,6 @@ export function MachineSection({
                 fill
                 className="object-contain bg-transparent"
                 priority
-                onError={(e) => {
-                  // En cas d'erreur, remplacer par l'image placeholder
-                  const imgElement = e.currentTarget as HTMLImageElement;
-                  if (imgElement.src !== '/img/placeholder.jpg') {
-                    console.error(`Erreur de chargement d'image: ${imgElement.src}`);
-                    imgElement.src = '/img/placeholder.jpg';
-                  }
-                }}
               />
             )}
           </div>
