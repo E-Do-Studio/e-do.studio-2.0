@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@motionone/dom": "^10.18.0",
     "@next/third-parties": "^15.1.7",
     "@payloadcms/db-postgres": "3.6.0",
     "@payloadcms/email-resend": "3.6.0",
