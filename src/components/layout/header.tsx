@@ -52,14 +52,6 @@ const navigation: NavItem[] = [
     ] 
   },
   { 
-    label: 'production', 
-    href: '#', 
-    subItems: [
-      { label: 'location_equipements', href: '/production/location-equipements' },
-      { label: 'art_buying', href: '/production/art-buying' },
-    ] 
-  },
-  { 
     label: 'post-production', 
     href: '/post-production'
   },
