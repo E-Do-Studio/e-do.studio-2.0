@@ -24,10 +24,10 @@ export function EclipseView() {
     '/img/machines/eclipse/Coperni-FOIL_BRIDGE_BOOT-34-tiff-1.webp',
     '/img/machines/eclipse/Coperni-MÉDIUM_BELT_CABAS_RED-45-tiff-1_copy.webp',
     '/img/machines/eclipse/Gants-coussin-tiff-6.webp',
-    '/img/machines/eclipse/HAT-FRONT-tiff-3 copy.jpg',
+    '/img/machines/eclipse/HAT-FRONT-tiff-3_copy.jpg',
     '/img/machines/eclipse/Multipink_Necklace-TOP-_-2.webp',
     '/img/machines/eclipse/Nick_Nora.jpg',
-    '/img/machines/eclipse/ORLINSKI_POMPOM-cote droit-tiff-1.webp'
+    '/img/machines/eclipse/ORLINSKI_POMPOM-cote_droit-tiff-1.webp'
   ]
 
   return (
