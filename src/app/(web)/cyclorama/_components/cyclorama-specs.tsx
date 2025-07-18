@@ -135,9 +135,9 @@ function ServicesInfo() {
       </div>
       <div className='flex flex-col gap-4'>
         <div className='h-14 flex items-center'>
-          <h3 className='text-2xl font-medium flex flex-row gap-2 items-center'>
+          <h3 className='text-2xl font-medium flex flex-row gap-0 items-center'>
             {t('services.equipment.title')}
-            <img src="/img/icon-location.png" alt="" className='w-6 h-6' />
+            <img src="/img/icon-location.png" alt="" className='w-11 h-11'  />
           </h3>
         </div>
         <p dangerouslySetInnerHTML={{ __html: t('services.equipment.description') }}></p>
