@@ -22,12 +22,12 @@ export function HorizontalView() {
     '/img/machines/horizontal/ET201AM21_2.jpg',
     '/img/machines/horizontal/FURSAC_D2ELFA-TR23-71-2.jpg',
     '/img/machines/horizontal/Kid_Super_18_Front.jpg',
-    '/img/machines/horizontal/MARE-Kimono_Brown_Stripe_Front .jpg',
-    '/img/machines/horizontal/MARE-short crème _Front_JPG.jpg',
-    '/img/machines/horizontal/Paris navy 65_2.jpg',
-    '/img/machines/horizontal/SKATEBOARDS-1-TIFF-1 alex mileshin.jpg',
-    '/img/machines/horizontal/manteau 2_Front.jpg',
-    '/img/machines/horizontal/veste beige - front_Front-2.jpg'
+    '/img/machines/horizontal/MARE-Kimono_Brown_Stripe_Front.jpg',
+    '/img/machines/horizontal/MARE-short_creme__Front_JPG.jpg',
+    '/img/machines/horizontal/Paris_navy_65_2.jpg',
+    '/img/machines/horizontal/SKATEBOARDS-1-TIFF-1_alex_mileshin.jpg',
+    '/img/machines/horizontal/manteau_2_Front.jpg',
+    '/img/machines/horizontal/veste_beige_-_front_Front-2.jpg'
   ]
 
   return (
