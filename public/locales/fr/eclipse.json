@@ -20,21 +20,21 @@
         "duration": "À l'heure",
         "description": "1 heure de shooting",
         "time": "1 heure de shooting",
-        "price": 150,
+        "price": 160,
         "service": "Self-service"
       },
       {
         "duration": "Demi-journée",
         "description": "4 heures de shooting",
         "time": "4 heures de shooting",
-        "price": 530,
+        "price": 560,
         "service": "Self-service"
       },
       {
         "duration": "Journée",
         "description": "8 heures de shooting",
         "time": "8 heures de shooting",
-        "price": 890,
+        "price": 990,
         "service": "Self-service"
       }
     ],

@@ -19,19 +19,19 @@
       {
         "duration": "Hourly",
         "description": "1 hour of shooting",
-        "price": 150,
+        "price": 160,
         "service": "Self-service"
       },
       {
         "duration": "Half-day",
         "description": "4 hours of shooting",
-        "price": 530,
+        "price": 560,
         "service": "Self-service"
       },
       {
         "duration": "Full day",
         "description": "8 hours of shooting",
-        "price": 890,
+        "price": 990,
         "service": "Self-service"
       }
     ],
